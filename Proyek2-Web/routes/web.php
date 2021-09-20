@@ -20,7 +20,7 @@ use App\Http\Controllers\LoginController;
 // });
 
 // Login Admin
-Route::get('/',[LoginController::class,'index'])->middleware('guest');
+Route::get('/',[LoginController::class,'index'])->name('login')->middleware('guest');
 Route::post('/login',[LoginController::class,'authenticate']);
 Route::post('/logout',[LoginController::class, 'logout']);
 
