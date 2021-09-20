@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,9 +15,16 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('/dashboard',[DashboardController::class, 'index'] );
+// Login Admin
+Route::get('/',[LoginController::class,'index'])->middleware('guest');
+Route::post('/login',[LoginController::class,'authenticate']);
+Route::post('/logout',[LoginController::class, 'logout']);
+
+// Halaman Dashboard Admin
+Route::get('/dashboard',[DashboardController::class, 'index'])->middleware('auth');
+
 Route::get('/produk',[ProductController::class, 'show']);
