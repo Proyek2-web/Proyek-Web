@@ -12,10 +12,6 @@ class LoginController extends Controller
 {
     public function index()
     {
-        // $request->validate([
-        //     'email' => 'required|unique:users|email',
-        //     'password' => 'required|min:8|max:255',
-        // ]);
         return view('auth.login');
     }
     

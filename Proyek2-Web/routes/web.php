@@ -20,11 +20,13 @@ use App\Http\Controllers\LoginController;
 // });
 
 // Login Admin
-Route::get('/',[LoginController::class,'index'])->name('login')->middleware('guest');
-Route::post('/login',[LoginController::class,'authenticate']);
-Route::post('/logout',[LoginController::class, 'logout']);
+Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout']);
 
 // Halaman Dashboard Admin
-Route::get('/dashboard',[DashboardController::class, 'index'])->middleware('auth');
+Route::get('/dashboard', function () {
+    return view('section.index');
+})->middleware('auth');
 
-Route::get('/produk',[ProductController::class, 'show']);
+Route::get('/produk', [ProductController::class, 'show']);

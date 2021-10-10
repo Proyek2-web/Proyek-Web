@@ -5,13 +5,17 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title> Admin Dashboard </title>
+    <title> Admin | Kinasih Dashboard </title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png">
     <link rel="stylesheet" href="./vendor/owl-carousel/css/owl.carousel.min.css">
     <link rel="stylesheet" href="./vendor/owl-carousel/css/owl.theme.default.min.css">
     <link href="./vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet">
     <link href="./css/style.css" rel="stylesheet">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
+    </script>
 
 
 
@@ -62,53 +66,7 @@
         <!--**********************************
             Header start
         ***********************************-->
-        <div class="header">
-            <div class="header-content">
-                <nav class="navbar navbar-expand">
-                    <div class="collapse navbar-collapse justify-content-between">
-                        <div class="header-left">
-                            <div class="search_bar dropdown">
-                                <span class="search_icon p-3 c-pointer" data-toggle="dropdown">
-                                    <i class="mdi mdi-magnify"></i>
-                                </span>
-                                <div class="dropdown-menu p-0 m-0">
-                                    <form>
-                                        <input class="form-control" type="search" placeholder="Search"
-                                            aria-label="Search">
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-
-                        <ul class="navbar-nav header-right">
-                            <li class="nav-item dropdown header-profile">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                                    <i class="mdi mdi-account"></i>
-                                    Welcome, {{ auth()->user()->name }}
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a href="" class="dropdown-item">
-                                        <i class="icon-user"></i>
-                                        <span class="ml-2">Profile </span>
-                                    </a>
-                                    <a href="" class="dropdown-item">
-                                        <i class="icon-envelope-open"></i>
-                                        <span class="ml-2">Inbox </span>
-                                    </a>
-                                    <form action="/logout" method="POST">
-                                        @csrf
-                                        <button type="submit" class="dropdown-item">
-                                            <i class="icon-key"></i>
-                                            <span class="ml-2">Logout </span>
-                                        </button>
-                                    </form>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-        </div>
+        @include('components.header')
         <!--**********************************
             Header end ti-comment-alt
         ***********************************-->
@@ -116,51 +74,7 @@
         <!--**********************************
             Sidebar start
         ***********************************-->
-        <div class="quixnav">
-            <div class="quixnav-scroll">
-                <ul class="metismenu" id="menu">
-                    <li class="nav-label first">Main Menu</li>
-                    <li><a><i class="icon icon-single-04"></i><span class="nav-text">Dashboard</span></a>
-                    </li>
-                    <li class="nav-label">List Tabel</li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class=""></i><span
-                                class="nav-text">Tabel</span></a>
-                        <ul aria-expanded="false">
-                            <li><a href="./app-profile.html">User</a></li>
-                            <li><a class="">Penjualan</a>
-                            </li>
-                            <li><a href="./app-calender.html">Produk</a></li>
-                            <li><a href="./app-calender.html">Kategori</a></li>
-                            <li><a href="./app-calender.html">Post</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="nav-label">Managemen</li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class=""></i><span
-                                class="nav-text">Produksi</span></a>
-                        <ul aria-expanded="false">
-                            <li><a href="./ui-accordion.html">Stok</a></li>
-                            <li><a href="./ui-alert.html">Harga</a></li>
-
-                        </ul>
-                    </li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-person-2"></i><span class="nav-text">List Pegawai</span></a>
-                        <ul aria-expanded="false">
-                            <li><a href="./ui-accordion.html">Pegawai</a></li>
-
-                        </ul>
-                    </li>
-                    <li class="nav-label">Laporan</li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class=""></i><span
-                                class="nav-text">Cetak Laporan</span></a>
-
-                    </li>
-                </ul>
-            </div>
-
-
-        </div>
+        @include('components.navbar')
         <!--**********************************
             Sidebar end
         ***********************************-->
@@ -168,119 +82,8 @@
         <!--**********************************
             Content body start
         ***********************************-->
-        <div class="content-body">
-            <!-- row -->
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="stat-widget-two card-body">
-                                <div class="stat-content">
-                                    <div class="stat-text">Modal Awal</div>
-                                    <div class="stat-digit"> <i class="fa fa-usd"></i>8500</div>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-success w-85" role="progressbar"
-                                        aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="stat-widget-two card-body">
-                                <div class="stat-content">
-                                    <div class="stat-text">Stok</div>
-                                    <div class="stat-digit"> <i class="fa fa-usd"></i>7800</div>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-primary w-75" role="progressbar"
-                                        aria-valuenow="78" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="stat-widget-two card-body">
-                                <div class="stat-content">
-                                    <div class="stat-text">Jumlah Pesanan</div>
-                                    <div class="stat-digit"> <i class="fa fa-usd"></i> 500</div>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-warning w-50" role="progressbar"
-                                        aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="stat-widget-two card-body">
-                                <div class="stat-content">
-                                    <div class="stat-text">Detail Pendapatan</div>
-                                    <div class="stat-digit"> <i class="fa fa-usd"></i>650</div>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-danger w-65" role="progressbar"
-                                        aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /# card -->
-                    </div>
-                    <!-- /# column -->
-                </div>
-                <div class="row">
-                    <div class="col-xl-8 col-lg-8 col-md-8">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Sales Overview</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-xl-12 col-lg-8">
-                                        <div id="morris-bar-chart"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-4">
-                        <div class="card">
-                            <div class="card-body text-center">
-                                <div class="m-t-10">
-                                    <h4 class="card-title">Customer Feedback</h4>
-                                    <h2 class="mt-3">385749</h2>
-                                </div>
-                                <div class="widget-card-circle mt-5 mb-5" id="info-circle-card">
-                                    <i class="ti-control-shuffle pa"></i>
-                                </div>
-                                <ul class="widget-line-list m-b-15">
-                                    <li class="border-right">92% <br><span class="text-success"><i
-                                                class="ti-hand-point-up"></i> Positive</span></li>
-                                    <li>8% <br><span class="text-danger"><i
-                                                class="ti-hand-point-down"></i>Negative</span></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        @yield('container')
 
-                <!--**********************************
-            Footer end
-        ***********************************-->
-
-                <!--**********************************
-           Support ticket button start
-        ***********************************-->
-
-                <!--**********************************
-           Support ticket button end
-        ***********************************-->
-
-
-            </div>
             <!--**********************************
         Main wrapper end
     ***********************************-->
