@@ -2,8 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\LoginController;
+use App\Models\User;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,4 +31,10 @@ Route::get('/dashboard', function () {
     return view('section.index');
 })->middleware('auth');
 
-Route::get('/produk', [ProductController::class, 'show']);
+// Route::get('/user', function () {
+//    $users=User::latest();
+//     return view('section.user',[
+//         'users'=> $users->get() 
+//     ]);
+// })->middleware('auth');
+Route::resource('/user', DashboardController::class)->middleware('auth');

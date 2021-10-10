@@ -375,7 +375,11 @@ svg {
   overflow: hidden;
   vertical-align: middle; }
 
-table {
+.table {
+    color:black;
+    width:100%;
+}
+  table {
   border-collapse: collapse; }
 
 caption {
