@@ -1,9 +1,9 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
-use App\Models\User;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -27,7 +27,11 @@ Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
 // Halaman Dashboard Admin
-Route::get('/dashboard', function () {
-    return view('section.index');
-})->middleware('auth');
-Route::resource('/user', DashboardController::class)->middleware('auth');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('section.index');
+    });
+    Route::resource('/user', DashboardController::class)->middleware('auth');
+    Route::resource('/category',CategoryController::class);
+
+});

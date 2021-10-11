@@ -40,14 +40,15 @@
 
                                     </td>
                                 </tr>
-
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-        <button type="button" class="btn btn-secondary ml-3">Tambah Data Baru</button>
+        <button type="button" class="btn btn-secondary ml-3" data-toggle="modal" data-target="#modal-default">
+            <i class="fa fa-plus"></i>&nbsp;Tambahkan Data User</a>
+        </button>
     </div>
 
 @endsection
