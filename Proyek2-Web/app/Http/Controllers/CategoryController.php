@@ -42,7 +42,7 @@ class CategoryController extends Controller
             'slug' => 'required' 
          ]);
          Category::create($insert_data);
-         return redirect('/category');
+         return redirect('/category')->with('Added', 'Kategori Berhasil Ditambahkan');
     }
 
     /**
@@ -89,7 +89,6 @@ class CategoryController extends Controller
     {
         Category::find($id)->delete();
         
-        return redirect()->route('category.index')
-            ->with('success', 'Kategori Berhasil Dihapus');
+        return back()->with('success', 'Kategori Berhasil Dihapus');
     }
 }

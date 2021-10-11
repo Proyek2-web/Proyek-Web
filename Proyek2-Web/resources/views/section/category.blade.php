@@ -3,6 +3,24 @@
     <div class="content-body">
         <!-- row -->
         <h1 class="mb-3 ml-4">Kategori</h1>
+        <div>
+            @if (session()->has('success'))
+                <div class="alert alert-danger solid alert-dismissible fade show w-50 text-center mx-auto">
+                    <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i
+                                class="mdi mdi-close"></i></span>
+                    </button>
+                    {{ session('success') }}
+                </div>
+            @endif
+            @if (session()->has('Added'))
+                <div class="alert alert-success solid alert-dismissible fade show w-50 text-center mx-auto">
+                    <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i
+                                class="mdi mdi-close"></i></span>
+                    </button>
+                    {{ session('Added') }}
+                </div>
+            @endif
+        </div>
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
@@ -70,9 +88,11 @@
                             @csrf
                             <div class="form-group">
                                 <label for="nama">Nama</label>
-                                <input type="text" class="form-control" name="name" id="nama_kategori" placeholder="Masukkan nama kategori" required>
+                                <input type="text" class="form-control" name="name" id="nama_kategori"
+                                    placeholder="Masukkan nama kategori" required>
                                 <label for="nama">Slug</label>
-                                <input type="text" class="form-control" name="slug" id="slug" placeholder="Masukkan slug" required>
+                                <input type="text" class="form-control" name="slug" id="slug" placeholder="Masukkan slug"
+                                    required>
                             </div>
                     </div>
                     <div class="modal-footer justify-content-between">

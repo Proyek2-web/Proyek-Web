@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Product;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -16,7 +17,7 @@ class DashboardController extends Controller
     public function index()
     {
         return view('section.user', [
-            'user' => User::first(),
+            'user' => User::all(),
         ]);
     }
 
@@ -38,7 +39,15 @@ class DashboardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $insert = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email:dns',
+            'password' => 'required|min:7|max:255',
+        ]);
+
+        $insert['password'] = Hash::make($insert['password']);
+        User::create($insert);
+        return redirect()->route('user.index')->with('info', 'User Berhasil Ditambahkan');
     }
 
     /**
@@ -81,8 +90,9 @@ class DashboardController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        //
+        User::find($id)->delete();
+        return back()->with('success', 'User Berhasil Dihapus');
     }
 }

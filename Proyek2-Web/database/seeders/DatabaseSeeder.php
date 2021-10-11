@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Category;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -33,16 +34,21 @@ class DatabaseSeeder extends Seeder
 
         // ]);
 
-        // User::create([
-        //     'name' => 'Priyandika',
-        //     'email' => 'oniauliya99@gmail.com',
-        //     'password' => '12345678',
-        // ]);
-        // User::create([
-        //     'name' => 'Irfan',
-        //     'email' => 'irfanasu@gmail.com',
-        //     'password' => '123456789',
-        // ]);
+        Product::create([
+            'nama' => 'Guci ',
+            'category_id' => '2',
+            'harga' => '30000',
+            'keterangan' => 'Guci ini adalah gelas yang penuh keat',
+            'featured_image' => 'imgaaa.jpg',
+        ]);
+
+        Product::create([
+            'nama' => 'Gelas Hias Kinasih ',
+            'category_id' => '1',
+            'harga' => '20000',
+            'keterangan' => 'Gelas ini adalah gelas yang penuh keat',
+            'featured_image' => 'img.jpg',
+        ]);
         Category::create([
             'name' => 'Gelas',
             'slug' => 'kinasih-gelas',
