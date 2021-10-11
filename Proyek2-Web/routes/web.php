@@ -30,11 +30,4 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/dashboard', function () {
     return view('section.index');
 })->middleware('auth');
-
-// Route::get('/user', function () {
-//    $users=User::latest();
-//     return view('section.user',[
-//         'users'=> $users->get() 
-//     ]);
-// })->middleware('auth');
 Route::resource('/user', DashboardController::class)->middleware('auth');

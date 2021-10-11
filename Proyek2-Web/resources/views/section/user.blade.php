@@ -2,7 +2,7 @@
 @section('container')
     <div class="content-body">
         <!-- row -->
-        <h1 class="mb-3 ml-2">Admin</h1>
+        <h1 class="mb-3 ml-4">Admin</h1>
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
@@ -17,6 +17,7 @@
                                     <th scope="col">Name</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Dibuat</th>
+                                    <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -25,15 +26,28 @@
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->created_at }}</td>
-                                    <td></td>
+                                    <td>
+                                        <div class="aksi d-flex">
+                                            <a data-toggle="modal" id="updateAdmin" data-target=""
+                                                class="btn btn-success mr-2"><i class="fa fa-edit"></i></a>
+                                            <form action="" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger"><i
+                                                        class="fa fa-trash"></i></button>
+                                            </form>
+                                        </div>
+
+                                    </td>
                                 </tr>
-                                
+
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
+        <button type="button" class="btn btn-secondary ml-3">Tambah Data Baru</button>
     </div>
 
 @endsection

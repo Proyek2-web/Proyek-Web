@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Product;
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -43,15 +43,22 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'irfanasu@gmail.com',
         //     'password' => '123456789',
         // ]);
-        // User::create([
-        //     'name' => 'Admin',
-        //     'email' => 'admin@gmail.com',
-        //     'password' => Hash::make('admin123'),
-        // ]);
+        Category::create([
+            'name' => 'Gelas',
+            'slug' => 'kinasih-gelas',
+        ]);
+        Category::create([
+            'name' => 'Guci',
+            'slug' => 'kinasih-guci',
+        ]);
+        Category::create([
+            'name' => 'Aksesoris',
+            'slug' => 'kinasih-aksesoris',
+        ]);
         User::create([
-            'name' => 'Auliya',
-            'email' => 'auliya@gmail.com',
-            'password' => Hash::make('auliya123'),
+            'name' => 'Kinasih',
+            'email' => 'kinasih@gmail.com',
+            'password' => Hash::make('kinasih123'),
         ]);
     }
 }
