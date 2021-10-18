@@ -26,14 +26,14 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
-
+Route::get('/category/checkSlug', [CategoryController::class, 'checkSlug'])->middleware('auth');
+Route::get('/product/checkSlug', [ProductController::class, 'checkSlug'])->middleware('auth');
 // Halaman Dashboard Admin
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
         return view('section.index');
     });
     Route::resource('/user', DashboardController::class)->middleware('auth');
-    Route::resource('/category',CategoryController::class);
-    Route::resource('/product',ProductController::class);
-
+    Route::resource('/category', CategoryController::class);
+    Route::resource('/product', ProductController::class);
 });

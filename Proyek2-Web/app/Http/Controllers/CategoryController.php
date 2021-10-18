@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class CategoryController extends Controller
 {
@@ -14,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('section.category',[
+        return view('section.category', [
             'categories' => Category::all()
         ]);
     }
@@ -39,10 +40,9 @@ class CategoryController extends Controller
     {
         $insert_data = $request->validate([
             'name' => 'required',
-            'slug' => 'required' 
-         ]);
-         Category::create($insert_data);
-         return redirect('/category')->with('Added', 'Kategori Berhasil Ditambahkan');
+        ]);
+        Category::create($insert_data);
+        return redirect('/category')->with('Added', 'Kategori Berhasil Ditambahkan');
     }
 
     /**
@@ -88,7 +88,13 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         Category::find($id)->delete();
-        
+
         return back()->with('success', 'Kategori Berhasil Dihapus');
+    }
+
+    public function checkSlug(Request $request)
+    {
+        $slug = SlugService::createSlug(Category::class, 'slug', $request->name);
+        return response()->json(['slug' => $slug]);
     }
 }

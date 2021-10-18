@@ -37,16 +37,18 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'nama' => 'Guci ',
             'category_id' => '2',
+            'slug' => 'guci-kinasih',
             'harga' => '30000',
-            'keterangan' => 'Guci ini adalah gelas yang penuh keat',
+            'keterangan' => 'Guci Besar',
             'featured_image' => 'imgaaa.jpg',
         ]);
 
         Product::create([
             'nama' => 'Gelas Hias Kinasih ',
             'category_id' => '1',
+            'slug' => 'gelas-hias-kinasih',
             'harga' => '20000',
-            'keterangan' => 'Gelas ini adalah gelas yang penuh keat',
+            'keterangan' => 'Gelas Kecil',
             'featured_image' => 'img.jpg',
         ]);
         Category::create([

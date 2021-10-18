@@ -88,11 +88,8 @@
                             @csrf
                             <div class="form-group">
                                 <label for="nama">Nama</label>
-                                <input type="text" class="form-control" name="name" id="nama_kategori"
+                                <input type="text" class="form-control" name="name" id="kategori"
                                     placeholder="Masukkan nama kategori" required>
-                                <label for="nama">Slug</label>
-                                <input type="text" class="form-control" name="slug" id="slug" placeholder="Masukkan slug"
-                                    required>
                             </div>
                     </div>
                     <div class="modal-footer justify-content-between">
@@ -106,5 +103,15 @@
             <!-- /.modal-dialog -->
         </div>
     </div>
+    <script>
+        const name = document.querySelector('#kategori');
+        const slug = document.querySelector('#slug');
 
+        name.addEventListener('change', function() {
+            fetch('/category/checkSlug?name=' + name.value)
+            dd(name.value)
+                .then(response => response.json())
+                .then(data => slug.value = data.slug)
+        });
+    </script>
 @endsection
