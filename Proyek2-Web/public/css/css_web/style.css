@@ -643,3 +643,43 @@ footer p {
     font-family: PT Serif;
     text-align: justify;
 }
+
+/* CONTACT PAGE */
+
+.form-send{
+    box-shadow: rgba(41, 40, 112, 0.35) 0px 5px 15px;
+    padding-bottom: 20px;
+    border-radius: 20px;
+}
+.contact {
+    padding-top: 130px;
+}
+
+.form-send{
+    padding-block: 70px;
+}
+.form-send  label{
+    font-family: PT Serif;
+    
+}
+.form-send  h2{
+    font-family: Marck Script;
+    font-weight: bold;
+}
+.form-send  p{
+    font-family: PT Serif;
+}
+.form-send .form-control{
+    border: none;
+    background-color: #cfcfcf;
+    font-family: PT Serif;
+}
+
+.form-send .btn-submit{
+    background-color: #48487F;
+    color: white;
+    transition: 0.6s;
+    font-family: PT serif;
+    font-size: 1rem;
+    font-weight: 400;
+}

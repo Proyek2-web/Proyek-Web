@@ -5,6 +5,7 @@ use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ContactController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -37,3 +38,23 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/category', CategoryController::class);
     Route::resource('/product', ProductController::class);
 });
+
+
+// Route sementara Irfan
+
+Route::get('/home', function () {
+    return view('layouts.home');
+});
+
+Route::get('product', function () {
+    return view('layouts.product');
+});
+Route::get('about', function () {
+    return view('layouts.about');
+});
+Route::get('/detail', function () {
+    return view('layouts.detail');
+});
+
+Route::get('/contact', [ContactController::class, 'showContactForm']);
+Route::post('/contact', [ContactController::class, 'sendMail']);
