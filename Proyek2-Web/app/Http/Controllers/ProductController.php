@@ -41,15 +41,25 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $insert_data = $request->validate([
+        $request->validate([
             'nama' => 'required',
             'harga' => 'required',
             'category_id' => 'required',
-
-            'featured_image' => 'required',
+            'featured_image' => 'image|file|max:2048|required',
             'keterangan' => 'required',
         ]);
-        Product::create($insert_data);
+        if($request->file('featured_image')){
+            $image_name = $request->file('featured_image')->store('gambar-produk', 'public');
+        }
+        $save = new Product;
+        $save->featured_image = $image_name;
+        $save->nama = $request->nama;
+        $save->harga = $request->harga;
+        $save->category_id = $request->category_id;
+        $save->keterangan = $request->keterangan;
+        $save->save();
+
+        // Product::create($insert_data);
         return redirect('/product')->with('Added', 'Produk Berhasil Ditambahkan');
     }
 
@@ -82,9 +92,30 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nama' => 'required',
+            'category_id' => 'required',
+            'harga' => 'required',
+            'featured_image' => 'required',
+            'keterangan' => 'required',
+        ]);
+        if($request->file('featured_image')){
+            $image_name = $request->file('featured_image')->store('gambar-produk', 'public');
+        }
+        $save = Product::find($id);
+        $save->featured_image = $image_name;
+        $save->nama = $request->nama;
+        $save->harga = $request->harga;
+        $save->category_id = $request->category_id;
+        $save->keterangan = $request->keterangan;
+        $save->save();
+        // Product::where('id', $id)
+        //     ->update($insert_data);
+
+        return back()
+            ->with('edited', 'Kategori Berhasil Diupdate');
     }
 
     /**
