@@ -12,6 +12,14 @@
                     {{ session('success') }}
                 </div>
             @endif
+            @if (session()->has('edited'))
+                <div class="alert alert-info solid alert-dismissible fade show w-50 text-center mx-auto">
+                    <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i
+                                class="mdi mdi-close"></i></span>
+                    </button>
+                    {{ session('edited') }}
+                </div>
+            @endif
             @if (session()->has('Added'))
                 <div class="alert alert-success solid alert-dismissible fade show w-50 text-center mx-auto">
                     <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i
@@ -51,21 +59,24 @@
                             <tbody>
                                 @foreach ($products as $p)
                                     <tr style="color: black">
-                                        <th>{{ $loop->iteration }}</th>
+                                        <th style="line-height: 100px">{{ $loop->iteration }}</th>
                                         <td>{{ $p->nama }}</td>
                                         <td>{{ $p->harga }}</td>
                                         <td>{{ $p->category->name }}</td>
-                                        <td>{{ $p->featured_image }}</td>
+                                        <td><img src="{{ asset($p->featured_image) }}" width="80" height="100" alt="">
+                                        </td>
                                         <td>{{ $p->keterangan }}</td>
                                         <td>
                                             <div class="aksi d-flex">
                                                 <a data-toggle="modal" id="update"
                                                     data-target="#modal-edit{{ $p->id }}"
                                                     class="btn btn-success mr-2"><i class="fa fa-edit"></i></a>
-                                                <form action="{{ route('product.destroy', $p->id) }}" method="POST">
+                                                <form action="{{ route('product.destroy', $p->id) }}" method="POST"
+                                                    enctype="multipart/form-data">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger"><i
+                                                    <button type="submit" class="btn btn-danger"
+                                                        onclick="return confirm('Apakah yakin?')"><i
                                                             class="fa fa-trash"></i></button>
                                                 </form>
                                             </div>
@@ -98,25 +109,33 @@
                                                             <select class="form-select form-select-lg w-100"
                                                                 name="category_id">
                                                                 @foreach ($categories as $c)
-                                                                    <option value="{{ $p->category->name }}">
-                                                                        {{ $p->category->name }}</option>
+                                                                    <option value="{{ $c->id }}">
+                                                                        {{ $c->name }}</option>
                                                                 @endforeach
                                                             </select>
-                                                            <label for="gambar" class="mt-2">Gambar</label>
-                                                            <input type="text" class="form-control mb-2"
-                                                                name="featured_image" id="gambar"
-                                                                value="{{ $p->featured_image }}" required>
+                                                            <div class="mt-2 mb-3">
+                                                                <label for="featured_image" class="form-label">Gambar
+                                                                    Produk</label>
+                                                                <input
+                                                                    class="form-control  @error('featured_image') is-invalid @enderror form-control-sm"
+                                                                    id="featured_image" type="file" name="featured_image">
+                                                                @error('featured_image')
+                                                                    <div id="" class="invalid-feedback">
+                                                                        {{ $message }}
+                                                                    </div>
+                                                                @enderror
+                                                            </div>
                                                             <label for="keterangan">Keterangan</label>
                                                             <input type="text" class="form-control mb-2" name="keterangan"
                                                                 id="keterangan" value="{{ $p->keterangan }}" required>
                                                         </div>
-                                                    </form>
                                                 </div>
                                                 <div class="modal-footer justify-content-between">
                                                     <button type="button" class="btn btn-default"
                                                         data-dismiss="modal">Close</button>
                                                     <button type="submit" class="btn btn-primary">Submit</button>
                                                 </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -156,9 +175,20 @@
                                         <option value="{{ $c->id }}">{{ $c->name }}</option>
                                     @endforeach
                                 </select>
-                                <label for="gambar" class="mt-2">Gambar</label>
+                                {{-- <label for="gambar" class="mt-2">Gambar</label>
                                 <input type="text" class="form-control mb-2" name="featured_image" id="gambar"
-                                    placeholder="Pilih gambar ...." required>
+                                    placeholder="Pilih gambar ...." required> --}}
+                                <div class="mt-2 mb-3">
+                                    <label for="featured_image" class="form-label">Gambar Produk</label>
+                                    <input
+                                        class="form-control  @error('featured_image') is-invalid @enderror form-control-sm"
+                                        id="featured_image" type="file" name="featured_image">
+                                    @error('featured_image')
+                                        <div id="" class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
                                 <label for="keterangan">Keterangan</label>
                                 <input type="text" class="form-control mb-2" name="keterangan" id="keterangan"
                                     placeholder="Masukkan keterangan produk...." required>

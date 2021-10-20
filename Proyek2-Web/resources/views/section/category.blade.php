@@ -58,7 +58,8 @@
                                                 <form action="{{ route('category.destroy', $c->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger"><i
+                                                    <button type="submit" class="btn btn-danger"
+                                                        onclick="return confirm('Apakah yakin?')"><i
                                                             class="fa fa-trash"></i></button>
                                                 </form>
                                             </div>
@@ -113,5 +114,6 @@
                 .then(response => response.json())
                 .then(data => slug.value = data.slug)
         });
+
     </script>
 @endsection
