@@ -115,7 +115,7 @@ class ProductController extends Controller
         //     ->update($insert_data);
 
         return back()
-            ->with('edited', 'Kategori Berhasil Diupdate');
+            ->with('edited', 'Produk Berhasil Diupdate');
     }
 
     /**

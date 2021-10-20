@@ -74,9 +74,15 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
-        //
+        $insert_data = $request->validate([
+            'name' => 'required',
+        ]);
+        Category::where('id', $id)
+            ->update($insert_data);
+        return back()
+            ->with('edited', 'Kategori Berhasil Diupdate');
     }
 
     /**

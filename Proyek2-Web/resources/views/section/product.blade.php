@@ -13,7 +13,7 @@
                 </div>
             @endif
             @if (session()->has('edited'))
-                <div class="alert alert-info solid alert-dismissible fade show w-50 text-center mx-auto">
+                <div class="alert alert-primary solid alert-dismissible fade show w-50 text-center mx-auto">
                     <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i
                                 class="mdi mdi-close"></i></span>
                     </button>
@@ -21,7 +21,7 @@
                 </div>
             @endif
             @if (session()->has('Added'))
-                <div class="alert alert-success solid alert-dismissible fade show w-50 text-center mx-auto">
+                <div class="alert alert-primary solid alert-dismissible fade show w-50 text-center mx-auto">
                     <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i
                                 class="mdi mdi-close"></i></span>
                     </button>
@@ -52,7 +52,7 @@
                                     <th scope="col">Harga</th>
                                     <th scope="col">Kategori</th>
                                     <th scope="col">Gambar</th>
-                                    <th scope="col">Keterangan</th>
+                                    <th scope="col">Stok</th>
                                     <th scope="col">Aksi</th>
                                 </tr>
                             </thead>

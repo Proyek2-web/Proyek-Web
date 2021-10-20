@@ -12,8 +12,16 @@
                     {{ session('success') }}
                 </div>
             @endif
+            @if (session()->has('edited'))
+                <div class="alert alert-primary solid alert-dismissible fade show w-50 text-center mx-auto">
+                    <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i
+                                class="mdi mdi-close"></i></span>
+                    </button>
+                    {{ session('edited') }}
+                </div>
+            @endif
             @if (session()->has('Added'))
-                <div class="alert alert-success solid alert-dismissible fade show w-50 text-center mx-auto">
+                <div class="alert alert-primary solid alert-dismissible fade show w-50 text-center mx-auto">
                     <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i
                                 class="mdi mdi-close"></i></span>
                     </button>
@@ -53,7 +61,8 @@
                                         <td>{{ $c->created_at }}</td>
                                         <td>
                                             <div class="aksi d-flex">
-                                                <a data-toggle="modal" id="updateAdmin" data-target=""
+                                                <a data-toggle="modal" id="updateKategori"
+                                                    data-target="#modal-edit{{ $c->id }}"
                                                     class="btn btn-success mr-2"><i class="fa fa-edit"></i></a>
                                                 <form action="{{ route('category.destroy', $c->id) }}" method="POST">
                                                     @csrf
@@ -65,6 +74,37 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    <div class="modal fade" id="modal-edit{{ $c->id }}">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title" id="modal-judul">Edit Kategori
+                                                        {{ $c->name }}</h4>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="{{ route('category.update', $c->id) }}" method="POST"
+                                                        enctype="multipart/form-data">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <div class="form-group">
+                                                            <label for="nama_produk">Nama Kategori</label>
+                                                            <input type="text" class="form-control" name="name"
+                                                                id="nama_kategori" value="{{ $c->name }}" required>
+                                                        </div>
+                                                </div>
+                                                <div class="modal-footer justify-content-between">
+                                                    <button type="button" class="btn btn-default"
+                                                        data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
                                 @endforeach
                             </tbody>
                         </table>
