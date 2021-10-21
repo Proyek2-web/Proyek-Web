@@ -9,33 +9,17 @@
         </div>
         <div class="list-product">
             <div class="filter text-center">
-                <a href="/" class="btn filter-btn" data-filter="all">All</a>
+                <a href="/produk" class="btn filter-btn " data-filter="all">All</a>
                 <a class="btn filter-btn" data-filter="gelas">Gelas</a>
                 <a class="btn filter-btn" data-filter="pot">Pot Bunga</a>
                 <a class="btn filter-btn" data-filter="celengan">Celengan</a>
             </div>
             <div class="row">
+                @foreach ($produk as $p)
                 <div class="gallery col-md-4 filter center nature">
-                    <a href=""><img src="https://i.pinimg.com/originals/7b/89/7a/7b897a5fe701e78f8ab44b9c5d29d310.png" alt=""></a>
+                    <a href="/details/{{ $p->slug }}"><img src="{{ asset('/storage/'.$p->featured_image)}}" alt=""></a>
                 </div>
-                <div class="gallery col-md-4 filter center nature">
-                    <a href=""><img src="https://i.pinimg.com/originals/7b/89/7a/7b897a5fe701e78f8ab44b9c5d29d310.png" alt=""></a>
-                </div>
-                <div class="gallery col-md-4 filter center nature">
-                    <a href=""><img src="https://i.pinimg.com/originals/7b/89/7a/7b897a5fe701e78f8ab44b9c5d29d310.png" alt=""></a>
-                </div>
-                <div class="gallery col-md-4 filter center nature">
-                    <a href=""><img src="https://i.pinimg.com/originals/7b/89/7a/7b897a5fe701e78f8ab44b9c5d29d310.png" alt=""></a>
-                </div>
-                <div class="gallery col-md-4 filter center nature">
-                    <a href=""><img src="https://i.pinimg.com/originals/7b/89/7a/7b897a5fe701e78f8ab44b9c5d29d310.png" alt=""></a>
-                </div>
-                <div class="gallery col-md-4 filter center gelas">
-                    <a href=""><img src="https://img.bestdealplus.com/ae04/kf/Hb4bc4f62d10a496ea3c0b9c773bc205bv.jpg" alt=""></a> 
-               </div>
-                <div class="gallery col-md-4 filter center gelas">
-                    <a href=""><img src="https://img.bestdealplus.com/ae04/kf/Hb4bc4f62d10a496ea3c0b9c773bc205bv.jpg" alt=""></a> 
-               </div>
+                @endforeach
             </div>
         </div>
 

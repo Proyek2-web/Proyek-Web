@@ -8,16 +8,16 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('home') ? 'active' : ''}}"  href="home">Home</a>
+                    <a class="nav-link {{ request()->is('home') ? 'active' : ''}}"  href="/home">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('produk') ? 'active' : ''}}" href="produk">Product</a>
+                    <a class="nav-link {{ request()->is('produk') ? 'active' : ''}}" href="/produk">Product</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('about') ? 'active' : ''}}" href="about">Company</a>
+                    <a class="nav-link {{ request()->is('about') ? 'active' : ''}}" href="/about">Company</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('contact') ? 'active' : ''}}" href="contact" >Contact</a>
+                    <a class="nav-link {{ request()->is('contact') ? 'active' : ''}}" href="/contact" >Contact</a>
                 </li>
             </ul>
         </div>

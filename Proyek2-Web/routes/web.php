@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ContactController;
+use App\Models\Product;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -47,8 +48,16 @@ Route::get('/home', function () {
     return view('layouts.home');
 });
 
-Route::get('produk', function () {
-    return view('layouts.product');
+Route::get('/produk', function () {
+    return view('layouts.product', [
+        'produk' => Product::all()
+    ]);
+});
+Route::get('/details/{product:slug}', function (Product $product) {
+    return view('layouts.details', [
+        'title' => 'Postingan Berdasarkan Author',
+        'produk' => $product
+    ]);
 });
 Route::get('about', function () {
     return view('layouts.about');
@@ -56,4 +65,3 @@ Route::get('about', function () {
 Route::get('/detail', function () {
     return view('layouts.detail');
 });
-
