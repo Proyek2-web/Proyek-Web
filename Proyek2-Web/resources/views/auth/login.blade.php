@@ -14,11 +14,16 @@
 
 </head>
 
-<body class="h-100">
+<body style=" background-image: linear-gradient(to left top, #e7e7e7, #d2d6ea, #b1c8ee, #7fbdef, #12b4eb);">
     <div class="authincation h-100">
         <div class="container-fluid h-100">
-            <div class="row justify-content-center h-100 align-items-center">
-                <div class="col-md-6">
+            {{--  --}}
+            <div class="row h-100 ">
+                <h2 class="text-center">Keramik Kinasih</h2>
+                <div class="logo col-md-7 ">
+                    <img src="https://airid.com/wp-content/uploads/2020/10/01-Sys-admin-1024x632.png" alt="" width="750">
+                </div>
+                <div class="col-md-4">
                     @if (session()->has('loginFailed'))
                     <div class="alert alert-danger solid alert-dismissible fade show">
                         <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i class="mdi mdi-close"></i></span>
@@ -30,14 +35,14 @@
                         <div class="row no-gutters">
                             <div class="col-xl-12">
                                 <div class="auth-form">
-                                    <h4 class="text-center mb-4">Please Login</h4>
+                                    <h4 class="text-center mb-4">Sign in</h4>
                                     <form action="/login" method="post">
                                         @csrf
-                                        <div class="form-group">
-                                            <label><strong>Email </strong></label>
+                                        <div class="form-group has-feedback-left">
                                             <input type="text" class="form-control @error('email') is-invalid @enderror"
-                                                name="email" id="email" placeholder="Email Address" required
+                                                name="email" id="email" placeholder=" Email Address " required
                                                 value="{{ old('email') }}" autofocus>
+                                                
                                             @error('email')
                                                 <div id="" class="invalid-feedback">
                                                     {{ $message }}
@@ -45,7 +50,6 @@
                                             @enderror
                                         </div>
                                         <div class="form-group">
-                                            <label><strong>Password</strong></label>
                                             <input type="password"
                                                 class="form-control @error('password') is-invalid @enderror)"
                                                 name="password" id="password" placeholder="Password" required
@@ -71,7 +75,7 @@
                                             </div>
                                         </div>
                                         <div class="text-center">
-                                            <button type="submit" class="btn btn-primary btn-block">Login</button>
+                                            <button type="submit" class="btn-log  btn-block">Login</button>
                                         </div>
                                     </form>
                                 </div>
