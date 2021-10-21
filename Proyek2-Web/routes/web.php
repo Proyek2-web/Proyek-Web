@@ -39,14 +39,15 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/product', ProductController::class);
 });
 
-
+Route::get('/contact', [ContactController::class, 'showContactForm']);
+Route::post('/contact', [ContactController::class, 'sendMail']);
 // Route sementara Irfan
 
 Route::get('/home', function () {
     return view('layouts.home');
 });
 
-Route::get('product', function () {
+Route::get('produk', function () {
     return view('layouts.product');
 });
 Route::get('about', function () {
@@ -56,5 +57,3 @@ Route::get('/detail', function () {
     return view('layouts.detail');
 });
 
-Route::get('/contact', [ContactController::class, 'showContactForm']);
-Route::post('/contact', [ContactController::class, 'sendMail']);
