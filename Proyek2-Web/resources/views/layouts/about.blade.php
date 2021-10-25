@@ -3,13 +3,13 @@
 @section('body')
 
 <section class="about">
-    <div class="ud p-5" style="background-color: #dbdbdb;">
+    <div class="ud p-5" style="background-color: #ffffff;">
         <div class="container">
             <div class="title col-lg-12 mx-auto">
                 <h1>About Us</h1>
             </div>
             <div class="content" style="margin-top: 90px">
-                <div class="row align-items-center">
+                <div class="company row align-items-center">
                     <div class="col-lg-5">
                         <img src="https://lh3.googleusercontent.com/-eqR1M0D3aUQ/WPhMXRb8b2I/AAAAAAAAPY8/E3Pv7bxN9RIQzcV7HCApr-pq0pwv_IrbQCLIB/w960-h960-n-o-k-v1/" alt=""
                             width="480">
@@ -34,7 +34,7 @@
             </div>
         </div>
     </div>
-    <div class="content" style="background-color: #d8d4d4; padding-block: 180px">
+    <div class="content" style="background-color: #dddddd; padding-block: 180px">
         <div class="container">
             <div class="row align-items-center" >
                 <div class="col-lg-7" >

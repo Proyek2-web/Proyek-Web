@@ -40,9 +40,10 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/product', ProductController::class);
 });
 
+// ROUTE WEB UTAMA
 Route::get('/contact', [ContactController::class, 'showContactForm']);
 Route::post('/contact', [ContactController::class, 'sendMail']);
-// Route sementara Irfan
+
 
 Route::get('/home', function () {
     return view('layouts.home');

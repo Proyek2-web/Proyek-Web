@@ -18,7 +18,7 @@
 
             </div>
             <div class="button">
-                <a href="#" class="btn btn-jumbroton">Order Now</a>
+                <a href="/produk" class="btn btn-jumbroton">Order Now</a>
             </div>
         </div>
     </div>
@@ -106,15 +106,23 @@
             </div>
             <div class="col-md-6">
                 <div id="slider">
-                    <a  class="control_next"><i class="bi bi-caret-right"></i></a>
-                    <a  class="control_prev"><i class="bi bi-caret-left"></i></a>
+                    <a class="control_next"><i class="bi bi-caret-right"></i></a>
+                    <a class="control_prev"><i class="bi bi-caret-left"></i></a>
                     <ul>
-                      <li style="background-image: url(https://us.123rf.com/450wm/danymages/danymages1203/danymages120300033/12848030-potter-on-the-potters-wheel.jpg?ver=6)"></li>
-                      <li style="background-image: url(https://img.okezone.com/content/2016/07/21/320/1443125/menengok-eksistensi-industri-keramik-rumahan-kiaracondong-sejak-1960-4ZHGfLDD6H.jpg)"></li>
-                      <li style="background-image: url(https://www.marketeers.com/wp-content/uploads/2016/05/Pi1gt4_keramik-bna2.jpg)"></li>
-                      <li style="background-image: url(https://awsimages.detik.net.id/community/media/visual/2021/02/17/perajin-gerabah-blitar.jpeg?w=700&q=90"></li>
-                    </ul>  
-                  </div>
+                        <li
+                            style="background-image: url(https://us.123rf.com/450wm/danymages/danymages1203/danymages120300033/12848030-potter-on-the-potters-wheel.jpg?ver=6)">
+                        </li>
+                        <li
+                            style="background-image: url(https://img.okezone.com/content/2016/07/21/320/1443125/menengok-eksistensi-industri-keramik-rumahan-kiaracondong-sejak-1960-4ZHGfLDD6H.jpg)">
+                        </li>
+                        <li
+                            style="background-image: url(https://www.marketeers.com/wp-content/uploads/2016/05/Pi1gt4_keramik-bna2.jpg)">
+                        </li>
+                        <li
+                            style="background-image: url(https://awsimages.detik.net.id/community/media/visual/2021/02/17/perajin-gerabah-blitar.jpeg?w=700&q=90">
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
 
@@ -147,5 +155,9 @@
         </div>
     </div>
 </section>
+
+<a href="https://api.whatsapp.com/send?phone=6287863947193&text=Selamat%20datang%20di%20UD.Keramik%20Kinasih." class="float" target="_blank">
+     <i class="bi bi-whatsapp"></i>
+</a>
 
 @endsection
