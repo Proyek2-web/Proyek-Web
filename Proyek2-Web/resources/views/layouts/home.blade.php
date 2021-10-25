@@ -43,7 +43,7 @@
                         <h5 class="card-title">Gelas</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of
                             the card's content.</p>
-                        <a href="#" class="btn btn-category">View All</a>
+                        <a href="/gelas" class="btn btn-category">View All</a>
                     </div>
                 </div>
             </div>
@@ -52,10 +52,10 @@
                     <img src="https://img.bestdealplus.com/ae04/kf/Hb4bc4f62d10a496ea3c0b9c773bc205bv.jpg"
                         class="card-img-top" alt="...">
                     <div class="card-body text-center">
-                        <h5 class="card-title">Celengan</h5>
+                        <h5 class="card-title">Guci</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of
                             the card's content.</p>
-                        <a href="#" class="btn btn-category">View All</a>
+                        <a href="/guci" class="btn btn-category">View All</a>
                     </div>
                 </div>
             </div>
@@ -64,10 +64,10 @@
                     <img src="https://sc04.alicdn.com/kf/H7c59aa65c48b40ad9624da84b44dcab3s.jpg" class="card-img-top"
                         alt="...">
                     <div class="card-body text-center">
-                        <h5 class="card-title ">Pot bunga</h5>
+                        <h5 class="card-title ">Vas bunga</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of
                             the card's content.</p>
-                        <a href="#" class="btn btn-category">View All</a>
+                        <a href="/vas" class="btn btn-category">View All</a>
                     </div>
                 </div>
             </div>
