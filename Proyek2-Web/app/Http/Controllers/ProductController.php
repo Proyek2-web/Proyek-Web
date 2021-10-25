@@ -18,7 +18,7 @@ class ProductController extends Controller
     {
         $category = Category::all();
         return view('section.product', [
-            'products' => Product::all(),
+            'products' => Product::paginate(4),
             'categories' => $category
         ]);
     }

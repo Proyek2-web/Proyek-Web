@@ -143,7 +143,9 @@
             </div>
         </div>
     </div>
-
+    <div class="d-block float-right">
+        {{$products->links() }}
+    </div>
     <button type="button" class="btn btn-secondary ml-3" data-toggle="modal" data-target="#modal-default">
         <i class="fa fa-plus"></i>&nbsp;Tambahkan Data Produk</a>
     </button>
