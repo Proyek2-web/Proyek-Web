@@ -41,4 +41,11 @@ class ProdukController extends Controller
             'produk' => $product->get()
         ]);
     }
+    public function aksesoris()
+    {
+        $product = Product::where('category_id', 3);
+        return view('layouts.product', [
+            'produk' => $product->get()
+        ]);
+    }
 }

@@ -54,6 +54,7 @@ Route::get('/produk', [ProdukController::class,'all']);
 Route::get('/gelas', [ProdukController::class, 'gelas']);
 Route::get('/vas', [ProdukController::class, 'vas']);
 Route::get('/guci', [ProdukController::class, 'guci']);
+Route::get('/aksesoris', [ProdukController::class, 'aksesoris']);
 Route::get('/details/{product:slug}',[ProdukController::class,'detail'] );
 Route::get('about', function () {
     return view('layouts.about');

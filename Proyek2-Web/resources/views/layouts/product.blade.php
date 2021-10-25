@@ -13,6 +13,7 @@
                 <a href="/gelas" class="btn filter-btn {{ request()->is('gelas') ? 'active' : ''}}" data-filter="gelas">Gelas</a>
                 <a href="/vas" class="btn filter-btn {{ request()->is('vas') ? 'active' : ''}}" data-filter="pot">Vas Bunga</a>
                 <a href="/guci "class="btn filter-btn {{ request()->is('guci') ? 'active' : ''}}" data-filter="celengan">Guci</a>
+                <a href="/aksesoris "class="btn filter-btn {{ request()->is('aksesoris') ? 'active' : ''}}" data-filter="aksesoris">Aksesoris</a>
             </div>
             <div class="row">
                 @foreach ($produk as $p)

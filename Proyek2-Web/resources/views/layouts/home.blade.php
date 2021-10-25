@@ -79,7 +79,7 @@
                         <h5 class="card-title">Aksesoris</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of
                             the card's content.</p>
-                        <a href="#" class="btn btn-category">View All</a>
+                        <a href="/aksesoris" class="btn btn-category">View All</a>
                     </div>
                 </div>
             </div>
