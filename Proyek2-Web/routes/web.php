@@ -62,3 +62,6 @@ Route::get('about', function () {
 Route::get('/detail', function () {
     return view('layouts.detail');
 });
+Route::get('/total', function () {
+    return view('layouts.total');
+});
