@@ -48,9 +48,12 @@
                         <thead>
                             <tr style="color: black">
                                 <th scope="col">No</th>
-                                <th scope="col">Nama Produk</th>
-                                <th scope="col">Kategori</th>
-                                <th scope="col">Jumlah Pesanan</th>
+                                <th scope="col">Pelanggan</th>
+                                <th scope="col">Nomor WA</th>
+                                <th scope="col">Catatan</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Produk</th>
+                                <th scope="col">Jumlah</th>
                                 <th scope="col">Total</th>
                                 <th scope="col">Aksi</th>
                             </tr>
@@ -59,10 +62,13 @@
                             @foreach ($orders as $p)
                             <tr style="color: black">
                                 <th style="line-height: 100px">{{ $loop->iteration }}</th>
+                                <td>{{ $p->nama }}</td>
+                                <td>{{ $p->phone_number }}</td>
+                                <td>{{ $p->custom }}</td>
+                                <td>{{ $p->email }}</td>
                                 <td>{{ $p->product->nama }}</td>
-                                <td>{{ $p->category->name }}</td>
                                 <td>{{ $p->qty }}</td>
-                                <td>{{ number_format($p->total) }}</td>
+                                <td>Rp. {{ number_format($p->total) }}</td>
                                 <td>
                                     <div class="aksi d-flex">
                                         <a data-toggle="modal" id="update" data-target=""

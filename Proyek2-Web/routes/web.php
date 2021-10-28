@@ -8,6 +8,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderCustController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -66,3 +67,5 @@ Route::get('/detail', function () {
 Route::get('/total', function () {
     return view('layouts.total');
 });
+
+Route::resource('/custorder', OrderCustController::class);

@@ -22,42 +22,44 @@
         </div>
     </div>
     <div class="form-order">
-        <form action="#" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('custorder.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="container">
                 <h2 style="">Form Order</h2>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <input type="email" class="form-control" id="exampleFormControlInput1"
+                            <input type="text" name="nama" class="form-control" id="exampleFormControlInput1"
                                 placeholder="* Nama Lengkap">
                         </div>
                         <div class="mb-3">
-                            <input type="email" class="form-control" id="exampleFormControlInput1"
+                            <input type="text" name="phone_number" class="form-control" id="exampleFormControlInput1"
                                 placeholder="* Nomor Whatsapp">
                         </div>
                         <div class="mb-3">
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                            <textarea name="custom" class="form-control" id="exampleFormControlTextarea1" rows="3"
                                 placeholder="Tambahkan catatan jika terdapat kei"></textarea>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <input type="email" class="form-control" id="exampleFormControlInput1"
+                            <input type="email" name="email" class="form-control" id="exampleFormControlInput1"
                                 placeholder="* E-mail">
                         </div>
                         <div class="mb-3">
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>Pilih Pengiriman</option>
-                                <option value="1">JNT</option>
-                                <option value="2">JNE</option>
-                                <option value="3">Kantor Pos</option>
+                            <select name="delivery_id" class="form-select" aria-label="Default select example">
+                                @foreach ($deliveries as $c)
+                                        <option value="{{ $c->id }}">{{ $c->nama }}</option>
+                                    @endforeach
                             </select>
                         </div>
                         <div class="mb-3">
-                            <input type="number" min="1" max="9999" maxlength="4" placeholder="* Jumlah" name="qty"
+                            <input type="number" name="qty" min="1" max="9999" maxlength="4" placeholder="* Jumlah" name="qty"
                                 oninput="this.value=this.value.slice(0,this.maxLength||1/1);this.value=(this.value   < 1) ? (1/1) : this.value;">
                         </div>
+                        <input type="hidden" name="product_id" value="{{ $produk->id }}">
+                        <input type="hidden" name="category_id" value="{{ $produk->category->id }}">
+                        <input type="hidden" name="total" value="0">
                     </div>
                     <div class="col-md-6">
                         <button class="btn btn-warning">Order Now</button>

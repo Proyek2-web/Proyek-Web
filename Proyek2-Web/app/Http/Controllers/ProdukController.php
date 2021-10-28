@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Delivery;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,8 @@ class ProdukController extends Controller
     {
         return view('layouts.details', [
             'title' => 'Postingan Berdasarkan Author',
-            'produk' => $product
+            'produk' => $product,
+            'deliveries' => Delivery::all(),
         ]);
     }
     public function gelas()
