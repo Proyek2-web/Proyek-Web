@@ -10,7 +10,7 @@
         </ul>
         <ul class="metismenu" id="menu">
             <li class="nav-label first">Kasir</li>
-            <li><a><i class="fa fa-shopping-cart nav-icon"></i><span class="nav-text">Pesanan</span></a>
+            <li><a href="{{ route('order.index') }}"><i class="fa fa-shopping-cart nav-icon"></i><span class="nav-text">Pesanan</span></a>
             </li>
         </ul>
         <ul class="metismenu" id="menu">

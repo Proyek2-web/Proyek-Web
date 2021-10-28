@@ -233,7 +233,8 @@ hr {
 /* OUR STORY */
 
 .story {
-    background-image: linear-gradient(to right top, #e9e9e9, #c0bece, #9894b3, #706d99, #48487f);}
+    background-image: linear-gradient(to right top, #e9e9e9, #c0bece, #9894b3, #706d99, #48487f);
+}
 
 .story .story-intro {
     padding-block: 140px;
@@ -516,9 +517,8 @@ footer p {
 }
 
 /* Product Page*/
-.product{
-    
-}
+.product {}
+
 .title h1 {
     text-align: center;
     font-family: Marck Script;
@@ -549,7 +549,8 @@ footer p {
     transition: all 0.6s ease;
 
 }
-.gallery .text-wrapper{
+
+.gallery .text-wrapper {
     position: absolute;
     z-index: 9;
     top: 260px;
@@ -563,21 +564,22 @@ footer p {
     background-color: rgba(43, 41, 41, 0.74);
     padding: 5px;
 }
-.gallery .img-wrapper{
+
+.gallery .img-wrapper {
     position: relative;
     transition: all 0.6s ease;
 }
 
-.gallery a img{
+.gallery a img {
     float: left;
-    width:  100%;
+    width: 100%;
     height: 100%;
     object-fit: cover;
     transition: all 0.6s ease;
     display: block;
 }
 
- .gallery:hover {
+.gallery:hover {
     transition: all 0.6s ease;
     transform: scale(1.1);
 }
@@ -633,6 +635,7 @@ footer p {
     font-size: 3rem;
     font-weight: bold;
 }
+
 .detail h3 {
     font-family: PT Serif;
     font-size: 2rem;
@@ -644,53 +647,62 @@ footer p {
     text-align: justify;
 }
 
-.detail-page{
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;    margin-inline: 50px;
+.detail-page {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    margin-inline: 50px;
     padding-block: 50px;
     border-radius: 20px;
     background-image: linear-gradient(to right top, #e9e9e9, #c0bece, #9894b3, #79769bea, #48487fb9);
 }
-.detail-page img{
+
+.detail-page img {
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     border-radius: 40px 5px 40px 5px;
 }
-.detail-page .btn{
+
+.detail-page .btn {
     font-family: PT Serif;
     font-size: 1rem;
     font-weight: bold;
 }
+
 /* CONTACT PAGE */
 
-.form-send{
+.form-send {
     box-shadow: rgba(41, 40, 112, 0.35) 0px 5px 15px;
     padding-bottom: 20px;
     border-radius: 20px;
 }
+
 .contact {
     padding-top: 130px;
 }
 
-.form-send{
+.form-send {
     padding-block: 70px;
 }
-.form-send  label{
+
+.form-send label {
     font-family: PT Serif;
-    
+
 }
-.form-send  h2{
+
+.form-send h2 {
     font-family: Marck Script;
     font-weight: bold;
 }
-.form-send  p{
+
+.form-send p {
     font-family: PT Serif;
 }
-.form-send .form-control{
+
+.form-send .form-control {
     border: none;
     background-color: #cfcfcf;
     font-family: PT Serif;
 }
 
-.form-send .btn-submit{
+.form-send .btn-submit {
     background-color: #48487F;
     color: white;
     transition: 0.6s;
@@ -699,18 +711,17 @@ footer p {
     font-weight: 400;
 }
 
-.float{
-	position:fixed;
-	width:55px;
-	height:55px;
-	bottom:20px;
-	right:40px;
-	background-color:#25d366;
-	color:#FFF;
-	border-radius:50px;
-	text-align:center;
-    font-size:35px;
-	box-shadow: 2px 2px 3px #999;
-    z-index:100;
+.float {
+    position: fixed;
+    width: 55px;
+    height: 55px;
+    bottom: 20px;
+    right: 40px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 35px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 100;
 }
-

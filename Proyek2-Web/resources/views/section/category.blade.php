@@ -34,7 +34,7 @@
                 <div class="card-header">
                     <h4 class="card-title">Data Seluruh Kategori</h4>
                     <div class="input-group input-group-sm" style="width: 150px;">
-                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                        <input type="text" style="border-radius:6px;border: 1px solid black " name="table_search" class="form-control float-right" placeholder="Search">
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-default">
                                 <i class="fa fa-search"></i>
@@ -91,9 +91,9 @@
                                                         @csrf
                                                         @method('PUT')
                                                         <div class="form-group">
-                                                            <label for="nama_produk">Nama Kategori</label>
-                                                            <input type="text" class="form-control" name="name"
-                                                                id="nama_kategori" value="{{ $c->name }}" required>
+                                                            <label for="nama_produk" style="font-weight: bold;color:black">Nama Kategori</label>
+                                                            <input type="text" class="form-control d-block" name="name"
+                                                               style="width: 10cm;height: 1cm;border:0" id="nama_kategori" value="{{ $c->name }}" required>
                                                         </div>
                                                 </div>
                                                 <div class="modal-footer justify-content-between">

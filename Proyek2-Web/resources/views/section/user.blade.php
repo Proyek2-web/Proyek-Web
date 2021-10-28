@@ -38,18 +38,44 @@
                                         <td>{{ $u->created_at }}</td>
                                         <td>
                                             <div class="aksi d-flex">
-                                                <a data-toggle="modal" id="updateAdmin" data-target=""
-                                                    class="btn btn-success mr-2"><i class="fa fa-edit"></i></a>
-                                                <form action="{{ route('user.destroy', $u->id) }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger"><i
-                                                            class="fa fa-trash"></i></button>
-                                                </form>
+                                                <a data-toggle="modal" id="updateAdmin" data-target="#modal-info{{$u->id}}"
+                                                    class="btn btn-info mr-2"><i class="fa fa-info"></i></a>
                                             </div>
-
                                         </td>
                                     </tr>
+                                    <div class="modal fade" id="modal-info{{$u->id}}">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title" id="modal-judul">Detail {{ $u->name }}</h4>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="form-group">
+                                                        <label for="nama" style="font-weight:bold;color:black">Nama</label>
+                                                        <p style="color:black">{{ $u->name }}</p>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="email" style="font-weight:bold;color:black">Email</label>
+                                                        <p style="color:black">{{ $u->email }}</p>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="dibuat" style="font-weight:bold;color:black">Dibuat pada</label><br>
+                                                        <p style="color:black">{{ $u->created_at }}</p>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="diupdate" style="font-weight:bold;color:black">Terakhir update</label><br>
+                                                        <p style="color:black">{{ $u->updated_at }}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /.modal-content -->
+                                        </div>
+                                        <!-- /.modal-dialog -->
+                                    </div>
                                 @endforeach
 
                             </tbody>
