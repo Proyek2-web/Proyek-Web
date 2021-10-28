@@ -7,7 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProdukController;
-use App\Models\Product;
+use App\Http\Controllers\OrderController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -36,9 +36,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
         return view('section.index');
     });
-    Route::resource('/user', DashboardController::class)->middleware('auth');
+    Route::resource('/user', DashboardController::class);
     Route::resource('/category', CategoryController::class);
     Route::resource('/product', ProductController::class);
+    Route::resource('/order', OrderController::class);
 });
 
 // ROUTE WEB UTAMA

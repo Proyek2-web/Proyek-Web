@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -67,6 +68,18 @@ class DatabaseSeeder extends Seeder
             'name' => 'Kinasih',
             'email' => 'kinasih@gmail.com',
             'password' => Hash::make('kinasih123'),
+        ]);
+        Order::create([
+            'product_id' => '1',
+            'category_id' => '1',
+            'qty' => '50',
+            'total' => '200000',
+        ]);
+        Order::create([
+            'product_id'=> '1', 
+            'category_id' => '1',
+            'qty' => '50',
+            'total' => '200000',
         ]);
     }
 }

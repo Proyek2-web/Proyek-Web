@@ -7,7 +7,7 @@
 </div> --}}
 {{-- JUMBOTRON --}}
 <!-- Background image -->
-<div class="jumbotron  ">
+<div class="jumbotron">
     <div class="container">
         <div class="intro ">
             <div class="title text-center">
@@ -15,7 +15,6 @@
                 <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugiat cupiditate quis deleniti animi
                     itaque consectetur, dolores pariatur accusantium voluptas beatae. Placeat, commodi non! Optio iusto
                     illo expedita </p>
-
             </div>
             <div class="button">
                 <a href="/produk" class="btn btn-jumbroton">Order Now</a>

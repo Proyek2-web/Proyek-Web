@@ -16,6 +16,10 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class);
     }
+    public function order()
+    {
+        return $this->belongsToMany(Order::class);
+    }
     public function sluggable(): array
     {
         return [
