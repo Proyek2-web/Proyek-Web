@@ -19,4 +19,8 @@ class Order extends Model
     {
         return $this->belongsTo(Category::class);
     }
+    public function delivery()
+    {
+        return $this->belongsTo(Delivery::class);
+    }
 }

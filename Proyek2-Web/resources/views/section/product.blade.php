@@ -111,7 +111,7 @@
                                                             <input type="number"
                                                                 style="width: 12.375cm;height:1cm;border:0.01;"
                                                                 class="form-control d-block mb-2" name="harga" id="harga"
-                                                                placeholder="   {{ $p->harga }}" required>
+                                                                value="{{ $p->harga }}" required>
                                                             <label for="nama"
                                                                 style="color: black;font-weight: bold">Kategori</label>
                                                             <select class="form-select form-select-lg w-100"

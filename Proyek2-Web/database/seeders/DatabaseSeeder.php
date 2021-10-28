@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Category;
+use App\Models\Delivery;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
@@ -70,16 +71,39 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('kinasih123'),
         ]);
         Order::create([
+            'nama' => 'Auliya Oni',
+            'phone_number' => '08786545438',
+            'custom' => 'dengan tulisan warna merah',
+            'email' => 'sdasda@gmail.com',
             'product_id' => '1',
             'category_id' => '1',
             'qty' => '50',
             'total' => '200000',
+            'delivery_id'=>'1',
         ]);
         Order::create([
-            'product_id'=> '1', 
+            'nama' => 'Auliya Oni',
+            'phone_number' => '08786545438',
+            'custom' => 'dengan tulisan warna merah',
+            'email' => 'sdasda@gmail.com',
+            'product_id' => '1',
             'category_id' => '1',
             'qty' => '50',
             'total' => '200000',
+            'delivery_id'=>'1',
         ]);
+        Delivery::create([
+            'nama' => 'JNE',
+            'harga' => '20000',
+        ]);Delivery::create([
+            'nama' => 'JNT',
+            'harga' => '10000',
+        ]);
+        // Order::create([
+        //     'product_id'=> '1', 
+        //     'category_id' => '1',
+        //     'qty' => '50',
+        //     'total' => '200000',
+        // ]);
     }
 }

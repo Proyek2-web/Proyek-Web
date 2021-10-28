@@ -22,7 +22,7 @@
         </div>
     </div>
     <div class="form-order">
-        <form action="/total" method="POST" enctype="multipart/form-data">
+        <form action="#" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="container">
                 <h2 style="">Form Order</h2>

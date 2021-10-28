@@ -128,9 +128,10 @@
                         <form action="{{ route('category.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
-                                <label for="nama">Nama</label>
-                                <input type="text" class="form-control" name="name" id="kategori"
-                                    placeholder="Masukkan nama kategori" required>
+                                <label for="nama" style="color: black;font-weight: bold">Nama</label>
+                                <input style="width: 12.375cm;height:1cm;border:0.01;" type="text"
+                                    class="form-control d-block mb-2" name="name" id="nama_produk"
+                                    placeholder="   Masukkan Nama Kategori" required>
                             </div>
                     </div>
                     <div class="modal-footer justify-content-between">
