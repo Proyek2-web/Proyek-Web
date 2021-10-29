@@ -34,7 +34,7 @@
             </div>
         </div>
         <div class="row mt-5 p-4 box">
-            <div class="col-lg-3 ">
+            <div class="col-lg-3 col-sm-6 col-md-6">
                 <div class="card border-0" style="width: 18rem;">
                     <img src="https://i.pinimg.com/originals/7b/89/7a/7b897a5fe701e78f8ab44b9c5d29d310.png"
                         class="card-img-top" alt="...">
@@ -46,7 +46,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-3 col-sm-6 col-md-6">
                 <div class="card border-0" style="width: 18rem; ">
                     <img src="https://img.bestdealplus.com/ae04/kf/Hb4bc4f62d10a496ea3c0b9c773bc205bv.jpg"
                         class="card-img-top" alt="...">
@@ -58,7 +58,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 ">
+            <div class="col-lg-3 col-sm-6 col-md-6">
                 <div class="card border-0 " style="width: 18rem;">
                     <img src="https://sc04.alicdn.com/kf/H7c59aa65c48b40ad9624da84b44dcab3s.jpg" class="card-img-top"
                         alt="...">
@@ -70,7 +70,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-3 col-sm-6 col-md-6">
                 <div class="card border-0" style="width: 18rem;">
                     <img src="http://cdn.shopify.com/s/files/1/0411/6889/6156/products/IMG_5826.jpg?v=1607966407"
                         class="card-img-top" alt="...">
