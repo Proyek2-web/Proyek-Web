@@ -14,7 +14,18 @@ class OrderCustController extends Controller
      */
     public function index()
     {
-        //
+        $id = 0;
+        $order = Order::all();
+        foreach ($order as $key ) {
+            $id++;
+            $key->total = ($key->qty * $key->product->harga)+$key->delivery->harga;
+            $key->save();
+        }
+        // dd($id);
+        
+        return view('layouts.total',[
+            'help' => Order::find($id)
+        ]);
     }
 
     /**
@@ -35,7 +46,6 @@ class OrderCustController extends Controller
      */
     public function store(Request $request)
     {
-
         $save = new Order;
         $save->nama = $request->nama;
         $save->phone_number = $request->phone_number;
@@ -47,7 +57,8 @@ class OrderCustController extends Controller
         $save->delivery_id = $request->delivery_id;
         $save->category_id = $request->category_id;
         $save->save();
-        return redirect('/total')->with('Added', 'Produk Berhasil Ditambahkan');
+        $help = $save->id;
+        return redirect(route('custorder.index'));
     }
 
     /**

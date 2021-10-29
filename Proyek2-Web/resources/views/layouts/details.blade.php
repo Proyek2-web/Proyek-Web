@@ -30,31 +30,31 @@
                     <div class="col-md-6">
                         <div class="mb-3">
                             <input type="text" name="nama" class="form-control" id="exampleFormControlInput1"
-                                placeholder="* Nama Lengkap">
+                                placeholder="* Nama Lengkap" required>
                         </div>
                         <div class="mb-3">
                             <input type="text" name="phone_number" class="form-control" id="exampleFormControlInput1"
-                                placeholder="* Nomor Whatsapp">
+                                placeholder="* Nomor Whatsapp" required>
                         </div>
                         <div class="mb-3">
                             <textarea name="custom" class="form-control" id="exampleFormControlTextarea1" rows="3"
-                                placeholder="Tambahkan catatan jika terdapat kei"></textarea>
+                                placeholder="Tambahkan catatan jika terdapat kei" required></textarea>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3">
                             <input type="email" name="email" class="form-control" id="exampleFormControlInput1"
-                                placeholder="* E-mail">
+                                placeholder="* E-mail" required>
                         </div>
                         <div class="mb-3">
-                            <select name="delivery_id" class="form-select" aria-label="Default select example">
+                            <select name="delivery_id" class="form-select" aria-label="Default select example" required>
                                 @foreach ($deliveries as $c)
                                         <option value="{{ $c->id }}">{{ $c->nama }}</option>
                                     @endforeach
                             </select>
                         </div>
                         <div class="mb-3">
-                            <input type="number" name="qty" min="1" max="9999" maxlength="4" placeholder="* Jumlah" name="qty"
+                            <input required type="number" name="qty" min="1" max="9999" maxlength="4" placeholder="* Jumlah" name="qty"
                                 oninput="this.value=this.value.slice(0,this.maxLength||1/1);this.value=(this.value   < 1) ? (1/1) : this.value;">
                         </div>
                         <input type="hidden" name="product_id" value="{{ $produk->id }}">
@@ -62,7 +62,7 @@
                         <input type="hidden" name="total" value="0">
                     </div>
                     <div class="col-md-6">
-                        <button class="btn btn-warning">Order Now</button>
+                        <button onclick="return confirm('Apakah yakin ingin membeli {{ $produk->nama }}?')" class="btn btn-warning">Order Now</button>
                     </div>
                 </div>
             </div>

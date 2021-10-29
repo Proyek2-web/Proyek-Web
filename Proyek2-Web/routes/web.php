@@ -9,6 +9,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderCustController;
+use App\Models\Order;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -66,6 +67,11 @@ Route::get('/detail', function () {
 });
 Route::get('/total', function () {
     return view('layouts.total');
+});
+Route::get('/totali/{order:id}',function(Order $order){
+    return view('layouts.total',[
+        'help' => $order
+    ]);
 });
 
 Route::resource('/custorder', OrderCustController::class);
