@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Payment\TripayController;
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\Product;
 
 class OrderCustController extends Controller
 {
@@ -14,18 +16,15 @@ class OrderCustController extends Controller
      */
     public function index()
     {
-        $id = 0;
-        $order = Order::all();
-        foreach ($order as $key ) {
-            $id++;
-            $key->total = ($key->qty * $key->product->harga)+$key->delivery->harga;
-            $key->save();
-        }
-        // dd($id);
-        
-        return view('layouts.total',[
-            'help' => Order::find($id)
-        ]);
+        // $order = Order::all();
+        // foreach ($order as $key ) {
+        //     $id++;
+        //     $key->total = ($key->qty * $key->product->harga)+$key->delivery->harga;
+        //     $key->save();
+        // }
+        // // dd($id);
+        $orders = Order::find($id);
+        return view('layouts.total', compact('orders'));
     }
 
     /**
@@ -45,19 +44,25 @@ class OrderCustController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
+
     {
+
         $save = new Order;
+        $tripay = new TripayController();
+        $product = Product::find($request->product_id);
+        $method = $request->method;
+
         $save->nama = $request->nama;
         $save->phone_number = $request->phone_number;
         $save->custom = $request->custom;
         $save->email = $request->email;
         $save->product_id = $request->product_id;
         $save->qty = $request->qty;
-        $save->total = $request->total;
         $save->delivery_id = $request->delivery_id;
         $save->category_id = $request->category_id;
+        // dd($request->all());
         $save->save();
-        $help = $save->id;
+        $tripay->requestTransaction($method, $product);
         return redirect(route('custorder.index'));
     }
 

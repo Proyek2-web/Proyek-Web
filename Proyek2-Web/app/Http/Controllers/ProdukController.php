@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Payment\TripayController;
 use App\Models\Delivery;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -16,10 +17,13 @@ class ProdukController extends Controller
     }
     public function detail(Product $product)
     {
+        $tripay = new TripayController();
+        $channels = $tripay->getPaymentChannels();
         return view('layouts.details', [
             'title' => 'Postingan Berdasarkan Author',
             'produk' => $product,
             'deliveries' => Delivery::all(),
+            'channels' => $channels
         ]);
     }
     public function gelas()
