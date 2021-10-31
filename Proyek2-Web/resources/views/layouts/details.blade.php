@@ -52,7 +52,6 @@
                             <select name="delivery_id" class="form-select" aria-label="Default select example" required>
                                 @foreach ($deliveries as $c)
                                 <option value="{{ $c->id }}">{{ $c->nama }}</option>
-                                  <input type="hidden" name="harga_del" value="{{ $c->harga }}"> 
                                 @endforeach
                             </select>
                         </div>

@@ -21,9 +21,9 @@ class CreateOrdersTable extends Migration
             $table->string('email');
             $table->foreignId('product_id');
             $table->foreignId('category_id');
-            $table->string('reference');
-            $table->string('merchant_ref');
-            $table->integer('amount');
+            $table->string('reference')->nullable();
+            $table->string('merchant_ref')->nullable();
+            $table->integer('amount')->nullable();
             $table->enum('status', ['PAID', 'UNPAID'])->default('UNPAID');
             $table->integer('quantity');
             $table->foreignId('delivery_id');

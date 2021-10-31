@@ -27,15 +27,18 @@ class OrderCustController extends Controller
     {
         // dd($request->all());
         $s=Order::create($request->all());
-
-        // $transaction= Order::find($s->id);
-        $save = new Order;
+        $simpan= Order::find($s->id);
         $tripay = new TripayController();
         $method = $request->method;
 
       
-        $transaction = $tripay->requestTransaction($method, $orders);
+        $transaction = $tripay->requestTransaction($method, $simpan);
         // dd( $transaction);
+        // $data = $transaction->content();
+        // dd($data);
+        $json = json_encode($transaction);
+        $dt= json_decode($json,true);
+        $save = Order::find($s->id);
         $save->nama             = $request->nama;
         $save->phone_number     = $request->phone_number;
         $save->custom           = $request->custom;
@@ -44,18 +47,16 @@ class OrderCustController extends Controller
         $save->quantity         = $request->quantity;
         $save->delivery_id      = $request->delivery_id;
         $save->category_id      = $request->category_id;
-        $save->merchant_ref     = $merchantRef;
-        $save->reference        = "HALO";
-        $save->amount           = $amount;
+        $save->merchant_ref     = $dt['data']['merchant_ref'];
+        $save->reference        = $dt['data']['reference'];
+        $save->amount           = $dt['data']['amount'];
         $save->save();
-        $orders = Order::find($s->id);
-        
-        // $detail =  $tripay->detailTransaksi($save->reference);
-        // return view('layouts.total', compact('detail'));
+        $detail =  $tripay->detailTransaksi($save->reference);
+        return view('layouts.total', compact('detail'));
 
-        return redirect()->route('transaksi.show', [
-            'reference' => $save->reference,
-        ]);
+        // return redirect()->route('transaksi.show', [
+        //     'reference' => $save->reference,
+        // ]);
 
 
         // Order::create([

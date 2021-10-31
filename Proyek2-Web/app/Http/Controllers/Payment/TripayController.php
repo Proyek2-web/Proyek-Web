@@ -97,12 +97,11 @@ class TripayController extends Controller
 
         curl_close($curl);
 
-        $response = json_decode($response)->data;
-        // $responses = response()->json($data);
-        // dd($responses);
+        $response = json_decode($response);
+        // $responses = response()->json($data,Response::HTTP_OK);
 
-        // return $response ?: $err;
         return $response ?: $err;
+        // return $data ?: $err;
     }
 
     public function detailTransaksi($reference)
