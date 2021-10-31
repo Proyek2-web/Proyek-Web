@@ -9,11 +9,7 @@ use App\Models\Product;
 
 class OrderCustController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         // $order = Order::all();
@@ -22,67 +18,74 @@ class OrderCustController extends Controller
         //     $key->total = ($key->qty * $key->product->harga)+$key->delivery->harga;
         //     $key->save();
         // }
-        // // dd($id);
-        $orders = Order::find($id);
-        return view('layouts.total', compact('orders'));
+        // // // dd($id);
+        // $orders = Order::find($id);
+        // return view('layouts.total', compact('orders'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
 
     {
+        // dd($request->all());
+        $s=Order::create($request->all());
 
+        // $transaction= Order::find($s->id);
         $save = new Order;
         $tripay = new TripayController();
-        $product = Product::find($request->product_id);
         $method = $request->method;
 
-        $save->nama = $request->nama;
-        $save->phone_number = $request->phone_number;
-        $save->custom = $request->custom;
-        $save->email = $request->email;
-        $save->product_id = $request->product_id;
-        $save->qty = $request->qty;
-        $save->delivery_id = $request->delivery_id;
-        $save->category_id = $request->category_id;
-        // dd($request->all());
+      
+        $transaction = $tripay->requestTransaction($method, $orders);
+        // dd( $transaction);
+        $save->nama             = $request->nama;
+        $save->phone_number     = $request->phone_number;
+        $save->custom           = $request->custom;
+        $save->email            = $request->email;
+        $save->product_id       = $request->product_id;
+        $save->quantity         = $request->quantity;
+        $save->delivery_id      = $request->delivery_id;
+        $save->category_id      = $request->category_id;
+        $save->merchant_ref     = $merchantRef;
+        $save->reference        = "HALO";
+        $save->amount           = $amount;
         $save->save();
-        $tripay->requestTransaction($method, $product);
-        return redirect(route('custorder.index'));
+        $orders = Order::find($s->id);
+        
+        // $detail =  $tripay->detailTransaksi($save->reference);
+        // return view('layouts.total', compact('detail'));
+
+        return redirect()->route('transaksi.show', [
+            'reference' => $save->reference,
+        ]);
+
+
+        // Order::create([
+        //     'nama'      => $request->nama,
+        //     'phone_number' => $request->phone_number,
+        //     'custom' => $request->custom,
+        //     'email' => $request->email,
+        //     'product_id' => $request->id,
+        //     'category_id ' => $request->category_id,
+        //     'quantity' => $request->quantity,
+        //     'delivery_id' => $request->delivery_id,
+        //     'reference' => $transaction->reference,
+        //     'merchant_ref' => $transaction->merchant_ref,
+        //     'amount' => $transaction->amount,
+        //     'status' => $transaction->status,
+        // ]);
+        //     return redirect()->route('transaksi.show', [
+        //     'reference' => $transaction->reference,
+        // ]);
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function show($reference)
     {
-        //
+
+        $tripay = new TripayController();
+        $detail =  $tripay->detailTransaksi($reference);
+        return view('layouts.total', compact('detail'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
@@ -109,5 +112,9 @@ class OrderCustController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function save(Request $request)
+    {
     }
 }

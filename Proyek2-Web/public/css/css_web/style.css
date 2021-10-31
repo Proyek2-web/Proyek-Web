@@ -731,8 +731,10 @@ footer p {
     color: #bdbdbe;
 }
 
-.total .container-total{
-    margin-inline: 400px;
+.total .wrap{
+    margin-inline: 250px;
+    padding: 30px;
+    margin-bottom: 90px;
     box-shadow: rgba(41, 40, 112, 0.35) 0px 5px 15px;
 }
 /* logo wa */

@@ -10,12 +10,8 @@
                 <p><i class="fa fa-location-arrow"></i> 9878/25 sec 9 rohini 35 </p>
                 <p><i class="fa fa-phone"></i> +91-9999878398 </p>
                 <p><i class="fa fa fa-envelope"></i> info@example.com </p>
-
-
             </div>
 
-
-            
             <div class=" col-sm-3 col-6 col" >
                 <h5 class="headin5_amrc col_white_amrc pt2">Our Product</h5>
                 <!--headin5_amrc-->

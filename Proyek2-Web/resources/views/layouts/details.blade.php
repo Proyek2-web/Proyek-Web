@@ -22,8 +22,9 @@
             </div>
         </div>
     </div>
+
     <div class="form-order">
-        <form action="{{ route('custorder.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="/transaksi-post" method="post" enctype="multipart/form-data">
             @csrf
             <div class="container">
                 <h2 style="">Form Order</h2>
@@ -51,27 +52,32 @@
                             <select name="delivery_id" class="form-select" aria-label="Default select example" required>
                                 @foreach ($deliveries as $c)
                                 <option value="{{ $c->id }}">{{ $c->nama }}</option>
+                                  <input type="hidden" name="harga_del" value="{{ $c->harga }}"> 
                                 @endforeach
                             </select>
                         </div>
                         <div class="mb-3">
-                            <input required type="number" name="qty" min="1" max="9999" maxlength="4"
-                                placeholder="* Jumlah" name="qty"
+                            <input required type="number" min="1" max="9999" maxlength="4"
+                                placeholder="* Jumlah" name="quantity"
                                 oninput="this.value=this.value.slice(0,this.maxLength||1/1);this.value=(this.value   < 1) ? (1/1) : this.value;">
                         </div>
                         <div class="mb-3">
                             <select name="method" class="form-select" aria-label="Default select example" required>
                                 @foreach ($channels as $channel)
-                                    @if ($channel->active)
-                                        <option value="{{ $channel->code}}">{{ $channel->name }}</option>
-                                    @endif
+                                @if ($channel->active)
+                                <option value="{{ $channel->code}}">{{ $channel->name }}</option>
+                                @endif
                                 @endforeach
-                            </select> 
+                            </select>
                         </div>
+                        <input type="hidden" name="harga" value="{{ $produk->harga }}">
+                        {{-- <input type="hidden" name="harga_del" value="{{ $produ }}"> --}}
                         <input type="hidden" name="product_id" value="{{ $produk->id }}">
-                        {{-- <input type="hidden" name="order_id" value="{{ $orders->id }}"> --}}
+                        {{-- <input type="hidden" name="reference" value="null">
+                        <input type="hidden" name="merchant_ref" value="null"> --}}
+                       
                         <input type="hidden" name="category_id" value="{{ $produk->category->id }}">
-                        {{-- <input type="hidden" name="total" value="0"> --}}
+                        {{-- <input type="hidden" name="amount" value=0> --}}
                     </div>
                     <div class="col-md-6">
                         <button onclick="return confirm('Apakah yakin ingin membeli {{ $produk->nama }}?')"
