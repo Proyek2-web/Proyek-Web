@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Payment\TripayController;
 use App\Models\Delivery;
 use App\Models\Product;
+use App\Models\Country;
+use App\Models\State;
 use Illuminate\Http\Request;
+
 
 class ProdukController extends Controller
 {
@@ -17,13 +20,18 @@ class ProdukController extends Controller
     }
     public function detail(Product $product)
     {
+
+        $countries = Country::where('id',100)->first();
+        $state = State::all();
         $tripay = new TripayController();
         $channels = $tripay->getPaymentChannels();
         return view('layouts.details', [
             'title' => 'Postingan Berdasarkan Author',
             'produk' => $product,
             'deliveries' => Delivery::all(),
-            'channels' => $channels
+            'channels' => $channels,
+            'country' => $countries,
+            'state' => $state
         ]);
     }
     public function gelas()
@@ -36,6 +44,7 @@ class ProdukController extends Controller
     public function vas()
     {
         $product = Product::where('category_id', 4);
+        
         return view('layouts.product', [
             'produk' => $product->get()
         ]);

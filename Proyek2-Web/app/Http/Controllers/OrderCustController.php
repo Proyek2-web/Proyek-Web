@@ -40,6 +40,9 @@ class OrderCustController extends Controller
         $save->nama             = $request->nama;
         $save->phone_number     = $request->phone_number;
         $save->custom           = $request->custom;
+        $save->kota             = $request->kota;
+        $save->alamat           = $request->alamat;
+        $save->state_id         = $request->state_id;
         $save->email            = $request->email;
         $save->product_id       = $request->product_id;
         $save->quantity         = $request->quantity;
