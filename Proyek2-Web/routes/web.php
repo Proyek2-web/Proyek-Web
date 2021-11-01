@@ -53,7 +53,7 @@ Route::get('/detail', function () {
     return view('layouts.detail');
 });
 Route::post('/transaksi-post', [OrderCustController::class, 'store']);
-Route::get('/transaksi/{reference}',[OrderCustController::class,'show'])->name('transaksi.show');
+// Route::get('/transaksi/{reference}',[OrderCustController::class,'show'])->name('transaksi.show');
 
-Route::post('callback', [CallbackController::class, 'handle']);
+Route::post('/callback', [CallbackController::class, 'handle']);
 // Route::resource('/transaksi', OrderCustController::class);

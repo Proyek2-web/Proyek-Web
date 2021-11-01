@@ -33,9 +33,7 @@ class OrderCustController extends Controller
 
       
         $transaction = $tripay->requestTransaction($method, $simpan);
-        // dd( $transaction);
-        // $data = $transaction->content();
-        // dd($data);
+    
         $json = json_encode($transaction);
         $dt= json_decode($json,true);
         $save = Order::find($s->id);
@@ -79,26 +77,18 @@ class OrderCustController extends Controller
 
     }
 
-    public function show($reference)
-    {
+    // public function show($reference)
+    // {
 
-        $tripay = new TripayController();
-        $detail =  $tripay->detailTransaksi($reference);
-        return view('layouts.total', compact('detail'));
-    }
+    //     $tripay = new TripayController();
+    //     $detail =  $tripay->detailTransaksi($reference);
+    //     return view('layouts.total', compact('detail'));
+    // }
 
     public function edit($id)
     {
         //
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //

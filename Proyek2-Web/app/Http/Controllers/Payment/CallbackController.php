@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 
 class CallbackController extends Controller
 {
-    protected $privateKey = 'private_key_anda';
+    protected $privateKey = 'mAyB4-b0CJc-jhOwf-0KoBF-VfD6A';
 
     public function handle(Request $request)
     {
@@ -30,19 +30,20 @@ class CallbackController extends Controller
         $event = $request->server('HTTP_X_CALLBACK_EVENT');
 
         if ($event == 'payment_status') {
-            $merchantRef = $data->merchant_ref;
-
+            $reference = $data->reference;
+            
+        
             // pembayaran sukses, lanjutkan proses sesuai sistem Anda, contoh:
-            $order = Order::where('id', $merchantRef)
-                ->where('status', 'UNPAID')
-                ->first();
-
+            $order = Order::where('reference', $reference)
+                ->where('status', 'UNPAID')->first();
+                
+                
             if (!$order) {
                 return "Order not found or current status is not UNPAID";
             }
-
+            
             // Lakukan validasi nominal
-            if (intval($data->total_amount) !== intval($order->total_amount)) {
+            if ($data->total_amount !== $order->amount) {
                 return "Invalid amount";
             }
 
@@ -51,7 +52,6 @@ class CallbackController extends Controller
                 $order->update([
                     'status'    => 'PAID'
                 ]);
-
                 return response()->json([
                     'success' => true
                 ]);

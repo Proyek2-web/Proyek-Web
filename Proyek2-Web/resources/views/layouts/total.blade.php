@@ -29,7 +29,7 @@
                     <div class="alert alert-danger d-flex align-items-center" role="alert" style="padding-inline: 30%">
                         <i class="bi bi-exclamation-circle-fill me-2 "></i>
                         <div class="">
-                            {{ $detail->status}}
+                            {{ $detail->status }}
                         </div>
                     </div>
                 </div>
