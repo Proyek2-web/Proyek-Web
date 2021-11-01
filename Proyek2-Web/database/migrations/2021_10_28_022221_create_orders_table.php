@@ -19,8 +19,11 @@ class CreateOrdersTable extends Migration
             $table->string('phone_number');
             $table->string('custom');
             $table->string('email');
+            $table->string('kota')->nullable();
+            $table->string('alamat')->nullable();
             $table->foreignId('product_id');
             $table->foreignId('category_id');
+            $table->foreignId('state_id');
             $table->string('reference')->nullable();
             $table->string('merchant_ref')->nullable();
             $table->integer('amount')->nullable();

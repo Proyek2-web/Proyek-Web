@@ -24,4 +24,8 @@ class Order extends Model
     {
         return $this->belongsTo(Delivery::class);
     }
+    public function state()
+    {
+        return $this->belongsTo(State::class);
+    }
 }
