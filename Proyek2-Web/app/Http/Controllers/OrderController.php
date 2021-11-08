@@ -18,6 +18,7 @@ class OrderController extends Controller
     {   
         
         $orders = Order::all();
+        // dd(json_decode($orders));
         return view('section.order',  compact('orders'));
     }
 
