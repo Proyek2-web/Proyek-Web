@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Payment\TripayController;
 
 class OrderController extends Controller
 {
@@ -14,10 +15,11 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('section.order', [
-            'orders' => Order::all(),
-        ]);
+    {   
+        
+        $orders = Order::all();
+        // dd(json_decode($orders));
+        return view('section.order',  compact('orders'));
     }
 
     /**

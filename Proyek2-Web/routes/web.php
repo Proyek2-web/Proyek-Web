@@ -9,23 +9,11 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderCustController;
+use App\Http\Controllers\Payment\CallbackController;
 use App\Models\Order;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 // Login Admin
 Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('guest');
@@ -45,13 +33,12 @@ Route::middleware(['auth'])->group(function () {
 });
 
 // ROUTE WEB UTAMA
-Route::get('/contact', [ContactController::class, 'showContactForm']);
-Route::post('/contact', [ContactController::class, 'sendMail']);
-
-
 Route::get('/home', function () {
     return view('layouts.home');
 });
+
+Route::post('/contact', [ContactController::class, 'sendMail']);
+Route::get('/contact', [ContactController::class, 'showContactForm']);
 
 Route::get('/produk', [ProdukController::class,'all']);
 Route::get('/gelas', [ProdukController::class, 'gelas']);
@@ -65,13 +52,8 @@ Route::get('about', function () {
 Route::get('/detail', function () {
     return view('layouts.detail');
 });
-Route::get('/total', function () {
-    return view('layouts.total');
-});
-Route::get('/totali/{order:id}',function(Order $order){
-    return view('layouts.total',[
-        'help' => $order
-    ]);
-});
+Route::post('/transaksi-post', [OrderCustController::class, 'store']);
+// Route::get('/transaksi/{reference}',[OrderCustController::class,'show'])->name('transaksi.show');
 
-Route::resource('/custorder', OrderCustController::class);
+Route::post('/callback', [CallbackController::class, 'handle']);
+// Route::resource('/transaksi', OrderCustController::class);

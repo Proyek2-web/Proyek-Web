@@ -77,33 +77,34 @@ class DatabaseSeeder extends Seeder
             'email' => 'sdasda@gmail.com',
             'product_id' => '1',
             'category_id' => '1',
-            'qty' => '50',
-            'total' => '200000',
+            'state_id' => '1',
+            'quantity' => '50',
             'delivery_id'=>'1',
         ]);
-        Order::create([
-            'nama' => 'Auliya Oni',
-            'phone_number' => '08786545438',
-            'custom' => 'dengan tulisan warna merah',
-            'email' => 'sdasda@gmail.com',
-            'product_id' => '1',
-            'category_id' => '1',
-            'qty' => '50',
-            'total' => '200000',
-            'delivery_id'=>'1',
-        ]);
+        // Order::create([
+        //     'nama' => 'Auliya Oni',
+        //     'phone_number' => '08786545438',
+        //     'custom' => 'dengan tulisan warna merah',
+        //     'email' => 'sdasda@gmail.com',
+        //     'product_id' => '1',
+        //     'category_id' => '1',
+        //     'qty' => '50',
+        //     'total' =>'3000',
+        //     'delivery_id'=>'1',
+        // ]);
         Delivery::create([
             'nama' => 'JNE',
             'harga' => '20000',
-        ]);Delivery::create([
+        ]);
+        Delivery::create([
             'nama' => 'JNT',
             'harga' => '10000',
-        ]);
         // Order::create([
         //     'product_id'=> '1', 
         //     'category_id' => '1',
         //     'qty' => '50',
         //     'total' => '200000',
-        // ]);
+        ]);
     }
+        
 }

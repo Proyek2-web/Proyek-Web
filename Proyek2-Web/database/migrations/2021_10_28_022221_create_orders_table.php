@@ -19,10 +19,16 @@ class CreateOrdersTable extends Migration
             $table->string('phone_number');
             $table->string('custom');
             $table->string('email');
+            $table->string('kota')->nullable();
+            $table->string('alamat')->nullable();
             $table->foreignId('product_id');
             $table->foreignId('category_id');
-            $table->double('qty');
-            $table->double('total');
+            $table->foreignId('state_id');
+            $table->string('reference')->nullable();
+            $table->string('merchant_ref')->nullable();
+            $table->integer('amount')->nullable();
+            $table->enum('status', ['PAID', 'UNPAID'])->default('UNPAID');
+            $table->integer('quantity');
             $table->foreignId('delivery_id');
             $table->timestamps();
         });

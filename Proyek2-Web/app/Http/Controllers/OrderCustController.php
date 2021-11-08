@@ -2,94 +2,96 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Payment\TripayController;
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\Product;
 
 class OrderCustController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        $id = 0;
-        $order = Order::all();
-        foreach ($order as $key ) {
-            $id++;
-            $key->total = ($key->qty * $key->product->harga)+$key->delivery->harga;
-            $key->save();
-        }
-        // dd($id);
-        
-        return view('layouts.total',[
-            'help' => Order::find($id)
-        ]);
+        // $order = Order::all();
+        // foreach ($order as $key ) {
+        //     $id++;
+        //     $key->total = ($key->qty * $key->product->harga)+$key->delivery->harga;
+        //     $key->save();
+        // }
+        // // // dd($id);
+        // $orders = Order::find($id);
+        // return view('layouts.total', compact('orders'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
+
     {
-        $save = new Order;
-        $save->nama = $request->nama;
-        $save->phone_number = $request->phone_number;
-        $save->custom = $request->custom;
-        $save->email = $request->email;
-        $save->product_id = $request->product_id;
-        $save->qty = $request->qty;
-        $save->total = $request->total;
-        $save->delivery_id = $request->delivery_id;
-        $save->category_id = $request->category_id;
+        // dd($request->all());
+        $s=Order::create($request->all());
+        $simpan= Order::find($s->id);
+        $tripay = new TripayController();
+        $method = $request->method;
+
+      
+        $transaction = $tripay->requestTransaction($method, $simpan);
+    
+        $json = json_encode($transaction);
+        $dt= json_decode($json,true);
+        $save = Order::find($s->id);
+        $save->nama             = $request->nama;
+        $save->phone_number     = $request->phone_number;
+        $save->custom           = $request->custom;
+        $save->kota             = $request->kota;
+        $save->alamat           = $request->alamat;
+        $save->state_id         = $request->state_id;
+        $save->email            = $request->email;
+        $save->product_id       = $request->product_id;
+        $save->quantity         = $request->quantity;
+        $save->delivery_id      = $request->delivery_id;
+        $save->category_id      = $request->category_id;
+        $save->merchant_ref     = $dt['data']['merchant_ref'];
+        $save->reference        = $dt['data']['reference'];
+        $save->amount           = $dt['data']['amount'];
         $save->save();
-        $help = $save->id;
-        return redirect(route('custorder.index'));
+        $detail =  $tripay->detailTransaksi($save->reference);
+        return view('layouts.total', compact('detail'));
+
+        // return redirect()->route('transaksi.show', [
+        //     'reference' => $save->reference,
+        // ]);
+
+
+        // Order::create([
+        //     'nama'      => $request->nama,
+        //     'phone_number' => $request->phone_number,
+        //     'custom' => $request->custom,
+        //     'email' => $request->email,
+        //     'product_id' => $request->id,
+        //     'category_id ' => $request->category_id,
+        //     'quantity' => $request->quantity,
+        //     'delivery_id' => $request->delivery_id,
+        //     'reference' => $transaction->reference,
+        //     'merchant_ref' => $transaction->merchant_ref,
+        //     'amount' => $transaction->amount,
+        //     'status' => $transaction->status,
+        // ]);
+        //     return redirect()->route('transaksi.show', [
+        //     'reference' => $transaction->reference,
+        // ]);
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+    // public function show($reference)
+    // {
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    //     $tripay = new TripayController();
+    //     $detail =  $tripay->detailTransaksi($reference);
+    //     return view('layouts.total', compact('detail'));
+    // }
+
     public function edit($id)
     {
         //
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
@@ -104,5 +106,9 @@ class OrderCustController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function save(Request $request)
+    {
     }
 }
