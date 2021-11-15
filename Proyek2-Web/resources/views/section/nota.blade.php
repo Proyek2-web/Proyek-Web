@@ -9,7 +9,7 @@
 				max-width: 800px;
 				margin: auto;
 				padding: 30px;
-				border: 1px solid #eee;
+				border: 1px solid rgb(68, 68, 68);
 				box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
 				font-size: 16px;
 				line-height: 24px;
@@ -26,7 +26,7 @@
 				vertical-align: top;
 			}
 			.invoice-box table tr td:nth-child(2) {
-				text-align: right;
+				/* text-align: right; */
 			}
 			.invoice-box table tr.top table td {
 				padding-bottom: 20px;
@@ -74,12 +74,12 @@
 				direction: rtl;
 				font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
 			}
-			.invoice-box.rtl table {
+			/* .invoice-box.rtl table {
 				text-align: right;
 			}
 			.invoice-box.rtl table tr td:nth-child(2) {
 				text-align: left;
-			}
+			} */
 		</style>
 	</head>
 
@@ -90,20 +90,19 @@
 					<td colspan="2">
 						<table>
 							<tr>
-								<td class="title">
-									<img src="{{ asset('storage/images/logo_long.png') }}" style="width: 100%; max-width: 300px" />
-								</td>
-
 								<td>
 									No Referensi. {{ $nota->reference }}<br />
 									Dibuat: {{ $nota->created_at->format('d/m/y') }}<br />
                                     Dicetak: {{ date('d/m/y') }}
 								</td>
+								<td class="title">
+									<img src="{{ asset('/storage/' . $nota->product->featured_image) }}" width="100" alt="">
+								</td>
 							</tr>
 						</table>
+						<hr>
 					</td>
 				</tr>
-
 				<tr class="information">
 					<td colspan="2">
 						<table>
