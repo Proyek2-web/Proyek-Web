@@ -11,6 +11,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderCustController;
 use App\Http\Controllers\Payment\CallbackController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ReportController;
 use App\Models\Order;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -31,6 +32,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/category', CategoryController::class);
     Route::resource('/product', ProductController::class);
     Route::resource('/order', OrderController::class);
+    Route::resource('/report', ReportController::class);
 });
 
 // ROUTE WEB UTAMA

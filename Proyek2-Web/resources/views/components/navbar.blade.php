@@ -22,7 +22,7 @@
         </ul>
         <ul class="metismenu" id="menu">
             <li class="nav-label first">Pelaporan</li>
-            <li><a><i class="nav-icon fa fa-calculator"></i><span class="nav-text">Total Pendapatan</span></a></li>
+            <li><a href="{{ route('report.index') }}"><i class="nav-icon fa fa-calculator"></i><span class="nav-text">Total Pendapatan</span></a></li>
         </ul>
     </div>
 </div>
