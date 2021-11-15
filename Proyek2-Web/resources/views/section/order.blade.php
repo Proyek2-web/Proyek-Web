@@ -104,20 +104,40 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="form-group">
-                                                <label for="nama" style="font-weight:bold;color:black">Nama</label>
+                                                <label for="email" style="font-weight:bold;color:black">Kode Referensi</label>
+                                                <p style="color:black">{{ $p->reference}}</p>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="email" style="font-weight:bold;color:black">Nama Pelanggan</label>
+                                                <p style="color:black">{{ $p->nama }}</p>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="email" style="font-weight:bold;color:black">Alamat</label>
+                                                <p style="color:black">{{ $p->alamat }}</p>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="email" style="font-weight:bold;color:black">Kota / Provinsi</label>
+                                                <p style="color:black">{{ $p->kota}}, {{ $p->state->name }}</p>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="nama" style="font-weight:bold;color:black">Nama Produk</label>
                                                 <p style="color:black">{{ $p->product->nama }}</p>
                                             </div>
                                             <div class="form-group">
-                                                <label for="email" style="font-weight:bold;color:black">Kategori</label>
-                                                <p style="color:black">{{ $p->category->name }}</p>
+                                                <label for="email" style="font-weight:bold;color:black">Pesanan Tambahan</label>
+                                                <p style="color:black">{{ $p->custom }}</p>
                                             </div>
                                             <div class="form-group">
                                                 <label for="dibuat" style="font-weight:bold;color:black">Jumlah Beli</label><br>
-                                                <p style="color:black">{{ $p->qty }}</p>
+                                                <p style="color:black">{{ $p->quantity }}</p>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="dibuat" style="font-weight:bold;color:black">Pengiriman</label><br>
+                                                <p style="color:black">{{ $p->delivery->nama }}</p>
                                             </div>
                                             <div class="form-group">
                                                 <label for="diupdate" style="font-weight:bold;color:black">Total</label><br>
-                                                <p style="color:black">{{ $p->total }}</p>
+                                                <p style="color:black">{{ $p->amount }}</p>
                                             </div>
                                         </div>
                                     </div>
