@@ -10,6 +10,7 @@ use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderCustController;
 use App\Http\Controllers\Payment\CallbackController;
+use App\Http\Controllers\SearchController;
 use App\Models\Order;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -54,4 +55,4 @@ Route::get('/detail', function () {
 });
 Route::post('/transaksi-post', [OrderCustController::class, 'store']);
 Route::post('/callback', [CallbackController::class, 'handle']);
-Route::get('/search', [SearchController::class, 'searchRef']);
+Route::get('/search', [SearchController::class, 'index'])->name('search');
