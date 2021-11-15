@@ -47,8 +47,6 @@ class SearchController extends Controller
             if (request('search')) {
                     $data = Order::where('reference', request('search'))->first();
                     return view('layouts.search', compact('data'))->with('success', 'Data Ditemukan');
-            } else {
-                return view('layouts.search');
             }
         } else {
             return view('layouts.search',compact('data'))->with('failed', 'Data Ditemukan');

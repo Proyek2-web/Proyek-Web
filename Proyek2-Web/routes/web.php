@@ -56,3 +56,5 @@ Route::get('/detail', function () {
 Route::post('/transaksi-post', [OrderCustController::class, 'store']);
 Route::post('/callback', [CallbackController::class, 'handle']);
 Route::get('/search', [SearchController::class, 'index'])->name('search');
+
+Route::get('/nota/cetak/{id}',[OrderCustController::class,'cetakNota'])->name('nota.cetak');
