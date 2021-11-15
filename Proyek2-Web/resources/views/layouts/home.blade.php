@@ -1,5 +1,5 @@
 @extends('master.mainWeb')
-
+ @include('layouts.navbar')
 @section('body')
 
 {{-- <div class="header">
@@ -158,5 +158,5 @@
 <a href="https://api.whatsapp.com/send?phone=6287863947193&text=Selamat%20datang%20di%20UD.Keramik%20Kinasih." class="float" target="_blank">
      <i class="bi bi-whatsapp"></i>
 </a>
-
+@include('layouts.footer')
 @endsection

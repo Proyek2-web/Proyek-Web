@@ -1,5 +1,5 @@
 @extends('master.mainWeb')
-
+@include('layouts.navbar')
 @section('body')
 
 <section class="product" id="product">
@@ -31,8 +31,6 @@
                 @endforeach
             </div>
         </div>
-
     </div>
 </section>
-
 @endsection

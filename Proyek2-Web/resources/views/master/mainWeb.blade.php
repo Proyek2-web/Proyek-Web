@@ -18,9 +18,9 @@
 </head>
 
 <body>
-    @include('layouts.navbar')
+   
     @yield('body')
-    @include('layouts.footer')
+   
     <script src="{{ url('js/js_web/slide.js') }}" type="text/javascript"></script>
     <script src="{{ url('js/jquery.nivo.slider.js') }}" type="text/javascript"></script>
 </body>

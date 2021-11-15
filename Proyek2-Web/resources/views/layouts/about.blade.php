@@ -1,5 +1,5 @@
 @extends('master.mainWeb')
-
+@include('layouts.navbar')
 @section('body')
 
 <section class="about">
@@ -64,5 +64,5 @@
         width="100%" height="470" loading="lazy">
     </iframe>
 </section>
-
+@include('layouts.footer')
 @endsection

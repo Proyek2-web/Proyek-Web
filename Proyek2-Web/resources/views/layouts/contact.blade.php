@@ -1,5 +1,5 @@
 @extends('master.mainWeb')
-
+@include('layouts.navbar')
 @section('body')
 
 <section class="contact pb-5 p" style="background-color: #f1efef">
@@ -43,5 +43,5 @@
         </div>
     </div>
 </section>
-
+@include('layouts.footer')
 @endsection

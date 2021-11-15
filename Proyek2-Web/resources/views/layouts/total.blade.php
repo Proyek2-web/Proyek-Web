@@ -1,5 +1,5 @@
 @extends('master.mainWeb')
-
+@include('layouts.navbar')
 @section('body')
 
 <section class="total">

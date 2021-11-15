@@ -1,27 +1,33 @@
 @extends('master.mainWeb')
+@include('layouts.navbar')
 @section('body')
 
     <section class="product" id="product">
         <div class="container">
-            <div class="title col-lg-12 mx-auto">
-                <h1>Product</h1>
+            <div class="title col-12 ">
+                <p class="title-search">Masukkan Kode Merchant Ref</p>
             </div>
             <section class="product" id="product">
-                <form action="/search">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" id="search" placeholder="Search" name="search"
-                            value="{{ request('search') }}" required>
-                        <button class="btn btn-success" type="submit">Search</button>
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <form action="/search">
+                            <div class="input-group mb-3 ">
+                                <input type="text" class="form-control" id="search" placeholder="Search" name="search"
+                                    value="{{ request('search') }}" required>
+                                <button class="btn btn-warning" type="submit"><i class="bi bi-search"></i></button>
+                            </div>
+                        </form>
                     </div>
-                </form>
+                </div>
+               
                
                 @if (request('search'))
                 @if ($data!==null)
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-light">
+                <div class="card-body ">
+                    <div class="table-responsive ">
+                        <table class="table table-dark table-striped">
                             <thead>
-                                <tr style="color: black">
+                                <tr style="color: white">
                                     <th scope="col">Nama</th>
                                     <th scope="col">Produk</th>
                                     <th scope="col">Jumlah</th>
@@ -31,7 +37,7 @@
                             </thead>
                             <tbody>
                                
-                                <tr style="color: black">
+                                <tr style="color: rgb(255, 255, 255)">
                                     <td>{{ $data->nama }}</td>
                                     <td>{{ $data->product->nama }}</td>
                                     <td>{{ $data->quantity }}</td>
@@ -39,7 +45,7 @@
                                    
                                     <td>
                                         @if ($data->status == 'PAID')
-                                        <span class="px-2 py-1  bg-success  text-white rounded-sm " >
+                                        <span class="px-2 py-1  bg-success  text-white rounded-sm" >
                                             {{ $data->status }}
                                        </span> 
                                         @else
@@ -54,7 +60,7 @@
                     </div>
                 </div> 
                 @else
-                <p>Data Tidak Ditemukan</p>
+                <p class="kode-null">Data Tidak Ditemukan !<i class="bi bi-emoji-frown-fill"></i></p>
                 @endif
                 
                 @endif
