@@ -14,7 +14,6 @@
                         <button class="btn btn-success" type="submit">Search</button>
                     </div>
                 </form>
-               
                 @if (request('search'))
                 @if ($data!==null)
                 <div class="card-body">

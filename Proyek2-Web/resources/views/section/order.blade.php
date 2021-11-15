@@ -66,8 +66,6 @@
                                 <th style="line-height: 100px">{{ $loop->iteration }}</th>
                                 <td>{{ $p->nama }}</td>
                                 <td>{{ $p->phone_number }}</td>
-                                {{-- <td>{{ $p->custom }}</td> --}}
-                                {{-- <td>{{ $p->email }}</td> --}}
                                 <td>{{ $p->product->nama }}</td>
                                 <td>{{ $p->quantity }}</td>
                                 <td>Rp. {{ number_format($p->amount) }}</td>
@@ -86,8 +84,7 @@
                                 
                                 <td>
                                     <div class="aksi d-flex">
-                                        <a data-toggle="modal" id="update" data-target=""
-                                            class="btn btn-light mr-2"><i class="fa fa-print"></i></a>
+                                        <a href="{{ route('nota.cetak', $p->id) }}" class="btn btn-light mr-2"><i class="fa fa-print"></i></a>
                                             <div class="aksi d-flex">
                                                 <a data-toggle="modal" id="updateAdmin" data-target="#modal-info{{$p->id}}"
                                                     class="btn btn-info mr-2"><i class="fa fa-info"></i></a>

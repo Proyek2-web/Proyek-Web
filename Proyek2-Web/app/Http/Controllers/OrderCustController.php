@@ -108,7 +108,8 @@ class OrderCustController extends Controller
         //
     }
 
-    public function save(Request $request)
-    {
+    public function cetakNota($id){
+        $nota = Order::where('id', $id)->first();
+        return view('section.nota', compact('nota'));
     }
 }
