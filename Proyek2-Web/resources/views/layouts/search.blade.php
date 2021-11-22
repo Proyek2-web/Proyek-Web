@@ -4,10 +4,11 @@
 
     <section class="product" id="product">
         <div class="container">
-            <div class="title col-12 ">
-                <p class="title-search">Masukkan Kode Merchant Ref</p>
-            </div>
-            <section class="product" id="product">
+            <div class="wrap-content">
+                <div class="title col-12">
+                    <p class="title-search">Masukkan kode reference</p>
+                    <p class="text-center">Contoh : DEV - ***************</p>
+                </div>
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
                         <form action="/search">
@@ -19,11 +20,61 @@
                         </form>
                     </div>
                 </div>
-
-
                 @if (request('search'))
                     @if ($data !== null)
-                        <div class="card-body ">
+                        <div class="row justify-content-center">
+                            <div class="col-6">
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="flush-headingOne">
+                                            
+                                            <button class="accordion-button collapsed fw-bold text-uppercase" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
+                                                aria-expanded="false" aria-controls="flush-collapseOne">
+                                                {{ $data->nama }}
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                            aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body text-center">
+                                                <p>Produk : <span class="fw-bolder">{{ $data->product->nama }} |
+                                                        {{ $data->quantity }}pcs (Rp.
+                                                        {{ number_format($data->product->harga, 0, ',', '.') }} / pcs)</span>
+                                                </p>
+                                                <hr class="search mx-auto">
+                                                <p>Pengiriman : <span class="fw-bolder">{{ $data->delivery->nama }} |
+                                                        (Rp. {{ number_format($data->delivery->harga, 0, ',', '.') }})</span>
+                                                </p>
+                                                <hr class="search mx-auto">
+                                                <h6>Total Pembayaran : <span class="fw-bolder">Rp.
+                                                        {{ number_format($data->amount) }}</span></h6>
+                                                <hr class="search-total mx-auto">
+                                                <div class="col-md-4 mx-auto">
+                                                    @if ($data->status == 'PAID')
+                                                        <div class="alert alert-success d-flex align-items-center"
+                                                            role="alert" style="padding-inline: 30%">
+                                                            <i class="bi bi-check-square-fill me-2"></i>
+                                                            <div class="">
+                                                                {{ $data->status }}
+                                                            </div>
+                                                        </div>
+                                                    @else
+                                                        <div class="alert alert-danger d-flex align-items-center"
+                                                            role="alert" style="padding-inline: 30%">
+                                                            <i class="bi bi-exclamation-circle-fill me-2 "></i>
+                                                            <div class="">
+                                                                {{ $data->status }}
+                                                            </div>
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{-- <div class="card-body">
                             <div class="table-responsive ">
                                 <table class="table table-dark table-striped">
                                     <thead>
@@ -58,14 +109,14 @@
                                     </tbody>
                                 </table>
                             </div>
-                        </div>
+                        </div> --}}
                     @else
                         <p class="kode-null">Data Tidak Ditemukan !<i class="bi bi-emoji-frown-fill"></i></p>
                     @endif
 
                 @endif
-                {{-- <div id="list"></div> --}}
-            </section>
+            </div>
+            {{-- <div id="list"></div> --}}
         </div>
     </section>
     {{-- <script type="text/javascript">

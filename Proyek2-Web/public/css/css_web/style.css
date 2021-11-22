@@ -760,7 +760,6 @@ footer p {
 }
 
 .title-search {
-    margin-top: 150px;
     font-size: 50px;
     font-weight: bold;
     font-family: PT serif;
@@ -772,4 +771,21 @@ footer p {
     margin-top: 50px;
     font-size: 50px;
     color: #cfcfcf;
+}
+.wrap-content{
+    margin-top: 80px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    background-color: #f1f1f1;
+    border-radius: 60px;
+    padding: 100px;
+}
+hr.search{
+    border-top: 1px solid #cacaca;
+    width: 390px;
+    opacity: 100%;
+}
+hr.search-total{
+    border-top: 2px solid #363636;
+    width: 300px;
+    opacity: 100%;
 }
