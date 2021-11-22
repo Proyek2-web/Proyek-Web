@@ -51,5 +51,6 @@ class SearchController extends Controller
         } else {
             return view('layouts.search',compact('data'))->with('failed', 'Data Ditemukan');
         }
+        return view('layouts.search',compact('data'));
     }
 }

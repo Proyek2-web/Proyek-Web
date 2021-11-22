@@ -7,6 +7,8 @@ use App\Models\Category;
 use App\Models\Delivery;
 use App\Models\Order;
 use App\Models\Product;
+use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -94,10 +96,12 @@ class DatabaseSeeder extends Seeder
         // ]);
         Delivery::create([
             'nama' => 'JNE',
+            'ref' => 'REF-'.Str::random(8) . Carbon::now()->format('YmdHis'),
             'harga' => '20000',
         ]);
         Delivery::create([
             'nama' => 'JNT',
+            'ref' => 'REF-'.Str::random(8) . Carbon::now()->format('YmdHis'),
             'harga' => '10000',
         // Order::create([
         //     'product_id'=> '1', 
