@@ -6,57 +6,53 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-3 col-sm-6">
-                    <div class="card">
+                    <div class="card-1">
                         <div class="stat-widget-two card-body">
                             <div class="stat-content">
-                                <div class="stat-text">Modal Awal</div>
-                                <div class="stat-digit"> <i class="fa fa-usd"></i>8500</div>
+                                <i class="bi bi-cart4 fa-3x text-white"></i>
+                                <div class="stat-text  text-white">Jumlah Order</div>
+                                <hr style="border-top: solid 2px rgb(224, 224, 224)">
+                                <h3 class=" text-white">10</h3>
                             </div>
-                            <div class="progress">
+                            {{-- <div class="progress">
                                 <div class="progress-bar progress-bar-success w-85" role="progressbar" aria-valuenow="85"
                                     aria-valuemin="0" aria-valuemax="100"></div>
+                            </div> --}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="card-2">
+                        <div class="stat-widget-two card-body">
+                            <div class="stat-content">
+                                <i class="bi bi-card-list fa-3x text-white"></i>
+                                <div class="stat-text text-white">Jumlah Produk</div>
+                                <hr style="border-top: solid 2px rgb(224, 224, 224)">
+                                <h3 class=" text-white">20</h3>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6">
-                    <div class="card">
+                    <div class="card-3">
                         <div class="stat-widget-two card-body">
                             <div class="stat-content">
-                                <div class="stat-text">Stok</div>
-                                <div class="stat-digit"> <i class="fa fa-usd"></i>7800</div>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-primary w-75" role="progressbar" aria-valuenow="78"
-                                    aria-valuemin="0" aria-valuemax="100"></div>
+                                <i class="bi bi-tags fa-3x text-white"></i>
+                                <div class="stat-text text-white">Jumlah Kategori</div>
+                                <hr style="border-top: solid 2px rgb(224, 224, 224)">
+                                <h3 class=" text-white">4</h3>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6">
-                    <div class="card">
+                    <div class="card-4">
                         <div class="stat-widget-two card-body">
                             <div class="stat-content">
-                                <div class="stat-text">Jumlah Pesanan</div>
-                                <div class="stat-digit"> <i class="fa fa-usd"></i> 500</div>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-warning w-50" role="progressbar" aria-valuenow="50"
-                                    aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="card">
-                        <div class="stat-widget-two card-body">
-                            <div class="stat-content">
-                                <div class="stat-text">Detail Pendapatan</div>
-                                <div class="stat-digit"> <i class="fa fa-usd"></i>650</div>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-danger w-65" role="progressbar" aria-valuenow="65"
-                                    aria-valuemin="0" aria-valuemax="100"></div>
+                                <i class="bi bi-cash-coin fa-3x text-white"></i>
+                                <div class="stat-text text-white">Jumlah Pendapatan</div>
+                                <hr style="border-top: solid 2px rgb(224, 224, 224)">
+                                <h3 class=" text-white">Rp.1.800.000</h3>
                             </div>
                         </div>
                     </div>

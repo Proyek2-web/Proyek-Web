@@ -7953,7 +7953,7 @@ a {
   position: absolute;
   left: 0;
   top: 0;
-  background-color: #343957;
+  background-color: #48487F;
   transition: all .2s ease;
   z-index: 4; }
   .nav-header .logo-abbr {
@@ -10208,7 +10208,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
   top: 5rem;
   padding-top: 0;
   z-index: 2;
-  background-color: #343957;
+  background-color: #48487F;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
   transition: all .2s ease; }
   .quixnav .quixnav-scroll {
@@ -19268,4 +19268,21 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
   font-weight: bold;
   font-size: 90px;
   margin-top: 80px;
+}
+
+.card-1{
+  background: linear-gradient(to right, #a86008, #ffba56);
+  border-radius: 5px;
+}
+.card-2{
+  background: linear-gradient(to right, #0a504a, #38ef7d) ;
+  border-radius: 5px;
+}
+.card-3{
+  background: linear-gradient(to right, #373b44, #4286f4);
+  border-radius: 5px;
+}
+.card-4{
+  background: linear-gradient(to right, #493240, #f09);
+  border-radius: 5px;
 }

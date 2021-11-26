@@ -9,7 +9,7 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png">
     <link rel="stylesheet" href="./vendor/owl-carousel/css/owl.carousel.min.css">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="./vendor/owl-carousel/css/owl.theme.default.min.css">
     <link href="./vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet">
     <link href="./css/style.css" rel="stylesheet">
@@ -45,10 +45,9 @@
             Nav header start
         ***********************************-->
         <div class="nav-header">
-            <a href="index.html" class="brand-logo">
-                <img class="logo-abbr" src="./images/logo.png" alt="">
-                <img class="logo-compact" src="./images/logoadmin.png" alt="">
-                <img class="brand-title" src="./images/logoadmin.png" alt="">
+            <a href="index.html" class="brand-logo align-items-center">
+                <img class="logo-abbr mr-2" src="./images/logo.png" alt="">
+                <h3 class="text-white mt-3">AdminKinasih</h3>
             </a>
 
             <div class="nav-control">
