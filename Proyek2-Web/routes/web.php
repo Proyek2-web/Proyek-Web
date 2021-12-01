@@ -12,8 +12,6 @@ use App\Http\Controllers\OrderCustController;
 use App\Http\Controllers\Payment\CallbackController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ReportController;
-use App\Models\Order;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 
 
@@ -25,9 +23,7 @@ Route::get('/category/checkSlug', [CategoryController::class, 'checkSlug'])->mid
 Route::get('/product/checkSlug', [ProductController::class, 'checkSlug'])->middleware('auth');
 // Halaman Dashboard Admin
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('section.index');
-    });
+    Route::get('/dashboard', [DashboardController::class,'tampil']);
     Route::resource('/user', DashboardController::class);
     Route::resource('/category', CategoryController::class);
     Route::resource('/product', ProductController::class);
@@ -59,4 +55,4 @@ Route::post('/transaksi-post', [OrderCustController::class, 'store']);
 Route::post('/callback', [CallbackController::class, 'handle']);
 Route::get('/search', [SearchController::class, 'index']);
 
-Route::get('/nota/cetak/{id}',[OrderCustController::class,'cetakNota'])->name('nota.cetak');
+Route::get('/nota/cetak/{id}', [OrderCustController::class, 'cetakNota'])->name('nota.cetak');

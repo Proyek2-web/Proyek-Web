@@ -53,7 +53,7 @@
                                     <th scope="col">Harga</th>
                                     <th scope="col">Kategori</th>
                                     <th scope="col">Gambar</th>
-                                    <th scope="col">Stok</th>
+                                    <th scope="col">Keterangan</th>
                                     <th scope="col">Aksi</th>
                                 </tr>
                             </thead>

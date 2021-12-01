@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\User;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
@@ -94,5 +96,20 @@ class DashboardController extends Controller
     {
         User::find($id)->delete();
         return back()->with('success', 'User Berhasil Dihapus');
+    }
+
+    public function tampil()
+    {
+        $all = Order::all();
+        $count0 = count($all->where('status','PAID'));
+        $total= 0;
+        $kategori = Category::all();
+        $count = count($kategori);
+        $product = Product::all();
+        $count2 = count($product);
+        foreach ($all as $a) {
+            $total += $a->amount;  
+        }
+        return view('section.index',compact('total','count','count2','count0'));
     }
 }
