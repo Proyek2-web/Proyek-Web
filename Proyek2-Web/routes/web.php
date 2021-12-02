@@ -29,6 +29,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/product', ProductController::class);
     Route::resource('/order', OrderController::class);
     Route::resource('/report', ReportController::class);
+    Route::resource('/resi', OrderCustController::class);
 });
 
 // ROUTE WEB UTAMA

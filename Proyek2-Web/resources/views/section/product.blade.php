@@ -72,7 +72,8 @@
                                             <div class="aksi d-flex">
                                                 <a data-toggle="modal" id="update"
                                                     data-target="#modal-edit{{ $p->id }}"
-                                                    class="btn btn-success mr-2"><i class="fa fa-edit"></i></a>
+                                                    class="btn btn-success mr-2"><i class="fa fa-edit"></i>
+                                                </a>
                                                 <form action="{{ route('product.destroy', $p->id) }}" method="POST"
                                                     enctype="multipart/form-data">
                                                     @csrf
