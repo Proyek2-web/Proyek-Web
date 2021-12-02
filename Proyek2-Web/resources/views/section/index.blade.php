@@ -52,7 +52,7 @@
                                 <i class="bi bi-cash-coin fa-3x text-white"></i>
                                 <div class="stat-text text-white">Jumlah Pendapatan</div>
                                 <hr style="border-top: solid 2px rgb(224, 224, 224)">
-                                <h3 class=" text-white">{{ $total }}</h3>
+                                <h3 class=" text-white">Rp. {{ number_format($total,0,',','.') }}</h3>
                             </div>
                         </div>
                     </div>
