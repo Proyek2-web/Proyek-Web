@@ -33,15 +33,6 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Data Seluruh Produk</h4>
-                    <div class="input-group input-group-sm" style="width: 150px;">
-                        <input type="text" name="table_search" class="form-control float-right"
-                            style="border-radius:6px;border: 1px solid black " placeholder="Search">
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-default">
-                                <i class="fa fa-search"></i>
-                            </button>
-                        </div>
-                    </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">

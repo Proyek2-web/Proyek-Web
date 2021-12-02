@@ -13,13 +13,16 @@ class ReportController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $order = Order::all();
-        $total = 0; 
-        foreach ($order as $o) {
-            $total +=$o->amount;
+    { 
+        $order = Order::where('status', 'PAID')->get();
+        $dates = request('filter');
+        $date = strtotime($dates);
+       
+        if(request('filter')){
+            $o=Order::whereDate('created_at', $date)->get();
+            dd($o);
         }
-        return view('section.report',compact('total'));
+        return view('section.report',compact('order'));
         
     }
 
@@ -87,5 +90,9 @@ class ReportController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function filter(Request $request){
+        $result = Order::where('created_at',$request->filter)->get();
     }
 }

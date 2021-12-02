@@ -1,26 +1,70 @@
 @extends('master.main')
 @section('container')
-<div class="content-body">
-    <!-- row -->
-    <h1 class="mb-3 ml-4">Total Pendapatan</h1>
-    <div class="col-lg-12">
-        <div class="col-lg-3 col-sm-6">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
+    <div class="content-body">
+        <!-- row -->
+        <h1 class="mb-3 ml-4">Riwayat Transaksi</h1>
+        {{-- <p>filter</p>
+    <form action="/filter" method="GET">
+        <label for="Dari tanggal">
+            <input type="text"> 
+        </label>
+        sampai
+        <label for="Sampai">
+            <input type="name"> 
+        </label>
+        <button type="submit" class="btn btn-primary">filter</button>
+        
+    </form> --}}
+        <div class="container">
+            <form action="{{ route('report.index') }}" method="GET">
+                <div class="d-flex justify-content-center">
+                    <input class="date form-control mr-2" name="filter" style="width: 20%" type="text">
+                    <button type="submit" class="btn btn-primary">Filter</button>
+                </div>
+            </form>
+        </div>
+
+        <script type="text/javascript">
+            $('.date').datepicker({
+                format: 'dd-mm-yyyy'
+            });
+
+        </script>
+        <div class="col-lg-12 mt-3">
             <div class="card">
-                <div class="stat-widget-two card-body">
-                    <div class="stat-content">
-                        <div class="stat-text">Detail Pendapatan</div>
-                        <div class="stat-digit">Rp. {{ number_format($total,0,',','.') }}</div>
-                    </div>
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-danger w-65" role="progressbar" aria-valuenow="65"
-                            aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="card-header">
+                    <h4 class="card-title">Data Riwayat</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-light">
+                            <thead>
+                                <tr style="color: black">
+                                    <th scope="col">No</th>
+                                    <th scope="col">Nama</th>
+                                    <th scope="col">Reference</th>
+                                    <th scope="col">Tanggal</th>
+                                    <th scope="col">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($order as $p)
+                                    <tr style="color: black">
+                                        <th style="line-height: 100px">{{ $loop->iteration }}</th>
+                                        <td>{{ $p->nama }}</td>
+                                        <td>{{ $p->reference }}</td>
+                                        <td>{{ date('d-m-Y', strtotime($p->created_at)) }}</td>
+                                        <td>Rp. {{ number_format($p->amount) }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-            <!-- /# card -->
         </div>
     </div>
-    
-    <p></p>
-</div>
+
 @endsection
