@@ -41,10 +41,20 @@
                                                         {{ $data->quantity }}pcs (Rp.
                                                         {{ number_format($data->product->harga, 0, ',', '.') }} / pcs)</span>
                                                 </p>
+                                                @if ($data->resi === null)
+                                                <p>
+                                                    Resi : Harap Melakukan Pembayaran
+                                                </p>
+                                                @else
+                                                <p>
+                                                    Resi : {{ $data->resi }}
+                                                </p>
+                                                @endif
                                                 <hr class="search mx-auto">
                                                 <p>Pengiriman : <span class="fw-bolder">{{ $data->delivery->nama }} |
                                                         (Rp. {{ number_format($data->delivery->harga, 0, ',', '.') }})</span>
                                                 </p>
+
                                                 <hr class="search mx-auto">
                                                 <h6>Total Pembayaran : <span class="fw-bolder">Rp.
                                                         {{ number_format($data->amount) }}</span></h6>

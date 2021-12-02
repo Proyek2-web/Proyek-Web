@@ -96,18 +96,15 @@ class DatabaseSeeder extends Seeder
         // ]);
         Delivery::create([
             'nama' => 'JNE',
-            'ref' => 'REF-'.Str::random(8) . Carbon::now()->format('YmdHis'),
             'harga' => '20000',
         ]);
         Delivery::create([
             'nama' => 'JNT',
-            'ref' => 'REF-'.Str::random(8) . Carbon::now()->format('YmdHis'),
-            'harga' => '10000',
-        // Order::create([
-        //     'product_id'=> '1', 
-        //     'category_id' => '1',
-        //     'qty' => '50',
-        //     'total' => '200000',
+            'harga' => '25000',
+        ]);
+        Delivery::create([
+            'nama' => 'POS',
+            'harga' => '22000',
         ]);
     }
         

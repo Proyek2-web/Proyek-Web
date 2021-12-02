@@ -94,7 +94,9 @@ class OrderCustController extends Controller
     }
     public function update(Request $request, $id)
     {
-        //
+        $order = $request->all();
+        Order::find($id)->update($order);
+        return redirect()->back();
     }
 
     /**

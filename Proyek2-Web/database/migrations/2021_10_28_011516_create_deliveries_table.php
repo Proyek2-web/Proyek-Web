@@ -16,7 +16,6 @@ class CreateDeliveriesTable extends Migration
         Schema::create('deliveries', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->char('ref', 30);
             $table->double('harga');
             $table->timestamps();
         });
