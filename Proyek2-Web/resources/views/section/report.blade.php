@@ -19,8 +19,12 @@
     </form> --}}
         <div class="container">
             <form action="{{ route('report.index') }}" method="GET">
+                @csrf
                 <div class="d-flex justify-content-center">
-                    <input class="date form-control mr-2" name="filter" style="width: 20%" type="text">
+                    <label for="from"> Dari</label>
+                    <input required class="date form-control mr-2" name="fromDate" style="width: 20%" type="text" value="{{ request('fromDate') }}">
+                    <label for="to">Sampai</label>
+                    <input required class="date form-control mr-2" name="toDate" style="width: 20%" type="text" value="{{ request('toDate') }}">
                     <button type="submit" class="btn btn-primary">Filter</button>
                 </div>
             </form>
@@ -28,7 +32,7 @@
 
         <script type="text/javascript">
             $('.date').datepicker({
-                format: 'dd-mm-yyyy'
+                format: 'yyyy-mm-dd'
             });
 
         </script>
@@ -55,7 +59,7 @@
                                         <th style="line-height: 100px">{{ $loop->iteration }}</th>
                                         <td>{{ $p->nama }}</td>
                                         <td>{{ $p->reference }}</td>
-                                        <td>{{ date('d-m-Y', strtotime($p->created_at)) }}</td>
+                                        <td>{{ date('Y-m-d', strtotime($p->created_at)) }}</td>
                                         <td>Rp. {{ number_format($p->amount) }}</td>
                                     </tr>
                                 @endforeach

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Order;
+use Illuminate\Support\Facades\DB;
 
 class ReportController extends Controller
 {
@@ -13,17 +14,17 @@ class ReportController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    { 
+    {
         $order = Order::where('status', 'PAID')->get();
-        $dates = request('filter');
-        $date = strtotime($dates);
-       
-        if(request('filter')){
-            $o=Order::whereDate('created_at', $date)->get();
-            dd($o);
-        }
-        return view('section.report',compact('order'));
+        $fromDates = date(request('fromDate'));
+        $toDates = request('toDate');
         
+        if ($fromDates && $toDates) {
+            $order = Order::whereDate('created_at', '>=', $fromDates)
+                ->whereDate('created_at', '<=', $toDates)->get();
+                
+        }
+        return view('section.report', compact('order'));
     }
 
     /**
@@ -92,7 +93,8 @@ class ReportController extends Controller
         //
     }
 
-    public function filter(Request $request){
-        $result = Order::where('created_at',$request->filter)->get();
+    public function filter(Request $request)
+    {
+        $result = Order::where('created_at', $request->filter)->get();
     }
 }
