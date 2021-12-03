@@ -2,7 +2,12 @@
 @section('container')
     <div class="content-body">
         <!-- row -->
-        <h1 class="mb-3 ml-4">Kategori</h1>
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/"><i class="bi bi-person-fill"></i> Admin </a></li>
+              <li class="breadcrumb-item active" aria-current="page">Kategori</li>
+            </ol>
+          </nav>
         <div>
             @if (session()->has('success'))
                 <div class="alert alert-danger solid alert-dismissible fade show w-50 text-center mx-auto">
@@ -31,31 +36,31 @@
         </div>
         <div class="col-lg-12">
             <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Data Seluruh Kategori</h4>
+                <div class="card-header justify-content-center bg-dark">
+                    <h4 class="card-title text-uppercase text-white">Data Kategori <i class="bi bi-tags text-white"></i></h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-light">
                             <thead>
                                 <tr style="color: black">
-                                    <th scope="col">No</th>
-                                    <th scope="col">Nama Kategori</th>
-                                    <th scope="col">Dibuat</th>
-                                    <th scope="col">Aksi</th>
+                                    <th class="border text-center" scope="col">No</th>
+                                    <th class="border text-center" scope="col">Nama Kategori</th>
+                                    <th class="border text-center" scope="col">Dibuat</th>
+                                    <th class="border text-center" scope="col">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($categories as $c)
                                     <tr style="color: black">
-                                        <th>{{ $loop->iteration }}</th>
-                                        <td>{{ $c->name }}</td>
-                                        <td>{{ $c->created_at }}</td>
-                                        <td>
-                                            <div class="aksi d-flex">
+                                        <th class="border text-center">{{ $loop->iteration }}</th>
+                                        <td class="border text-center">{{ $c->name }}</td>
+                                        <td class="border text-center">{{ $c->created_at }}</td>
+                                        <td class="border text-center">
+                                            <div class="aksi d-flex justify-content-center">
                                                 <a data-toggle="modal" id="updateKategori"
                                                     data-target="#modal-edit{{ $c->id }}"
-                                                    class="btn btn-success mr-2"><i class="fa fa-edit"></i></a>
+                                                    class="btn btn-warning mr-2"><i class="fa fa-edit"></i></a>
                                                 <form action="{{ route('category.destroy', $c->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
@@ -105,7 +110,7 @@
             </div>
         </div>
         <button type="button" class="btn btn-secondary ml-3" data-toggle="modal" data-target="#modal-default">
-            <i class="fa fa-plus"></i>&nbsp;Tambahkan Data Kategori</a>
+            <i class="fa fa-plus"></i>&nbsp;Tambah Kategori</a>
         </button>
         <div class="modal fade" id="modal-default">
             <div class="modal-dialog">

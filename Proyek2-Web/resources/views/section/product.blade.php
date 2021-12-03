@@ -2,7 +2,12 @@
 @section('container')
     <div class="content-body">
         <!-- row -->
-        <h1 class="mb-3 ml-4">Produk</h1>
+          <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/"><i class="bi bi-person-fill"></i> Admin </a></li>
+              <li class="breadcrumb-item active" aria-current="page">Produk</li>
+            </ol>
+          </nav>
         <div>
             @if (session()->has('success'))
                 <div class="alert alert-danger solid alert-dismissible fade show w-50 text-center mx-auto">
@@ -31,39 +36,39 @@
         </div>
         <div class="col-lg-12">
             <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Data Seluruh Produk</h4>
+                <div class="card-header justify-content-center bg-dark">
+                    <h4 class="card-title text-white text-uppercase">Data Produk <i class="bi bi-list-ul"></i></h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-light">
                             <thead>
                                 <tr style="color: black">
-                                    <th scope="col">No</th>
-                                    <th scope="col">Nama</th>
-                                    <th scope="col">Harga</th>
-                                    <th scope="col">Kategori</th>
-                                    <th scope="col">Gambar</th>
-                                    <th scope="col">Keterangan</th>
-                                    <th scope="col">Aksi</th>
+                                    <th class="border text-center" scope="col">No</th>
+                                    <th class="border text-center" scope="col">Nama</th>
+                                    <th class="border text-center" scope="col">Harga</th>
+                                    <th class="border text-center" scope="col">Kategori</th>
+                                    <th class="border text-center" scope="col">Gambar</th>
+                                    <th class="border text-center" scope="col">Keterangan</th>
+                                    <th class="border text-center" scope="col">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($products as $p)
                                     <tr style="color: black">
-                                        <th style="line-height: 100px">{{ $loop->iteration }}</th>
-                                        <td>{{ $p->nama }}</td>
-                                        <td>{{ $p->harga }}</td>
-                                        <td>{{ $p->category->name }}</td>
-                                        <td><img src="{{ asset('/storage/' . $p->featured_image) }}" width="80"
+                                        <th class="border text-center" style="line-height: 100px">{{ $loop->iteration }}</th>
+                                        <td class="border text-center">{{ $p->nama }}</td>
+                                        <td class="border text-center">{{ $p->harga }}</td>
+                                        <td class="border text-center">{{ $p->category->name }}</td>
+                                        <td class="border text-center"><img src="{{ asset('/storage/' . $p->featured_image) }}" width="80"
                                                 height="100" alt="">
                                         </td>
-                                        <td>{{ $p->keterangan }}</td>
-                                        <td>
-                                            <div class="aksi d-flex">
+                                        <td class="border text-center">{{ $p->keterangan }}</td>
+                                        <td class="border text-center">
+                                            <div class="aksi d-flex justify-content-center">
                                                 <a data-toggle="modal" id="update"
                                                     data-target="#modal-edit{{ $p->id }}"
-                                                    class="btn btn-success mr-2"><i class="fa fa-edit"></i>
+                                                    class="btn btn-warning mr-2"><i class="fa fa-edit"></i>
                                                 </a>
                                                 <form action="{{ route('product.destroy', $p->id) }}" method="POST"
                                                     enctype="multipart/form-data">

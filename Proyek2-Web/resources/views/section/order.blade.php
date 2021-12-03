@@ -2,7 +2,12 @@
 @section('container')
     <div class="content-body">
         <!-- row -->
-        <h1 class="mb-3 ml-4">Pesanan</h1>
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/"><i class="bi bi-person-fill"></i> Admin </a></li>
+              <li class="breadcrumb-item active" aria-current="page">Pesanan</li>
+            </ol>
+          </nav>
         <div>
             @if (session()->has('success'))
                 <div class="alert alert-danger solid alert-dismissible fade show w-50 text-center mx-auto">
@@ -31,47 +36,38 @@
         </div>
         <div class="col-lg-12">
             <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Data Pesanan</h4>
-                    <div class="input-group input-group-sm" style="width: 150px;">
-                        <input type="text" name="table_search" class="form-control float-right"
-                            style="border-radius:6px;border: 1px solid black " placeholder="Search">
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-default">
-                                <i class="fa fa-search"></i>
-                            </button>
-                        </div>
-                    </div>
+                <div class="card-header justify-content-center bg-dark">
+                    <h2 class="card-title text-uppercase text-white">Data Pesanan <i class="bi bi-bag-check"></i></h2>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-light">
                             <thead>
                                 <tr style="color: black">
-                                    <th scope="col">No</th>
-                                    <th scope="col">Nama</th>
-                                    <th scope="col">Nomor WA</th>
-                                    {{-- <th scope="col">Catatan</th> --}}
+                                    <th class="border text-center" scope="col">No</th>
+                                    <th class="border text-center" scope="col">Nama</th>
+                                    <th class="border text-center" scope="col">Nomor WA</th>
+                                    {{-- <th class="border" scope="col">Catatan</th> --}}
                                     {{-- <th scope="col">Email</th> --}}
                                     {{-- <th scope="col">Alamat</th> --}}
-                                    <th scope="col">Produk</th>
-                                    <th scope="col">Jumlah</th>
-                                    <th scope="col">Total</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Aksi</th>
+                                    <th class="border text-center" scope="col">Produk</th>
+                                    <th class="border text-center" scope="col">Jumlah</th>
+                                    <th class="border text-center" scope="col">Total</th>
+                                    <th class="border text-center" scope="col">Status</th>
+                                    <th class="border text-center" scope="col">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($orders as $p)
                                     <tr style="color: black">
-                                        <th style="line-height: 100px">{{ $loop->iteration }}</th>
-                                        <td>{{ $p->nama }}</td>
-                                        <td>{{ $p->phone_number }}</td>
-                                        <td>{{ $p->product->nama }}</td>
-                                        <td>{{ $p->quantity }}</td>
-                                        <td>Rp. {{ number_format($p->amount) }}</td>
+                                        <th class="border text-center" style="line-height: 100px">{{ $loop->iteration }}</th>
+                                        <td class="border text-center">{{ $p->nama }}</td>
+                                        <td class="border text-center">{{ $p->phone_number }}</td>
+                                        <td class="border text-center">{{ $p->product->nama }}</td>
+                                        <td class="border text-center">{{ $p->quantity }}</td>
+                                        <td class="border text-center">Rp. {{ number_format($p->amount) }}</td>
 
-                                        <td>
+                                        <td class="border text-center">
                                             @if ($p->status == 'PAID')
                                                 <span class="px-2 py-1  bg-success  text-white rounded-sm ">
                                                     {{ $p->status }}
@@ -84,18 +80,18 @@
                                         </td>
 
                                         <td>
-                                            <div class="aksi d-flex">
-                                                <a href="{{ route('nota.cetak', $p->id) }}" class="btn btn-light mr-2"><i
+                                            <div class="aksi d-flex justify-content-center">
+                                                <a href="{{ route('nota.cetak', $p->id) }}" class="btn btn-secondary mr-2"><i
                                                         class="fa fa-print"></i></a>
-                                                <div class="aksi d-flex">
+                                                <div class="aksi">
                                                     <a data-toggle="modal" id=""
                                                         data-target="#modal-info{{ $p->id }}"
-                                                        class="btn btn-info mr-1"><i class="fa fa-info"></i></a>
+                                                        class="btn btn-primary text-white mr-1"><i class="fa fa-info"></i></a>
                                                 </div>
                                                 @if ($p->status === 'PAID' && $p->resi === null)
                                                     <a data-toggle="modal" id="update"
                                                         data-target="#modal-edit{{ $p->id }}"
-                                                        class="btn btn-success mr-2"><i class="fa fa-plus"></i>
+                                                        class="btn btn-dark text-white mr-2"><i class="bi bi-truck"></i></i>
                                                     </a>
                                                     <div class="modal fade" id="modal-edit{{ $p->id }}">
                                                         <div class="modal-dialog">
@@ -167,7 +163,7 @@
                                                 @if ($p->status === 'PAID' && $p->resi !== null )
                                                     <a data-toggle="modal" id="update"
                                                         data-target="#modal-updates{{ $p->id }}"
-                                                        class="btn btn-success mr-2"><i class="fa fa-edit"></i>
+                                                        class="btn btn-warning mr-2"><i class="fa fa-edit"></i>
                                                     </a>
                                                     <div class="modal fade" id="modal-updates{{ $p->id }}">
                                                         <div class="modal-dialog">
@@ -192,7 +188,7 @@
                                                                                 style="width: 12.375cm;height:1cm;border:0.01;"
                                                                                 type="text"
                                                                                 class="form-control d-block mb-2"
-                                                                                name="resi" required>
+                                                                                name="resi" required value="{{ $p->resi }}">
                                                                             <input type="hidden" name="nama"
                                                                                 value="{{ $p->nama }}">
                                                                             <input type="hidden" name="phone_number"

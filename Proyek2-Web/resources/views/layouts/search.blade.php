@@ -41,9 +41,13 @@
                                                         {{ $data->quantity }}pcs (Rp.
                                                         {{ number_format($data->product->harga, 0, ',', '.') }} / pcs)</span>
                                                 </p>
-                                                @if ($data->resi === null)
+                                                @if ($data->resi === null && $data->status === 'UNPAID')
                                                 <p>
                                                     Resi : Harap Melakukan Pembayaran
+                                                </p>
+                                                @elseif($data->resi === null && $data->status === 'PAID')
+                                                <p>
+                                                    Resi : Harap Tunggu
                                                 </p>
                                                 @else
                                                 <p>
@@ -84,42 +88,6 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- <div class="card-body">
-                            <div class="table-responsive ">
-                                <table class="table table-dark table-striped">
-                                    <thead>
-                                        <tr style="color: white">
-                                            <th scope="col">Nama</th>
-                                            <th scope="col">Produk</th>
-                                            <th scope="col">Jumlah</th>
-                                            <th scope="col">Total</th>
-                                            <th scope="col">Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                        <tr style="color: rgb(255, 255, 255)">
-                                            <td>{{ $data->nama }}</td>
-                                            <td>{{ $data->product->nama }}</td>
-                                            <td>{{ $data->quantity }}</td>
-                                            <td>Rp. {{ number_format($data->amount) }}</td>
-
-                                            <td>
-                                                @if ($data->status == 'PAID')
-                                                    <span class="px-2 py-1  bg-success  text-white rounded-sm">
-                                                        {{ $data->status }}
-                                                    </span>
-                                                @else
-                                                    <span class="px-2 py-1  bg-danger  text-white rounded-sm ">
-                                                        {{ $data->status }}
-                                                    </span>
-                                                @endif
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div> --}}
                     @else
                         <p class="kode-null">Data Tidak Ditemukan !<i class="bi bi-emoji-frown-fill"></i></p>
                     @endif
