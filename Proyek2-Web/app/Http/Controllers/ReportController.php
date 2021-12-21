@@ -20,7 +20,7 @@ class ReportController extends Controller
         $toDates = request('toDate');
         
         if ($fromDates && $toDates) {
-            $order = Order::whereDate('created_at', '>=', $fromDates)
+            $order = Order::where('status' , 'PAID')->whereDate('created_at', '>=', $fromDates)
                 ->whereDate('created_at', '<=', $toDates)->get();
                 
         }

@@ -55,9 +55,19 @@
                             <input type="email" name="email" class="form-control" id="exampleFormControlInput1"
                                 placeholder="* E-mail" required>
                         </div>
-                        <div class="mb-3">
-                            <input type="text" name="phone_number" class="form-control" id="exampleFormControlInput1"
-                                placeholder="* Nomor Whatsapp" required>
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="mb-3">
+                                    <input readonly class="form-control" id="exampleFormControlInput1" maxlength="13"
+                                        placeholder="* Nomor Whatsapp" value="+62" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="mb-3">
+                                    <input type="text" name="phone_number" class="form-control" id="exampleFormControlInput1" maxlength="11" placeholder="Nomor" required>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                     <div class="col-md-6">

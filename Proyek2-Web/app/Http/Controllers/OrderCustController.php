@@ -38,7 +38,7 @@ class OrderCustController extends Controller
         $dt= json_decode($json,true);
         $save = Order::find($s->id);
         $save->nama             = $request->nama;
-        $save->phone_number     = $request->phone_number;
+        $save->phone_number     = '62'.$request->phone_number;
         $save->custom           = $request->custom;
         $save->kota             = $request->kota;
         $save->alamat           = $request->alamat;

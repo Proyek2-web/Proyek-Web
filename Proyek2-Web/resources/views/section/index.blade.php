@@ -2,7 +2,11 @@
 @section('container')
     <div class="content-body">
         <!-- row -->
-        <h1 class="mb-3 ml-5">Dashboard</h1>
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+            </ol>
+          </nav>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-3 col-sm-6">

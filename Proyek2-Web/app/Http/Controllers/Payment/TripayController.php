@@ -12,14 +12,8 @@ class TripayController extends Controller
 {
     public function getPaymentChannels()
     {
-
-
-
         $apiKey = config('tripay.api_key');
-
-
         $curl = curl_init();
-
         curl_setopt_array($curl, array(
             CURLOPT_FRESH_CONNECT     => true,
             CURLOPT_URL               => "https://tripay.co.id/api-sandbox/merchant/payment-channel?",

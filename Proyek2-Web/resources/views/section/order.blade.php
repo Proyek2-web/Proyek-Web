@@ -2,12 +2,6 @@
 @section('container')
     <div class="content-body">
         <!-- row -->
-        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="/"><i class="bi bi-person-fill"></i> Admin </a></li>
-              <li class="breadcrumb-item active" aria-current="page">Pesanan</li>
-            </ol>
-          </nav>
         <div>
             @if (session()->has('success'))
                 <div class="alert alert-danger solid alert-dismissible fade show w-50 text-center mx-auto">
@@ -34,6 +28,12 @@
                 </div>
             @endif
         </div>
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/"><i class="bi bi-person-fill"></i> Admin </a></li>
+              <li class="breadcrumb-item active" aria-current="page">Pesanan</li>
+            </ol>
+          </nav>
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header justify-content-center bg-dark">
@@ -79,7 +79,7 @@
                                             @endif
                                         </td>
 
-                                        <td>
+                                        <td class="border text-center">
                                             <div class="aksi d-flex justify-content-center">
                                                 <a href="{{ route('nota.cetak', $p->id) }}" class="btn btn-secondary mr-2"><i
                                                         class="fa fa-print"></i></a>
@@ -165,6 +165,8 @@
                                                         data-target="#modal-updates{{ $p->id }}"
                                                         class="btn btn-warning mr-2"><i class="fa fa-edit"></i>
                                                     </a>
+                                                    <a href="https://api.whatsapp.com/send?phone={{ $p->phone_number }}&text=*---------------------Keramik*%20*Kinasih---------------------*%0ANama:%20{{ $p->nama }}%0APesanan:%20{{ $p->product->nama }}%20 {{ $p->quantity }}x%0AResi:%20{{ $p->resi }}%0A*-------------------------------------------------------------*%0A*BARANG*%20*DALAM*%20*PENGIRIMAN*" class="btn btn-success mr-2"><i
+                                                        class="fa fa-whatsapp"></i></a>
                                                     <div class="modal fade" id="modal-updates{{ $p->id }}">
                                                         <div class="modal-dialog">
                                                             <div class="modal-content">
@@ -306,73 +308,4 @@
                 </div>
             </div>
         </div>
-        {{-- <div class="d-block float-right">
-        {{$orders->links() }}
-    </div> --}}
-        {{-- <button type="button" class="btn btn-secondary ml-3" data-toggle="modal" data-target="#modal-default">
-        <i class="fa fa-plus"></i>&nbsp;Tambahkan Data Produk</a>
-    </button>
-    <div class="modal fade" id="modal-default">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Masukkan Data Produk</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="form-group">
-                            <label for="nama">Nama</label>
-                            <input type="text" class="form-control mb-2" name="nama" id="nama_produk"
-                                placeholder="Masukkan nama produk....." required>
-                            <label for="harga">Harga</label>
-                            <input type="number" class="form-control mb-2" name="harga" id="harga"
-                                placeholder="Masukkan harga produk......" required>
-                            <label for="nama">Kategori</label>
-                            <select class="form-select form-select-lg w-100" name="category_id">
-                                @foreach ($categories as $c)
-                                <option value="{{ $c->id }}">{{ $c->name }}</option>
-                                @endforeach
-                            </select>
-                            <div class="mt-2 mb-3">
-                                <label for="featured_image" class="form-label">Gambar Produk</label>
-                                <input
-                                    class="form-control  @error('featured_image') is-invalid @enderror form-control-sm"
-                                    id="featured_image" type="file" name="featured_image">
-                                @error('featured_image')
-                                <div id="" class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-                            <label for="keterangan">Keterangan</label>
-                            <input type="text" class="form-control mb-2" name="keterangan" id="keterangan"
-                                placeholder="Masukkan keterangan produk...." required>
-                        </div>
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-                </form>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-</div>
-<script>
-    const name = document.querySelector('#nama_produk');
-    const slug = document.querySelector('#slug');
-
-    name.addEventListener('change', function () {
-        fetch('/product/checkSlug?name=' + name.value)
-        dd(name.value)
-            .then(response => response.json())
-            .then(data => slug.value = data.slug)
-    });
-</script> --}}
     @endsection
