@@ -1,26 +1,24 @@
 .btn-buy {
     background-color: #222220 ;
-    border-radius: 1px;
     color: rgb(255, 255, 255);
     padding: 10px 50px;
+    border-radius: 7px;
     transition: all ease 0.8s;
     margin-left: 20px;
-    border-radius: 5px;
 }
 .btn-buy:hover{
     background-color: #2c2c2ccc;
-    border-radius: 1px;
-    border-radius: 10px;
+    border-radius: 2px 30px;
     transition: all ease 0.8s;
     color: rgb(255, 255, 255);
     padding: 10px 50px;
 }
 
 .btn.btn-back{
-    padding: 11px 30px;
-    border-radius: 5px;
+    padding: 11px 25px;
+    border-radius: 7px;
     color: white;
-    background-color: #721B29 ;
+    background-color: #721b2ad2 ;
 }
 
 .btn.btn-login{
@@ -46,7 +44,7 @@
     border-radius: 7px;
     background-color: #D8CDB9;
     color: #2b2b2b;
-    margin-left: 160px;
+    margin-left: 290px;
     transition: all ease 0.8s;
 }
 .btn-keranjang:hover{
@@ -599,9 +597,7 @@ footer p {
     font-family: PT serif;
 }
 
-.btn{
-    border-radius: 0px;
-}
+
 
 .filter-btn:hover,
 .filter-btn.active {
