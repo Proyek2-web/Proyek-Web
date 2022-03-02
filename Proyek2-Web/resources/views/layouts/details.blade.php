@@ -6,15 +6,21 @@
     <h1 class="text-center">Detail Product</h1>
     <div class="detail-page">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-5">
-                    <img src="{{ asset('/storage/' . $produk->featured_image) }}" alt="" width="500">
+            <div class="row align-items-center d-flex">
+                <div class="wrap-detail col-lg-6 col-12 text-center ">
+                    <img src="{{ asset('/storage/' . $produk->featured_image) }}" alt="" width="500" class="img-fluid">
                 </div>
-
-                <div class="desc col-lg-7">
+                <div class="desc col-lg-5 ms-lg-5">
                     <h2>{{ $produk->nama }}</h2>
+                    <p><i class="bi bi-bookmarks-fill"></i> {{ $produk->category->name }}</p>
+                    <div class="d-flex mb-4">
+                        <h3>Rp.{{number_format($produk->harga, 0, "," , ".")}}</h3>
+                        <a href="#" class="btn btn-keranjang"><i class="bi bi-cart-check-fill fa-lg"></i></a>
+                        <a href="/form-order" class="btn btn-buy">Buy</a>
+                    </div>
+                    <div class="garis-detail mb-4"></div>
                     <p>{{ $produk->keterangan }}</p>
-                    <h3>Rp.{{number_format($produk->harga, 0, "," , ".")}}</h3>
+                    <a href="/produk" class="btn btn-back"><i class="bi bi-arrow-left-circle-fill"></i> Back</a>
                     {{-- <a href="https://wa.me/6287863947193?text=Nama%20%20%20%20%20%20%20%20%20%20%20%3A%0AAlamat%20Lengkap%20%3A%0AJumlah%20pesanan%20%3A%0ALink%20Barang%20%20%20%20%3A"
                     class="btn btn-success mt-5" target="_blank">Order Via Whatsapp <i
                     class="bi bi-whatsapp"></i></a> --}}
@@ -22,7 +28,7 @@
             </div>
         </div>
     </div>
-
+{{-- 
     <div class="form-order">
         <form action="/transaksi-post" method="post" enctype="multipart/form-data">
             @csrf
@@ -34,7 +40,7 @@
                             <label for="Provinsi">Pilih Provinsi</label>
                             <select name="state_id" class="form-select" aria-label="Default select example" required>
                                 @foreach ($state as $c)
-                                <option value="{{ $c->id }}">{{ $c->name }}</option>
+                                php artisan serve              <option value="{{ $c->id }}">{{ $c->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -101,19 +107,19 @@
                         
                         <input type="hidden" name="harga" value="{{ $produk->harga }}">
                         {{-- <input type="hidden" name="harga_del" value="{{ $produ }}"> --}}
-                        <input type="hidden" name="product_id" value="{{ $produk->id }}">
+                        {{-- <input type="hidden" name="product_id" value="{{ $produk->id }}"> --}}
                         {{-- <input type="hidden" name="reference" value="null">
                         <input type="hidden" name="merchant_ref" value="null"> --}}
                        
-                        <input type="hidden" name="category_id" value="{{ $produk->category->id }}">
+                        {{-- <input type="hidden" name="category_id" value="{{ $produk->category->id }}"> --}}
                         {{-- <input type="hidden" name="amount" value=0> --}}
-                    </div>
+                    {{-- </div>
                     <div class="col-md-6">
                         <button onclick="return confirm('Apakah yakin ingin membeli {{ $produk->nama }}?')"
                             class="btn btn-warning">Order Now</button>
                     </div>
                 </div>
             </div>
-    </div>
+    </div> --}}
 </section>
 @endsection
