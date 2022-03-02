@@ -70,6 +70,15 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name' => 'Kinasih',
             'email' => 'kinasih@gmail.com',
+            'roles' => 'admin', 
+            'no_hp' => '089221231889',
+            'password' => Hash::make('kinasih123'),
+        ]);
+        User::create([
+            'name' => 'Oni',
+            'email' => 'oni@gmail.com',
+            'roles' => 'user',
+            'no_hp' => '089221231889', 
             'password' => Hash::make('kinasih123'),
         ]);
         Order::create([
