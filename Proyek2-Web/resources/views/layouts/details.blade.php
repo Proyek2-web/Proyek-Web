@@ -34,6 +34,25 @@
                     class="bi bi-whatsapp"></i></a> --}}
                 </div>
             </div>
+            <div class="row mt-5 p-5 text-center" style="background-color: rgb(225, 225, 225)">
+               <div class="col-md-4">
+                   <img src="{{ asset('/storage/' . $produk->featured_image) }}" alt="" width="300" class="img-fluid">
+               </div>
+               <div class="col-md-4">
+                   <img src="{{ asset('/storage/' . $produk->featured_image) }}" alt="" width="300" class="img-fluid">
+               </div>
+               <div class="col-md-4">
+                   <img src="{{ asset('/storage/' . $produk->featured_image) }}" alt="" width="300" class="img-fluid">
+               </div>
+            </div>
+            <div class="row mt-5 p-5" style="background-color: rgb(225, 225, 225)">
+                <div class="text-center mt-3">
+                    <h3>Photo product with 360</h3>
+                </div>
+                <div class="img360 text-center mt-3">
+                    <iframe src="https://momento360.com/e/u/a9dfe999753e41c4b4495bc8ada9f3e2?utm_campaign=embed&utm_source=other&heading=53.75&pitch=-42.39&field-of-view=75&size=medium" frameborder="0" width="1200px" height="550px"></iframe>
+                </div>
+            </div>
         </div>
     </div>
 {{-- 

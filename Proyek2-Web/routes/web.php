@@ -36,6 +36,9 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/home', function () {
     return view('layouts.home');
 });
+Route::get('/form-order', function () {
+    return view('layouts.form-order');
+});
 
 Route::post('/contact', [ContactController::class, 'sendMail']);
 Route::get('/contact', [ContactController::class, 'showContactForm']);
