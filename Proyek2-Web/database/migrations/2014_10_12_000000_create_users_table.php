@@ -21,9 +21,10 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('no_hp');
             $table->string('gambar')->nullable();
-            $table->string('kota')->nullable();
+            $table->unsignedInteger('province_id')->nullable();
+            $table->unsignedInteger('city_id')->nullable();
             $table->string('alamat')->nullable();
-            $table->string('roles');
+            $table->string('roles')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

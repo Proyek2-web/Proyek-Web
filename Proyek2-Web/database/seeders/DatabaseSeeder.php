@@ -7,8 +7,9 @@ use App\Models\Category;
 use App\Models\Delivery;
 use App\Models\Order;
 use App\Models\Product;
-use Illuminate\Support\Str;
-use Illuminate\Support\Carbon;
+use Kavist\RajaOngkir\Facades\RajaOngkir;
+use App\Models\Province;
+use App\Models\City;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -115,6 +116,21 @@ class DatabaseSeeder extends Seeder
             'nama' => 'POS',
             'harga' => '22000',
         ]);
+        $daftarProvinsi = RajaOngkir::provinsi()->all();
+        foreach ($daftarProvinsi as $provinceRow) {
+            Province::create([
+                'province_id' => $provinceRow['province_id'],
+                'name'        => $provinceRow['province'],
+            ]);
+            $daftarKota = RajaOngkir::kota()->dariProvinsi($provinceRow['province_id'])->get();
+            foreach ($daftarKota as $cityRow) {
+                City::create([
+                    'province_id'   => $provinceRow['province_id'],
+                    'city_id'       => $cityRow['city_id'],
+                    'name'          => $cityRow['city_name'],
+                ]);
+            }
+        }
     }
         
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CheckOngkirController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
@@ -16,10 +17,13 @@ Route::get('/', function () {
     return view('layouts.home');
 });
 Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::get('/register', [LoginController::class, 'register']);
+Route::post('/register', [LoginController::class, 'registration']);
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
 //--------------------------------------------HALAMAN PELANGGAN--------------------------------------------
+Route::get('/cities/{province_id}', [CheckOngkirController::class,'getCities']);
 Route::post('/contact', [ContactController::class, 'sendMail']);
 Route::get('/contact', [ContactController::class, 'showContactForm']);
 Route::get('/produk', [ProdukController::class, 'all']);
