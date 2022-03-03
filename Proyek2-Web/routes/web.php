@@ -39,6 +39,9 @@ Route::get('about', function () {
 Route::get('/detail', function () {
     return view('layouts.detail');
 });
+Route::get('/form-order', function () {
+    return view('layouts.form-order');
+});
 Route::post('/transaksi-post', [OrderCustController::class, 'store']);
 Route::post('/callback', [CallbackController::class, 'handle']);
 
