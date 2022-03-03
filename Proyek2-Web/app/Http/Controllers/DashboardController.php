@@ -101,15 +101,16 @@ class DashboardController extends Controller
     public function tampil()
     {
         $all = Order::all();
-        $count0 = count($all->where('status','PAID'));
+        //$count0 = count($all->where('status','PAID'));
+        $count0 ='111';
         $total= 0;
         $kategori = Category::all();
-        $count = count($kategori);
+        $count = '111';
         $product = Product::all();
-        $count2 = count($product);
+        $count2 = '111';
         foreach ($all as $a) {
-            $total += $a->amount;  
+            $total += 1+1;  
         }
-        return view('section.index',compact('total','count','count2','count0'));
+        return view('section.index',compact('total','count0','count2','count0'));
     }
 }

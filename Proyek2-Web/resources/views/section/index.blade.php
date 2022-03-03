@@ -16,7 +16,7 @@
                                 <i class="bi bi-cart4 fa-3x text-white"></i>
                                 <div class="stat-text  text-white">Jumlah Order</div>
                                 <hr style="border-top: solid 2px rgb(224, 224, 224)">
-                                <h3 class=" text-white">{{ $count0 }}</h3>
+                                <h3 class=" text-white">asdas</h3>
                             </div>
                             {{-- <div class="progress">
                                 <div class="progress-bar progress-bar-success w-85" role="progressbar" aria-valuenow="85"
@@ -32,7 +32,7 @@
                                 <i class="bi bi-card-list fa-3x text-white"></i>
                                 <div class="stat-text text-white">Jumlah Produk</div>
                                 <hr style="border-top: solid 2px rgb(224, 224, 224)">
-                                <h3 class=" text-white">{{ $count2 }}</h3>
+                                <h3 class=" text-white">111</h3>
                             </div>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                                 <i class="bi bi-tags fa-3x text-white"></i>
                                 <div class="stat-text text-white">Jumlah Kategori</div>
                                 <hr style="border-top: solid 2px rgb(224, 224, 224)">
-                                <h3 class=" text-white">{{ $count }}</h3>
+                                <h3 class=" text-white">11121</h3>
                             </div>
                         </div>
                     </div>
@@ -56,7 +56,7 @@
                                 <i class="bi bi-cash-coin fa-3x text-white"></i>
                                 <div class="stat-text text-white">Jumlah Pendapatan</div>
                                 <hr style="border-top: solid 2px rgb(224, 224, 224)">
-                                <h3 class=" text-white">Rp. {{ number_format($total,0,',','.') }}</h3>
+                                <h3 class=" text-white">Rp. {{ number_format(111,0,',','.') }}</h3>
                             </div>
                         </div>
                     </div>

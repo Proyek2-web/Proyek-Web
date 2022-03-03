@@ -143,8 +143,7 @@
                                                                                 value="{{ $p->quantity }}">
                                                                             <input type="hidden" name="delivery_id"
                                                                                 value="{{ $p->delivery_id }}">
-                                                                            <input type="hidden" name="state_id"
-                                                                                value="{{ $p->state_id }}">
+                                                                            
                                                                             <input type="hidden" name="reference"
                                                                                 value="{{ $p->reference }}">
                                                                         </div>
@@ -217,8 +216,7 @@
                                                                                 value="{{ $p->quantity }}">
                                                                             <input type="hidden" name="delivery_id"
                                                                                 value="{{ $p->delivery_id }}">
-                                                                            <input type="hidden" name="state_id"
-                                                                                value="{{ $p->state_id }}">
+                                                                            
                                                                             <input type="hidden" name="reference"
                                                                                 value="{{ $p->reference }}">
                                                                         </div>
@@ -263,12 +261,6 @@
                                                         <label for="email"
                                                             style="font-weight:bold;color:black">Alamat</label>
                                                         <p style="color:black">{{ $p->alamat }}</p>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="email" style="font-weight:bold;color:black">Kota /
-                                                            Provinsi</label>
-                                                        <p style="color:black">{{ $p->kota }},
-                                                            {{ $p->state->name }}</p>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="nama" style="font-weight:bold;color:black">Nama

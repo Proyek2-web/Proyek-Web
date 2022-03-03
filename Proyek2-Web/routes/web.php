@@ -11,6 +11,7 @@ use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderCustController;
 use App\Http\Controllers\Payment\CallbackController;
+use App\Http\Controllers\ReportController;
 
 //--------------------------------------------HALAMAN AWAL-------------------------------------------------
 Route::get('/', function () {
@@ -52,4 +53,9 @@ Route::middleware(['auth','cekroles:admin'])->group(function () {
     Route::resource('/category', CategoryController::class);
     Route::resource('/product', ProductController::class);
     Route::resource('/order', OrderController::class);
+    Route::resource('/report', ReportController::class);
+    Route::resource('/resi', OrderCustController::class);
+    Route::get('/search', [SearchController::class, 'index']);
+    Route::get('/filter', [ReportController::class, 'filter']);
+    Route::get('/nota/cetak/{id}', [OrderCustController::class, 'cetakNota'])->name('nota.cetak');
 });
