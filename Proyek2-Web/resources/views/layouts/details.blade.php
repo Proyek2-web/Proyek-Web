@@ -13,17 +13,44 @@
                 <div class="desc col-lg-5 ms-lg-5">
                     <h2>{{ $produk->nama }}</h2>
                     <p><i class="bi bi-bookmarks-fill"></i> {{ $produk->category->name }}</p>
-                    <div class="d-flex mb-4">
+                    
+                    <div class="d-flex mb-4 align-content-center">
                         <h3>Rp.{{number_format($produk->harga, 0, "," , ".")}}</h3>
                         <a href="#" class="btn btn-keranjang"><i class="bi bi-cart-check-fill fa-lg"></i></a>
-                        <a href="/form-order" class="btn btn-buy">Buy</a>
                     </div>
                     <div class="garis-detail mb-4"></div>
                     <p>{{ $produk->keterangan }}</p>
-                    <a href="/produk" class="btn btn-back"><i class="bi bi-arrow-left-circle-fill"></i> Back</a>
+                    <div class="mb-4">
+                        <input required type="number" min="1" max="9999" maxlength="4" placeholder="* Jumlah"
+                        name="quantity"
+                        oninput="this.value=this.value.slice(0,this.maxLength||1/1);this.value=(this.value   < 1) ? (1/1) : this.value;">
+                    </div>
+                    <div class="d-flex">
+                        <a href="/produk" class="btn btn-back"><i class="bi bi-arrow-left-circle-fill"></i> Back</a>
+                        <a href="/form-order" class="btn btn-buy">Buy</a>
+                    </div>
                     {{-- <a href="https://wa.me/6287863947193?text=Nama%20%20%20%20%20%20%20%20%20%20%20%3A%0AAlamat%20Lengkap%20%3A%0AJumlah%20pesanan%20%3A%0ALink%20Barang%20%20%20%20%3A"
                     class="btn btn-success mt-5" target="_blank">Order Via Whatsapp <i
                     class="bi bi-whatsapp"></i></a> --}}
+                </div>
+            </div>
+            <div class="row mt-5 p-5 text-center" style="background-color: rgb(225, 225, 225)">
+               <div class="col-md-4">
+                   <img src="{{ asset('/storage/' . $produk->featured_image) }}" alt="" width="300" class="img-fluid">
+               </div>
+               <div class="col-md-4">
+                   <img src="{{ asset('/storage/' . $produk->featured_image) }}" alt="" width="300" class="img-fluid">
+               </div>
+               <div class="col-md-4">
+                   <img src="{{ asset('/storage/' . $produk->featured_image) }}" alt="" width="300" class="img-fluid">
+               </div>
+            </div>
+            <div class="row mt-5 p-5" style="background-color: rgb(225, 225, 225)">
+                <div class="text-center mt-3">
+                    <h3>Photo product with 360</h3>
+                </div>
+                <div class="img360 text-center mt-3">
+                    <iframe src="https://momento360.com/e/u/a9dfe999753e41c4b4495bc8ada9f3e2?utm_campaign=embed&utm_source=other&heading=53.75&pitch=-42.39&field-of-view=75&size=medium" frameborder="0" width="1200px" height="550px"></iframe>
                 </div>
             </div>
         </div>
