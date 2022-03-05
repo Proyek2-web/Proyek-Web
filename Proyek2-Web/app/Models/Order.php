@@ -11,21 +11,13 @@ class Order extends Model
     protected $guarded = ['id'];
     // protected $fillable = ['nama', 'phone_number', 'custom', 'email', 'product_id','category_id', 'reference', 'merchant_ref', 'amount', 'status', 'quantity', 'delivery_id'];
 
-    public function product()
+    public function user()
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(User::class);
     }
 
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
+    public function cart(){
+        return $this->hasMany(Cart::class);
     }
-    public function delivery()
-    {
-        return $this->belongsTo(Delivery::class);
-    }
-    public function state()
-    {
-        return $this->belongsTo(State::class);
-    }
+
 }

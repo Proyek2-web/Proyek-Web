@@ -16,10 +16,6 @@ class Category extends Model
     {
         return $this->hasMany(Product::class);
     }
-    public function order()
-    {
-        return $this->hasMany(Order::class);
-    }
     public function sluggable(): array
     {
         return [

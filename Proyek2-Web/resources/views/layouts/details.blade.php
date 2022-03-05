@@ -21,7 +21,8 @@
                     <div class="garis-detail mb-4"></div>
                     <p>{{ $produk->keterangan }}</p>
                     <div class="mb-4">
-                        <input required type="number" min="1" max="9999" maxlength="4" placeholder="* Jumlah"
+                        <input type="hidden" id='regeh' value="{{ $produk->harga }}">
+                        <input id="quan" required type="number" min="1" max="9999" maxlength="4" placeholder="* Jumlah"
                         name="quantity"
                         oninput="this.value=this.value.slice(0,this.maxLength||1/1);this.value=(this.value   < 1) ? (1/1) : this.value;">
                     </div>
@@ -29,9 +30,13 @@
                         <a href="/produk" class="btn btn-back"><i class="bi bi-arrow-left-circle-fill"></i> Back</a>
                         <a href="/form-order" class="btn btn-buy">Buy</a>
                     </div>
-                    {{-- <a href="https://wa.me/6287863947193?text=Nama%20%20%20%20%20%20%20%20%20%20%20%3A%0AAlamat%20Lengkap%20%3A%0AJumlah%20pesanan%20%3A%0ALink%20Barang%20%20%20%20%3A"
-                    class="btn btn-success mt-5" target="_blank">Order Via Whatsapp <i
-                    class="bi bi-whatsapp"></i></a> --}}
+                    <div class="form-group">
+                        <label>Total Harga (Belum termasuk ongkir)</label>
+                        <div class="input-group">
+                            <h4 class="price" id="output">Rp. - </h4>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
             <div class="row mt-5 p-5 text-center" style="background-color: rgb(225, 225, 225)">
@@ -55,6 +60,35 @@
             </div>
         </div>
     </div>
+    <script>
+        function number_format(number, decimals, dec_point, thousands_sep) {
+        number = (number + '').replace(',', '').replace(' ', '');
+        var n = !isFinite(+number) ? 0 : +number,
+            prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+            sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+            dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+            s = '',
+            toFixedFix = function (n, prec) {
+                var k = Math.pow(10, prec);
+                return '' + Math.round(n * k) / k;
+            };
+        s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
+        if (s[0].length > 3) {
+            s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+        }
+        if ((s[1] || '').length < prec) {
+            s[1] = s[1] || '';
+            s[1] += new Array(prec - s[1].length + 1).join('0');
+        }
+        return s.join(dec);
+    }
+        $("input").on("input", function () {
+        let price = $('#regeh').val();
+        let qty = $('#quan').val();
+                let result = parseInt(price) * parseInt(qty);
+                $("#output").text("Rp. " + number_format(result, 2));
+    });
+        </script>
 {{-- 
     <div class="form-order">
         <form action="/transaksi-post" method="post" enctype="multipart/form-data">

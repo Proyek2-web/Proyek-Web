@@ -16,9 +16,9 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class);
     }
-    public function order()
+    public function cart()
     {
-        return $this->belongsToMany(Order::class);
+        return $this->hasMany(Cart::class);
     }
     public function sluggable(): array
     {

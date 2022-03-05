@@ -20,17 +20,19 @@ class CreateOrdersTable extends Migration
             $table->string('custom')->nullable();
             $table->string('email')->nullable();
             $table->string('resi')->nullable();
-            $table->string('kota')->nullable();
+            $table->string('kabupaten_kota');
+            $table->string('provinsi');
             $table->string('alamat')->nullable();
-            $table->foreignId('product_id')->nullable();
-            $table->foreignId('category_id')->nullable();
-            $table->foreignId('state_id')->nullable();
+            $table->string('zip_code');
             $table->string('reference')->nullable();
             $table->string('merchant_ref')->nullable();
             $table->integer('amount')->nullable();
             $table->enum('status', ['PAID', 'UNPAID'])->default('UNPAID')->nullable();
             $table->integer('quantity')->nullable();
-            $table->foreignId('delivery_id')->nullable();
+            $table->foreignId('user_id');
+            $table->integer('total_produk');
+            $table->integer('total_ongkir');
+            $table->string('order_notes');
             $table->timestamps();
         });
     }
