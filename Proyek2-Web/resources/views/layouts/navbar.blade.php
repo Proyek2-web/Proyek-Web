@@ -65,25 +65,33 @@
                             </form>
 
                         </div>
-
                         <!-- Modal -->
                     </div>
                 @else
                     <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Akun
+                        <button class="btn btn-login"  type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" > 
+                            Sign-in <i class="bi bi-box-arrow-in-right"></i>
                         </button>
-                        <div class="dropdown-menu p-2 text-center" aria-labelledby="dropdownMenuButton">
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                data-bs-target="#login">Masuk</a></li>
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                data-bs-target="#register">Daftar</a></li>
+                          </ul>
+                        
+                        {{-- <div class="dropdown-menu p-2 text-center" aria-labelledby="dropdownMenuButton">
                             <a href="#">
                                 <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal"
-                                    data-bs-target="#login">Masuk</button>
+                                    data-bs-target="#login">Masuk
+                                </button>
                             </a>
                             <a href="#">
-                                <button type="button" class="btn btn-primary " data-bs-toggle="modal"
-                                    data-bs-target="#register">Daftar</button>
+                                <button type="button" class="" data-bs-toggle="modal"
+                                    data-bs-target="#register">Daftar
+                                </button>
                             </a>
-                        </div>
+                        </div> --}}
 
                         <!-- Modal -->
                     </div>

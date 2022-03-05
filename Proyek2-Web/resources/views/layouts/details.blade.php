@@ -27,7 +27,7 @@
                             name="quantity">
                         </div>
                         <div class="d-flex">
-                            <a href="/produk" class="btn btn-back"><i class="bi bi-arrow-left-circle-fill"></i> Back</a>
+                            <a href="/form-order" class="btn btn-back"><i class="bi bi-arrow-left-circle-fill"></i> Back</a>
                             <button type="submit" class="btn btn-buy">Buy</button>
                         </div>
                         <div class="form-group">
