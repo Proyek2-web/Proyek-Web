@@ -18,21 +18,24 @@ class ProdukController extends Controller
             'produk' => Product::all()
         ]);
     }
+    // public function detail(Product $product)
+    // {
+    //     $countries = Country::where('id',100)->first();
+    //     $state = State::all();
+    //     $tripay = new TripayController();
+    //     $channels = $tripay->getPaymentChannels();
+    //     return view('layouts.details', [
+    //         'title' => 'Postingan Berdasarkan Author',
+    //         'produk' => $product,
+    //         'deliveries' => Delivery::all(),
+    //         'channels' => $channels,
+    //         'country' => $countries,
+    //         'state' => $state
+    //     ]);
+    // }
     public function detail(Product $product)
     {
-
-        $countries = Country::where('id',100)->first();
-        $state = State::all();
-        $tripay = new TripayController();
-        $channels = $tripay->getPaymentChannels();
-        return view('layouts.details', [
-            'title' => 'Postingan Berdasarkan Author',
-            'produk' => $product,
-            'deliveries' => Delivery::all(),
-            'channels' => $channels,
-            'country' => $countries,
-            'state' => $state
-        ]);
+        return view('layouts.details', ['produk' => $product]);
     }
     public function gelas()
     {
@@ -44,7 +47,7 @@ class ProdukController extends Controller
     public function vas()
     {
         $product = Product::where('category_id', 4);
-        
+
         return view('layouts.product', [
             'produk' => $product->get()
         ]);

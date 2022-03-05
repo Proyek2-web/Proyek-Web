@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class LoginController extends Controller
@@ -16,27 +17,23 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-    public function register(){
-        $provinces = Province::pluck('name', 'province_id');
-        return view('auth.register',[
-            'provinces' => $provinces
-        ]);
-    }
-
     public function authenticate(Request $request)
     {
         $credentials = $request->validate([
             'email' => 'required|email:dns',
             'password' => 'required|min:7|max:255',
-        ]);
+        ]); 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             if (auth()->user()->roles === 'admin') {
+                Alert::info('Login Sukses', '');
                 return redirect()->intended('dashboard');
-            }else{
+            } else {
+                Alert::info('Login Sukses', '');
                 return redirect()->intended('/');
             }
         }
+        Alert::error('Login Gagal', '');
         return back()->with('loginFailed', 'Login Failed');
     }
     // Proses untuk registrasi
@@ -45,13 +42,12 @@ class LoginController extends Controller
         $save = new User();
         $save->name = $request->name;
         $save->email = $request->email;
-        $save->password =Hash::make($request->password);
+        $save->password = Hash::make($request->psw);
         $save->no_hp = $request->no_hp;
-        $save->province_id = $request->province_origin;
-        $save->city_id = $request->city_origin;
         $save->alamat = $request->alamat;
         $save->roles = $request->roles;
         $save->save();
+        Alert::success('Sukses Mendaftar', '');
         return redirect('/');
     }
 
@@ -62,6 +58,7 @@ class LoginController extends Controller
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
+        Alert::info('Berhasil Logout', '');
 
         return redirect('/');
     }

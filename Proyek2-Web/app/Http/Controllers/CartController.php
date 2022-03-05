@@ -14,7 +14,7 @@ class CartController extends Controller
      */
     public function index()
     {
-        //
+        return 'asss';
     }
 
     /**
@@ -35,7 +35,7 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

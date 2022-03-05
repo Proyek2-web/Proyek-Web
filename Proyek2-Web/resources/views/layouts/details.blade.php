@@ -6,39 +6,41 @@
     <h1 class="text-center">Detail Product</h1>
     <div class="detail-page">
         <div class="container">
-            <div class="row align-items-center d-flex">
-                <div class="wrap-detail col-lg-6 col-12 text-center ">
-                    <img src="{{ asset('/storage/' . $produk->featured_image) }}" alt="" width="500" class="img-fluid">
-                </div>
-                <div class="desc col-lg-5 ms-lg-5">
-                    <h2>{{ $produk->nama }}</h2>
-                    <p><i class="bi bi-bookmarks-fill"></i> {{ $produk->category->name }}</p>
-                    
-                    <div class="d-flex mb-4 align-content-center">
-                        <h3>Rp.{{number_format($produk->harga, 0, "," , ".")}}</h3>
-                        <a href="#" class="btn btn-keranjang"><i class="bi bi-cart-check-fill fa-lg"></i></a>
+            <form action="cart">
+                <div class="row align-items-center d-flex">
+                    <div class="wrap-detail col-lg-6 col-12 text-center ">
+                        <img src="{{ asset('/storage/' . $produk->featured_image) }}" alt="" width="500" class="img-fluid">
                     </div>
-                    <div class="garis-detail mb-4"></div>
-                    <p>{{ $produk->keterangan }}</p>
-                    <div class="mb-4">
-                        <input type="hidden" id='regeh' value="{{ $produk->harga }}">
-                        <input id="quan" required type="number" min="1" max="9999" maxlength="4" placeholder="* Jumlah"
-                        name="quantity"
-                        oninput="this.value=this.value.slice(0,this.maxLength||1/1);this.value=(this.value   < 1) ? (1/1) : this.value;">
-                    </div>
-                    <div class="d-flex">
-                        <a href="/produk" class="btn btn-back"><i class="bi bi-arrow-left-circle-fill"></i> Back</a>
-                        <a href="/form-order" class="btn btn-buy">Buy</a>
-                    </div>
-                    <div class="form-group">
-                        <label>Total Harga (Belum termasuk ongkir)</label>
-                        <div class="input-group">
-                            <h4 class="price" id="output">Rp. - </h4>
+                    <div class="desc col-lg-5 ms-lg-5">
+                        <h2>{{ $produk->nama }}</h2>
+                        <p><i class="bi bi-bookmarks-fill"></i> Kategori : {{ $produk->category->name }}</p>
+                        
+                        <div class="d-flex mb-4 align-content-center">
+                            <h3>Rp.{{number_format($produk->harga, 0, "," , ".")}}</h3>
+                            <a href="#" class="btn btn-keranjang"><i class="bi bi-cart-check-fill fa-lg"></i></a>
                         </div>
+                        <div class="garis-detail mb-4"></div>
+                        <p>Deskripsi : {{ $produk->keterangan }}</p>
+                        <div class="mb-4">
+                            <input type="hidden" id='regeh' value="{{ $produk->harga }}">
+                            <input required id="quan" type="number" min="1" max="9999" maxlength="4" placeholder="* Jumlah"
+                            name="quantity">
+                        </div>
+                        <div class="d-flex">
+                            <a href="/produk" class="btn btn-back"><i class="bi bi-arrow-left-circle-fill"></i> Back</a>
+                            <button type="submit" class="btn btn-buy">Buy</button>
+                        </div>
+                        <div class="form-group">
+                            <label>Total Harga (Belum termasuk ongkir)</label>
+                            <div class="input-group">
+                                <h4 class="price" id="output">Rp. - </h4>
+                            </div>
+                        </div>
+                        
                     </div>
-                    
                 </div>
-            </div>
+            </form>
+            
             <div class="row mt-5 p-5 text-center" style="background-color: rgb(225, 225, 225)">
                <div class="col-md-4">
                    <img src="{{ asset('/storage/' . $produk->featured_image) }}" alt="" width="300" class="img-fluid">

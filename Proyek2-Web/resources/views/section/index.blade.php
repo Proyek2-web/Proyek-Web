@@ -1,6 +1,7 @@
 @extends('master.main')
 @section('container')
     <div class="content-body">
+        @include('sweetalert::alert')
         <!-- row -->
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
             <ol class="breadcrumb">

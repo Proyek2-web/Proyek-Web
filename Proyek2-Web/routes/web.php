@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckOngkirController;
 use App\Http\Controllers\ProductController;
@@ -17,8 +18,6 @@ use App\Http\Controllers\ReportController;
 Route::get('/', function () {
     return view('layouts.home');
 });
-Route::get('/login', [LoginController::class, 'index'])->name('login');
-Route::get('/register', [LoginController::class, 'register']);
 Route::post('/register', [LoginController::class, 'registration']);
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
@@ -33,6 +32,7 @@ Route::get('/vas', [ProdukController::class, 'vas']);
 Route::get('/guci', [ProdukController::class, 'guci']);
 Route::get('/aksesoris', [ProdukController::class, 'aksesoris']);
 Route::get('/details/{product:slug}', [ProdukController::class, 'detail']);
+Route::resource('/cart', CartController::class);
 Route::get('about', function () {
     return view('layouts.about');
 });
