@@ -42,7 +42,54 @@
                         @else
                         <div class="d-flex">
                             <a href="#" class="btn btn-back"><i class="bi bi-arrow-left-circle-fill"></i> Back</a>
-                            <a href="/check" class="btn btn-buy">Buy</a>
+                            <a class="btn btn-buy" data-bs-toggle="modal"
+                            data-bs-target="#login">Buy</a>
+                            <div id="login" class="modal fade">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            @include('sweetalert::alert')
+                                            <h1 class="modal-title">Masuk</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form id="handleAjax" name="postForm" role="form" method="POST" action="/login">
+                                                @csrf
+                                                <div class="form-group">
+                                                    <label class="control-label">E-Mail Address</label>
+                                                    <div>
+                                                        <input required type="email"
+                                                            class="form-control @error('email') is-invalid @enderror input-lg" name="email">
+                                                        @error('email')
+                                                            <div id="" class="invalid-feedback">
+                                                                {{ $message }}
+                                                            </div>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label">Password</label>
+                                                    <div>
+                                                        <input required type="password"
+                                                            class="form-control @error('password') is-invalid @enderror input-lg" name="password">
+                                                        @error('password')
+                                                            <div id="" class="invalid-feedback">
+                                                                {{ $message }}
+                                                            </div>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                                <div class="form-group mt-2">
+                                                    <div>
+                                                        <button type="submit" class="btn btn-success">OK</button>
+                                                        <a class="btn btn-link" href="#">Forgot Your Password?</a>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal-dialog -->
+                            </div>
                         </div>
                         @endif
                         <div class="form-group">
