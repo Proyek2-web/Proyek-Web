@@ -23,6 +23,7 @@ Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
 //--------------------------------------------HALAMAN PELANGGAN--------------------------------------------
+Route::get('/check', [LoginController::class, 'alert']);
 Route::get('/cities/{province_id}', [CheckOngkirController::class,'getCities']);
 Route::post('/contact', [ContactController::class, 'sendMail']);
 Route::get('/contact', [ContactController::class, 'showContactForm']);

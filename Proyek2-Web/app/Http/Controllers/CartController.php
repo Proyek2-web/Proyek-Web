@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
@@ -14,7 +17,20 @@ class CartController extends Controller
      */
     public function index()
     {
-        return 'asss';
+        $data = DB::table('carts')
+            ->join('products', 'carts.product_id', '=', 'products.id')
+            ->join('categories', 'products.category_id', '=', 'categories.id')
+            ->where('carts.user_id', '=', Auth::user() == null ? '' : Auth::user()->id)
+            ->where('carts.status', '=', 'pending')
+            ->select('carts.id as id', 'carts.qty as qty', 'products.id as product_id', 'products.nama as nama',
+             'products.featured_image as featured_image', 'products.harga as harga', 'categories.name as category_name')
+            ->get();
+            $cart_count = Cart::all()->where('user_id', '=', Auth::user() == null ? '' : Auth::user()->id)->where('status', '=', 'pending')->count();
+            $sub_total=0;
+            foreach ($data as $d) {
+                    $sub_total += $d->qty * $d->harga;
+            }
+        return view('user.cart',compact('data','cart_count','sub_total'));
     }
 
     /**
@@ -35,7 +51,14 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $cart = new Cart();
+        $cart->user_id = $request->user_id;
+        $cart->product_id = $request->product_id;
+        $cart->status = $request->status;
+        $cart->qty = $request->quantity;
+        $cart->save();
+        Alert::success('Berhasil Ditambahkan', '');
+        return back();
     }
 
     /**

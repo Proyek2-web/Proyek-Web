@@ -34,17 +34,6 @@
                         <h1 style="color: rgb(226, 226, 226)">PRODUK KOSONG</h1>
                     </div>
                 @endforelse
-                {{-- <div class="gallery col-md-3 filter center nature" >
-                    <div class="img-wrapper">
-                        <a href="/details/{{ $p->slug }}"><img src="{{ asset('/storage/'.$p->featured_image)}}" alt="" ></a>
-                        <div class="text-wrapper">
-                            <h4>{{ $p->category->name}}</h4>
-                        </div>
-                    </div>
-                </div> --}}
-                {{-- <div class="gallery col-md-4 filter center nature">
-                    <a href="/details/{{ $p->slug }}"><img src="{{ asset('/storage/'.$p->featured_image)}}" alt="" ></a>
-                </div> --}}
             </div>
         </div>
     </div>

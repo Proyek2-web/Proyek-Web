@@ -62,4 +62,9 @@ class LoginController extends Controller
 
         return redirect('/');
     }
+    public function alert()
+    {
+        Alert::info('Anda Harus Login', '');
+        return back();
+    }
 }

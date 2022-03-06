@@ -79,25 +79,7 @@
                             <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
                                 data-bs-target="#register">Daftar</a></li>
                           </ul>
-                        
-                        {{-- <div class="dropdown-menu p-2 text-center" aria-labelledby="dropdownMenuButton">
-                            <a href="#">
-                                <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal"
-                                    data-bs-target="#login">Masuk
-                                </button>
-                            </a>
-                            <a href="#">
-                                <button type="button" class="" data-bs-toggle="modal"
-                                    data-bs-target="#register">Daftar
-                                </button>
-                            </a>
-                        </div> --}}
-
-                        <!-- Modal -->
                     </div>
-                    {{-- <a class="btn btn-login nav-link {{ request()->is('login') ? 'active' : '' }}" href="/login">Login
-                <i class="bi bi-person-circle"></i></a> --}}
-
                 @endif
             </div>
         </div>
