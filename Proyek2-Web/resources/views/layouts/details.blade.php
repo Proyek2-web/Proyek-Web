@@ -21,11 +21,7 @@
                     <div class="desc col-lg-5 ms-lg-5">
                         <h2>{{ $produk->nama }}</h2>
                         <p><i class="bi bi-bookmarks-fill"></i> Kategori : {{ $produk->category->name }}</p>
-
-                        <div class="d-flex mb-4 align-content-center">
                             <h3>Rp.{{number_format($produk->harga, 0, "," , ".")}}</h3>
-                            <a href="#" class="btn btn-keranjang"><i class="bi bi-cart-check-fill fa-lg"></i></a>
-                        </div>
                         <div class="garis-detail mb-4"></div>
                         <p>Deskripsi : {{ $produk->keterangan }}</p>
                         <div class="mb-4">
@@ -43,7 +39,7 @@
                         <div class="d-flex">
                             <a href="#" class="btn btn-back"><i class="bi bi-arrow-left-circle-fill"></i> Back</a>
                             <a class="btn btn-buy" data-bs-toggle="modal"
-                            data-bs-target="#login">Buy</a>
+                            data-bs-target="#login">Tambah ke keranjang <i class="bi bi-cart-check-fill fa-lg"></i></a>
                             <div id="login" class="modal fade">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
@@ -92,10 +88,10 @@
                             </div>
                         </div>
                         @endif
-                        <div class="form-group">
-                            <label>Total Harga (Belum termasuk ongkir)</label>
-                            <div class="input-group">
-                                <h4 class="price" id="output">Rp. - </h4>
+                        <div class="form-group mt-5 p-4" style="font-family: PT Serif; border: 3px solid rgb(186, 186, 186); border-radius: 10px">
+                            <label style="font-size: 20px">Total Harga (Belum termasuk ongkir)</label>
+                            <div class="input-group ">
+                                <h3 class="price text-success" id="output">Rp. - </h3>
                             </div>
                         </div>
                     </div>
