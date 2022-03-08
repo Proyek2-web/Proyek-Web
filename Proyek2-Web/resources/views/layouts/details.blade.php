@@ -15,10 +15,9 @@
                         <h2>{{ $produk->nama }}</h2>
                         <p><i class="bi bi-bookmarks-fill"></i> Kategori : {{ $produk->category->name }}</p>
                         
-                        <div class="d-flex mb-4 align-content-center">
                             <h3>Rp.{{number_format($produk->harga, 0, "," , ".")}}</h3>
-                            <a href="#" class="btn btn-keranjang"><i class="bi bi-cart-check-fill fa-lg"></i></a>
-                        </div>
+                            {{-- <a href="#" class="btn btn-keranjang"></i></a> --}}
+                     
                         <div class="garis-detail mb-4"></div>
                         <p>Deskripsi : {{ $produk->keterangan }}</p>
                         <div class="mb-4">
@@ -28,12 +27,12 @@
                         </div>
                         <div class="d-flex">
                             <a href="/form-order" class="btn btn-back"><i class="bi bi-arrow-left-circle-fill"></i> Back</a>
-                            <button type="submit" class="btn btn-buy">Buy</button>
+                            <button type="submit" class="btn btn-buy">Tambah Keranjang <i class="bi bi-cart-check-fill fa-lg"></i></button>
                         </div>
-                        <div class="form-group">
-                            <label>Total Harga (Belum termasuk ongkir)</label>
-                            <div class="input-group">
-                                <h4 class="price" id="output">Rp. - </h4>
+                        <div class="form-group mt-5 p-4" style="font-family: PT Serif; border: 3px solid rgb(186, 186, 186); border-radius: 10px">
+                            <label style="font-size: 20px">Total Harga (Belum termasuk ongkir)</label>
+                            <div class="input-group ">
+                                <h3 class="price text-success" id="output">Rp. - </h3>
                             </div>
                         </div>
                         

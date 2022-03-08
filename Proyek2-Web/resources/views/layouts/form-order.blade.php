@@ -96,8 +96,8 @@
                     </div>
                 </div>
                 <div class="d-flex mt-5 justify-content-center">
-                    <a href="/produk" class="btn btn-back"><i class="bi bi-x-circle-fill me-2"></i>Batal</a>
-                    <a href="/form-order" class="btn btn-conf">Konfirmasi <i class="bi bi-check-circle-fill"></i></a>
+                    <a href="/cart" class="btn btn-back"><i class="bi bi-x-circle-fill me-2"></i>Batal</a>
+                    <a href="#" class="btn btn-conf">Bayar <i class="bi bi-check-circle-fill"></i></a>
                 </div>
             </div>
 
