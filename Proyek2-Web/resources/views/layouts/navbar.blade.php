@@ -36,7 +36,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('home') ? 'active' : '' }}" href="/">Home</a>
+                    <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="/">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ request()->is('produk') ? 'active' : '' }}" href="/produk">Katalog Produk</a>
@@ -69,6 +69,8 @@
                     </div>
                 @else
                     <div class="dropdown">
+                        <div class="wrap-btn d-flex">
+                            <a href="/cart" class="btn btn-keranjang2 "><i class="bi bi-cart-check-fill fa-lg"></i></a>
                         <button class="btn btn-login"  type="button" id="dropdownMenuButton"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" > 
                             Sign-in <i class="bi bi-box-arrow-in-right"></i>
@@ -79,6 +81,7 @@
                             <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
                                 data-bs-target="#register">Daftar</a></li>
                           </ul>
+                        </div>
                     </div>
                 @endif
             </div>
@@ -260,7 +263,7 @@
     }
 
 </script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+{{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
@@ -268,6 +271,6 @@
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
     integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
-</script>
+</script> --}}
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.0/js/toastr.js"></script>
+

@@ -1,7 +1,7 @@
 .btn-buy {
     background-color: #222220 ;
     color: rgb(255, 255, 255);
-    padding: 10px 50px;
+    padding: 10px 30px;
     border-radius: 7px;
     transition: all ease 0.8s;
     margin-left: 20px;
@@ -25,7 +25,6 @@
     border-radius: 2px 30px;
     transition: all ease 0.8s;
     color: rgb(255, 255, 255);
-    padding: 10px 50px;
 }
 
 .btn.btn-back{
@@ -37,7 +36,7 @@
 
 .btn.btn-login{
     background-color: #696795 ;
-    border-radius: 17px;
+    border-radius: 15px;
     color: white;
     font-family: PT serif;
     font-weight: bold;
@@ -53,15 +52,16 @@
 }
 
 
-.btn.btn-keranjang {
+.btn.btn-keranjang2{
     padding: 11px 20px;
-    border-radius: 7px;
-    background-color: #D8CDB9;
-    color: #2b2b2b;
-    margin-left: 290px;
-    transition: all ease 0.8s;
+    background-color: #61606f;
+    border-radius: 10px;
+    color: white;
+    padding: 10px 15px;
+    margin-right: 10px;
 }
-.btn-keranjang:hover{
+
+.btn-keranjang2:hover{
     background-color: #525252;
     color: #e0e0e0;
     transition: all ease 0.8s;
@@ -829,5 +829,21 @@ footer p {
     padding: 10px;
 }
 
-/* opoae */
 
+
+/* logo wa */
+.float{
+	position:fixed;
+	width:55px;
+	height:55px;
+	bottom:20px;
+	right:40px;
+	background-color:#25d366;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+    font-size:35px;
+	box-shadow: 2px 2px 3px #999;
+    z-index:100;
+    padding: 10px;
+}

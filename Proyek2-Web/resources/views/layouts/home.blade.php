@@ -115,7 +115,7 @@
                             style="background-image: url(https://img.okezone.com/content/2016/07/21/320/1443125/menengok-eksistensi-industri-keramik-rumahan-kiaracondong-sejak-1960-4ZHGfLDD6H.jpg)">
                         </li>
                         <li
-                            style="background-image: url(https://www.marketeers.com/wp-content/uploads/2016/05/Pi1gt4_keramik-bna2.jpg)">
+                            style="background-image: url(https://1.bp.blogspot.com/-PUh-0DgpumQ/VvUG09dXXII/AAAAAAAAjsg/w4zZGTf_QokTFA8VVIlVOElShyLGiP2mA/s640/CendanaNewsMalangAgusNurchaliq3.jpg)">
                         </li>
                         <li
                             style="background-image: url(https://awsimages.detik.net.id/community/media/visual/2021/02/17/perajin-gerabah-blitar.jpeg?w=700&q=90">
@@ -127,9 +127,11 @@
 
     </div>
 </section>
-
+<a href="https://api.whatsapp.com/send?phone=6287863947193&text=Selamat%20datang%20di%20UD.Keramik%20Kinasih." class="float" target="_blank">
+    <i class="bi bi-whatsapp"></i>
+</a>
 {{-- Available --}}
-<section class="available">
+{{-- <section class="available">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -153,10 +155,8 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 
-<a href="https://api.whatsapp.com/send?phone=6287863947193&text=Selamat%20datang%20di%20UD.Keramik%20Kinasih." class="float" target="_blank">
-     <i class="bi bi-whatsapp"></i>
-</a>
+
 @include('layouts.footer')
 @endsection
