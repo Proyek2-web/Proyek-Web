@@ -63,10 +63,21 @@
                                     <button type="submit" class="btn btn-primary mb-3">Logout</button>
                                 </a>
                             </form>
-
                         </div>
                         <!-- Modal -->
                     </div>
+                    <div>
+                        <a href="{{route('cart.index')}}"><i class="fa fa-shopping-cart"
+                            aria-hidden="true"></i> <span>Keranjang <span id="cart-qty"
+                                class="cart-quantity">
+                            @php
+                            $cart_count = \App\Models\Cart::all()->where('user_id', '=', Auth::user() == null ? '' : Auth::user()->id)->where('status', '=', 'pending')->count();
+                            @endphp
+                            {{ $cart_count }}
+                            </span></span></a>
+                    </div>
+                    
+                    
                 @else
                     <div class="dropdown">
                         <div class="wrap-btn d-flex">
