@@ -24,16 +24,15 @@
                             <h3>Rp.{{number_format($produk->harga, 0, "," , ".")}}</h3>
                         <div class="garis-detail mb-4"></div>
                         <p>Deskripsi : {{ $produk->keterangan }}</p>
-                        <div class="mb-4">
+                        <div class="quantity buttons_added mb-4">
                             <input type="hidden" id='regeh' value="{{ $produk->harga }}">
-                            <input required id="quan" type="number" min="1" max="9999" maxlength="4"
-                                placeholder="* Jumlah" name="quantity">
+                            <input  type="button" value="-" class="minus"><input required id="quan"  type="number"  step="1" min="1" max="100" name="quantity" value="1" title="Qty" class="input-text qty text" size="4" ><input  type="button" value="+" class="plus">
                         </div>
                         @if (Auth::check())
                         <div class="d-flex">
-                            <a href="/form-order" class="btn btn-back"><i class="bi bi-arrow-left-circle-fill"></i>
-                                Back</a>
-                            <button type="submit" class="btn btn-buy">Buy</button>
+                            <a href="/produk" class="btn btn-back"><i class="bi bi-arrow-left-circle-fill"></i>
+                                Kembali</a>
+                            <button type="submit" class="btn btn-buy">Tambahkan Ke Keranjang <i class="bi bi-cart-plus"></i></button>
                         </div>
                         @else
                         <div class="d-flex">

@@ -26,7 +26,7 @@
     }
 
 </style>
-<nav class="navbar navbar-expand-lg navbar-light shadow-lg position-fixed w-100 " style="z-index: 99">
+<nav class="navbar navbar-expand-lg navbar-dark shadow-lg position-fixed w-100 " style="z-index: 99">
     <div class="container">
         <a class="navbar-brand " href="#">Keramik Kinasih</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -51,10 +51,29 @@
 
             <div class="sign-user">
                 @if (Auth::check())
+                <div class="d-flex">
+                    <div>
+                        <a href="{{route('cart.index')}}" class="btn btn-keranjang2 me-3"><i class="bi bi-cart-check-fill fa-lg"></i>
+                            <span>Keranjang <span id="cart-qty"
+                                class="cart-quantity">
+                            @php
+                            $cart_count = \App\Models\Cart::all()->where('user_id', '=', Auth::user() == null ? '' : Auth::user()->id)->where('status', '=', 'pending')->count();
+                            @endphp
+                            <span class="badge">{{ $cart_count }}</span></a>
+                        </a>
+                        {{-- <a href="{{route('cart.index')}}"><i class="fa fa-shopping-cart"
+                            aria-hidden="true"></i> <span>Keranjang <span id="cart-qty"
+                                class="cart-quantity">
+                            @php
+                            $cart_count = \App\Models\Cart::all()->where('user_id', '=', Auth::user() == null ? '' : Auth::user()->id)->where('status', '=', 'pending')->count();
+                            @endphp
+                            {{ $cart_count }}
+                            </span></span></a> --}}
+                    </div>
                     <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        <button class="btn btn-login dropdown-toggle" type="button" id="dropdownMenuButton"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {{ auth()->user()->name }}
+                            <i class="bi bi-person-circle"></i> {{ auth()->user()->name }}
                         </button>
                         <div class="dropdown-menu p-2 text-center" aria-labelledby="dropdownMenuButton">
                             <form action="/logout" method="POST">
@@ -66,22 +85,12 @@
                         </div>
                         <!-- Modal -->
                     </div>
-                    <div>
-                        <a href="{{route('cart.index')}}"><i class="fa fa-shopping-cart"
-                            aria-hidden="true"></i> <span>Keranjang <span id="cart-qty"
-                                class="cart-quantity">
-                            @php
-                            $cart_count = \App\Models\Cart::all()->where('user_id', '=', Auth::user() == null ? '' : Auth::user()->id)->where('status', '=', 'pending')->count();
-                            @endphp
-                            {{ $cart_count }}
-                            </span></span></a>
-                    </div>
+                    
+                </div>
                     
                     
                 @else
                     <div class="dropdown">
-                        <div class="wrap-btn d-flex">
-                            <a href="/cart" class="btn btn-keranjang2 "><i class="bi bi-cart-check-fill fa-lg"></i></a>
                         <button class="btn btn-login"  type="button" id="dropdownMenuButton"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" > 
                             Sign-in <i class="bi bi-box-arrow-in-right"></i>
@@ -92,7 +101,6 @@
                             <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
                                 data-bs-target="#register">Daftar</a></li>
                           </ul>
-                        </div>
                     </div>
                 @endif
             </div>

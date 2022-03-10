@@ -1,48 +1,52 @@
 .btn-buy {
-    background-color: #222220 ;
+    background-color: #b8ac66;
     color: rgb(255, 255, 255);
     padding: 10px 30px;
     border-radius: 7px;
     transition: all ease 0.8s;
     margin-left: 20px;
 }
+
 .btn-conf {
-    background-color: #3b7255 ;
+    background-color: #3b7255;
     color: rgb(255, 255, 255);
     padding: 10px 50px;
     border-radius: 7px;
     margin-left: 20px;
 }
-.btn-conf:hover{
-    background-color:  #3b7255d9 ;
+
+.btn-conf:hover {
+    background-color: #3b7255d9;
     color: rgb(255, 255, 255);
     padding: 10px 50px;
     border-radius: 7px;
     margin-left: 20px;
 }
-.btn-buy:hover{
+
+.btn-buy:hover {
     background-color: #2c2c2ccc;
     border-radius: 2px 30px;
     transition: all ease 0.8s;
     color: rgb(255, 255, 255);
 }
 
-.btn.btn-back{
+.btn.btn-back {
     padding: 11px 25px;
     border-radius: 7px;
     color: white;
-    background-color: #721b2ad2 ;
+    background-color: #1b2f72d2;
 }
 
-.btn.btn-login{
-    background-color: #696795 ;
-    border-radius: 15px;
+.btn.btn-login {
+    background-color: #312f50;
+    border-radius: 5px;
     color: white;
     font-family: PT serif;
     font-weight: bold;
-    padding: 10px 30px;
+    padding: 10px 20px;
 }
-.btn.btn-user{
+
+.btn.btn-user {
     background-color: rgb(170, 139, 45);
     border-radius: 14px;
     color: white;
@@ -52,24 +56,37 @@
 }
 
 
-.btn.btn-keranjang2{
+.btn.btn-keranjang2 {
     padding: 11px 20px;
     background-color: #61606f;
     border-radius: 10px;
     color: white;
     padding: 10px 15px;
     margin-right: 10px;
+    font-family: PT Serif;
+    position: relative;
 }
 
-.btn-keranjang2:hover{
+.btn-keranjang2:hover {
     background-color: #525252;
     color: #e0e0e0;
     transition: all ease 0.8s;
 }
 
+.btn-keranjang2 .badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    padding: 7px 10px;
+    border-radius: 50%;
+    background: rgb(252, 92, 92);
+    color: white;
+}
+
 /* Navbar */
 .navbar {
-    background-color: #ffffff;
+    height: 90px;
+    background-color: #212138;
     position: absolute;
     top: 0;
     right: 0;
@@ -78,7 +95,8 @@
 
 .navbar .navbar-brand {
     font-family: Marck Script;
-    color: #48487F;
+    color: #ffffff;
+    font-size: 30px;
 }
 
 .navbar-nav .nav-item {
@@ -88,8 +106,6 @@
     font-weight: bold;
     font-size: 1.1rem;
 }
-
-
 
 .navbar-nav .nav-item::after {
     content: '';
@@ -117,14 +133,14 @@ a.nav-link.active::after {
     left: 0%;
     width: 100%;
     height: 1.5px;
-    background-color: rgb(170, 139, 45);;
+    background-color: rgb(170, 139, 45);
 }
 
 
 /* HEADER */
 .jumbotron {
     background-image: url('/images/story.jpg');
-    height: 80vh;
+    height: 75vh;
     background-position: center;
     background-size: cover;
     border-bottom: 5px solid grey;
@@ -132,7 +148,7 @@ a.nav-link.active::after {
 }
 
 .jumbotron .intro {
-    padding-top: 130px;
+    padding-top: 190px;
     text-align: center;
 }
 
@@ -460,7 +476,7 @@ a.control_next {
 
 footer {
     width: 100%;
-    background-color: #48487F;
+    background-color: #212138;
     padding: 10px 0px 25px 0px;
     font-family: PT serif;
 
@@ -579,22 +595,25 @@ footer p {
 
 /* Product Page*/
 
-.product h4{
+.product h4 {
     color: rgb(170, 139, 45);
     font-family: PT Serif;
     font-weight: bold;
 }
-.text-pro p:nth-child(1){
+
+.text-pro p:nth-child(1) {
     font-family: PT Serif;
     font-weight: bold;
     font-size: 19px;
 }
-.text-pro p:nth-child(2){
+
+.text-pro p:nth-child(2) {
     font-family: PT Serif;
     font-weight: bold;
     font-size: 1rem;
     color: rgb(201, 201, 201);
 }
+
 .title h1 {
     text-align: center;
     font-family: Marck Script;
@@ -624,7 +643,7 @@ footer p {
 .gallery {
     margin-bottom: 25px;
     overflow: hidden;
-    background-color:  #ececec;
+    background-color: #ececec;
     padding: 55px;
 
 }
@@ -712,7 +731,7 @@ footer p {
     font-weight: bold;
 }
 
-.garis-detail{
+.garis-detail {
     width: 530px;
     height: 1px;
     background-color: rgb(240, 240, 240);
@@ -742,6 +761,74 @@ footer p {
     margin-top: 120px;
     padding-block: 50px;
 }
+
+/* -- quantity box -- */
+
+.quantity {
+    display: inline-block;
+}
+
+.quantity .input-text.qty {
+    width: 35px;
+    height: 40px;
+    padding: 0 5px;
+    text-align: center;
+    background-color: transparent;
+    border: 1px solid #dadada;
+}
+
+.quantity.buttons_added {
+    text-align: left;
+    position: relative;
+    white-space: nowrap;
+    vertical-align: top;
+}
+
+.quantity.buttons_added input {
+    display: inline-block;
+    margin: 0;
+    vertical-align: top;
+    box-shadow: none;
+}
+
+.quantity.buttons_added .minus,
+.quantity.buttons_added .plus {
+    padding: 7px 10px 8px;
+    height: 41px;
+    background-color: #5a6daa;
+    border: 1px solid #efefef;
+    cursor: pointer;
+    color: white;
+    transition: all 0.4s;
+    font-weight: bold;
+}
+
+.quantity.buttons_added .minus {
+    border-right: 0;
+}
+
+.quantity.buttons_added .plus {
+    border-left: 0;
+}
+
+.quantity.buttons_added .minus:hover,
+.quantity.buttons_added .plus:hover {
+    background: #77809e;
+}
+
+.quantity input::-webkit-outer-spin-button,
+.quantity input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    margin: 0;
+}
+
+.quantity.buttons_added .minus:focus,
+.quantity.buttons_added .plus:focus {
+    outline: none;
+}
+
+
 
 /* CONTACT PAGE */
 
@@ -832,18 +919,26 @@ footer p {
 
 
 /* logo wa */
-.float{
-	position:fixed;
-	width:55px;
-	height:55px;
-	bottom:20px;
-	right:40px;
-	background-color:#25d366;
-	color:#FFF;
-	border-radius:50px;
-	text-align:center;
-    font-size:35px;
-	box-shadow: 2px 2px 3px #999;
-    z-index:100;
+.float {
+    position: fixed;
+    width: 55px;
+    height: 55px;
+    bottom: 20px;
+    right: 40px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 35px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 100;
     padding: 10px;
+}
+
+#blink {
+    font-size: 30px;
+    font-weight: bold;
+    font-family: PT Serif;
+    color: #4a8d52;
+    transition: 0.3s;
 }

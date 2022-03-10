@@ -26,7 +26,7 @@
     @yield('body')
    
     <script src="{{ url('js/js_web/slide.js') }}" type="text/javascript"></script>
-    <script src="{{ url('js/jquery.nivo.slider.js') }}" type="text/javascript"></script>
+    <script src="{{ url('js/qty.js') }}" type="text/javascript"></script>
 </body>
 
 </html>
