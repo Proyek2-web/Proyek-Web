@@ -2,7 +2,7 @@
 @include('layouts.navbar')
 @section('body')
 
-<section class="detail" style="margin-bottom: 180px">
+<section class="detail" style="margin-bottom: 180px;margin-top: 10%">
     <h1 class="text-center">Detail Product</h1>
     <div class="detail-page">
         <div class="container">
