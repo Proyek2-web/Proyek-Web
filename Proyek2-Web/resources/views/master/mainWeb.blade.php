@@ -27,6 +27,19 @@
    
     <script src="{{ url('js/js_web/slide.js') }}" type="text/javascript"></script>
     <script src="{{ url('js/qty.js') }}" type="text/javascript"></script>
+    <script>
+        var prevScrollpos = window.pageYOffset;
+        window.onscroll = function() {
+        var currentScrollPos = window.pageYOffset;
+          if (prevScrollpos > currentScrollPos) {
+            document.getElementById("navbar").style.top = "0";
+          } else {
+            document.getElementById("navbar").style.top = "-90px";
+          }
+          prevScrollpos = currentScrollPos;
+        }
+        </script>
+        
 </body>
 
 </html>

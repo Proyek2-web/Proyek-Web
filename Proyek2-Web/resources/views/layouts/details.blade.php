@@ -3,7 +3,7 @@
 @section('body')
 
 <section class="detail" style="margin-bottom: 180px">
-    <h1 class="text-center">Detail Product</h1>
+    <h1 class="text-center">Detail Produk</h1>
     <div class="detail-page">
         <div class="container">
             <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
@@ -13,12 +13,12 @@
                 <input type="hidden" name="product_id" value="{{ $produk->id }}">
                 <input type="hidden" name="status" value="pending">
                 @endif
-                <div class="row align-items-center d-flex">
+                <div class="row  d-flex">
                     <div class="wrap-detail col-lg-6 col-12 text-center ">
                         <img src="{{ asset('/storage/' . $produk->featured_image) }}" alt="" width="500"
                             class="img-fluid">
                     </div>
-                    <div class="desc col-lg-5 ms-lg-5">
+                    <div class="desc col-lg-5 ms-lg-5" style="margin-top: 150px">
                         <h2>{{ $produk->nama }}</h2>
                         <p><i class="bi bi-bookmarks-fill"></i> Kategori : {{ $produk->category->name }}</p>
                             <h3>Rp.{{number_format($produk->harga, 0, "," , ".")}}</h3>
@@ -38,7 +38,7 @@
                         <div class="d-flex">
                             <a href="#" class="btn btn-back"><i class="bi bi-arrow-left-circle-fill"></i> Back</a>
                             <a class="btn btn-buy" data-bs-toggle="modal"
-                            data-bs-target="#login">Tambah ke keranjang <i class="bi bi-cart-check-fill fa-lg"></i></a>
+                            data-bs-target="#login">Tambah ke keranjang <i class="bi bi-cart-plus"></i></a>
                             <div id="login" class="modal fade">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
