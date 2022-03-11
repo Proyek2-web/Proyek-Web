@@ -1,25 +1,36 @@
 @extends('master.mainWeb')
 @include('layouts.navbar')
 @section('body')
-
+<div class="jumbotron2">
+    <div class="container">
+        <div class="intro ">
+            <div class="title text-center">
+                <h3>Katalog Produk</h3>
+            </div>
+        </div>
+    </div>
+</div>
 <section class="product" id="product">
     <div class="container">
-        <div class="title col-lg-12 mx-auto mt-5">
-            <h1>Product</h1>
-        </div>
         <div class="list-product">
             <div class="filter text-center">
-                <a href="/produk" class="btn filter-btn {{ request()->is('produk') ? 'active' : ''}}" data-filter="all">All</a>
-                <a href="/gelas" class="btn filter-btn {{ request()->is('gelas') ? 'active' : ''}}" data-filter="gelas">Gelas</a>
-                <a href="/vas" class="btn filter-btn {{ request()->is('vas') ? 'active' : ''}}" data-filter="pot">Vas Bunga</a>
-                <a href="/guci "class="btn filter-btn {{ request()->is('guci') ? 'active' : ''}}" data-filter="celengan">Guci</a>
-                <a href="/aksesoris "class="btn filter-btn {{ request()->is('aksesoris') ? 'active' : ''}}" data-filter="aksesoris">Aksesoris</a>
+                <a href="/produk" class="btn filter-btn {{ request()->is('produk') ? 'active' : ''}}"
+                    data-filter="all">All</a>
+                <a href="/gelas" class="btn filter-btn {{ request()->is('gelas') ? 'active' : ''}}"
+                    data-filter="gelas">Gelas</a>
+                <a href="/vas" class="btn filter-btn {{ request()->is('vas') ? 'active' : ''}}" data-filter="pot">Vas
+                    Bunga</a>
+                <a href="/guci " class="btn filter-btn {{ request()->is('guci') ? 'active' : ''}}"
+                    data-filter="celengan">Guci</a>
+                <a href="/aksesoris " class="btn filter-btn {{ request()->is('aksesoris') ? 'active' : ''}}"
+                    data-filter="aksesoris">Aksesoris</a>
             </div>
             <div class="row">
                 @forelse ($produk as $p)
                 <div class="col-lg-4 col-md-6 col-12 " style="margin-bottom: 150px">
                     <div class="gallery ">
-                        <a href="/details/{{ $p->slug }}"><img src="{{ asset('/storage/'.$p->featured_image)}}" alt="" class="img-fluid text-center"></a>
+                        <a href="/details/{{ $p->slug }}"><img src="{{ asset('/storage/'.$p->featured_image)}}" alt=""
+                                class="img-fluid text-center"></a>
                     </div>
                     <div class="product-det d-flex justify-content-between align-content-center">
                         <div class="text-pro ">
@@ -30,9 +41,9 @@
                     </div>
                 </div>
                 @empty
-                    <div class="col-12 text-center mt-5">
-                        <h1 style="color: rgb(226, 226, 226)">PRODUK KOSONG</h1>
-                    </div>
+                <div class="col-12 text-center mt-5">
+                    <h1 style="color: rgb(226, 226, 226)">PRODUK KOSONG</h1>
+                </div>
                 @endforelse
             </div>
         </div>

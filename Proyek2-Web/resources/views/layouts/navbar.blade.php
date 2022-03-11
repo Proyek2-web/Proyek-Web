@@ -24,9 +24,8 @@
         left: -35px;
         content: "✖";
     }
-
 </style>
-<nav class="navbar navbar-expand-lg navbar-dark shadow-lg position-fixed w-100 " style="z-index: 99">
+<nav id="navbar" class="navbar navbar-expand-lg navbar-dark shadow-lg position-fixed w-100 " style="z-index: 99">
     <div class="container">
         <a class="navbar-brand " href="#">Keramik Kinasih</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -53,55 +52,60 @@
                 @if (Auth::check())
                 <div class="d-flex">
                     <div>
-                        <a href="{{route('cart.index')}}" class="btn btn-keranjang2 me-3"><i class="bi bi-cart-check-fill fa-lg"></i>
-                            <span>Keranjang <span id="cart-qty"
-                                class="cart-quantity">
-                            @php
-                            $cart_count = \App\Models\Cart::all()->where('user_id', '=', Auth::user() == null ? '' : Auth::user()->id)->where('status', '=', 'pending')->count();
-                            @endphp
-                            <span class="badge">{{ $cart_count }}</span></a>
+                        <a href="{{route('cart.index')}}" class="btn btn-keranjang2 me-3"><i
+                                class="bi bi-cart-check-fill fa-lg"></i>
+                            <span>Keranjang <span id="cart-qty" class="cart-quantity">
+                                    @php
+                                    $cart_count = \App\Models\Cart::all()->where('user_id', '=', Auth::user() == null ?
+                                    '' : Auth::user()->id)->where('status', '=', 'pending')->count();
+                                    @endphp
+                                    <span class="badge">{{ $cart_count }}</span></a>
                         </a>
-                        {{-- <a href="{{route('cart.index')}}"><i class="fa fa-shopping-cart"
-                            aria-hidden="true"></i> <span>Keranjang <span id="cart-qty"
-                                class="cart-quantity">
-                            @php
-                            $cart_count = \App\Models\Cart::all()->where('user_id', '=', Auth::user() == null ? '' : Auth::user()->id)->where('status', '=', 'pending')->count();
-                            @endphp
-                            {{ $cart_count }}
+                        {{-- <a href="{{route('cart.index')}}"><i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                        <span>Keranjang <span id="cart-qty" class="cart-quantity">
+                                @php
+                                $cart_count = \App\Models\Cart::all()->where('user_id', '=', Auth::user() == null ? '' :
+                                Auth::user()->id)->where('status', '=', 'pending')->count();
+                                @endphp
+                                {{ $cart_count }}
                             </span></span></a> --}}
                     </div>
                     <div class="dropdown">
-                        <button class="btn btn-login dropdown-toggle" type="button" id="dropdownMenuButton"
+                        <button class="btn btn-login dropdown-toggle" type="button" id="dropdownMenuButton1"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="bi bi-person-circle"></i> {{ auth()->user()->name }}
                         </button>
-                        <div class="dropdown-menu p-2 text-center" aria-labelledby="dropdownMenuButton">
-                            <form action="/logout" method="POST">
-                                @csrf
-                                <a href="#">
-                                    <button type="submit" class="btn btn-primary mb-3">Logout</button>
-                                </a>
-                            </form>
-                        </div>
+                            <ul class="dropdown-menu bg-secondary" style="font-family: PT Serif" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item text-light" href="#"><i class="bi bi-person-circle"></i> Profile</a></li>
+                                <li class="mb-2"><a class="dropdown-item text-light" href="#"><i class="bi bi-credit-card"></i> Transaksi</a></li>
+                                <li class="text-center">
+                                    <form action="/logout" method="POST">
+                                        @csrf
+                                        <a href="#">
+                                            <button type="submit" class="btn btn-login "><i class="bi bi-box-arrow-left"></i> Keluar</button>
+                                        </a>
+                                    </form>
+                                </li>
+                            </ul>
                         <!-- Modal -->
                     </div>
-                    
+
                 </div>
-                    
-                    
+
+
                 @else
-                    <div class="dropdown">
-                        <button class="btn btn-login"  type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" > 
-                            Sign-in <i class="bi bi-box-arrow-in-right"></i>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                data-bs-target="#login">Masuk</a></li>
-                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
+                <div class="dropdown">
+                    <button class="btn btn-login" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Sign-in <i class="bi bi-box-arrow-in-right"></i>
+                    </button>
+                    <ul class="dropdown-menu bg-secondary" style="font-family: PT Serif" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item text-light" href="#" data-bs-toggle="modal" data-bs-target="#login">Masuk</a>
+                        </li>
+                        <li><a class="dropdown-item text-light" href="#" data-bs-toggle="modal"
                                 data-bs-target="#register">Daftar</a></li>
-                          </ul>
-                    </div>
+                    </ul>
+                </div>
                 @endif
             </div>
         </div>
@@ -125,9 +129,9 @@
                             <input required type="email"
                                 class="form-control @error('email') is-invalid @enderror input-lg" name="email">
                             @error('email')
-                                <div id="" class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
+                            <div id="" class="invalid-feedback">
+                                {{ $message }}
+                            </div>
                             @enderror
                         </div>
                     </div>
@@ -137,9 +141,9 @@
                             <input required type="password"
                                 class="form-control @error('password') is-invalid @enderror input-lg" name="password">
                             @error('password')
-                                <div id="" class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
+                            <div id="" class="invalid-feedback">
+                                {{ $message }}
+                            </div>
                             @enderror
                         </div>
                     </div>
@@ -178,9 +182,9 @@
                             <input type="email" class="form-control @error('email') is invalid @enderror input-lg"
                                 name="email" value="">
                             @error('email')
-                                <div id="" class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
+                            <div id="" class="invalid-feedback">
+                                {{ $message }}
+                            </div>
                             @enderror
                         </div>
                     </div>
@@ -199,9 +203,8 @@
                     <div class="form-group">
                         <label class="control-label">Password</label>
                         <div>
-                            <input type="password" class="form-control input-lg" id="psw" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                                title="Periksa Password Anda"
-                                required>
+                            <input type="password" class="form-control input-lg" id="psw" name="psw"
+                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Periksa Password Anda" required>
                         </div>
                     </div>
                     <input type="hidden" name="roles" value="user">
@@ -230,17 +233,17 @@
     var length = document.getElementById("length");
 
     // When the user clicks on the password field, show the message box
-    myInput.onfocus = function() {
+    myInput.onfocus = function () {
         document.getElementById("message").style.display = "block";
     }
 
     // When the user clicks outside of the password field, hide the message box
-    myInput.onblur = function() {
+    myInput.onblur = function () {
         document.getElementById("message").style.display = "none";
     }
 
     // When the user starts to type something inside the password field
-    myInput.onkeyup = function() {
+    myInput.onkeyup = function () {
         // Validate lowercase letters
         var lowerCaseLetters = /[a-z]/g;
         if (myInput.value.match(lowerCaseLetters)) {
@@ -280,7 +283,6 @@
             length.classList.add("invalid");
         }
     }
-
 </script>
 {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -291,5 +293,3 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
     integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
 </script> --}}
-
-

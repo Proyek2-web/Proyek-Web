@@ -24,7 +24,7 @@
 }
 
 .btn-buy:hover {
-    background-color: #2c2c2ccc;
+    background-color: #686139;
     border-radius: 2px 30px;
     transition: all ease 0.8s;
     color: rgb(255, 255, 255);
@@ -79,18 +79,20 @@
     right: -10px;
     padding: 7px 10px;
     border-radius: 50%;
-    background: rgb(252, 92, 92);
+    background: rgb(113, 114, 167);
     color: white;
 }
 
 /* Navbar */
 .navbar {
     height: 90px;
-    background-color: #212138;
+    background-color: #212138fc;
     position: absolute;
     top: 0;
     right: 0;
     left: 0;
+    /* display: block; */
+    transition: top 0.5s;
 }
 
 .navbar .navbar-brand {
@@ -136,14 +138,27 @@ a.nav-link.active::after {
     background-color: rgb(170, 139, 45);
 }
 
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0px;
+    transition: all 0.4s;
+}
+
+.dropdown-item:hover{
+    
+    background-color: #312f50;
+}
 
 /* HEADER */
 .jumbotron {
-    background-image: url('/images/story.jpg');
-    height: 75vh;
+    background-image:
+        linear-gradient(to bottom, rgba(245, 246, 252, 0.52), rgba(56, 53, 99, 0.73)),
+        url('/images/story.jpg');
+    /* background-image: url('/images/story.jpg'), linear-gradient(#eb01a5, #d13531); */
+    height: 100vh;
     background-position: center;
     background-size: cover;
-    border-bottom: 5px solid grey;
+    /* border-bottom: 5px solid grey; */
     z-index: -2;
 }
 
@@ -595,6 +610,32 @@ footer p {
 
 /* Product Page*/
 
+.jumbotron2 {
+    background-image:
+        linear-gradient(to bottom, rgba(168, 155, 38, 0.52), rgba(74, 81, 122, 0.73)),
+        url('/images/story.jpg');
+    /* background-image: url('/images/story.jpg'), linear-gradient(#eb01a5, #d13531); */
+    height: 50vh;
+    background-position: center;
+    background-size: cover;
+    /* border-bottom: 5px solid grey; */
+    z-index: -2;
+    margin-bottom: 50px;
+}
+
+.jumbotron2 .intro {
+    padding-top: 170px;
+    text-align: center;
+
+}
+
+.jumbotron2 h3 {
+    font-family: Marck Script;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 7rem;
+}
+
 .product h4 {
     color: rgb(170, 139, 45);
     font-family: PT Serif;
@@ -628,14 +669,22 @@ footer p {
     margin-bottom: 30px;
     text-decoration: none;
     font-family: PT serif;
+    background-color: #aaa38e;
+    transition: all 0.7s;
+    padding: 10px 40px;
+    font-weight: bold;
+    color: rgb(248, 247, 247);
+    margin-inline: -5px;
+    border: 1px solid rgb(223, 223, 225);
 }
-
-
 
 .filter-btn:hover,
 .filter-btn.active {
-    border-bottom: 2px solid red;
-    color: rgb(255, 4, 4);
+    background-color: #46465e;
+    color: rgb(255, 255, 255);
+    border-radius: 0px 50px;
+    transition: all 0.6s;
+
 }
 
 
@@ -643,14 +692,13 @@ footer p {
 .gallery {
     margin-bottom: 25px;
     overflow: hidden;
-    background-color: #ececec;
+    background-color: #4e4e844a;
     padding: 55px;
-
 }
 
 .gallery .img-wrapper {
     position: relative;
-    transition: all 0.6s ease;
+    transition: all 0.5s ease;
 }
 
 .gallery a img {
@@ -659,16 +707,22 @@ footer p {
     height: 80%;
     object-fit: cover;
     display: block;
-    border: 15px solid rgb(247, 247, 247);
+    border: 15px solid #ac9f77;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transition: all 0.5s;
+}
+
+.gallery a img:hover {
+    /* float: left; */
+    transform: scale(1.1);
+    transition: all 0.5s;
+    border: 1px solid #121213fb;
 }
 
 /* .gallery:hover {
     transition: all 0.6s ease;
     transform: scale(1.1);
 } */
-
-
 
 /* COMPANY PAGE */
 
