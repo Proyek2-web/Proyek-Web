@@ -13,6 +13,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderCustController;
 use App\Http\Controllers\Payment\CallbackController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\CheckoutController;
 
 //--------------------------------------------HALAMAN AWAL-------------------------------------------------
 Route::get('/', function () {
@@ -24,6 +25,7 @@ Route::post('/logout', [LoginController::class, 'logout']);
 
 //--------------------------------------------HALAMAN PELANGGAN--------------------------------------------
 Route::get('/check', [LoginController::class, 'alert']);
+Route::post('/ongkir', [CheckOngkirController::class, 'check_ongkir']);
 Route::get('/cities/{province_id}', [CheckOngkirController::class,'getCities']);
 Route::post('/contact', [ContactController::class, 'sendMail']);
 Route::get('/contact', [ContactController::class, 'showContactForm']);
@@ -34,6 +36,7 @@ Route::get('/guci', [ProdukController::class, 'guci']);
 Route::get('/aksesoris', [ProdukController::class, 'aksesoris']);
 Route::get('/details/{product:slug}', [ProdukController::class, 'detail']);
 Route::resource('/cart', CartController::class);
+Route::resource('/checkout', CheckoutController::class);
 Route::get('about', function () {
     return view('layouts.about');
 });

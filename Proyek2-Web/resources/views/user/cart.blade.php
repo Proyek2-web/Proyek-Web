@@ -54,7 +54,11 @@
         <div class="row">
             <div class="col-lg-12 mt-3">
                 <div class="total text-center">
-                    <a href="/form-order" class="btn btn-conf">Konfirmasi <i class="bi bi-check-circle-fill"></i></a>
+                    <form action="{{ route('checkout.index') }}" method="GET" enctype="multipart/form-data">
+                        <input type="hidden" name="sub_total" value="{{ $sub_total }}">
+                        <input type="hidden" name="user_id" value="{{ auth()->user()->id }}" >
+                        <button type="submit" class="btn btn-conf">Konfirmasi <i class="bi bi-check-circle-fill"></i></button>
+                    </form>
                 </div>
             </div>
         </div>
