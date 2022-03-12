@@ -24,7 +24,7 @@
 <body>
    
     @yield('body')
-   
+    @include('sweetalert::alert')
     <script src="{{ url('js/js_web/slide.js') }}" type="text/javascript"></script>
     <script src="{{ url('js/qty.js') }}" type="text/javascript"></script>
     <script>

@@ -21,73 +21,56 @@
                     <div class="desc col-lg-5 ms-lg-5" style="margin-top: 150px">
                         <h2>{{ $produk->nama }}</h2>
                         <p><i class="bi bi-bookmarks-fill"></i> Kategori : {{ $produk->category->name }}</p>
-                            <h3>Rp.{{number_format($produk->harga, 0, "," , ".")}}</h3>
+                        <h3>Rp.{{number_format($produk->harga, 0, "," , ".")}}</h3>
                         <div class="garis-detail mb-4"></div>
                         <p>Deskripsi : {{ $produk->keterangan }}</p>
                         <div class="quantity buttons_added mb-4">
                             <input type="hidden" id='regeh' value="{{ $produk->harga }}">
-                            <input  type="button" value="-" class="minus"><input required id="quan"  type="number"  step="1" min="1" max="100" name="quantity" value="1" title="Qty" class="input-text qty text" size="4" ><input  type="button" value="+" class="plus">
+                            <input type="button" value="-" class="minus"><input required id="quan" type="number"
+                                step="1" min="1" max="100" name="quantity" value="1" title="Qty"
+                                class="input-text qty text" size="4"><input type="button" value="+" class="plus">
                         </div>
                         @if (Auth::check())
                         <div class="d-flex">
                             <a href="/produk" class="btn btn-back"><i class="bi bi-arrow-left-circle-fill"></i>
                                 Kembali</a>
-                            <button type="submit" class="btn btn-buy">Tambahkan Ke Keranjang <i class="bi bi-cart-plus"></i></button>
+                            <button type="submit" class="btn btn-buy">Tambahkan Ke Keranjang <i
+                                    class="bi bi-cart-plus"></i></button>
                         </div>
                         @else
+
                         <div class="d-flex">
                             <a href="#" class="btn btn-back"><i class="bi bi-arrow-left-circle-fill"></i> Back</a>
-                            <a class="btn btn-buy" data-bs-toggle="modal"
-                            data-bs-target="#login">Tambah ke keranjang <i class="bi bi-cart-plus"></i></a>
-                            <div id="login" class="modal fade">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            @include('sweetalert::alert')
-                                            <h1 class="modal-title">Masuk</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form id="handleAjax" name="postForm" role="form" method="POST" action="/login">
-                                                @csrf
-                                                <div class="form-group">
-                                                    <label class="control-label">E-Mail Address</label>
-                                                    <div>
-                                                        <input required type="email"
-                                                            class="form-control @error('email') is-invalid @enderror input-lg" name="email">
-                                                        @error('email')
-                                                            <div id="" class="invalid-feedback">
-                                                                {{ $message }}
-                                                            </div>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="control-label">Password</label>
-                                                    <div>
-                                                        <input required type="password"
-                                                            class="form-control @error('password') is-invalid @enderror input-lg" name="password">
-                                                        @error('password')
-                                                            <div id="" class="invalid-feedback">
-                                                                {{ $message }}
-                                                            </div>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <div class="form-group mt-2">
-                                                    <div>
-                                                        <button type="submit" class="btn btn-success">OK</button>
-                                                        <a class="btn btn-link" href="#">Forgot Your Password?</a>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div><!-- /.modal-content -->
-                                </div><!-- /.modal-dialog -->
-                            </div>
+                            <a class="btn btn-buy" data-bs-toggle="modal" data-bs-target="#login">Tambah ke
+                                keranjang <i class="bi bi-cart-plus"></i></a>
+                            {{-- modal --}}
+                            {{-- <div id="login-cart" class="modal fade">
+                                <div class="main">
+                                    <input type="checkbox" id="chk" aria-hidden="true">
+                                    <div class="signup">
+                                        <form>
+                                            <label for="chk" aria-hidden="true">Sign up</label>
+                                            <input type="text" name="txt" placeholder="User name" required="">
+                                            <input type="email" name="email" placeholder="Email" required="">
+                                            <input type="password" name="pswd" placeholder="Password" required="">
+                                            <button>Sign up</button>
+                                        </form>
+                                    </div>
+                                    <div class="login">
+                                        <form>
+                                            <label for="chk" aria-hidden="true">Login</label>
+                                            <input type="email" name="email" placeholder="Email" required="">
+                                            <input type="password" name="pswd" placeholder="Password" required="">
+                                            <button>Login</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div> --}}
+                            
                         </div>
                         @endif
-                        <div class="form-group mt-5 p-4" style="font-family: PT Serif; border: 3px solid rgb(186, 186, 186); border-radius: 10px">
+                        <div class="form-group mt-5 p-4"
+                            style="font-family: PT Serif; border: 3px solid rgb(186, 186, 186); border-radius: 10px">
                             <label style="font-size: 20px">Total Harga (Belum termasuk ongkir)</label>
                             <div class="input-group ">
                                 <h3 class="price text-success" id="output">Rp. - </h3>
