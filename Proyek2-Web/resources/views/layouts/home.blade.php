@@ -11,7 +11,8 @@
     <div class="container">
         <div class="intro ">
             <div class="title text-center">
-                <h3>Keramik Kinasih</h3>
+                <h3>Selamat Datang Di</h3>
+                    <img class="bg-light" src="/images/logo1.png" width="450" height="120" alt="" style="border-radius: 70px; padding-inline: 20px; padding-top: 15px ">
                 <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugiat cupiditate quis deleniti animi
                     itaque consectetur, dolores pariatur accusantium voluptas beatae. Placeat, commodi non! Optio iusto
                     illo expedita </p>

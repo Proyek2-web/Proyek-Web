@@ -27,7 +27,7 @@
 </style>
 <nav id="navbar" class="navbar navbar-expand-lg navbar-dark shadow-lg position-fixed w-100 " style="z-index: 99">
     <div class="container">
-        <a class="navbar-brand " href="#">Keramik Kinasih</a>
+        <a class="navbar-brand mt-3" href="#"><img src="/images/logo1.png" width="225" alt=""></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

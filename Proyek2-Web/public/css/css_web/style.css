@@ -612,7 +612,7 @@ footer p {
 
 .jumbotron2 {
     background-image:
-        linear-gradient(to bottom, rgba(168, 155, 38, 0.52), rgba(74, 81, 122, 0.73)),
+        linear-gradient(to bottom, rgba(94, 87, 38, 0.52), rgba(74, 81, 122, 0.73)),
         url('/images/story.jpg');
     /* background-image: url('/images/story.jpg'), linear-gradient(#eb01a5, #d13531); */
     height: 50vh;
