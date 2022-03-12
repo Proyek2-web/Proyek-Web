@@ -18,21 +18,7 @@ class ProdukController extends Controller
             'produk' => Product::all()
         ]);
     }
-    // public function detail(Product $product)
-    // {
-    //     $countries = Country::where('id',100)->first();
-    //     $state = State::all();
-    //     $tripay = new TripayController();
-    //     $channels = $tripay->getPaymentChannels();
-    //     return view('layouts.details', [
-    //         'title' => 'Postingan Berdasarkan Author',
-    //         'produk' => $product,
-    //         'deliveries' => Delivery::all(),
-    //         'channels' => $channels,
-    //         'country' => $countries,
-    //         'state' => $state
-    //     ]);
-    // }
+    
     public function detail(Product $product)
     {
         return view('layouts.details', ['produk' => $product]);
@@ -65,5 +51,27 @@ class ProdukController extends Controller
         return view('layouts.product', [
             'produk' => $product->get()
         ]);
+    }
+
+    public function find(Request $request)
+    {
+        $produk = Product::all();
+        if($request->search){
+            $produk = Product::where('nama', 'LIKE', '%'.$request->search.'%')->get();
+        }
+        return view('layouts.product',compact('produk'));
+        
+    }
+    public function murah(){
+        $produk = Product::select("*")
+        ->orderBy("nama","asc")
+        ->get();
+        return view('layouts.product',compact('produk'));
+    }
+    public function mahal(){
+        $produk = Product::select("*")
+        ->orderBy("nama","desc")
+        ->get();
+        return view('layouts.product',compact('produk'));
     }
 }
