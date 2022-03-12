@@ -2,8 +2,12 @@
 @include('layouts.navbar')
 @section('body')
 
-<section class="contact pb-5 p" style="background-color: #f1efef">
-    <div class="form-send mx-5 ">
+<section class="contact pb-5">
+    <ol class="arrows">
+        <li><a href="/"><i class="bi bi-house-fill"></i> Home</a></li>
+        <li><a href="/produk">Kontak</a></li>
+     </ol>
+    <div class="form-send mx-5 mt-5">
         <div class="container">
             <div class="row align-content-center ">
                 <div class="col px-md-5 ">

@@ -29,11 +29,11 @@ class LoginController extends Controller
                 Alert::info('Login Sukses', '');
                 return redirect()->intended('dashboard');
             } else {
-                Alert::info('Login Sukses', '');
+                Alert::info('Login Sukses', 'Selamat Datang' );
                 return redirect()->intended('/');
             }
         }
-        Alert::error('Login Gagal', '');
+        Alert::error('Login Gagal', 'Username Atau Password tidak sesuai');
         return back()->with('loginFailed', 'Login Failed');
     }
     // Proses untuk registrasi

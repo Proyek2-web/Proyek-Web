@@ -3,8 +3,12 @@
 @section('body')
 
 <section class="detail" style="margin-bottom: 180px">
-    <h1 class="text-center">Detail Produk</h1>
-    <div class="detail-page">
+    <div class="detail-page ">
+        <ol class="arrows" style="margin-top: 120px; margin-bottom: -30px">
+            <li><a href="/"><i class="bi bi-house-fill"></i> Home</a></li>
+            <li><a href="/produk">Katalog Produk</a></li>
+            <li><a href="#">Detail produk</a></li>
+         </ol>
         <div class="container">
             <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf

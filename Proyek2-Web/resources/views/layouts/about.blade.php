@@ -3,10 +3,15 @@
 @section('body')
 
 <section class="about">
-    <div class="ud p-5" style="background-color: #ffffff;">
+
+    <div class="ud p-5" style="">
+        <ol class="arrows" style="margin-top: 70px; margin-bottom: -50px">
+            <li><a href="/"><i class="bi bi-house-fill"></i> Home</a></li>
+            <li><a href="/about">Tentang</a></li>
+         </ol>
         <div class="container">
             <div class="title col-lg-12 mx-auto">
-                <h1>About Us</h1>
+                <h1>Tentang</h1>
             </div>
             <div class="content" style="margin-top: 90px">
                 <div class="company row align-items-center">

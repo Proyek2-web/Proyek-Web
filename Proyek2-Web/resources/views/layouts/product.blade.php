@@ -10,6 +10,10 @@
         </div>
     </div>
 </div>
+<ol class="arrows">
+    <li><a href="/"><i class="bi bi-house-fill"></i> Home</a></li>
+    <li><a href="/produk">Katalog Produk</a></li>
+ </ol>
 <section class="product" id="product">
     <div class="container">
         <div class="list-product">

@@ -70,7 +70,7 @@
                                 {{ $cart_count }}
                             </span></span></a> --}}
                     </div>
-                    <div class="dropdown">
+                    <div class="dropdown user">
                         <button class="btn btn-login dropdown-toggle" type="button" id="dropdownMenuButton1"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="bi bi-person-circle"></i> {{ auth()->user()->name }}
@@ -165,41 +165,7 @@
                     <button class="btn-modal" type="submit">Masuk <i class="bi bi-box-arrow-in-right"></i></button>
                 </form>
             </div>
-            {{-- <div class="modal-body">
-                <form id="handleAjax" name="postForm" role="form" method="POST" action="/login">
-                    @csrf
-                    <div class="form-group">
-                        <label class="control-label">E-Mail Address</label>
-                        <div>
-                            <input required type="email"
-                                class="form-control @error('email') is-invalid @enderror input-lg" name="email">
-                            @error('email')
-                            <div id="" class="invalid-feedback">
-                                {{ $message }}
-        </div>
-        @enderror
-    </div>
-</div>
-<div class="form-group">
-    <label class="control-label">Password</label>
-    <div>
-        <input required type="password" class="form-control @error('password') is-invalid @enderror input-lg"
-            name="password">
-        @error('password')
-        <div id="" class="invalid-feedback">
-            {{ $message }}
-        </div>
-        @enderror
-    </div>
-</div>
-<div class="form-group mt-2">
-    <div>
-        <button type="submit" class="btn btn-success">OK</button>
-        <a class="btn btn-link" href="#">Forgot Your Password?</a>
-    </div>
-</div>
-</form>
-</div> --}}
+           
 </div><!-- /.modal-content -->
 </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
