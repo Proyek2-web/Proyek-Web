@@ -113,7 +113,7 @@
                     <div class="d-flex mt-5 justify-content-center">
                         <a href="/cart" class="btn btn-back"><i class="bi bi-x-circle-fill me-2"></i>Batal</a>
                         <a href="#" class="btn btn-conf">Bayar <i class="bi bi-check-circle-fill"></i></a>
-                        <input type="hidden" id="weight" value="80" id="">
+                        
                     </div>
                 </div>
             </div>
@@ -122,17 +122,14 @@
             <label class="font-weight-bold">BERAT (GRAM)</label>
             <input type="number" class="form-control" name="weight" id="weight" placeholder="Masukkan Berat (GRAM)">
         </div>
-        <div class="col-md-3">
-            <button class="btn btn-md btn-primary btn-block btn-check">CEK ONGKOS KIRIM</button>
-        </div>
-        <button id="btn check" class="btn btn-conf">CEK <i class="bi bi-check-circle-fill"></i></button>
+        <button id="btn-check" class="btn btn-conf">CEK <i class="bi bi-check-circle-fill"></i></button>
         <div class="ongkir-card">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card ongkir d-none">
                         <div class="card-body">
                             <ul class="list-group" id="ongkir">
-
+            
                             </ul>
                         </div>
                     </div>
@@ -143,12 +140,14 @@
     <script>
         $('select[name="province_destination"]').on('change', function() {
             let provindeId = $(this).val();
+            
             if (provindeId) {
                 jQuery.ajax({
                     url: '/cities/' + provindeId,
                     type: "GET",
                     dataType: "json",
                     success: function(response) {
+                        
                         $('select[name="city_destination"]').empty();
                         $('select[name="city_destination"]').append(
                             '<option value="">-- pilih kota tujuan --</option>');
@@ -162,17 +161,19 @@
                 $('select[name="city_destination"]').append('<option value="">-- pilih kota tujuan --</option>');
             }
         });
-
-    </script>
-    <script>
         let isProcessing = false;
-        $('.btn-check').click(function(e) {
+        $('#btn-check').click(function(e) {
+            $('.ongkir').addClass('d-none');
             e.preventDefault();
             let token = $("meta[name='csrf-token']").attr("content");
+            console.log(token);
             let city_origin = $('select[name=city_origin]').val();
             let city_destination = $('select[name=city_destination]').val();
+            console.log(city_destination);
             let courier = $('select[name=courier]').val();
+            console.log(courier);
             let weight = $('#weight').val();
+            
             if (isProcessing) {
                 return;
             }
@@ -181,19 +182,21 @@
                 url: "/ongkir",
                 data: {
                     _token: token,
-                    city_origin: city_origin,
+                    city_origin: 369,
                     city_destination: city_destination,
                     courier: courier,
                     weight: weight,
+                    
                 },
                 dataType: "JSON",
                 type: "POST",
                 success: function(response) {
+                console.log(weight)
                     console.log(response)
                     isProcessing = false;
                     if (response) {
                         $('#ongkir').empty();
-                        $('.ongkir').addClass('d-block');
+                        $('.ongkir').removeClass('d-none');
                         $.each(response[0]['costs'], function(key, value) {
                             $('#ongkir').append('<li class="list-group-item">' +
                                 '<input type="radio" name="ongkir-kurir" value="' +
@@ -206,6 +209,30 @@
                 }
             });
         });
+        function number_format(number, decimals, dec_point, thousands_sep) {
+        number = (number + '').replace(',', '').replace(' ', '');
+        var n = !isFinite(+number) ? 0 : +number,
+            prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+            sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+            dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+            s = '',
+            toFixedFix = function (n, prec) {
+                var k = Math.pow(10, prec);
+                return '' + Math.round(n * k) / k;
+            };
+        s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
+        if (s[0].length > 3) {
+            s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+        }
+        if ((s[1] || '').length < prec) {
+            s[1] = s[1] || '';
+            s[1] += new Array(prec - s[1].length + 1).join('0');
+        }
+        return s.join(dec);
+    }
+
+    </script>
+    <script>
 
     </script>
 @endsection
