@@ -5,7 +5,7 @@
 <section class="contact pb-5">
     <ol class="arrows">
         <li><a href="/"><i class="bi bi-house-fill"></i> Home</a></li>
-        <li><a href="/produk">Kontak</a></li>
+        <li><a href="/contact">Kontak</a></li>
      </ol>
     <div class="form-send mx-5 mt-5">
         <div class="container">
