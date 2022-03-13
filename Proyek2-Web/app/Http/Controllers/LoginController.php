@@ -34,7 +34,7 @@ class LoginController extends Controller
             }
         }
         Alert::error('Login Gagal', 'Username Atau Password tidak sesuai');
-        return back()->with('loginFailed', 'Login Failed');
+            back()->with('loginFailed', 'Login Failed');
     }
     // Proses untuk registrasi
     public function registration(Request $request)

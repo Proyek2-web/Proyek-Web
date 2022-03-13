@@ -47,6 +47,30 @@ class DatabaseSeeder extends Seeder
             'keterangan' => 'Guci Besar',
             'featured_image' => 'imgaaa.jpg',
         ]);
+        Product::create([
+            'nama' => 'Guci Bagus',
+            'category_id' => '2',
+            'slug' => 'guci-bagus',
+            'harga' => '30000',
+            'keterangan' => 'Guci Bagus',
+            'featured_image' => 'imgaaa.jpg',
+        ]);
+        Product::create([
+            'nama' => 'Aksesoris',
+            'category_id' => '3',
+            'slug' => 'aksesoris',
+            'harga' => '30000',
+            'keterangan' => 'Aksesors',
+            'featured_image' => 'imgaaa.jpg',
+        ]);
+        Product::create([
+            'nama' => 'Aksesoris Ciamik',
+            'category_id' => '3',
+            'slug' => 'aksesoris-bagus',
+            'harga' => '30000',
+            'keterangan' => 'Aksesors',
+            'featured_image' => 'imgaaa.jpg',
+        ]);
 
         Product::create([
             'nama' => 'Gelas Hias Kinasih ',
@@ -54,6 +78,14 @@ class DatabaseSeeder extends Seeder
             'slug' => 'gelas-hias-kinasih',
             'harga' => '20000',
             'keterangan' => 'Gelas Kecil',
+            'featured_image' => 'img.jpg',
+        ]);
+        Product::create([
+            'nama' => 'Gelas Ukir Kinasih ',
+            'category_id' => '1',
+            'slug' => 'gelas-ukir-kinasih',
+            'harga' => '40000',
+            'keterangan' => 'Gelas Ukir',
             'featured_image' => 'img.jpg',
         ]);
         Category::create([

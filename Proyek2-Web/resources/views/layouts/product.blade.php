@@ -42,16 +42,101 @@
                     </button>
                     <ul class="dropdown-menu bg-secondary" style="font-family: PT Serif"
                         aria-labelledby="dropdownMenuButton1">
-                        <li class="text-center">
-                                <a href="/produk/termurah" style="text-decoration: none;color: white">
+                        @if ($status)
+                        @foreach ($produk as $p)
+                        @if ($p->category_id === 1)
+                        <form action="/produk/termurah" method="GET" enctype="multipart/form-data">
+                            <li class="text-center">
+                                <input type="hidden" name="cat_id" value="{{ $p->category_id }}">
+                                <button type="submit" class="btn btn-primary">
                                      Murah
-                                </a>
+                                </button>
                         </li>
-                        <li class="text-center">
-                                <a href="/produk/termahal" style="text-decoration: none;color: white">
+                        </form>
+                        <form action="/produk/termahal" method="GET" enctype="multipart/form-data">
+                            <li class="text-center">
+                                <input type="hidden" name="cat_id" value="{{ $p->category_id }}">
+                                <button type="submit" class="btn btn-danger">
                                     Mahal
-                                </a>
+                               </button>
                         </li>
+                        </form>
+                        @break   
+                        @elseif ($p->category_id === 2)
+                        <form action="/produk/termurah" method="GET" enctype="multipart/form-data">
+                            <li class="text-center">
+                                <input type="hidden" name="cat_id" value="{{ $p->category_id }}">
+                                <button type="submit" class="btn btn-primary">
+                                     Murah
+                                </button>
+                        </li>
+                        </form>
+                        <form action="/produk/termahal" method="GET" enctype="multipart/form-data">
+                            <li class="text-center">
+                                <input type="hidden" name="cat_id" value="{{ $p->category_id }}">
+                                <button type="submit" class="btn btn-danger">
+                                    Mahal
+                               </button>
+                        </li>
+                        </form>
+                        @break  
+                        @elseif ($p->category_id === 3)
+                        <form action="/produk/termurah" method="GET" enctype="multipart/form-data">
+                            <li class="text-center">
+                                <input type="hidden" name="cat_id" value="{{ $p->category_id }}">
+                                <button type="submit" class="btn btn-primary">
+                                     Murah
+                                </button>
+                        </li>
+                        </form>
+                        <form action="/produk/termahal" method="GET" enctype="multipart/form-data">
+                            <li class="text-center">
+                                <input type="hidden" name="cat_id" value="{{ $p->category_id }}">
+                                <button type="submit" class="btn btn-danger">
+                                    Mahal
+                               </button>
+                        </li>
+                        </form>
+                        @break  
+                        @elseif ($p->category_id === 4)
+                        <form action="/produk/termurah" method="GET" enctype="multipart/form-data">
+                            <li class="text-center">
+                                <input type="hidden" name="cat_id" value="{{ $p->category_id }}">
+                                <button type="submit" class="btn btn-primary">
+                                     Murah
+                                </button>
+                        </li>
+                        </form>
+                        <form action="/produk/termahal" method="GET" enctype="multipart/form-data">
+                            <li class="text-center">
+                                <input type="hidden" name="cat_id" value="{{ $p->category_id }}">
+                                <button type="submit" class="btn btn-danger">
+                                     Mahal
+                                </button>
+                        </li>
+                        </form>
+                        @break      
+                        @endif  
+                        @endforeach
+                        @else
+                        <form action="/produk/termurah" method="GET" enctype="multipart/form-data">
+                            <li class="text-center">
+                                <input type="hidden" name="status" value="murah">
+                                <button type="submit" class="btn btn-primary">
+                                     Murah
+                                </button>
+                        </li>
+                        </form>
+                        <form action="/produk/termahal" method="GET" enctype="multipart/form-data">
+                            <li class="text-center">
+                                <input type="hidden" name="status" value="{{ $status }}">
+                                <button type="submit" class="btn btn-danger">
+                                     Mahal
+                                </button>
+                        </li>
+                        </form>   
+                        @endif
+                        
                     </ul>
                     <!-- Modal -->
                 </div>
@@ -67,7 +152,7 @@
                             <div class="product-det d-flex justify-content-between align-content-center">
                                 <div class="text-pro ">
                                     <p>{{ $p->nama }}</p>
-                                    <p><i class="bi bi-bookmarks-fill"></i>{{ $p->category->name }}</p>
+                                    {{-- <p><i class="bi bi-bookmarks-fill"></i>{{ $p->category->name }}</p> --}}
                                 </div>
                                 <h4 class="mt-3"> Rp.{{ number_format($p->harga, 0, ',', '.') }}</h4>
                             </div>
