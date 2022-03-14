@@ -129,7 +129,7 @@
                         </form>
                         <form action="/produk/termahal" method="GET" enctype="multipart/form-data">
                             <li class="text-center">
-                                <input type="hidden" name="status" value="{{ $status }}">
+                                <input type="hidden" name="status" value="mahal">
                                 <button type="submit" class="btn btn-danger">
                                      Mahal
                                 </button>
@@ -152,7 +152,7 @@
                             <div class="product-det d-flex justify-content-between align-content-center">
                                 <div class="text-pro ">
                                     <p>{{ $p->nama }}</p>
-                                    {{-- <p><i class="bi bi-bookmarks-fill"></i>{{ $p->category->name }}</p> --}}
+                                    <p><i class="bi bi-bookmarks-fill"></i>{{ $p->category->name }}</p>
                                 </div>
                                 <h4 class="mt-3"> Rp.{{ number_format($p->harga, 0, ',', '.') }}</h4>
                             </div>
