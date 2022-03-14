@@ -25,14 +25,16 @@
                     <div class="desc col-lg-5 ms-lg-5" style="margin-top: 150px">
                         <h2>{{ $produk->nama }}</h2>
                         <p><i class="bi bi-bookmarks-fill"></i> Kategori : {{ $produk->category->name }}</p>
+                        <p><i class="bi bi-speedometer"></i> Berat : 34 gr</p>
                         <h3>Rp.{{number_format($produk->harga, 0, "," , ".")}}</h3>
                         <div class="garis-detail mb-4"></div>
                         <p>Deskripsi : {{ $produk->keterangan }}</p>
                         <div class="quantity buttons_added mb-4">
                             <input type="hidden" id='regeh' value="{{ $produk->harga }}">
                             <input type="button" value="-" class="minus"><input required id="quan" type="number"
-                                step="1" min="1" max="100" name="quantity" value="1" title="Qty"
-                                class="input-text qty text" size="4"><input type="button" value="+" class="plus">
+                            onchange="calc()" step="1" min="1" max="" name="quantity" value="1" title="Qty"
+                            class="input-text qty text" size="4"><input type="button" value="+" class="plus">
+                                
                         </div>
                         @if (Auth::check())
                         <div class="d-flex">
@@ -135,6 +137,12 @@
             let result = parseInt(price) * parseInt(qty);
             $("#output").text("Rp. " + number_format(result, 2));
         });
+        function calc() {
+                let price = $('#regeh').val();
+                let qty = $('#quan').val();
+                let result = parseInt(price) * parseInt(qty);
+                $("#output").text("Rp. " + number_format(result, 2));
+            }
     </script>
     {{-- 
     <div class="form-order">

@@ -99,18 +99,18 @@
 
                 @else
                 <div class="dropdown">
-                    <button class="btn btn-login" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
+                    <button class="btn btn-login" type="button"  data-bs-toggle="modal"
+                        aria-haspopup="true" aria-expanded="false" data-bs-target="#login">
                         Sign-in <i class="bi bi-box-arrow-in-right"></i>
                     </button>
-                    <ul class="dropdown-menu bg-secondary" style="font-family: PT Serif"
+                    {{-- <ul class="dropdown-menu bg-secondary" style="font-family: PT Serif"
                         aria-labelledby="dropdownMenuButton1">
                         <li><a class="dropdown-item text-light" href="#" data-bs-toggle="modal"
                                 data-bs-target="#login">Masuk</a>
                         </li>
                         <li><a class="dropdown-item text-light" href="#" data-bs-toggle="modal"
                                 data-bs-target="#login">Daftar</a></li>
-                    </ul>
+                    </ul> --}}
                 </div>
                 @endif
             </div>
@@ -126,7 +126,7 @@
             <div class="signup">
                 <form role="form" method="POST" action="/register">
                     @csrf
-                    <button type="button" class="btn-close mt-3 ms-3" data-bs-dismiss="modal"
+                    <button type="button" class="btn-close mt-3 ms-3 bg-light" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                     <label style="margin-block: -2px" class="label" for="chk" aria-hidden="true">Daftar</label>
                     <input placeholder="Nama" type="text" class="input input-lg" name="name" value="">
@@ -148,6 +148,9 @@
                 <form id="handleAjax" name="postForm" role="form" method="POST" action="/login">
                     @csrf
                     <label class="label" for="chk" aria-hidden="true">Login</label>
+                    <div class="justify-content-center text-center">
+                        <img src="/images/logo1.png" width="250" alt="">
+                    </div>
                     <input required placeholder="E-mail" type="email"
                         class="input @error('email') is-invalid @enderror input-lg" name="email">
                     @error('email')
@@ -170,71 +173,6 @@
 </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<!-- Modal Login -->
-<div id="register" class="modal fade">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title">Daftar Akun</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form role="form" method="POST" action="/register">
-                    @csrf
-                    <div class="form-group">
-                        <label class="control-label">Nama</label>
-                        <div>
-                            <input type="text" class="form-control input-lg" name="name" value="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">E-Mail Address</label>
-                        <div>
-                            <input type="email" class="form-control @error('email') is invalid @enderror input-lg"
-                                name="email" value="">
-                            @error('email')
-                            <div id="" class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Nomor HP</label>
-                        <div>
-                            <input type="number" class="form-control input-lg" name="no_hp" value="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Alamat</label>
-                        <div>
-                            <input type="text" class="form-control input-lg" name="alamat" value="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Password</label>
-                        <div>
-                            <input type="password" class="form-control input-lg" id="psw" name="psw"
-                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Periksa Password Anda" required>
-                        </div>
-                    </div>
-                    <input type="hidden" name="roles" value="user">
-                    <div class="form-group mt-2">
-                        <div>
-                            <button type="submit" class="btn btn-success">Daftar</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div id="message">
-                <p id="letter" class="invalid"><b>Huruf kecil</b> </p>
-                <p id="capital" class="invalid"><b>Huruf Kapital</b> letter</p>
-                <p id="number" class="invalid"><b>Angka</b></p>
-                <p id="length" class="invalid">Minimal <b>8 karakter</b></p>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
 
 <script>
     var myInput = document.getElementById("psw");
