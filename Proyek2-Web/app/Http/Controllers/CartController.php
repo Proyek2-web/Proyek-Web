@@ -22,15 +22,22 @@ class CartController extends Controller
             ->join('categories', 'products.category_id', '=', 'categories.id')
             ->where('carts.user_id', '=', Auth::user() == null ? '' : Auth::user()->id)
             ->where('carts.status', '=', 'pending')
-            ->select('carts.id as id', 'carts.qty as qty', 'products.id as product_id', 'products.nama as nama',
-             'products.featured_image as featured_image', 'products.harga as harga', 'categories.name as category_name')
+            ->select(
+                'carts.id as id',
+                'carts.qty as qty',
+                'products.id as product_id',
+                'products.nama as nama',
+                'products.featured_image as featured_image',
+                'products.harga as harga',
+                'categories.name as category_name'
+            )
             ->get();
-            $cart_count = Cart::all()->where('user_id', '=', Auth::user() == null ? '' : Auth::user()->id)->where('status', '=', 'pending')->count();
-            $sub_total=0;
-            foreach ($data as $d) {
-                    $sub_total += $d->qty * $d->harga;
-            }
-        return view('user.cart',compact('data','cart_count','sub_total'));
+        $cart_count = Cart::all()->where('user_id', '=', Auth::user() == null ? '' : Auth::user()->id)->where('status', '=', 'pending')->count();
+        $sub_total = 0;
+        foreach ($data as $d) {
+            $sub_total += $d->qty * $d->harga;
+        }
+        return view('user.cart', compact('data', 'cart_count', 'sub_total'));
     }
 
     /**
@@ -103,8 +110,16 @@ class CartController extends Controller
      */
     public function destroy(Cart $cart)
     {
-        
+
         Cart::destroy($cart->id);
+        $cart_count = Cart::all()
+            ->where('user_id', '=', Auth::user() == null ? '' : Auth::user()->id)
+            ->where('status', '=', 'pending')
+            ->count();
+        if($cart_count < 1){
+            Alert::error('Keranjang Kosong');
+            return redirect('/produk');
+        }
         return redirect()->back();
     }
 }
