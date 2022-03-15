@@ -24,6 +24,7 @@
         left: -35px;
         content: "✖";
     }
+
 </style>
 <nav id="navbar" class="navbar navbar-expand-lg navbar-dark shadow-lg position-fixed w-100 " style="z-index: 99">
     <div class="container">
@@ -38,10 +39,12 @@
                     <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('produk') ? 'active' : '' }}" href="/produk">Katalog Produk</a>
+                    <a class="nav-link {{ request()->is('produk') ? 'active' : '' }}" href="/produk">Katalog
+                        Produk</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('about') ? 'active' : '' }}" href="/about">Profil Perusahaan</a>
+                    <a class="nav-link {{ request()->is('about') ? 'active' : '' }}" href="/about">Profil
+                        Perusahaan</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ request()->is('contact') ? 'active' : '' }}" href="/contact">Kontak</a>
@@ -50,60 +53,76 @@
 
             <div class="sign-user">
                 @if (Auth::check())
-                <div class="d-flex">
-                    <div>
-                        <a href="{{route('cart.index')}}" class="btn btn-keranjang2 me-3"><i
-                                class="bi bi-cart-check-fill fa-lg"></i>
-                            <span>Keranjang <span id="cart-qty" class="cart-quantity">
-                                    @php
-                                    $cart_count = \App\Models\Cart::all()->where('user_id', '=', Auth::user() == null ?
-                                    '' : Auth::user()->id)->where('status', '=', 'pending')->count();
-                                    @endphp
-                                    <span class="badge">{{ $cart_count }}</span></a>
-                        </a>
-                        {{-- <a href="{{route('cart.index')}}"><i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                        <span>Keranjang <span id="cart-qty" class="cart-quantity">
-                                @php
-                                $cart_count = \App\Models\Cart::all()->where('user_id', '=', Auth::user() == null ? '' :
-                                Auth::user()->id)->where('status', '=', 'pending')->count();
-                                @endphp
-                                {{ $cart_count }}
-                            </span></span></a> --}}
-                    </div>
-                    <div class="dropdown user">
-                        <button class="btn btn-login dropdown-toggle" type="button" id="dropdownMenuButton1"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="bi bi-person-circle"></i> {{ auth()->user()->name }}
-                        </button>
-                        <ul class="dropdown-menu bg-secondary" style="font-family: PT Serif"
-                            aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item text-light" href="#"><i class="bi bi-person-circle me-3"></i>
-                                    Profile</a></li>
-                            <li class="mb-2"><a class="dropdown-item text-light" href="#"><i
-                                        class="bi bi-credit-card me-3"></i> Transaksi</a></li>
-                            <li class="text-center">
-                                <form action="/logout" method="POST">
-                                    @csrf
-                                    <a href="#">
-                                        <button type="submit" class="btn btn-login "><i
-                                                class="bi bi-box-arrow-left"></i> Keluar</button>
-                                    </a>
-                                </form>
-                            </li>
-                        </ul>
-                        <!-- Modal -->
-                    </div>
+                    <div class="d-flex">
+                        <div>
+                            @php
+                                $cart_count = \App\Models\Cart::all()
+                                    ->where('user_id', '=', Auth::user() == null ? '' : Auth::user()->id)
+                                    ->where('status', '=', 'pending')
+                                    ->count();
+                            @endphp
+                            @if ($cart_count < 1)
+                                <a href="#" class="btn btn-keranjang2 me-3"><i
+                                        class="bi bi-cart-check-fill fa-lg"></i>
+                                    <span>Keranjang <span id="cart-qty" class="cart-quantity">
+                                            @php
+                                                $cart_count = \App\Models\Cart::all()
+                                                    ->where('user_id', '=', Auth::user() == null ? '' : Auth::user()->id)
+                                                    ->where('status', '=', 'pending')
+                                                    ->count();
+                                            @endphp
+                                            <span class="badge">{{ $cart_count }}</span></a>
+                                </a>
+                            @else
+                                <a href="{{ route('cart.index') }}" class="btn btn-keranjang2 me-3"><i
+                                        class="bi bi-cart-check-fill fa-lg"></i>
+                                    <span>Keranjang <span id="cart-qty" class="cart-quantity">
+                                            @php
+                                                $cart_count = \App\Models\Cart::all()
+                                                    ->where('user_id', '=', Auth::user() == null ? '' : Auth::user()->id)
+                                                    ->where('status', '=', 'pending')
+                                                    ->count();
+                                            @endphp
+                                            <span class="badge">{{ $cart_count }}</span></a>
+                                </a>
+                            @endif
 
-                </div>
+                        </div>
+                        <div class="dropdown user">
+                            <button class="btn btn-login dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="bi bi-person-circle"></i> {{ auth()->user()->name }}
+                            </button>
+                            <ul class="dropdown-menu bg-secondary" style="font-family: PT Serif"
+                                aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item text-light" href="#"><i
+                                            class="bi bi-person-circle me-3"></i>
+                                        Profile</a></li>
+                                <li class="mb-2"><a class="dropdown-item text-light" href="#"><i
+                                            class="bi bi-credit-card me-3"></i> Transaksi</a></li>
+                                <li class="text-center">
+                                    <form action="/logout" method="POST">
+                                        @csrf
+                                        <a href="#">
+                                            <button type="submit" class="btn btn-login "><i
+                                                    class="bi bi-box-arrow-left"></i> Keluar</button>
+                                        </a>
+                                    </form>
+                                </li>
+                            </ul>
+                            <!-- Modal -->
+                        </div>
+
+                    </div>
 
 
                 @else
-                <div class="dropdown">
-                    <button class="btn btn-login" type="button"  data-bs-toggle="modal"
-                        aria-haspopup="true" aria-expanded="false" data-bs-target="#login">
-                        Sign-in <i class="bi bi-box-arrow-in-right"></i>
-                    </button>
-                    {{-- <ul class="dropdown-menu bg-secondary" style="font-family: PT Serif"
+                    <div class="dropdown">
+                        <button class="btn btn-login" type="button" data-bs-toggle="modal" aria-haspopup="true"
+                            aria-expanded="false" data-bs-target="#login">
+                            Sign-in <i class="bi bi-box-arrow-in-right"></i>
+                        </button>
+                        {{-- <ul class="dropdown-menu bg-secondary" style="font-family: PT Serif"
                         aria-labelledby="dropdownMenuButton1">
                         <li><a class="dropdown-item text-light" href="#" data-bs-toggle="modal"
                                 data-bs-target="#login">Masuk</a>
@@ -111,7 +130,7 @@
                         <li><a class="dropdown-item text-light" href="#" data-bs-toggle="modal"
                                 data-bs-target="#login">Daftar</a></li>
                     </ul> --}}
-                </div>
+                    </div>
                 @endif
             </div>
         </div>
@@ -130,16 +149,18 @@
                         aria-label="Close"></button>
                     <label style="margin-block: -2px" class="label" for="chk" aria-hidden="true">Daftar</label>
                     <input placeholder="Nama" type="text" class="input input-lg" name="name" value="">
-                    <input placeholder="E-mail" type="email" class="input @error('email') is invalid @enderror input-lg" name="email"
-                        value="">
+                    <input placeholder="E-mail" type="email" class="input @error('email') is invalid @enderror input-lg"
+                        name="email" value="">
                     @error('email')
-                    <div id="" class="invalid-feedback">
-                        {{ $message }}
-                    </div>
+                        <div id="" class="invalid-feedback">
+                            {{ $message }}
+                        </div>
                     @enderror
                     <input placeholder="No.Handphone" type="number" class="input input-lg" name="no_hp" value="">
                     <input placeholder="Alamat" type="text" class="input input-lg" name="alamat" value="">
-                    <input placeholder="Password" type="password" class="input input-lg" id="psw" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Minimal 8 karakter Dan Minimal 1 huruf kapital" required>
+                    <input placeholder="Password" type="password" class="input input-lg" id="psw" name="psw"
+                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                        title="Minimal 8 karakter Dan Minimal 1 huruf kapital" required>
                     <input type="hidden" name="roles" value="user">
                     <button type="submit" class="btn-modal">Daftar <i class="bi bi-person-plus-fill"></i></button>
                 </form>
@@ -154,23 +175,23 @@
                     <input required placeholder="E-mail" type="email"
                         class="input @error('email') is-invalid @enderror input-lg" name="email">
                     @error('email')
-                    <div id="" class="invalid-feedback">
-                        {{ $message }}
-                    </div>
+                        <div id="" class="invalid-feedback">
+                            {{ $message }}
+                        </div>
                     @enderror
                     <input required placeholder="Password" type="password"
                         class="input @error('password') is-invalid @enderror input-lg" name="password">
                     @error('password')
-                    <div id="" class="invalid-feedback">
-                        {{ $message }}
-                    </div>
+                        <div id="" class="invalid-feedback">
+                            {{ $message }}
+                        </div>
                     @enderror
                     <button class="btn-modal" type="submit">Masuk <i class="bi bi-box-arrow-in-right"></i></button>
                 </form>
             </div>
-           
-</div><!-- /.modal-content -->
-</div><!-- /.modal-dialog -->
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
 
@@ -182,17 +203,17 @@
     var length = document.getElementById("length");
 
     // When the user clicks on the password field, show the message box
-    myInput.onfocus = function () {
+    myInput.onfocus = function() {
         document.getElementById("message").style.display = "block";
     }
 
     // When the user clicks outside of the password field, hide the message box
-    myInput.onblur = function () {
+    myInput.onblur = function() {
         document.getElementById("message").style.display = "none";
     }
 
     // When the user starts to type something inside the password field
-    myInput.onkeyup = function () {
+    myInput.onkeyup = function() {
         // Validate lowercase letters
         var lowerCaseLetters = /[a-z]/g;
         if (myInput.value.match(lowerCaseLetters)) {
@@ -232,6 +253,7 @@
             length.classList.add("invalid");
         }
     }
+
 </script>
 {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
