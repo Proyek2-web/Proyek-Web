@@ -40,7 +40,7 @@
             @foreach ($produk as $p)
             @if ($p->category_id === 1)
             <form action="/produk/termahal" method="GET" enctype="multipart/form-data">
-                <input type="hidden" name="status" value="mahal">
+                <input type="hidden" name="cat_id" value="{{ $p->category_id }}">
                 <button type="submit" class="btn btn-mahal">
                     Harga Termahal <i class="bi bi-sort-up"></i>
                 </button>
@@ -55,7 +55,7 @@
             @break
             @elseif ($p->category_id === 2)
             <form action="/produk/termahal" method="GET" enctype="multipart/form-data">
-                <input type="hidden" name="status" value="mahal">
+                <input type="hidden" name="cat_id" value="{{ $p->category_id }}">
                 <button type="submit" class="btn btn-mahal">
                     Harga Termahal <i class="bi bi-sort-up"></i>
                 </button>
@@ -70,7 +70,7 @@
             @elseif ($p->category_id === 3)
             <form action="/produk/termahal" method="GET" enctype="multipart/form-data">
 
-                <input type="hidden" name="status" value="mahal">
+                <input type="hidden" name="cat_id" value="{{ $p->category_id }}">
                 <button type="submit" class="btn btn-mahal">
                     Harga Termahal <i class="bi bi-sort-up"></i>
                 </button>
@@ -86,7 +86,7 @@
             @elseif ($p->category_id === 4)
             <form action="/produk/termahal" method="GET" enctype="multipart/form-data">
 
-                <input type="hidden" name="status" value="mahal">
+                <input type="hidden" name="cat_id" value="{{ $p->category_id }}">
                 <button type="submit" class="btn btn-mahal">
                     Harga Termahal <i class="bi bi-sort-up"></i>
                 </button>
@@ -101,18 +101,18 @@
             @endif
             @endforeach
             @else
-            <form action="/produk/termurah" method="GET" enctype="multipart/form-data">
-                    <input type="hidden" name="status" value="murah">
-                    <button type="submit" class="btn btn-murah ">
-                        Harga Termurah <i class="bi bi-sort-down-alt"></i>
-                    </button>
-            </form>
             <form action="/produk/termahal" method="GET" enctype="multipart/form-data">
                     <input type="hidden" name="status" value="mahal">
                     <button type="submit" class="btn btn-mahal">
                         Harga Termahal <i class="bi bi-sort-up"></i>
                     </button>
             </form>
+            <form action="/produk/termurah" method="GET" enctype="multipart/form-data">
+                <input type="hidden" name="status" value="murah">
+                <button type="submit" class="btn btn-murah ">
+                    Harga Termurah <i class="bi bi-sort-down-alt"></i>
+                </button>
+        </form>
             @endif
         </div>
 
