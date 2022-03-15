@@ -44,6 +44,7 @@ class DatabaseSeeder extends Seeder
             'category_id' => '2',
             'slug' => 'guci-kinasih',
             'harga' => '30000',
+            'berat' => '500',
             'keterangan' => 'Guci Besar',
             'featured_image' => 'imgaaa.jpg',
         ]);
@@ -52,6 +53,7 @@ class DatabaseSeeder extends Seeder
             'category_id' => '2',
             'slug' => 'guci-bagus',
             'harga' => '30000',
+            'berat' => '400',
             'keterangan' => 'Guci Bagus',
             'featured_image' => 'imgaaa.jpg',
         ]);
@@ -60,6 +62,7 @@ class DatabaseSeeder extends Seeder
             'category_id' => '3',
             'slug' => 'aksesoris',
             'harga' => '30000',
+            'berat' => '300',
             'keterangan' => 'Aksesors',
             'featured_image' => 'imgaaa.jpg',
         ]);
@@ -68,6 +71,7 @@ class DatabaseSeeder extends Seeder
             'category_id' => '3',
             'slug' => 'aksesoris-bagus',
             'harga' => '30000',
+            'berat' => '500',
             'keterangan' => 'Aksesors',
             'featured_image' => 'imgaaa.jpg',
         ]);
@@ -77,6 +81,7 @@ class DatabaseSeeder extends Seeder
             'category_id' => '1',
             'slug' => 'gelas-hias-kinasih',
             'harga' => '20000',
+            'berat' => '700',
             'keterangan' => 'Gelas Kecil',
             'featured_image' => 'img.jpg',
         ]);
@@ -84,7 +89,35 @@ class DatabaseSeeder extends Seeder
             'nama' => 'Gelas Ukir Kinasih ',
             'category_id' => '1',
             'slug' => 'gelas-ukir-kinasih',
+            'berat' => '600',
             'harga' => '40000',
+            'keterangan' => 'Gelas Ukir',
+            'featured_image' => 'img.jpg',
+        ]);
+        Product::create([
+            'nama' => 'Gelas Uhuy ',
+            'category_id' => '1',
+            'slug' => 'gelas-uhuy-kinasih',
+            'berat' => '600',
+            'harga' => '70000',
+            'keterangan' => 'Gelas Uhuy',
+            'featured_image' => 'img.jpg',
+        ]);
+        Product::create([
+            'nama' => 'Gelas Cihuy ',
+            'category_id' => '1',
+            'slug' => 'gelas-cihuy-kinasih',
+            'berat' => '600',
+            'harga' => '90000',
+            'keterangan' => 'Gelas Cihuy',
+            'featured_image' => 'img.jpg',
+        ]);
+        Product::create([
+            'nama' => 'Guci Ayy ',
+            'category_id' => '2',
+            'slug' => 'gucu-ukir-kinasih',
+            'berat' => '600',
+            'harga' => '90000',
             'keterangan' => 'Gelas Ukir',
             'featured_image' => 'img.jpg',
         ]);
@@ -110,6 +143,13 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name' => 'Oni',
             'email' => 'oni@gmail.com',
+            'roles' => 'user',
+            'no_hp' => '089221231889', 
+            'password' => Hash::make('kinasih123'),
+        ]);
+        User::create([
+            'name' => 'Syalwa',
+            'email' => 'syalwa@gmail.com',
             'roles' => 'user',
             'no_hp' => '089221231889', 
             'password' => Hash::make('kinasih123'),

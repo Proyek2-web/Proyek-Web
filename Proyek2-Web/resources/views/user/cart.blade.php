@@ -60,7 +60,6 @@
                 </div>
             </div>
         </div>
-        @if ($cart_count)
         <div class="row">
             <div class="col-lg-12 mt-3">
                 <div class="total text-center">
@@ -73,21 +72,6 @@
                 </div>
             </div>
         </div>
-        @else
-        <div class="row">
-            <div class="col-lg-12 mt-3">
-                <div class="total text-center">
-                    <form action="{{ route('checkout.index') }}" method="GET" enctype="multipart/form-data">
-                        <input type="hidden" name="sub_total" value="{{ $sub_total }}">
-                        <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
-                        <button disabled type="submit" class="btn btn-conf">Konfirmasi <i
-                                class="bi bi-check-circle-fill"></i></button>
-                    </form>
-                </div>
-            </div>
-        </div>
-        @endif
-        
     </div>
 </section>
 <script type="text/javascript">

@@ -33,7 +33,7 @@ class TripayController extends Controller
         return $response ? $response : $err;
     }
 
-    public function requestTransaction($method, $orders)
+    public function requestTransaction($method, $orders, $total_ongkir, $sub_total)
     {
 
         $apiKey = config('tripay.api_key');
@@ -43,31 +43,28 @@ class TripayController extends Controller
         // $total = ($orders->qty * $orders->product->harga)+$orders->delivery->harga;
         // $total->save();
         
-        $total = $orders->quantity * $orders->product->harga;
-        $delivery = $orders->delivery->harga;
-        $amount = $total + $delivery;
-
+        $total = $orders->amount;
         $data = [
             'method'            => $method,
             'merchant_ref'      => $merchantRef,
-            'amount'            => $amount,
+            'amount'            => $total,
             'customer_name'     => $orders->nama,
             'customer_email'    => $orders->email,
             'customer_phone'    => $orders->phone_number,
             'order_items'       => [
                 [
-                    'name'      => $orders->product->nama,
-                    'price'     => $orders->product->harga,
-                    'quantity'  => $orders->quantity,
+                    'name'      => $orders->nama,
+                    'price'     => $sub_total,
+                    'quantity'  => 1,
                 ],
                 [
-                    'name'      => $orders->delivery->nama,
-                    'price'     => $orders->delivery->harga,
+                    'name'      => $orders->nama,
+                    'price'     => $total_ongkir,
                     'quantity'  => 1,
                 ],
             ],
             'expired_time'      => (time() + (24 * 60 * 60)), // 24 jam
-            'signature'         => hash_hmac('sha256', $merchantCode . $merchantRef . $amount, $privateKey)
+            'signature'         => hash_hmac('sha256', $merchantCode . $merchantRef . $total, $privateKey)
         ];
         // dd($data);
 

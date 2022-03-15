@@ -25,7 +25,7 @@
                     <div class="desc col-lg-5 ms-lg-5" style="margin-top: 150px">
                         <h2>{{ $produk->nama }}</h2>
                         <p><i class="bi bi-bookmarks-fill"></i> Kategori : {{ $produk->category->name }}</p>
-                        <p><i class="bi bi-speedometer"></i> Berat : 34 gr</p>
+                        <p><i class="bi bi-speedometer"></i> Berat : {{ $produk->berat }} gram</p>
                         <h3>Rp.{{number_format($produk->harga, 0, "," , ".")}}</h3>
                         <div class="garis-detail mb-4"></div>
                         <p>Deskripsi : {{ $produk->keterangan }}</p>

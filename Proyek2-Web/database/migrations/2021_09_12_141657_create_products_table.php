@@ -18,6 +18,7 @@ class CreateProductsTable extends Migration
             $table->string('nama');
             $table->foreignId('category_id');
             $table->string('slug');
+            $table->integer('berat')->nullable();
             $table->integer('harga');
             $table->text('keterangan');
             $table->string('featured_image');

@@ -20,11 +20,11 @@
                     <p class="text-center">Total Tagihan</p>
                 </div>
                 <div class="col-md-6">
-                    @foreach ($detail->order_items as $i)
+                    {{-- @foreach ($detail->order_items as $i)
                     <p class="text-center">Rp.{{ number_format($i->price) }} | {{  $i->quantity}}x</p>
-                    @endforeach
+                    @endforeach --}}
                     <p class="text-center">Rp. {{ number_format($detail->amount) }}</p>
-                </div>
+                </div> 
                 <div class="col-md-4 mx-auto">
                     <div class="alert alert-danger d-flex align-items-center" role="alert" style="padding-inline: 30%">
                         <i class="bi bi-exclamation-circle-fill me-2 "></i>

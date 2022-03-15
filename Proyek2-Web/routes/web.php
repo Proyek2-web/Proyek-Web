@@ -50,7 +50,7 @@ Route::get('/form-order', function () {
     return view('layouts.form-order');
 });
 
-Route::post('/transaksi-post', [OrderCustController::class, 'store']);
+Route::resource('/checkout-post',OrderCustController::class);
 Route::post('/callback', [CallbackController::class, 'handle']);
 
 //--------------------------------------------HALAMAN ADMIN--------------------------------------------

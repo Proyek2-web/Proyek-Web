@@ -25,7 +25,7 @@ class OrderCustController extends Controller
     public function store(Request $request)
 
     {
-        // dd($request->all());
+        dd($request->all());
         $s=Order::create($request->all());
         $simpan= Order::find($s->id);
         $tripay = new TripayController();

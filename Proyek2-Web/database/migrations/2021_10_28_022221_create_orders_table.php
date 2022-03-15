@@ -20,8 +20,8 @@ class CreateOrdersTable extends Migration
             $table->string('custom')->nullable();
             $table->string('email')->nullable();
             $table->string('resi')->nullable();
-            $table->string('kabupaten_kota')->nullable();
-            $table->string('provinsi')->nullable();
+            $table->foreignId('city_id')->nullable();
+            $table->foreignId('province_id')->nullable();
             $table->string('alamat')->nullable();
             $table->string('zip_code')->nullable();
             $table->string('reference')->nullable();
