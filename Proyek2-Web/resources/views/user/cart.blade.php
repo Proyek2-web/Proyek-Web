@@ -11,63 +11,89 @@
             <div class="col-md-12 mt-5">
                 <table class="table text-center" style="vertical-align: middle; font-family: PT Serif">
                     <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Gambar</th>
-                        <th scope="col">Nama</th>
-                        <th scope="col">Harga</th>
-                        <th scope="col">Jumlah</th>
-                        <th scope="col">Total</th>
-                        <th scope="col"></th>
-                      </tr>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Gambar</th>
+                            <th scope="col">Nama</th>
+                            <th scope="col">Harga</th>
+                            <th scope="col">Jumlah</th>
+                            <th scope="col">Total</th>
+                            <th scope="col"></th>
+                        </tr>
                     </thead>
                     <tbody>
-                        @foreach ($data as $d)     
+                        @forelse ($data as $d)
                         <tr>
-                          <th scope="row" >{{ $loop->iteration }}</th>
-                          <td ><a href="#"><img src="{{url($d->featured_image)}}" width="150" alt="Product"></a></td>
-                          <td >{{ $d->nama }}</td>
-                          <td>Rp {{number_format($d->harga, 2)}} / pcs </td>
-                          <td>{{ $d->qty }}x</td>
-                          <td>Rp {{ number_format($d->harga * $d->qty, 2)}}</td>
-                          <td>
-                            <form action="{{route('cart.destroy', $d->id)}}" method="POST"
-                                enctype="multipart/form-data">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-danger"><i class="bi bi-x-lg"></i></button>
-                            </form></td>
+                            <th scope="row">{{ $loop->iteration }}</th>
+                            <td><img src="{{ asset('/storage/' . $d->featured_image) }}" alt="Product" width="150"
+                                    class="img-fluid"></td>
+                            <td>{{ $d->nama }}</td>
+                            <td>Rp {{number_format($d->harga, 2)}} / pcs </td>
+                            <td>{{ $d->qty }}x</td>
+                            <td>Rp {{ number_format($d->harga * $d->qty, 2)}}</td>
+                            <td>
+                                <form action="{{route('cart.destroy', $d->id)}}" method="POST"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger"><i class="bi bi-x-lg"></i></button>
+                                </form>
+                            </td>
                         </tr>
-                        @endforeach
+                        @empty
+                        <tr>
+                            <td colspan="9" class=" px-4 py-2 text-center">
+                                <h1 style="color: rgb(226, 226, 226); text-align: center">KERANJANG KOSONG</h1>
+                            </td>
+                        </tr>
+                        @endforelse
                     </tbody>
-                  </table>
+                </table>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-12 mt-5">
                 <div class="total text-center" style="font-family: PT Serif">
-                    <h3 style="font-weight: bold">Harga Total : <span id="blink">Rp. {{number_format($sub_total, 2)}}</span> </h3>
+                    <h3 style="font-weight: bold">Harga Total : <span id="blink">Rp.
+                            {{number_format($sub_total, 2)}}</span> </h3>
                     <p>Belum termasuk ongkos kirim</p>
                 </div>
             </div>
         </div>
+        @if ($cart_count)
         <div class="row">
             <div class="col-lg-12 mt-3">
                 <div class="total text-center">
                     <form action="{{ route('checkout.index') }}" method="GET" enctype="multipart/form-data">
                         <input type="hidden" name="sub_total" value="{{ $sub_total }}">
-                        <input type="hidden" name="user_id" value="{{ auth()->user()->id }}" >
-                        <button type="submit" class="btn btn-conf">Konfirmasi <i class="bi bi-check-circle-fill"></i></button>
+                        <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                        <button  type="submit" class="btn btn-conf">Konfirmasi <i
+                                class="bi bi-check-circle-fill"></i></button>
                     </form>
                 </div>
             </div>
         </div>
+        @else
+        <div class="row">
+            <div class="col-lg-12 mt-3">
+                <div class="total text-center">
+                    <form action="{{ route('checkout.index') }}" method="GET" enctype="multipart/form-data">
+                        <input type="hidden" name="sub_total" value="{{ $sub_total }}">
+                        <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                        <button disabled type="submit" class="btn btn-conf">Konfirmasi <i
+                                class="bi bi-check-circle-fill"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        @endif
+        
     </div>
 </section>
 <script type="text/javascript">
     var blink = document.getElementById('blink');
-    setInterval(function() {
-      blink.style.opacity = (blink.style.opacity == 0 ? 1 : 0);
+    setInterval(function () {
+        blink.style.opacity = (blink.style.opacity == 0 ? 1 : 0);
     }, 800);
-  </script>
+</script>
 @endsection
