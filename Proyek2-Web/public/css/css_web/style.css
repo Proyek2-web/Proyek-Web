@@ -1222,12 +1222,153 @@ button.modal:hover {
 }
 
 .total .wrap {
-    margin-inline: 250px;
+    /* margin-inline: 300px; */
     padding: 30px;
     margin-bottom: 90px;
+    background-color: #252535;
     box-shadow: rgba(41, 40, 112, 0.35) 0px 5px 15px;
 }
 
+.info {
+    line-height: 39px
+}
+
+.name {
+    color: #4c40e0;
+    font-size: 30px;
+    font-weight: bold
+}
+
+.order {
+    font-size: 14px;
+    font-weight: 400;
+    color: #b7b5b5
+}
+
+.detail {
+    line-height: 19px
+}
+
+.summery {
+    color: #d2cfcf;
+    font-weight: 400;
+    font-size: 13px
+}
+
+
+.text {
+    line-height: 15px
+}
+
+.new {
+    color: #000;
+    font-size: 14px;
+    font-weight: 600
+}
+
+.money {
+    font-size: 14px;
+    font-weight: 500
+}
+
+.address {
+    color: #d2cfcf;
+    font-weight: 500;
+    font-size: 14px
+}
+
+.last {
+    font-size: 10px;
+    font-weight: 500
+}
+
+.address-line {
+    color: #4C40E0;
+    font-size: 11px;
+    font-weight: 700
+}
+
+.accordion-item{
+    background-color: #000000;
+    border-radius: .4rem;
+  }
+  
+  .accordion-item hr{
+    border: 1px solid rgba(255, 255, 255, 0.5);
+  }
+  
+  .accordion-link{
+    font-size: 1.6rem;
+    color: rgba(255,255,255,.8);
+    text-decoration: none;
+    background-color: #000000;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+  }
+  
+  .accordion-link h3{
+    font-weight:500;
+    font-size: 20px;
+  }
+  
+  .accordion-link i{
+    color: #e7d5ff;
+    padding: .5rem;
+    
+  }
+  
+  .accordion-link ul{
+    display:flex;
+    align-items: flex-end;
+    list-style-type: none;
+    margin-left: 25px;
+  }
+  
+  .accordion-link li{
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.4);
+    padding: 0 0 1px 5px;
+  }
+  
+  .accordion-link div{
+    display: flex;
+  }
+  
+  .accordion-link .ion-md-arrow-down{
+    display: none;
+  }
+  
+  .answer{
+    max-height: 0;
+    overflow: hidden;
+    position: relative;
+    background-color: #000;
+    transition: max-height 650ms;
+  }
+  
+  
+  
+  .answer p{
+    color: #fff;
+    font-size: 15px;
+    padding: 2rem;
+    
+  }
+  
+  .accordion-item:target .answer{
+    max-height: 20rem;
+  }
+  
+  .accordion-item:target .accordion-link .ion-md-arrow-forward{
+    display: none
+  }
+  
+  .accordion-item:target .accordion-link .ion-md-arrow-down{
+    display: block;
+  }
 /* logo wa */
 .float-wa {
     position: fixed;
@@ -1269,6 +1410,9 @@ button.modal:hover {
     font-weight: bold;
     font-family: PT Serif;
     color: #4a8d52;
+    transition: 0.3s;
+}
+#blink2 {
     transition: 0.3s;
 }
 
