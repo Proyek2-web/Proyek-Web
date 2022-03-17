@@ -7,43 +7,50 @@
             <div class="title col-lg-12 mx-auto mt-5">
                 <h1>Riwayat Transaksi</h1>
             </div>
-            <form action="#" method="GET" enctype="multipart/form-data">
-                <input type="hidden" name="paid" value="">
+            <form action="{{ route('transaction.index') }}" method="GET" enctype="multipart/form-data">
                 <button type="submit" class="btn btn-mahal">
                     Belum Dibayar <i class="bi bi-sort-up"></i>
                 </button>
             </form>
-            <form action="#" method="GET" enctype="multipart/form-data">
-                <input type="hidden" name="unpaid">
+            <form action="{{ route('transaction.index') }}" method="GET" enctype="multipart/form-data">
+                <input type="hidden" name="paid" value="paid">
                 <button type="submit" class="btn btn-murah ">
-                   Sudah Dibayar <i class="bi bi-sort-down-alt"></i>
+                    Sudah Dibayar <i class="bi bi-sort-down-alt"></i>
                 </button>
             </form>
-            <form action="#" method="GET" enctype="multipart/form-data">
+            <form action="{{ route('transaction.index') }}" method="GET" enctype="multipart/form-data">
 
-                <input type="hidden" name="unpaid">
+                <input type="hidden" name="send" value="send">
                 <button type="submit" class="btn btn-murah ">
-                   Dikirim <i class="bi bi-sort-down-alt"></i>
+                    Dikirim <i class="bi bi-sort-down-alt"></i>
                 </button>
             </form>
-            <form action="#" method="GET" enctype="multipart/form-data">
+            <form action="{{ route('transaction.index') }}" method="GET" enctype="multipart/form-data">
 
-                <input type="hidden" name="unpaid">
+                <input type="hidden" name="receive" value="receive">
                 <button type="submit" class="btn btn-murah ">
-                   Diterima <i class="bi bi-sort-down-alt"></i>
+                    Diterima <i class="bi bi-sort-down-alt"></i>
                 </button>
             </form>
             <div class="row">
                 @foreach ($order as $o)
-                    <a href="{{ route('transaction.show',$o->id)}}" style="text-decoration: none;color: black;">
-                        <div class="col-md-12 mt-5">
-                            <div class="card text-start">
-                                <div class="card-header">
-                                    {{ $o->merchant_ref }} {{ date('j \\ F Y', strtotime($o->created_at)) }}
+                    <form action="{{ route('transaction.show', $o->id) }}" method="GET">
+                        @if ($status)
+                            <input type="hidden" name="status" value="1">
+                        @endif
+                        <a style="text-decoration: none;color: black;">
+                            <div class="col-md-12 mt-5">
+                                <div class="card text-start">
+                                    <div class="card-header">
+                                        {{ $o->merchant_ref }} {{ date('j \\ F Y', strtotime($o->created_at)) }}
+                                        <button class="btn btn-primary" type="submit">Lihat</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
+
+                        </a>
+                    </form>
+
                 @endforeach
             </div>
 

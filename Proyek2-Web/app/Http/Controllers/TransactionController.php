@@ -17,8 +17,20 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $order = Order::all();
-        return view('user.transaction',compact('order'));
+        $status = false;
+        $order = Order::all()->where('status', 'UNPAID')->where('user_id', Auth::user()->id);
+        if (request('paid')) {
+            $order = Order::all()->where('status', 'PAID')->where('user_id', Auth::user()->id)->where('resi', null);
+        } else if (request('send')) {
+            $order = Order::select("*")
+                ->where('status', '=', 'PAID')
+                ->where('user_id', '=', Auth::user()->id)
+                ->where('resi', '!=', null)
+                ->get();
+            $status = true;
+        }
+
+        return view('user.transaction', compact('order', 'status'));
     }
 
     /**
@@ -39,7 +51,6 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        
     }
 
     /**
@@ -48,8 +59,12 @@ class TransactionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, Request $request)
     {
+        $status = false;
+        if ($request->status) {
+            $status = true;
+        }
         $data = DB::table('carts')
             ->leftJoin('products', 'carts.product_id', '=', 'products.id')
             ->leftJoin('categories', 'products.category_id', '=', 'categories.id')
@@ -57,14 +72,25 @@ class TransactionController extends Controller
             ->where('carts.user_id', '=', Auth::user()->id == null ? '' : Auth::user()->id)
             ->where('carts.status', '=', 'process')
             ->where('carts.order_id', '=', $id)
-            ->select('carts.id as id', 'carts.qty as qty', 'products.id as product_id', 'products.nama as nama',
-             'products.featured_image as featured_image','orders.total_produk as total_produk','orders.total_ongkir as total_ongkir',
-             'products.berat as berat', 'products.harga as harga', 'categories.name as category_name','carts.status as status','orders.status as os')
+            ->select(
+                'carts.id as id',
+                'carts.qty as qty',
+                'products.id as product_id',
+                'products.nama as nama',
+                'products.featured_image as featured_image',
+                'orders.total_produk as total_produk',
+                'orders.total_ongkir as total_ongkir',
+                'products.berat as berat',
+                'products.harga as harga',
+                'categories.name as category_name',
+                'carts.status as status',
+                'orders.status as os'
+            )
             ->get();
         $tripay = new TripayController();
         $order = Order::find($id);
         $detail =  $tripay->detailTransaksi($order->reference);
-        return view('layouts.total', compact('detail','data','order'));
+        return view('layouts.total', compact('detail', 'data', 'order', 'status'));
     }
 
     /**
