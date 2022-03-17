@@ -8,14 +8,12 @@
                 <h1>Riwayat Transaksi</h1>
             </div>
             <form action="#" method="GET" enctype="multipart/form-data">
-
                 <input type="hidden" name="paid" value="">
                 <button type="submit" class="btn btn-mahal">
                     Belum Dibayar <i class="bi bi-sort-up"></i>
                 </button>
             </form>
             <form action="#" method="GET" enctype="multipart/form-data">
-
                 <input type="hidden" name="unpaid">
                 <button type="submit" class="btn btn-murah ">
                    Sudah Dibayar <i class="bi bi-sort-down-alt"></i>

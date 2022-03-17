@@ -15,13 +15,30 @@
                         </span> </div> <img src="https://cdni.iconscout.com/illustration/premium/thumb/connect-banking-card-for-online-payment-3323736-2791565.png" width="400"  class="img-fluid" />
                     </div>
                     <div class="col-md-3">
+                        @if ($order->status == 'PAID')
+                        <div class="alert alert-success d-flex align-items-center" role="alert" style="padding-inline: 30%">
+                            <i  class="bi bi-exclamation-circle-fill me-2 "></i>
+                            <div id="blink2">
+                                    {{ $order->status }}
+                            </div>
+                        </div>
+                        @else
+                        <div class="alert alert-danger d-flex align-items-center" role="alert" style="padding-inline: 30%">
+                            <i  class="bi bi-exclamation-circle-fill me-2 "></i>
+                            <div id="blink2">
+                                    {{ $order->status }}
+                            </div>
+                        </div>
+                       @endif       
+                    </div>
+                    {{-- <div class="col-md-3">
                         <div class="alert alert-danger d-flex align-items-center" role="alert" style="padding-inline: 30%">
                             <i  class="bi bi-exclamation-circle-fill me-2 "></i>
                             <div id="blink2">
                                 {{ $detail->status }}
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="detail"> <span class="d-block summery">Silahkan lakukan pembayaran sesuai intruksi di bawah ini</span> </div>
                     <hr style="width: 100%">
                     @foreach ($detail->instructions as $ts)

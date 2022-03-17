@@ -59,12 +59,12 @@ class TransactionController extends Controller
             ->where('carts.order_id', '=', $id)
             ->select('carts.id as id', 'carts.qty as qty', 'products.id as product_id', 'products.nama as nama',
              'products.featured_image as featured_image','orders.total_produk as total_produk','orders.total_ongkir as total_ongkir',
-             'products.berat as berat', 'products.harga as harga', 'categories.name as category_name','carts.status as status')
+             'products.berat as berat', 'products.harga as harga', 'categories.name as category_name','carts.status as status','orders.status as os')
             ->get();
         $tripay = new TripayController();
         $order = Order::find($id);
         $detail =  $tripay->detailTransaksi($order->reference);
-        return view('layouts.total', compact('detail','data'));
+        return view('layouts.total', compact('detail','data','order'));
     }
 
     /**
