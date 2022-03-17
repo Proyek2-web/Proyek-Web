@@ -53,11 +53,41 @@
                     <div class="mb-3">
                         <hr class="new1">
                     </div>
-                    <div class="d-flex justify-content-between"> <span class="font-weight-bold">Total order</span> <span class="text-muted">$1750.00</span> </div>
-                    <div class="d-flex justify-content-between"> <small>Pengiriman</small> <small>$175.00</small> </div>
+                    @foreach ($data as $d)
+                    <div class="d-flex justify-content-between"> <span class="font-weight-bold">Total order</span> <span class="text-muted">Rp. {{ number_format($d->total_produk) }}</span> </div>
+                    <div class="d-flex justify-content-between"> <small>Pengiriman</small> <small>Rp. {{number_format($d->total_ongkir)}}</small> </div>  
+                    @break
+                    @endforeach
+                    
                     <div class="d-flex justify-content-between mt-3 bg-light p-2"> <span style="font-weight: bold">Total</span> <span class="font-weight-bold theme-color" style="font-weight: bold">Rp. {{ number_format($detail->amount) }}</span> </div>
                 </div>
             </div>
+            @foreach ($data as $d)
+                        <div class="card mb-3 border-0"
+                            style="max-width: 445px; font-family: PT-Serif; background-color: rgba(226, 230, 230, 0.877); border-radius: 20px;">
+                            <div class="row g-0 align-items-center ">
+                                <div class="col-md-4">
+                                    <img src="{{ asset('/storage/' . $d->featured_image) }}" class="img-fluid" alt="..."
+                                        style="border-radius: 20px">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-capitalize" style="font-weight: bold">
+                                            {{ $d->nama }}</h5>
+                                        <p class="card-text text-light"> <span
+                                                style="border-radius: 8px; padding-inline: 20px; padding-block: 5px; font-weight: bold; background-color: #51698687; font-size: 14px">Rp.
+                                                {{ number_format($d->harga, 2) }}</span> </p>
+                                        <p class="card-text text-dark"><small
+                                                style="border-radius: 5px; padding-inline: 15px; padding-block: 5px; background-color: #bcbec2b9">Jumlah
+                                                : {{ $d->qty }}</small></p>
+                                                <p class="card-text text-dark"><small
+                                                    style="border-radius: 5px; padding-inline: 15px; padding-block: 5px; background-color: #bcbec2b9">Sub Total
+                                                    : {{ number_format(($d->harga * $d->qty), 2)  }}</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
         </div>
         <script type="text/javascript">
             var blink = document.getElementById('blink2');
