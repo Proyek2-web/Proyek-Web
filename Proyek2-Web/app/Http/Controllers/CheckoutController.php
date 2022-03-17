@@ -87,6 +87,8 @@ class CheckoutController extends Controller
         $save->city_id = $request->city_destination;
         $save->email = Auth::user()->email;
         $save->alamat = $request->alamat;
+        $save->total_produk = $sub_total;
+        $save->total_ongkir = $total_ongkir;
         $save->zip_code = $request->zip_code;
         $save->amount = $request->total;
         $save->user_id = Auth::user()->id;
@@ -99,7 +101,7 @@ class CheckoutController extends Controller
                 ->update(['status' =>  "process", 'order_id' =>  $save->id]);
         }
         $detail =  $tripay->detailTransaksi($save->reference);
-        return view('layouts.total', compact('detail'));
+        return redirect()->route('transaction.index');
     }
 
     /**

@@ -51,14 +51,15 @@ class TransactionController extends Controller
     public function show($id)
     {
         $data = DB::table('carts')
-            ->join('products', 'carts.product_id', '=', 'products.id')
-            ->join('categories', 'products.category_id', '=', 'categories.id')
-            ->join('orders', 'carts.order_id', '=', 'orders.id')
+            ->leftJoin('products', 'carts.product_id', '=', 'products.id')
+            ->leftJoin('categories', 'products.category_id', '=', 'categories.id')
+            ->leftJoin('orders', 'carts.order_id', '=', 'orders.id')
             ->where('carts.user_id', '=', Auth::user()->id == null ? '' : Auth::user()->id)
             ->where('carts.status', '=', 'process')
             ->where('carts.order_id', '=', $id)
             ->select('carts.id as id', 'carts.qty as qty', 'products.id as product_id', 'products.nama as nama',
-             'products.featured_image as featured_image','products.berat as berat', 'products.harga as harga', 'categories.name as category_name','carts.status as status')
+             'products.featured_image as featured_image','orders.total_produk as total_produk','orders.total_ongkir as total_ongkir',
+             'products.berat as berat', 'products.harga as harga', 'categories.name as category_name','carts.status as status')
             ->get();
         $tripay = new TripayController();
         $order = Order::find($id);

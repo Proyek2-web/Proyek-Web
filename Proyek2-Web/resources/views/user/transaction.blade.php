@@ -21,6 +21,20 @@
                    Sudah Dibayar <i class="bi bi-sort-down-alt"></i>
                 </button>
             </form>
+            <form action="#" method="GET" enctype="multipart/form-data">
+
+                <input type="hidden" name="unpaid">
+                <button type="submit" class="btn btn-murah ">
+                   Dikirim <i class="bi bi-sort-down-alt"></i>
+                </button>
+            </form>
+            <form action="#" method="GET" enctype="multipart/form-data">
+
+                <input type="hidden" name="unpaid">
+                <button type="submit" class="btn btn-murah ">
+                   Diterima <i class="bi bi-sort-down-alt"></i>
+                </button>
+            </form>
             <div class="row">
                 @foreach ($order as $o)
                     <a href="{{ route('transaction.show',$o->id)}}" style="text-decoration: none;color: black;">
