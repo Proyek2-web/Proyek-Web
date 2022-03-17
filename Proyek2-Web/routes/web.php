@@ -9,6 +9,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderCustController;
 use App\Http\Controllers\Payment\CallbackController;
@@ -40,6 +41,7 @@ Route::get('/aksesoris', [ProdukController::class, 'aksesoris'])->name('aksesori
 Route::get('/details/{product:slug}', [ProdukController::class, 'detail']);
 Route::resource('/cart', CartController::class);
 Route::resource('/checkout', CheckoutController::class);
+Route::resource('/transaction', TransactionController::class);
 Route::get('about', function () {
     return view('layouts.about');
 });
