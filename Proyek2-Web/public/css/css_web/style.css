@@ -1225,8 +1225,8 @@ button.modal:hover {
     /* margin-inline: 300px; */
     padding: 30px;
     margin-bottom: 90px;
-    background-color: #252535;
-    box-shadow: rgba(41, 40, 112, 0.35) 0px 5px 15px;
+    background-color: #25253500;
+    /* box-shadow: rgba(41, 40, 112, 0.35) 0px 5px 15px; */
 }
 
 .info {
