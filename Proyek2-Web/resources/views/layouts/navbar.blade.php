@@ -98,7 +98,7 @@
                                 <li><a class="dropdown-item text-light" href="#"><i
                                             class="bi bi-person-circle me-3"></i>
                                         Profile</a></li>
-                                <li class="mb-2"><a class="dropdown-item text-light" href="#"><i
+                                <li class="mb-2"><a class="dropdown-item text-light" href="{{ route('transaction.index') }}"><i
                                             class="bi bi-credit-card me-3"></i> Transaksi</a></li>
                                 <li class="text-center">
                                     <form action="/logout" method="POST">
