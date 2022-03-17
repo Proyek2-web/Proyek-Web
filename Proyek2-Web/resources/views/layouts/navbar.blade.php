@@ -62,8 +62,7 @@
                                     ->count();
                             @endphp
                             @if ($cart_count < 1)
-                                <a href="#" class="btn btn-keranjang2 me-3"><i
-                                        class="bi bi-cart-check-fill fa-lg"></i>
+                                <a href="#" class="btn btn-keranjang2 me-3"><i class="bi bi-cart-check-fill fa-lg"></i>
                                     <span>Keranjang <span id="cart-qty" class="cart-quantity">
                                             @php
                                                 $cart_count = \App\Models\Cart::all()
@@ -98,8 +97,15 @@
                                 <li><a class="dropdown-item text-light" href="#"><i
                                             class="bi bi-person-circle me-3"></i>
                                         Profile</a></li>
-                                <li class="mb-2"><a class="dropdown-item text-light" href="{{ route('transaction.index') }}"><i
-                                            class="bi bi-credit-card me-3"></i> Transaksi</a></li>
+                                @php
+                                    $order_count = \App\Models\Order::all()
+                                        ->where('user_id', '=', Auth::user() == null ? '' : Auth::user()->id)
+                                        ->where('status', '=', 'UNPAID')
+                                        ->count();
+                                @endphp
+                                <li class="mb-2"><a class="dropdown-item text-light"
+                                        href="{{ route('transaction.index') }}"><i class="bi bi-credit-card me-3"></i>
+                                        Transaksi <span class="badge badge-danger">{{ $order_count }}</span></a></a></li>
                                 <li class="text-center">
                                     <form action="/logout" method="POST">
                                         @csrf
