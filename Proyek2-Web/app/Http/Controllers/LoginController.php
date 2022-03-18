@@ -32,9 +32,11 @@ class LoginController extends Controller
                 Alert::info('Login Sukses', 'Selamat Datang' );
                 return redirect()->intended('/');
             }
-        }
+        }else{
         Alert::error('Login Gagal', 'Username Atau Password tidak sesuai');
-            back()->with('loginFailed', 'Login Failed');
+            return back();
+        }
+        
     }
     // Proses untuk registrasi
     public function registration(Request $request)
