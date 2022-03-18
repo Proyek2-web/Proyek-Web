@@ -17,9 +17,9 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\CheckoutController;
 
 //--------------------------------------------HALAMAN AWAL-------------------------------------------------
-Route::get('/', function () {
+Route::get('/',function(){
     return view('layouts.home');
-});
+})->name('login');
 Route::post('/register', [LoginController::class, 'registration']);
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
