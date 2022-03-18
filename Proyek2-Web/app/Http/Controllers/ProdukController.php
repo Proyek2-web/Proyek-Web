@@ -23,6 +23,10 @@ class ProdukController extends Controller
                     ->get();
                 return view('layouts.product', compact('produk', 'status'));
             }  
+        }else if (request('search')) {
+            $status = false;
+            $produk = Product::where('nama', 'LIKE', '%' . request('search') . '%')->get();
+            return view('layouts.product', compact('produk', 'status'));
         }
         $status = false;
         return view('layouts.product', [
@@ -119,16 +123,7 @@ class ProdukController extends Controller
         $produk = Product::where('category_id', 3)->get();
         return view('layouts.product', compact('produk', 'status'));
     }
-
-    public function find(Request $request)
-    {
-        $produk = Product::all();
-        $status = true;
-        if ($request->search) {
-            $produk = Product::where('nama', 'LIKE', '%' . $request->search . '%')->get();
-        }
-        return view('layouts.product', compact('produk', 'status'));
-    }
+    
     public function murah()
     {
         if (request('status')) {

@@ -30,10 +30,10 @@
     <div class="container">
         <div class="list-product">
             <div class="wrap-filter d-flex mt-5 mb-3 align-items-center">
-                <form class="search-bar" action="/cari" method="GET">
+                <form class="search-bar" action="{{ route('all') }}" method="GET">
                     <div class="search-box">
                         <button class="btn-search" type="submit"><i class="bi bi-search"></i></button>
-                        <input type="text" name="search" class="input-search" placeholder="Cari produk...">
+                        <input type="text" name="search" value="{{ request('search') }}" class="input-search" placeholder="Cari produk...">
                     </div>
                 </form>
             @if ($status)
