@@ -25,38 +25,33 @@ Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
 //--------------------------------------------HALAMAN PELANGGAN--------------------------------------------
-Route::get('/check', [LoginController::class, 'alert']);
-Route::post('/ongkir', [CheckOngkirController::class, 'check_ongkir']);
-Route::get('/cities/{province_id}', [CheckOngkirController::class,'getCities']);
-Route::post('/contact', [ContactController::class, 'sendMail']);
-Route::get('/contact', [ContactController::class, 'showContactForm']);
-Route::get('/produk', [ProdukController::class, 'all'])->name('all');
-Route::get('/cari', [ProdukController::class, 'find']);
-Route::get('/gelas', [ProdukController::class, 'gelas'])->name('gelas');
-Route::get('/produk/termurah', [ProdukController::class, 'murah']);
-Route::get('/produk/termahal', [ProdukController::class, 'mahal']);
-Route::get('/vas', [ProdukController::class, 'vas'])->name('vas');
-Route::get('/guci', [ProdukController::class, 'guci'])->name('guci');
-Route::get('/aksesoris', [ProdukController::class, 'aksesoris'])->name('aksesoris');
-Route::get('/details/{product:slug}', [ProdukController::class, 'detail']);
-Route::resource('/cart', CartController::class);
-Route::resource('/checkout', CheckoutController::class);
-Route::resource('/transaction', TransactionController::class);
-Route::get('about', function () {
-    return view('layouts.about');
-});
-Route::get('/detail', function () {
-    return view('layouts.detail');
-});
-Route::get('/form-order', function () {
-    return view('layouts.form-order');
+Route::middleware(['auth', 'cekroles:user,admin'])->group(function () {
+    Route::post('/ongkir', [CheckOngkirController::class, 'check_ongkir']);
+    Route::get('/cities/{province_id}', [CheckOngkirController::class, 'getCities']);
+    Route::post('/contact', [ContactController::class, 'sendMail'])->name('contact.send');
+    Route::resource('/cart', CartController::class);
+    Route::resource('/checkout', CheckoutController::class);
+    Route::resource('/transaction', TransactionController::class);
+    Route::post('/callback', [CallbackController::class, 'handle']);
 });
 
-Route::resource('/checkout-post',OrderCustController::class);
-Route::post('/callback', [CallbackController::class, 'handle']);
-
+Route::group(['namespace' => 'Pelanggan'],function () {
+    Route::get('/contact', [ContactController::class, 'showContactForm']);
+    Route::get('/produk', [ProdukController::class, 'all'])->name('all');
+    Route::get('/cari', [ProdukController::class, 'find']);
+    Route::get('/gelas', [ProdukController::class, 'gelas'])->name('gelas');
+    Route::get('/produk/termurah', [ProdukController::class, 'murah']);
+    Route::get('/produk/termahal', [ProdukController::class, 'mahal']);
+    Route::get('/vas', [ProdukController::class, 'vas'])->name('vas');
+    Route::get('/guci', [ProdukController::class, 'guci'])->name('guci');
+    Route::get('/aksesoris', [ProdukController::class, 'aksesoris'])->name('aksesoris');
+    Route::get('/details/{product:slug}', [ProdukController::class, 'detail']);
+    Route::get('about', function () {
+        return view('layouts.about');
+    });
+});
 //--------------------------------------------HALAMAN ADMIN--------------------------------------------
-Route::middleware(['auth','cekroles:admin'])->group(function () {
+Route::middleware(['auth', 'cekroles:admin'])->group(function () {
     Route::get('/dashboard', function () {
         return view('section.index');
     });

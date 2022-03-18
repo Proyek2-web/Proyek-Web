@@ -18,14 +18,24 @@ class TransactionController extends Controller
     public function index()
     {
         $status = false;
-        $order = Order::all()->where('status', 'UNPAID')->where('user_id', Auth::user()->id);
+        $order = Order::select("*")
+        ->where('status', '=', 'UNPAID')
+        ->where('user_id', '=', Auth::user()->id)
+        ->orderBy('created_at','desc')
+        ->get();
         if (request('paid')) {
-            $order = Order::all()->where('status', 'PAID')->where('user_id', Auth::user()->id)->where('resi', null);
+            $order = Order::select("*")
+            ->where('status', '=', 'PAID')
+            ->where('user_id', '=', Auth::user()->id)
+            ->where('resi', '=', null)
+            ->orderBy('created_at','desc')
+            ->get();
         } else if (request('send')) {
             $order = Order::select("*")
                 ->where('status', '=', 'PAID')
                 ->where('user_id', '=', Auth::user()->id)
                 ->where('resi', '!=', null)
+                ->orderBy('created_at','desc')
                 ->get();
             $status = true;
         }

@@ -18,21 +18,21 @@
                     <div class="alert alert-success">{{ Session::get('status') }}</div>
                     @endif
 
-                    <form action="" method="post">
-
-                        {{ csrf_field() }}
-
+                    <form action="{{ route('contact.send') }}" method="post" enctype="multipart/form-data">
+                        @csrf
                         <label for="name">Name</label>
-                        <input class="form-control" type="text" name="name" placeholder="*" />
+                        <input required class="form-control" type="text" name="name" placeholder="*" />
 
                         <label for="email" class="mt-3">Email</label>
-                        <input class="form-control" type="email" name="email" placeholder="*@gmail.com" />
+                        <input required class="form-control" type="email" name="email" placeholder="*@gmail.com" />
 
                         <label for="message" class="mt-3">Message</label>
-                        <textarea class="form-control" name="message" id="" cols="30" rows="10"></textarea>
-
-                        <button class="btn btn-submit  btn-block mt-3 ">Send <i class="bi bi-forward-fill"></i></button>
-                        <form>
+                        <textarea required class="form-control" name="message" id="" cols="30" rows="10"></textarea>
+                        @if (Auth::check())
+                        <button type="submit" class="btn btn-submit  btn-block mt-3 ">Send <i class="bi bi-forward-fill"></i></button>
+                        @else
+                        @endif
+                    </form>
                 </div>
                 <div class="col px-md-5 mt-5">
                     <p><i class="i bi-envelope"> KeramikKinasih@example.com</p></i>

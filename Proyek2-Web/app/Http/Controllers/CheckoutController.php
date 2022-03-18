@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Payment\TripayController;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CheckoutController extends Controller
 {
@@ -100,7 +101,7 @@ class CheckoutController extends Controller
                 ->where('status', '=', "pending")
                 ->update(['status' =>  "process", 'order_id' =>  $save->id]);
         }
-        $detail =  $tripay->detailTransaksi($save->reference);
+        Alert::success('Transaksi Berhasil', '');
         return redirect()->route('transaction.index');
     }
 
