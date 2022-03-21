@@ -1065,11 +1065,12 @@ footer p {
     outline: none;
 }
 
+/* login */
 .modal-content {
     width: 370px;
     height: 590px;
     background-color: #7e6f4d;
-    background-image: linear-gradient(135deg, #393157 0%, #383c79 100%);
+    background-image: linear-gradient(135deg, #424e64 0%, #383c79 100%);
     overflow: hidden;
     border-radius: 10px;
     box-shadow: 5px 20px 50px #000;
@@ -1110,13 +1111,13 @@ input.input {
 }
 
 .login {
-    height: 400px;
+    height: 300px;
     /* width: 100%; */
     background: rgb(218, 217, 217);
     border-radius: 50% / 5%;
-    transform: translateY(15px);
+    transform: translateY(-1px);
     transition: .8s ease-in-out;
-    padding-bottom: 510px;
+    padding-bottom: 520px;
 }
 
 button.btn-modal {
@@ -1129,7 +1130,8 @@ button.btn-modal {
     background: #6d79d4;
     font-size: 1em;
     font-weight: bold;
-    margin-top: 20px;
+    margin-top: 1px;
+    margin-bottom: 41px;
     outline: none;
     border: none;
     border-radius: 5px;
@@ -1144,14 +1146,16 @@ button.modal:hover {
 .login label.label {
     color: #573b8a;
     transform: scale(.6);
+    margin-top: -1px;
 }
 
 #chk:checked~.login {
-    transform: translateY(-395px);
+    transform: translateY(-450px);
 }
 
 #chk:checked~.login label.label {
-    transform: scale(1);
+    transform: scale(1.1);
+    margin-top: 18px;
 }
 
 #chk:checked~.signup label.label {

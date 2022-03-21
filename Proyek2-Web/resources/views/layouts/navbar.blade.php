@@ -164,9 +164,12 @@
                     @enderror
                     <input placeholder="No.Handphone" type="number" class="input input-lg" name="no_hp" value="">
                     <input placeholder="Alamat" type="text" class="input input-lg" name="alamat" value="">
-                    <input placeholder="Password" type="password" class="input input-lg" id="psw" name="psw"
-                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                        title="Minimal 8 karakter Dan Minimal 1 huruf kapital" required>
+                    <input placeholder="Password" type="password" class="input input-lg" id="id_password" name="psw"
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                    title="Minimal 8 karakter Dan Minimal 1 huruf kapital" required>
+                    <div class="show-pw d-flex align-items-center" style="margin-top: -27px">
+                        <input type="checkbox" onclick="show()" style="margin-left: 42px; font-size: 0.1rem"> <p class="mt-3 ms-1 text-light" style="font-size: 0.7rem; font-family: Arial, Helvetica, sans-serif">Tampilkan password</p>
+                    </div>
                     <input type="hidden" name="roles" value="user">
                     <button type="submit" class="btn-modal">Daftar <i class="bi bi-person-plus-fill"></i></button>
                 </form>
@@ -175,7 +178,7 @@
                 <form id="handleAjax" name="postForm" role="form" method="POST" action="/login">
                     @csrf
                     <label class="label" for="chk" aria-hidden="true">Login</label>
-                    <div class="justify-content-center text-center">
+                    <div class="text-center" style="margin-bottom: -30px">
                         <img src="/images/logo1.png" width="250" alt="">
                     </div>
                     <input required placeholder="E-mail" type="email"
@@ -185,8 +188,11 @@
                             {{ $message }}
                         </div>
                     @enderror
-                    <input required placeholder="Password" type="password"
-                        class="input @error('password') is-invalid @enderror input-lg" name="password">
+                        <input required placeholder="Password" type="password"
+                            class="input @error('password') is-invalid @enderror input-lg " name="password" autocomplete="current-password" id="id_password2">
+                            <div class="show-pw d-flex align-items-center" style="margin-top: -27px">
+                                <input type="checkbox" onclick="show2()" style="margin-left: 42px; font-size: 0.1rem"> <p class="mt-3 ms-1" style="font-size: 0.7rem; font-family: Arial, Helvetica, sans-serif">Tampilkan password</p>
+                            </div>
                     @error('password')
                         <div id="" class="invalid-feedback">
                             {{ $message }}
@@ -260,13 +266,33 @@
         }
     }
 
-</script>
-{{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    // show / hide PW
+//   const togglePassword = document.querySelector('#togglePassword');
+//   const password = document.querySelector('#id_password');
+ 
+//   togglePassword.addEventListener('click', function (e) {
+//     // toggle the type attribute
+//     const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+//     password.setAttribute('type', type);
+//     // toggle the eye slash icon
+//     this.classList.toggle('bi-eye-slash-fill');
+// });
+function show() {
+  var x = document.getElementById("id_password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+function show2() {
+  var x = document.getElementById("id_password2");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
 
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
 </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
-</script> --}}
+

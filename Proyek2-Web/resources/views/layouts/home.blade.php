@@ -91,7 +91,7 @@
 <section class="story ">
     <div class="container">
         <div class="story-intro row align-items-center">
-            <div class="col-md-6 line">
+            <div class="col-md-6">
                 <h2>Our Story.</h2>
                 <h3>As a focused technology company, we combine the real and the digital worlds and help customers to
                     meet
