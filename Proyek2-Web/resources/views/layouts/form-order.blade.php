@@ -80,7 +80,7 @@
                         </div>
                     </div>
                     <div class="col-md-7 p-5"
-                        style="background-color: #4488dd; border-radius: 0px 20px 20px 0px;box-shadow: rgba(51, 51, 51, 0.4) 20px 30px 90px;">
+                        style="background-color: #2e3968; border-radius: 0px 20px 20px 0px;box-shadow: rgba(51, 51, 51, 0.4) 20px 30px 90px;">
                         {{-- <h6>Jumlah Pembayaran</h6> --}}
                         <div class="row p-4 text-light">
                             Nama

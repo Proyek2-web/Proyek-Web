@@ -79,7 +79,7 @@
     right: -10px;
     padding: 7px 10px;
     border-radius: 50%;
-    background: rgb(113, 114, 167);
+    background: rgb(157, 127, 52);
     color: white;
 }
 
@@ -1618,7 +1618,26 @@ button.modal:hover {
 
 
 /* transaksi */
-
+.transaksi-badge {
+    position: absolute;
+    padding: 3px 9px;
+    right: -8px;
+    top: -11px;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    background: rgb(162, 140, 82);
+    color: rgb(240, 237, 237);
+}
+.transaksi-badge:active{
+    position: absolute;
+    padding: 3px 9px;
+    right: -8px;
+    top: -11px;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    background: rgb(196, 43, 15);
+    color: rgb(240, 237, 237);
+}
 .section_our_solution .row {
     align-items: center;
     font-family: Inter;
@@ -1712,8 +1731,7 @@ button.modal:hover {
     margin-bottom: 1rem;
     font-size: 2.5rem;
   }
-  .our_solution_content p {
-  }
+  
   
   .hover_color_bubble {
     position: absolute;
@@ -1792,6 +1810,7 @@ button.modal:hover {
     margin-left: 20px;
     padding: 10px 28px;
     transition: all 0.4s;
+    position: relative;
   }
   .btn-transaksi:hover{
     background-color: #24243ada;

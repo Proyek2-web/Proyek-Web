@@ -77,6 +77,7 @@
                     </div>
                     
                     @else
+                    @if ($order->status == 'UNPAID')
                     <div class="first d-flex justify-content-between align-items-center mb-3">
                         <div class="info"> <span class="d-block name">Terima Kasih, {{ $detail->customer_name }}</span>
                             <span class="order">Order - {{ $detail->reference}}</span><br>
@@ -87,7 +88,6 @@
                     </div>
 
                     <div class="col-md-12">
-                        @if ($order->status == 'UNPAID')
                         <div class="alert alert-danger d-flex align-items-center justify-content-center" role="alert"
                             style="padding-inline: 30%">
                             <i class="bi bi-exclamation-circle-fill me-2 "></i>
@@ -128,7 +128,17 @@
                                 @endforeach
                             </div>
                         </div>
+                    </div>
                         @else
+                        <div class="first d-flex justify-content-between align-items-center mb-3">
+                            <div class="info"> <span class="d-block name">Terima kasih <br> telah melakukan pembayaran, <br> {{ $detail->customer_name }}</span>
+                                <span class="order">Order - {{ $detail->reference}}</span><br>
+                            </div>
+                            <img src="https://cdni.iconscout.com/illustration/premium/thumb/successful-payment-2161433-1815075.png"
+                                width="380" class="img-fluid" />
+    
+                        </div>
+                        <div class="col-md-12">
                         <div class="alert alert-success d-flex align-items-center justify-content-center" role="alert"
                             style="padding-inline: 30%">
                             <i class="bi bi-exclamation-circle-fill me-2 "></i>
@@ -140,14 +150,14 @@
                         <div class="detail"> <span class="d-block summery text-center"
                             style="font-size: 1.2rem">Pembayaran di terima, barang sedang di proses</span> </div>
                     <hr style="width: 100%">
+                </div>
                         @endif
-                    </div>
                     @endif
 
                 </div>
             </div>
             <div class="col-md-5">
-                <div class="wrap-nota p-4 mb-5" style="background-color: #25253546; border-radius: 25px 5px 25px 5px">
+                <div class="wrap-nota p-4 mb-5" style="background-color: #c9c9c946; border-radius: 25px 5px 25px 5px">
                     <h4 style="font-family: Marck Script; font-size: 2rem" class=" theme-color mb-5">Thanks for your
                         order !</h4>
                     <span class="theme-color" style="font-family: PT Serif; font-size: 1.2rem">Ringkasan Pesanan</span>

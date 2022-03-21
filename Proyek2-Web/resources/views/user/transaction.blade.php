@@ -9,21 +9,42 @@
         </div>
         <div class="wrap-btn-transaksi d-flex text-center justify-content-center" style="margin-top: 60px;">
             <form action="{{ route('transaction.index') }}" method="GET" enctype="multipart/form-data">
+                @php
+                $unpaid = \App\Models\Order::all()
+                ->where('user_id', '=', Auth::user() == null ? '' : Auth::user()->id)
+                ->where('status', '=', 'UNPAID')
+                ->count();
+                @endphp
                 <button type="submit" class="btn btn-transaksi">
                     Belum Bayar <i class="bi bi-wallet2"></i>
+                    <span class="transaksi-badge ">{{ $unpaid }}</span>
                 </button>
             </form>
             <form action="{{ route('transaction.index') }}" method="GET" enctype="multipart/form-data">
                 <input type="hidden" name="paid" value="paid">
-                <button type="submit" class="btn btn-transaksi ">
+                @php
+                $paid = \App\Models\Order::all()
+                ->where('user_id', '=', Auth::user() == null ? '' : Auth::user()->id)
+                ->where('status', '=', 'PAID')
+                ->where('resi', '==', null)
+                ->count();
+                @endphp
+                <button type="submit" class="btn btn-transaksi {{ request()->is('$paid') ? 'active' : '' }}">
                     Di Proses <i class="bi bi-box-seam"></i>
+                    <span class="transaksi-badge ">{{ $paid }}</span>
                 </button>
             </form>
             <form action="{{ route('transaction.index') }}" method="GET" enctype="multipart/form-data">
-
                 <input type="hidden" name="send" value="send">
+                @php
+                $send = \App\Models\Order::all()
+                ->where('user_id', '=', Auth::user() == null ? '' : Auth::user()->id)
+                ->where('resi', '!=', null)
+                ->count();
+                @endphp
                 <button type="submit" class="btn btn-transaksi ">
                     Dikirim <i class="bi bi-truck"></i>
+                    <span class="transaksi-badge ">{{ $send }}</span>
                 </button>
             </form>
             <form action="{{ route('transaction.index') }}" method="GET" enctype="multipart/form-data">
@@ -36,7 +57,8 @@
         </div>
 
 
-    <div class="section_our_solution mt-5 mb-5 p-3" style="background: rgba(232, 232, 233, 0.433); border-radius: 30px ">
+        <div class="section_our_solution mt-5 mb-5 p-3"
+            style="background: rgba(232, 232, 233, 0.433); border-radius: 30px ">
             <div class="row ">
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="our_solution_category">
