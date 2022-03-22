@@ -123,7 +123,7 @@
                 <div class="wsk-cp-product" style="font-family: PT Serif">
                   <div class="wsk-cp-img"><img src="{{ asset('/storage/' . $p->featured_image) }}" alt="Product" class="img-responsive" /></div>
                   <div class="wsk-cp-text">
-                    <div class="category">
+                    <div class="category-product">
                       <span>{{ $p->category->name }}</span>
                     </div>
                     <div class="title-product">

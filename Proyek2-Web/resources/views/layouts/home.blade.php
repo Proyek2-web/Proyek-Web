@@ -26,12 +26,12 @@
 <!-- Background image -->
 
 {{-- PRODUCT --}}
-<section class="category">
+<section class="category pb-5">
     <div class=" container">
         <div class="row">
-            <div class="col-md-12 mb-5">
+            <div class="col-md-12 mb-4">
                 <h2 class="text-center ">Our Product</h2>
-                <hr class="m-auto">
+                <hr class="m-auto" style="width: 20%; border-radius: 90px">
             </div>
         </div>
         <div class="row mt-5 p-4 box">
