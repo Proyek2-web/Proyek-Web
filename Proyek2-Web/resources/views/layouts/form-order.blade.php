@@ -39,7 +39,7 @@
                         @endforeach
                         <div class='line'></div>
                         <div class="card border-0 text-center text-dark"
-                            style="max-width: 50rem; font-family: sans-serif; background-color: #becbe7c9">
+                            style="max-width: 50rem; font-family: sans-serif; background-color: #81b29a">
                             <ul class="list-group list-group-flush p-5">
                                 <div class="row">
                                     <div class="col-md-6">
@@ -47,6 +47,15 @@
                                     </div>
                                     <div class="col-md-6">
                                         <p>Rp. {{ number_format($subtotal, 2) }}</p>
+                                    </div>
+                                    <p style="margin-top: -25px">
+                                        ................................................................
+                                    </p>
+                                    <div class="col-md-6">
+                                        <p>Total berat</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{ $total_berat }} Gr</p>
                                     </div>
                                     <p style="margin-top: -25px">
                                         ................................................................
@@ -60,10 +69,10 @@
                                     <p style="margin-top: -25px">
                                         ................................................................
                                     </p>
-                                    <div class="col-md-6 " style="background-color: rgb(252, 117, 117)">
+                                    <div class="col-md-6 " style="background-color: #e07a5f">
                                         <p class="mt-3 text-light" style="font-weight: bold">Total Bayar</p>
                                     </div>
-                                    <div class="col-md-6" style="background-color: rgb(252, 117, 117)">
+                                    <div class="col-md-6" style="background-color: #e07a5f">
                                         <p class="mt-3 text-light" style="font-weight: bold" id="total_checkout">Rp.
                                             {{ number_format($subtotal, 2) }}</p>
                                     </div>
@@ -74,13 +83,13 @@
                                 <input type="hidden" name="sub_total" value="{{ $subtotal }}">
                                 <input type="hidden" name="total_ongkir" value="">
                                 <input type="hidden" name="total">
-                                <button type="submit" id="checkout-button" class="btn btn-conf d-none">Bayar <i
+                                <button type="submit" id="checkout-button" class="btn btn-conf d-none text-dark" style="background-color: #f2cc8f">Bayar <i
                                         class="bi bi-credit-card"></i></button>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-7 p-5"
-                        style="background-color: #2e3968; border-radius: 0px 20px 20px 0px;box-shadow: rgba(51, 51, 51, 0.4) 20px 30px 90px;">
+                        style="background-color: #24243a; border-radius: 0px 20px 20px 0px;box-shadow: rgba(51, 51, 51, 0.4) 20px 30px 90px;">
                         {{-- <h6>Jumlah Pembayaran</h6> --}}
                         <div class="row p-4 text-light">
                             Nama
@@ -104,13 +113,32 @@
                             Catatan produk
                             <textarea name="custom" class=" input-field" id="exampleFormControlTextarea1" rows="6"
                                 required></textarea>
+                                <div class=" d-flex   justify-content-between mt-3 mb-3" style="margin-left: -6px">
+                                    <select id="id_select2_example" name="method" class=" input-field "
+                                        aria-label="Default select example" required>
+                                        <option value="0" data-img_src="{{ url('https://static.thenounproject.com/png/3187853-200.png')}}">-- pilih metode pembayaran --</option>
+                                        @foreach ($channels as $channel)
+                                        @if ($channel->active)
+                                        <option class="align-items-center" data-img_src="{{ asset('storage/payment/' .$channel->code ).'.png'  }}" style="background: #c04242; color: rgb(240, 242, 243)" value="{{ $channel->code }}">
+                                            {{ $channel->name }} </option>
+                                        @endif
+                                        @endforeach
+                                    </select>
+                                    <select id="id_select3_example"  class=" kurir input-field " name="courier">
+                                        <option value="0" data-img_src2="{{ url('https://i1.wp.com/www.jlscargo.com/wp-content/uploads/2021/04/Icon-Jasa-Pembelian.png')}}">-- pilih metode pengiriman --</option>
+                                        <option style="background: #31527a; color: aliceblue" data-img_src2="{{ url('https://seeklogo.com/images/T/Tiki_JNE-logo-09BD368D04-seeklogo.com.png')}}" value="jne">JNE</option>
+                                        <option style="background: #31527a; color: aliceblue" data-img_src2="{{ url('https://cdn.kibrispdr.org/data/icon-pos-indonesia-10.png')}}" value="pos">POS</option>
+                                        <option style="background: #31527a; color: aliceblue" data-img_src2="{{ url('https://cdn.kibrispdr.org/data/icon-jne-png-47.png')}}" value="tiki">TIKI</option>
+                                    </select>
+                                    
+                                </div>    
                             <div class='line'></div>
                             <div class=" d-flex justify-content-between mt-2">
                                 {{-- <label for="Provinsi" class="mb-2">Pilih Provinsi</label> --}}
                                 <select class="input-field   provinsi-tujuan me-3 " name="province_destination">
                                     <option value="0">-- pilih provinsi tujuan --</option>
                                     @foreach ($provinces as $province => $value)
-                                    <option style="background: #31527a; color: aliceblue" value="{{ $province }}">
+                                    <option style="background: #3d405b; color: aliceblue" value="{{ $province }}">
                                         {{ $value }}</option>
                                     @endforeach
                                 </select>
@@ -120,24 +148,7 @@
                                         kota tujuan --</option>
                                 </select>
                             </div>
-                            <div class=" d-flex justify-content-between">
-                                <select name="method" class=" input-field me-3"
-                                    aria-label="Default select example" required>
-                                    <option value="0">-- pilih metode pembayaran --</option>
-                                    @foreach ($channels as $channel)
-                                    @if ($channel->active)
-                                    <option style="background: #31527a; color: aliceblue" value="{{ $channel->code }}">
-                                        {{ $channel->name }}</option>
-                                    @endif
-                                    @endforeach
-                                </select>
-                                <select class=" kurir input-field " name="courier">
-                                    <option value="0">-- pilih metode pengiriman --</option>
-                                    <option style="background: #31527a; color: aliceblue" value="jne">JNE</option>
-                                    <option style="background: #31527a; color: aliceblue" value="pos">POS</option>
-                                    <option style="background: #31527a; color: aliceblue" value="tiki">TIKI</option>
-                                </select>
-                            </div>
+                            
                             <div class=" text-center">
                                 <input type="hidden" class="form-control" name="weight" id="weight"
                                     value="{{ $total_berat }}" disabled>
@@ -155,7 +166,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button id="btn-check" class="btn btn-conf mt-5">Konfirmasi <i
+                                <button id="btn-check" class="btn btn-conf mt-5" style="background-color: #81b29a">Konfirmasi <i
                                     class="bi bi-check-circle-fill"></i></button>
                             </div>
                         </div>
@@ -171,6 +182,42 @@
 </form>
 
 </div>
+<script type="text/javascript">
+    function custom_template(obj){
+            var data = $(obj.element).data();
+            var text = $(obj.element).text();
+            if(data && data['img_src']){
+                img_src = data['img_src'];
+                template = $("<div><img src=\"" + img_src + "\" style=\"width:40px;\"/><p style=\"font-weight: 700;font-size:9pt; display:inline-block; padding:5px; margin-right:50px\">" + text + "</p></div>");
+                return template;
+            }
+        }
+    var options = {
+        'templateSelection': custom_template,
+        'templateResult': custom_template,
+    }
+    $('#id_select2_example').select2(options);
+    $('.select2-container--default .select2-selection--single').css({'height': '40px','background': '#f4f1de', 'margin-right':'0px'});
+
+</script>
+<script type="text/javascript">
+    function custom_template(obj){
+            var data = $(obj.element).data();
+            var text = $(obj.element).text();
+            if(data && data['img_src2']){
+                img_src = data['img_src2'];
+                template2 = $("<div><img src=\"" + img_src + "\" style=\"width:40px;\"/><p style=\"font-weight: 700;font-size:9pt; display:inline-block; padding:5px; margin-right:0px\">" + text + "</p></div>");
+                return template2;
+            }
+        }
+    var options = {
+        'templateSelection': custom_template,
+        'templateResult': custom_template,
+    }
+    $('#id_select3_example').select2(options);
+    $('.select2-container--default .select2-selection--single').css({'height': '40px','background': '#f4f1de', 'margin-left':'10px', 'border-radius':'5px'});
+
+</script>
 <script>
     $('#ongkir').click(function () {
         const ongkir = $('input[name=ongkir-kurir]:checked').val();
