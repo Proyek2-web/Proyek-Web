@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class ProductController extends Controller
@@ -18,7 +19,7 @@ class ProductController extends Controller
     {
         $category = Category::all();
         return view('section.product', [
-            'products' => Product::paginate(4),
+            'products' => Product::all(),
             'categories' => $category
         ]);
     }
@@ -45,6 +46,7 @@ class ProductController extends Controller
             'nama' => 'required',
             'harga' => 'required',
             'category_id' => 'required',
+            'berat' => 'required',
             'featured_image' => 'image|file|max:2048|required',
             'keterangan' => 'required',
         ]);
@@ -55,12 +57,14 @@ class ProductController extends Controller
         $save->featured_image = $image_name;
         $save->nama = $request->nama;
         $save->harga = $request->harga;
+        $save->berat = $request->berat;
         $save->category_id = $request->category_id;
         $save->keterangan = $request->keterangan;
         $save->save();
 
         // Product::create($insert_data);
-        return redirect('/product')->with('Added', 'Produk Berhasil Ditambahkan');
+        Alert::success('Berhasil Menambahkan Produk', '');
+        return redirect('/product');
     }
 
     /**
@@ -98,6 +102,7 @@ class ProductController extends Controller
             'nama' => 'required',
             'category_id' => 'required',
             'harga' => 'required',
+            'berat' => 'required',
             'featured_image' => 'required',
             'keterangan' => 'required',
         ]);
@@ -108,14 +113,14 @@ class ProductController extends Controller
         $save->featured_image = $image_name;
         $save->nama = $request->nama;
         $save->harga = $request->harga;
+        $save->berat = $request->berat;
         $save->category_id = $request->category_id;
         $save->keterangan = $request->keterangan;
         $save->save();
         // Product::where('id', $id)
         //     ->update($insert_data);
-
-        return back()
-            ->with('edited', 'Produk Berhasil Diupdate');
+        Alert::success('Berhasil Memperbarui Produk', '');
+        return back();
     }
 
     /**
@@ -128,7 +133,7 @@ class ProductController extends Controller
     {
         Product::find($id)->delete();
 
-        return back()->with('success', 'Produk Berhasil Dihapus');
+        return redirect()->route('product.index')->with('success', 'Data berhasil dihapus!');
     }
     public function checkSlug(Request $request)
     {

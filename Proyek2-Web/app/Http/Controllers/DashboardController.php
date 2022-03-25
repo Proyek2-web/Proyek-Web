@@ -49,7 +49,7 @@ class DashboardController extends Controller
 
         $insert['password'] = Hash::make($insert['password']);
         User::create($insert);
-        return redirect()->route('user.index')->with('info', 'User Berhasil Ditambahkan');
+        return redirect()->route('user.index')->with('succes', 'User Berhasil Ditambahkan');
     }
 
     /**
