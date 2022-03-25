@@ -21,7 +21,11 @@
                             </div>
                             <div class="row mt-3 mb-5">
                                 <div class="col-md-12">
-                                    <form action="#">
+                                    <form action="{{ route('checkout.update',$order->id ) }}" method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                        @method('PUT')
+                                        <input type="hidden" name="order_id" value="{{ $order->id }}">
+                                        <input type="hidden" name="received" value="1">
                                         <button class="btn btn-conf p-2" type="submit">Pesanan Diterima <i class="bi bi-check-circle-fill me-2 "></i></button>
                                     </form>
                                 </div>

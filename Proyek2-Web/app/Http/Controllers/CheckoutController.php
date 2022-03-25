@@ -136,7 +136,11 @@ class CheckoutController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $order = Order::find($request->order_id);
+        $order->order_notes = $request->received;
+        $order->save();
+        return redirect('/transaction');
+        
     }
 
     /**

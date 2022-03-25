@@ -35,9 +35,18 @@ class TransactionController extends Controller
                 ->where('status', '=', 'PAID')
                 ->where('user_id', '=', Auth::user()->id)
                 ->where('resi', '!=', null)
+                ->where('order_notes','=',null)
                 ->orderBy('created_at','desc')
                 ->get();
             $status = true;
+        }else if (request('receive')) {
+            $order = Order::select("*")
+                ->where('status', '=', 'PAID')
+                ->where('user_id', '=', Auth::user()->id)
+                ->where('resi', '!=', null)
+                ->where('order_notes','!=',null)
+                ->orderBy('created_at','desc')
+                ->get();
         }
 
         return view('user.transaction', compact('order', 'status'));
