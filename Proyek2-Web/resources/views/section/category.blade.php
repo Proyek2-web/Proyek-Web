@@ -1,157 +1,147 @@
 @extends('master.main')
-@section('container')
-    <div class="content-body">
-        <!-- row -->
-        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="/"><i class="bi bi-person-fill"></i> Admin </a></li>
-              <li class="breadcrumb-item active" aria-current="page">Kategori</li>
-            </ol>
-          </nav>
-        <div>
-            @if (session()->has('success'))
-                <div class="alert alert-danger solid alert-dismissible fade show w-50 text-center mx-auto">
-                    <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i
-                                class="mdi mdi-close"></i></span>
-                    </button>
-                    {{ session('success') }}
-                </div>
-            @endif
-            @if (session()->has('edited'))
-                <div class="alert alert-primary solid alert-dismissible fade show w-50 text-center mx-auto">
-                    <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i
-                                class="mdi mdi-close"></i></span>
-                    </button>
-                    {{ session('edited') }}
-                </div>
-            @endif
-            @if (session()->has('Added'))
-                <div class="alert alert-primary solid alert-dismissible fade show w-50 text-center mx-auto">
-                    <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i
-                                class="mdi mdi-close"></i></span>
-                    </button>
-                    {{ session('Added') }}
-                </div>
-            @endif
-        </div>
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="card-header justify-content-center bg-dark">
-                    <h4 class="card-title text-uppercase text-white">Data Kategori <i class="bi bi-tags text-white"></i></h4>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-light">
-                            <thead>
-                                <tr style="color: black">
-                                    <th class="border text-center" scope="col">No</th>
-                                    <th class="border text-center" scope="col">Nama Kategori</th>
-                                    <th class="border text-center" scope="col">Dibuat</th>
-                                    <th class="border text-center" scope="col">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($categories as $c)
-                                    <tr style="color: black">
-                                        <th class="border text-center">{{ $loop->iteration }}</th>
-                                        <td class="border text-center">{{ $c->name }}</td>
-                                        <td class="border text-center">{{ $c->created_at }}</td>
-                                        <td class="border text-center">
-                                            <div class="aksi d-flex justify-content-center">
-                                                <a data-toggle="modal" id="updateKategori"
-                                                    data-target="#modal-edit{{ $c->id }}"
-                                                    class="btn btn-warning mr-2"><i class="fa fa-edit"></i></a>
-                                                <form action="{{ route('category.destroy', $c->id) }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger"
-                                                        onclick="return confirm('Apakah yakin?')"><i
-                                                            class="fa fa-trash"></i></button>
-                                                </form>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <div class="modal fade" id="modal-edit{{ $c->id }}">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h4 class="modal-title" id="modal-judul">Edit Kategori
-                                                        {{ $c->name }}</h4>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <form action="{{ route('category.update', $c->id) }}" method="POST"
-                                                        enctype="multipart/form-data">
-                                                        @csrf
-                                                        @method('PUT')
-                                                        <div class="form-group">
-                                                            <label for="nama_produk" style="font-weight: bold;color:black">Nama Kategori</label>
-                                                            <input type="text" class="form-control d-block" name="name"
-                                                               style="width: 10cm;height: 1cm;border:0" id="nama_kategori" value="{{ $c->name }}" required>
-                                                        </div>
-                                                </div>
-                                                <div class="modal-footer justify-content-between">
-                                                    <button type="button" class="btn btn-default"
-                                                        data-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                                </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+@section('body')
+<style>
+    table.dataTable td {
+        padding: 15px 8px;
+    }
+
+    .fontawesome-icons .the-icon svg {
+        font-size: 24px;
+    }
+</style>
+<div class="page-heading">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last">
+                <h3>Data Kategori</h3>
+                <p class="text-subtitle text-muted">For user to check they list</p>
             </div>
-        </div>
-        <button type="button" class="btn btn-secondary ml-3" data-toggle="modal" data-target="#modal-default">
-            <i class="fa fa-plus"></i>&nbsp;Tambah Kategori</a>
-        </button>
-        <div class="modal fade" id="modal-default">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Masukkan Data Kategori Baru</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="{{ route('category.store') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            <div class="form-group">
-                                <label for="nama" style="color: black;font-weight: bold">Nama</label>
-                                <input style="width: 12.375cm;height:1cm;border:0.01;" type="text"
-                                    class="form-control d-block mb-2" name="name" id="nama_produk"
-                                    placeholder="   Masukkan Nama Kategori" required>
-                            </div>
-                    </div>
-                    <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                    </form>
-                </div>
-                <!-- /.modal-content -->
+            <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item "><a style="color: #222237" href="/dashboard">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Data Kategori</li>
+                    </ol>
+                </nav>
             </div>
-            <!-- /.modal-dialog -->
         </div>
     </div>
-    <script>
-        const name = document.querySelector('#kategori');
-        const slug = document.querySelector('#slug');
 
-        name.addEventListener('change', function() {
-            fetch('/category/checkSlug?name=' + name.value)
-            dd(name.value)
-                .then(response => response.json())
-                .then(data => slug.value = data.slug)
-        });
+    <!-- Basic Tables start -->
+    <section class="section">
+        <div class="card">
+            <div class="card-header">
+                <button type="button" class="btn btn-primary ml-3 p-2" data-bs-toggle="modal"
+                    data-bs-target="#modal-tambah">
+                    Tambah data kategori <i class="fa fa-plus ms-2"></i>
+                </button>
+                <!--Basic Modal Tambah Produk-->
+                <div class="modal fade text-left" id="modal-tambah" tabindex="-1" role="dialog"
+                    aria-labelledby="myModalLabel1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header bg-primary">
+                                <h5 class="modal-title text-white" id="myModalLabel1">Tambah Data Kategori</h5>
+                                <button type="button" class="close rounded-pill" data-bs-dismiss="modal"
+                                    aria-label="Close">
+                                    <i data-feather="x"></i>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form form-vertical" action="{{ route('category.store') }}" method="POST"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="form-group">
+                                        <label for="basicInput">Nama Kategori</label>
+                                        <input name="name" type="text" class="form-control"
+                                            placeholder="Masukkan nama kategori" required>
+                                    </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                    <i class="bx bx-x d-block d-sm-none"></i>
+                                    <span class="d-none d-sm-block">Tutup</span>
+                                </button>
+                                <button type="submit" class="btn btn-primary ml-1">
+                                    <i class="bx bx-check d-block d-sm-none"></i>
+                                    <span class="d-none d-sm-block">Tambah</span>
+                                </button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table" id="table1" style="table-layout: fixed; width: 100%">
+                    <thead>
+                        <tr>
+                            <th style="width: 50px">No.</th>
+                            <th>Nama kategori</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($categories as $c)
+                        <tr>
+                            <td>{{ $loop->iteration  }}</td>
+                            <td>{{ $c->name }}</td>
+                            <td>
+                                <div class="aksi d-flex justify-content-center">
+                                        <button onclick="deleteItem(this)" class="deleted btn btn-danger" data-id="{{$c->id}}" data-name="{{$c->name}}"><i
+                                                class="fa fa-trash"></i></button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="7" class="text-center border px-4 py-2" style="">KATEGORI KOSONG</td>
+                        </tr>
+                        @endforelse
+                    </tbody>
+                </table>
 
+            </div>
+        </div>
+
+    </section>
+    <!-- Basic Tables end -->
+</div>
+<!-- Sweet Alert Delete -->
+<script>
+    function deleteItem(d){
+            var id = d.getAttribute('data-id');
+            var name = d.getAttribute('data-name');
+            Swal.fire({
+                title: 'Apakah yakin?',
+                text: "Ingin menghapus data (" + name + ")",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#222237',
+                cancelButtonColor: '#AAAAAA',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 10000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        icon: 'info',
+                        title: 'Hold on, delete in progress'
+                    })
+                    window.location = "/category/delete/" + id
+                }
+            })
+    }
     </script>
+    <!-- End Sweet Alert Delete -->
 @endsection

@@ -42,7 +42,7 @@ class CategoryController extends Controller
             'name' => 'required',
         ]);
         Category::create($insert_data);
-        return back()->with('Added', 'Kategori Berhasil Ditambahkan');
+        return back()->with('success', 'Kategori Berhasil Ditambahkan');
     }
 
     /**
@@ -82,7 +82,7 @@ class CategoryController extends Controller
         Category::where('id', $id)
             ->update($insert_data);
         return back()
-            ->with('edited', 'Kategori Berhasil Diupdate');
+            ->with('success', 'Kategori Berhasil Diupdate');
     }
 
     /**

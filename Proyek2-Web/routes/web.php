@@ -53,8 +53,12 @@ Route::group(['namespace' => 'Pelanggan'],function () {
 //--------------------------------------------HALAMAN ADMIN--------------------------------------------
 Route::middleware(['auth', 'cekroles:admin'])->group(function () {
     Route::get('/dashboard', function () {
-        return view('section.index');
+        return view('section.dashboard');
     });
+    Route::get('/product/delete/{id}',[ProductController::class, 'destroy']);
+    Route::get('/category/delete/{id}',[CategoryController::class, 'destroy']);
+    Route::get('/user/delete/{id}',[DashboardController::class, 'destroy']);
+
     Route::get('/category/checkSlug', [CategoryController::class, 'checkSlug']);
     Route::get('/product/checkSlug', [ProductController::class, 'checkSlug']);
     Route::resource('/user', DashboardController::class);

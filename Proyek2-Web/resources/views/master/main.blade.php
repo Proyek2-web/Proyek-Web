@@ -2,129 +2,68 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title> Admin | Kinasih Dashboard </title>
-    <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png">
-    <link rel="stylesheet" href="./vendor/owl-carousel/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="./vendor/owl-carousel/css/owl.theme.default.min.css">
-    <link href="./vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet">
-    <link href="./css/style.css" rel="stylesheet">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css"
-        rel="stylesheet">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
-    <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
-    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Mazer Admin Dashboard</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/vendors/fontawesome/all.min.css">
+    <link rel="stylesheet" href="assets/vendors/iconly/bold.css">
+    <link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="stylesheet" href="assets/vendors/choices.js/choices.min.css" />
+    <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="assets/vendors/jquery-datatables/jquery.dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="assets/vendors/sweetalert2/sweetalert2.min.css">
 </head>
 
-<body>
-
-    <!--*******************
-        Preloader start
-    ********************-->
-    <div id="preloader">
-        <div class="sk-three-bounce">
-            <div class="sk-child sk-bounce1"></div>
-            <div class="sk-child sk-bounce2"></div>
-            <div class="sk-child sk-bounce3"></div>
+<body style="background-color: rgba(243, 243, 243, 0.59)">
+    @include('sweetalert::alert')
+    <div id="app">
+        <div id="main" style="background-color: rgba(243, 243, 243, 0.59)">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
+            @include('components.admin.sidebar')
+            @yield('body')
+            <footer>
+                <div class="footer clearfix mb-0 text-muted">
+                    <div class="float-start">
+                        <p>2021 &copy; Mazer</p>
+                    </div>
+                    <div class="float-end">
+                        <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
+                                href="http://ahmadsaugi.com">A. Saugi</a></p>
+                    </div>
+                </div>
+            </footer>
         </div>
     </div>
-    <!--*******************
-        Preloader end
-    ********************-->
 
 
-    <!--**********************************
-        Main wrapper start
-    ***********************************-->
-    <div id="main-wrapper">
-
-        <!--**********************************
-            Nav header start
-        ***********************************-->
-        <div class="nav-header">
-            <a href="index.html" class="brand-logo align-items-center">
-                <img class="logo-abbr mr-2" src="./images/logo.png" alt="">
-                <h3 class="text-white mt-3">AdminKinasih</h3>
-            </a>
-
-            <div class="nav-control">
-                <div class="hamburger">
-                    <span class="line"></span><span class="line"></span><span class="line"></span>
-                </div>
-            </div>
-        </div>
-        <!--**********************************
-            Nav header end
-        ***********************************-->
-
-        <!--**********************************
-            Header start
-        ***********************************-->
-        @include('components.header')
-        <!--**********************************
-            Header end ti-comment-alt
-        ***********************************-->
-
-        <!--**********************************
-            Sidebar start
-        ***********************************-->
-        @include('components.navbar')
-        <!--**********************************
-            Sidebar end
-        ***********************************-->
-
-        <!--**********************************
-            Content body start
-        ***********************************-->
-        @yield('container')
-
-        <!--**********************************
-        Main wrapper end
-    ***********************************-->
-
-        <!--**********************************
-        Scripts
-    ***********************************-->
-        <!-- Required vendors -->
-        <script src="./vendor/global/global.min.js"></script>
-        <script src="./js/quixnav-init.js"></script>
-        <script src="./js/custom.min.js"></script>
-
-
-        <!-- Vectormap -->
-        <script src="./vendor/raphael/raphael.min.js"></script>
-        <script src="./vendor/morris/morris.min.js"></script>
-
-
-        <script src="./vendor/circle-progress/circle-progress.min.js"></script>
-        <script src="./vendor/chart.js/Chart.bundle.min.js"></script>
-
-        <script src="./vendor/gaugeJS/dist/gauge.min.js"></script>
-
-        <!--  flot-chart js -->
-        <script src="./vendor/flot/jquery.flot.js"></script>
-        <script src="./vendor/flot/jquery.flot.resize.js"></script>
-
-        <!-- Owl Carousel -->
-        <script src="./vendor/owl-carousel/js/owl.carousel.min.js"></script>
-
-        <!-- Counter Up -->
-        <script src="./vendor/jqvmap/js/jquery.vmap.min.js"></script>
-        <script src="./vendor/jqvmap/js/jquery.vmap.usa.js"></script>
-        <script src="./vendor/jquery.counterup/jquery.counterup.min.js"></script>
-
-
-        <script src="./js/dashboard/dashboard-1.js"></script>
-
+    <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendors/apexcharts/apexcharts.js"></script>
+    <script src="assets/js/pages/dashboard.js"></script>
+    <script src="assets/js/mazer.js"></script>
+    <script src="assets/vendors/jquery/jquery.min.js"></script>
+    <script src="assets/vendors/jquery-datatables/jquery.dataTables.min.js"></script>
+    <script src="assets/vendors/jquery-datatables/custom.jquery.dataTables.bootstrap5.min.js"></script>
+    <script src="assets/vendors/fontawesome/all.min.js"></script>
+    <script>
+        // Jquery Datatable
+        let jquery_datatable = $("#table1").DataTable()
+    </script>
+    <!-- Include Choices JavaScript -->
+    <script src="assets/vendors/choices.js/choices.min.js"></script>
+    <script src="assets/js/pages/form-element-select.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
 
 </html>

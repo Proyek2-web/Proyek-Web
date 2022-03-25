@@ -1,141 +1,218 @@
 @extends('master.main')
-@section('container')
-    <div class="content-body">
+@section('body')
+<style>
+    table.dataTable td {
+        padding: 15px 8px;
+    }
 
-        <!-- row -->
-        <h1 class="mb-3 ml-4">Admin</h1>
-        @if (session()->has('info'))
-            <div class="alert alert-danger solid alert-dismissible fade show w-50 text-center mx-auto">
-                <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i
-                            class="mdi mdi-close"></i></span>
-                </button>
-                {{ session('info') }}
+    .fontawesome-icons .the-icon svg {
+        font-size: 24px;
+    }
+</style>
+<div class="page-heading">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last">
+                <h3>Data User</h3>
+                <p class="text-subtitle text-muted">For user to check they list</p>
             </div>
-        @endif
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Data Admin</h4>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-light">
-                            <thead>
-                                <tr style="color: black">
-                                    <th scope="col">No</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Dibuat</th>
-                                    <th scope="col">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($user as $u)
-                                    <tr style="color: black">
-                                        <th>{{ $loop->iteration }}</th>
-                                        <td>{{ $u->name }}</td>
-                                        <td>{{ $u->email }}</td>
-                                        <td>{{ $u->created_at }}</td>
-                                        <td>
-                                            <div class="aksi d-flex">
-                                                <a data-toggle="modal" id="updateAdmin" data-target="#modal-info{{$u->id}}"
-                                                    class="btn btn-info mr-2"><i class="fa fa-info"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <div class="modal fade" id="modal-info{{$u->id}}">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h4 class="modal-title" id="modal-judul">Detail {{ $u->name }}</h4>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="form-group">
-                                                        <label for="nama" style="font-weight:bold;color:black">Nama</label>
-                                                        <p style="color:black">{{ $u->name }}</p>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="email" style="font-weight:bold;color:black">Email</label>
-                                                        <p style="color:black">{{ $u->email }}</p>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="dibuat" style="font-weight:bold;color:black">Dibuat pada</label><br>
-                                                        <p style="color:black">{{ $u->created_at }}</p>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="diupdate" style="font-weight:bold;color:black">Terakhir update</label><br>
-                                                        <p style="color:black">{{ $u->updated_at }}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- /.modal-content -->
-                                        </div>
-                                        <!-- /.modal-dialog -->
-                                    </div>
-                                @endforeach
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+            <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item "><a style="color: #222237" href="/dashboard">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Data User</li>
+                    </ol>
+                </nav>
             </div>
-        </div>
-        <button type="button" class="btn btn-secondary ml-3" data-toggle="modal" data-target="#modal-default">
-            <i class="fa fa-plus"></i>&nbsp;Tambahkan Data User</a>
-        </button>
-        <div class="modal fade" id="modal-default">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Masukkan User Baru</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            <div class="form-group">
-                                <label for="nama">Nama</label>
-                                <input type="text" class="form-control" name="name" id="nama" placeholder="Masukkan Nama"
-                                    required value="{{ old('name') }}">
-                            </div>
-                            <div class="form-group">
-                                <label for="nama">Email</label>
-                                <input type="text" class="form-control @error('email') is-invalid @enderror" name="email"
-                                    id="slug" placeholder="Masukkan Email" required value="{{ old('email') }}">
-                                @error('email')
-                                    <div id="" class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="nama">Password</label>
-                                <input type="text" class="form-control @error('password') is-invalid @enderror"
-                                    name="password" id="password" placeholder="Masukkan Password" required
-                                    value="{{ old('password') }}">
-                                @error('password')
-                                    <div id="" class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                    </div>
-                    <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                    </form>
-                </div>
-                <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
         </div>
     </div>
 
+    <!-- Basic Tables start -->
+    <section class="section">
+        <div class="card">
+            <div class="card-header">
+                {{-- <button type="button" class="btn btn-primary ml-3 p-2" data-bs-toggle="modal"
+                    data-bs-target="#modal-tambah">
+                    Tambah data User <i class="fa fa-plus ms-2"></i>
+                </button> --}}
+                <!--Basic Modal Tambah Produk-->
+                {{-- <div class="modal fade text-left" id="modal-tambah" tabindex="-1" role="dialog"
+                    aria-labelledby="myModalLabel1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header bg-primary">
+                                <h5 class="modal-title text-white" id="myModalLabel1">Tambah Data User</h5>
+                                <button type="button" class="close rounded-pill" data-bs-dismiss="modal"
+                                    aria-label="Close">
+                                    <i data-feather="x"></i>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form form-vertical" action="{{ route('category.store') }}" method="POST"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="form-group">
+                                        <label for="basicInput">Nama User</label>
+                                        <input name="name" type="text" class="form-control"
+                                            placeholder="Masukkan nama User" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="basicInput">E-mail</label>
+                                        <input name="email" type="text" class="form-control"
+                                            placeholder="Masukkan email User" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="basicInput">Nama User</label>
+                                        <input name="name" type="text" class="form-control"
+                                            placeholder="Masukkan nama User" required>
+                                    </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                    <i class="bx bx-x d-block d-sm-none"></i>
+                                    <span class="d-none d-sm-block">Tutup</span>
+                                </button>
+                                <button type="submit" class="btn btn-primary ml-1">
+                                    <i class="bx bx-check d-block d-sm-none"></i>
+                                    <span class="d-none d-sm-block">Tambah</span>
+                                </button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div> --}}
+            </div>
+            <div class="card-body">
+                <table class="table" id="table1" style="table-layout: fixed; width: 100%">
+                    <thead>
+                        <tr>
+                            <th style="width: 50px">No.</th>
+                            <th>Nama User</th>
+                            <th>E-mail</th>
+                            <th>Roles</th>
+                            <th>Dibuat</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($user as $u)
+                        <tr>
+                            <td>{{ $loop->iteration  }}</td>
+                            <td>{{ $u->name }}</td>
+                            <td>{{ $u->email }}</td>
+                            <td>{{ $u->roles }}</td>
+                            <td>{{ $u->created_at }}</td>
+                            <td>
+                                <div class="aksi d-flex justify-content-center">
+                                    <a data-bs-toggle="modal" id="update" data-bs-target="#modal-edit{{ $u->id }}"
+                                        class="btn btn-warning me-2"><i class="fa fa-info"></i>
+                                    </a>
+                                    <!--Basic Modal info user-->
+                                    <div class="modal fade text-left" id="modal-edit{{ $u->id }}" tabindex="-1"
+                                        role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header bg-primary">
+                                                    <h5 class="modal-title text-white" id="myModalLabel1">Detail Data
+                                                        User</h5>
+                                                    <button type="button" class="close rounded-pill"
+                                                        data-bs-dismiss="modal" aria-label="Close">
+                                                        <i data-feather="x"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                        <div class="form-group">
+                                                            <label for="basicInput">Nama User</label>
+                                                            <input name="name" type="text" class="form-control"
+                                                             placeholder="Masukkan nama user"
+                                                             disabled value="{{ $u->name }}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="basicInput">E-mail</label>
+                                                            <input type="text" class="form-control" name="harga"
+                                                                placeholder="Masukkan email"
+                                                                value="{{ $u->email }}" disabled>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="basicInput">Alamat</label>
+                                                            <input type="text" class="form-control" name="alamat"
+                                                                placeholder="Masukkan email"
+                                                                value="{{ $u->alamat }}" disabled>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="basicInput">Roles</label>
+                                                            <input type="text" class="form-control" name="roles"
+                                                                placeholder="Masukkan email"
+                                                                value="{{ $u->roles }}" disabled>
+                                                        </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <span style="font-size: 12px">Terakhir di rubah: <span style="color: #222237">{{ $u->updated_at }}</span> </span>
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">
+                                                        <i class="bx bx-x d-block d-sm-none"></i>
+                                                        <span class="d-none d-sm-block">Tutup</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                        <button onclick="deleteItem(this)" class="deleted btn btn-danger" data-id="{{$u->id}}" data-name="{{$u->name}}"><i
+                                                class="fa fa-trash"></i></button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="7" class="text-center border px-4 py-2" style="">USER KOSONG</td>
+                        </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+    </section>
+    <!-- Basic Tables end -->
+</div>
+<!-- Sweet Alert Delete -->
+<script>
+    function deleteItem(d){
+            var id = d.getAttribute('data-id');
+            var name = d.getAttribute('data-name');
+            Swal.fire({
+                title: 'Apakah yakin?',
+                text: "Ingin menghapus data (" + name + ")",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#222237',
+                cancelButtonColor: '#AAAAAA',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 10000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        icon: 'info',
+                        title: 'Hold on, delete in progress'
+                    })
+                    window.location = "/user/delete/" + id
+                }
+            })
+    }
+    </script>
+    <!-- End Sweet Alert Delete -->
 @endsection
+
+
