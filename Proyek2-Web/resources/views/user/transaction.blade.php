@@ -7,6 +7,10 @@
         <div class="title col-lg-12 mx-auto mt-5">
             <h1>Transaksi</h1>
         </div>
+        <ol class="arrows">
+            <li><a href="/"><i class="bi bi-house-fill"></i> Home</a></li>
+            <li><a href="/transaction">Transaksi</a></li>
+        </ol>
         <div class="wrap-btn-transaksi d-flex text-center justify-content-center" style="margin-top: 60px;">
             <form action="{{ route('transaction.index') }}" method="GET" enctype="multipart/form-data">
                 @php

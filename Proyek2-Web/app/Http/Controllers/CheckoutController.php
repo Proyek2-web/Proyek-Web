@@ -35,8 +35,10 @@ class CheckoutController extends Controller
              'products.featured_image as featured_image','products.berat as berat', 'products.harga as harga', 'categories.name as category_name','carts.status as status')
             ->get();
             $total_berat = 0;
+            $s= 0;
             foreach ($data as $d) {
-                $total_berat += $d->berat;
+                $s= $d->qty * $d->berat;
+                $total_berat = $total_berat +  $s;
             }
         return view('layouts.form-order',compact('subtotal','provinces', 'cart_count','data','channels','total_berat'));
     }
