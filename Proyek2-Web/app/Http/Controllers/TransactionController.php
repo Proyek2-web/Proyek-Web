@@ -103,7 +103,10 @@ class TransactionController extends Controller
                 'products.harga as harga',
                 'categories.name as category_name',
                 'carts.status as status',
-                'orders.status as os'
+                'orders.status as os',
+                'orders.delivery as delivery',
+                'orders.day as hari',
+                
             )
             ->get();
         $tripay = new TripayController();

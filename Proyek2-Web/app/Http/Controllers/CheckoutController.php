@@ -94,6 +94,8 @@ class CheckoutController extends Controller
         $save->total_ongkir = $total_ongkir;
         $save->zip_code = $request->zip_code;
         $save->amount = $request->total;
+        $save->day = $request->total_hari;
+        $save->delivery = $request->courier;
         $save->user_id = Auth::user()->id;
         $save->merchant_ref     = $dt['data']['merchant_ref'];
         $save->reference        = $dt['data']['reference'];
