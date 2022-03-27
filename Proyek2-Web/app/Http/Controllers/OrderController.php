@@ -6,6 +6,9 @@ use App\Models\Category;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Payment\TripayController;
+use App\Models\Cart;
+use App\Models\Product;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class OrderController extends Controller
 {
@@ -16,10 +19,36 @@ class OrderController extends Controller
      */
     public function index()
     {   
-        
-        $orders = Order::all();
-        // dd(json_decode($orders));
-        return view('section.order',  compact('orders'));
+        $carts = Cart::all();
+        $product = Product::all();
+        $orders = Order::select("*")
+        ->where('status', '=', 'UNPAID')
+        ->orderBy('created_at','desc')
+        ->get();
+        $status = true;
+        if (request('paid')) {
+            $orders = Order::select("*")
+            ->where('status', '=', 'PAID')
+            ->where('resi', '=', null)
+            ->orderBy('created_at','desc')
+            ->get();
+            $status = false;
+        } else if (request('send')) {
+            $orders = Order::select("*")
+                ->where('status', '=', 'PAID')
+                ->where('resi', '!=', null)
+                ->where('order_notes','=',null)
+                ->orderBy('created_at','desc')
+                ->get();
+        }else if (request('receive')) {
+            $orders = Order::select("*")
+                ->where('status', '=', 'PAID')
+                ->where('resi', '!=', null)
+                ->where('order_notes','!=',null)
+                ->orderBy('created_at','desc')
+                ->get();
+        }
+        return view('section.order',compact('orders','carts','product','status'));
     }
 
     /**
@@ -74,7 +103,11 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+        $o = Order::find($order->id);
+        $o->resi = $request->resi;
+        $o->save();
+        Alert::success('Resi Berhasil Dimasukkan', '');
+        return back();
     }
 
     /**
