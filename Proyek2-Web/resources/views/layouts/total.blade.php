@@ -231,6 +231,11 @@
                             </div>
                             <div class="d-flex justify-content-between"> <small>Pengiriman</small> <small>Rp.
                                     {{ number_format($d->total_ongkir) }}</small> </div>
+                            <div class="d-flex justify-content-between"> <small><b>{{ Str::of($d->delivery)->limit(110)->upper() }}</b></small> 
+                                <small></small> 
+                            </div>
+                            <div class="d-flex justify-content-between"> <small><b>Estimasi Dikirim ({{ $d->hari }} hari)+(5 hari produksi)</b></small>  
+                            </div>
                         @break
                         @endforeach
 

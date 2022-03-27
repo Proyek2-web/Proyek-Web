@@ -88,6 +88,7 @@
                         <thead>
                             <tr>
                                 <th style="width: 50px">No.</th>
+                                <th>Tanggal Pesanan</th>
                                 <th>Nama Penerima</th>
                                 <th>Nomer HP</th>
                                 <th>Alamat</th>
@@ -102,13 +103,20 @@
                             @forelse ($orders as $o)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
+                                    <td>{!! date('d M y', strtotime($o->created_at)) !!}</td>
                                     <td>{{ $o->nama }}</td>
                                     <td>{{ $o->phone_number }}</td>
                                     <td>{{ $o->alamat }}</td>
                                     <td>{{ $o->merchant_ref }}</td>
                                     <td>{{ $o->user->name }}</td>
-                                    <td>{{ $o->amount }}</td>
-                                    <td>{{ $o->status }}</td>
+                                    <td>Rp.{{ number_format($o->amount,0) }}</td>
+                                    @if ($o->status == 'UNPAID')
+                                    <td><span class="badge bg-warning">UNPAID</span></td>    
+                                    @elseif($o->status == 'PAID' && $o->order_notes != null)
+                                    <td><span class="badge bg-success">SUCCESS</span></td>
+                                    @else
+                                    <td><span class="badge bg-secondary">PAID</span></td>
+                                    @endif
                                     <td>
                                         <div class="aksi d-flex justify-content-center">
                                             <a data-bs-toggle="modal" id="update"
@@ -129,8 +137,8 @@
                                                     <div class="modal-content">
                                                         <div class="modal-header bg-primary">
                                                             <h5 class="modal-title text-white" id="myModalLabel1">Detail
-                                                                Data
-                                                                Pesanan</h5>
+                                                                data
+                                                                pesanan {!! date('d M y', strtotime($o->created_at)) !!}</h5>
                                                             <button type="button" class="close rounded-pill"
                                                                 data-bs-dismiss="modal" aria-label="Close">
                                                                 <i data-feather="x"></i>
@@ -192,6 +200,18 @@
                                                                 <input type="text" class="form-control" name="roles"
                                                                     placeholder="Masukkan email"
                                                                     value="{{ $o->merchant_ref }}" disabled>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="basicInput">Jasa Pengiriman</label>
+                                                                <input type="text" class="form-control"
+                                                                    placeholder="Masukkan email"
+                                                                    value="{{ Str::of($o->delivery)->limit(110)->upper() }}" disabled>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="basicInput">Estimasi</label>
+                                                                <input type="text" class="form-control" name="alamat"
+                                                                    placeholder="Masukkan email"
+                                                                    value="{{ $o->day }} + 5 hari mendatang" disabled>
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">

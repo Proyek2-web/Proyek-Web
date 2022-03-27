@@ -82,9 +82,10 @@
                                 <a href="/cart" class="btn btn-back"><i class="bi bi-x-circle-fill me-2"></i>Batal</a>
                                 <input type="hidden" name="sub_total" value="{{ $subtotal }}">
                                 <input type="hidden" name="total_ongkir" value="">
+                                <input type="hidden" name="total_hari" value="">
                                 <input type="hidden" name="total">
-                                <button type="submit" id="checkout-button" class="btn btn-conf d-none text-dark" style="background-color: #f2cc8f">Bayar <i
-                                        class="bi bi-credit-card"></i></button>
+                                <button type="submit" id="checkout-button" class="btn btn-conf d-none text-dark"
+                                    style="background-color: #f2cc8f">Bayar <i class="bi bi-credit-card"></i></button>
                             </div>
                         </div>
                     </div>
@@ -93,11 +94,10 @@
                         {{-- <h6>Jumlah Pembayaran</h6> --}}
                         <div class="row p-4 text-light">
                             Nama
-                            <input class='input-field ' type="text" name="nama" id="exampleFormControlInput1"
-                                required></input>
+                            <input class='input-field ' type="text" name="nama" id="exampleFormControlInput1" required>
                             Alamat detail
                             <input class='input-field ' type="text" name="alamat" id="exampleFormControlInput1"
-                                required></input>
+                                required>
                             <table class='half-input-table'>
                                 <tr>
                                     <td>No. Handphone
@@ -113,25 +113,38 @@
                             Catatan produk
                             <textarea name="custom" class=" input-field" id="exampleFormControlTextarea1" rows="6"
                                 required></textarea>
-                                <div class=" d-flex   justify-content-between mt-3 mb-3" style="margin-left: -6px">
-                                    <select id="id_select2_example" name="method" class=" input-field "
-                                        aria-label="Default select example" required>
-                                        <option value="0" data-img_src="{{ url('https://static.thenounproject.com/png/3187853-200.png')}}">-- pilih metode pembayaran --</option>
-                                        @foreach ($channels as $channel)
-                                        @if ($channel->active)
-                                        <option class="align-items-center" data-img_src="{{ asset('storage/payment/' .$channel->code ).'.png'  }}" style="background: #c04242; color: rgb(240, 242, 243)" value="{{ $channel->code }}">
-                                            {{ $channel->name }} </option>
-                                        @endif
-                                        @endforeach
-                                    </select>
-                                    <select id="id_select3_example"  class=" kurir input-field " name="courier">
-                                        <option value="0" data-img_src2="{{ url('https://i1.wp.com/www.jlscargo.com/wp-content/uploads/2021/04/Icon-Jasa-Pembelian.png')}}">-- pilih metode pengiriman --</option>
-                                        <option style="background: #31527a; color: aliceblue" data-img_src2="{{ url('https://seeklogo.com/images/T/Tiki_JNE-logo-09BD368D04-seeklogo.com.png')}}" value="jne">JNE</option>
-                                        <option style="background: #31527a; color: aliceblue" data-img_src2="{{ url('https://cdn.kibrispdr.org/data/icon-pos-indonesia-10.png')}}" value="pos">POS</option>
-                                        <option style="background: #31527a; color: aliceblue" data-img_src2="{{ url('https://cdn.kibrispdr.org/data/icon-jne-png-47.png')}}" value="tiki">TIKI</option>
-                                    </select>
-                                    
-                                </div>    
+                            <div class=" d-flex   justify-content-between mt-3 mb-3" style="margin-left: -6px">
+                                <select id="id_select2_example" name="method" class=" input-field "
+                                    aria-label="Default select example" required>
+                                    <option value="0"
+                                        data-img_src="{{ url('https://static.thenounproject.com/png/3187853-200.png')}}">
+                                        -- pilih metode pembayaran --</option>
+                                    @foreach ($channels as $channel)
+                                    @if ($channel->active)
+                                    <option class="align-items-center"
+                                        data-img_src="{{ asset('storage/payment/' .$channel->code ).'.png'  }}"
+                                        style="background: #c04242; color: rgb(240, 242, 243)"
+                                        value="{{ $channel->code }}">
+                                        {{ $channel->name }} </option>
+                                    @endif
+                                    @endforeach
+                                </select>
+                                <select id="id_select3_example" class=" kurir input-field " name="courier">
+                                    <option value="0"
+                                        data-img_src2="{{ url('https://i1.wp.com/www.jlscargo.com/wp-content/uploads/2021/04/Icon-Jasa-Pembelian.png')}}">
+                                        -- pilih metode pengiriman --</option>
+                                    <option style="background: #31527a; color: aliceblue"
+                                        data-img_src2="{{ url('https://seeklogo.com/images/T/Tiki_JNE-logo-09BD368D04-seeklogo.com.png')}}"
+                                        value="jne">JNE</option>
+                                    <option style="background: #31527a; color: aliceblue"
+                                        data-img_src2="{{ url('https://cdn.kibrispdr.org/data/icon-pos-indonesia-10.png')}}"
+                                        value="pos">POS</option>
+                                    <option style="background: #31527a; color: aliceblue"
+                                        data-img_src2="{{ url('https://cdn.kibrispdr.org/data/icon-jne-png-47.png')}}"
+                                        value="tiki">TIKI</option>
+                                </select>
+
+                            </div>
                             <div class='line'></div>
                             <div class=" d-flex justify-content-between mt-2">
                                 {{-- <label for="Provinsi" class="mb-2">Pilih Provinsi</label> --}}
@@ -148,7 +161,7 @@
                                         kota tujuan --</option>
                                 </select>
                             </div>
-                            
+
                             <div class=" text-center">
                                 <input type="hidden" class="form-control" name="weight" id="weight"
                                     value="{{ $total_berat }}" disabled>
@@ -166,14 +179,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button id="btn-check" class="btn btn-conf mt-5" style="background-color: #81b29a">Konfirmasi <i
-                                    class="bi bi-check-circle-fill"></i></button>
+                                <button id="btn-check" class="btn btn-conf mt-5"
+                                    style="background-color: #81b29a">Konfirmasi <i
+                                        class="bi bi-check-circle-fill"></i></button>
                             </div>
                         </div>
-
                     </div>
                 </div>
-
             </div>
         </div>
 </div>
@@ -183,48 +195,63 @@
 
 </div>
 <script type="text/javascript">
-    function custom_template(obj){
-            var data = $(obj.element).data();
-            var text = $(obj.element).text();
-            if(data && data['img_src']){
-                img_src = data['img_src'];
-                template = $("<div><img src=\"" + img_src + "\" style=\"width:40px;\"/><p style=\"font-weight: 700;font-size:9pt; display:inline-block; padding:5px; margin-right:50px\">" + text + "</p></div>");
-                return template;
-            }
+    function custom_template(obj) {
+        var data = $(obj.element).data();
+        var text = $(obj.element).text();
+        if (data && data['img_src']) {
+            img_src = data['img_src'];
+            template = $("<div><img src=\"" + img_src +
+                "\" style=\"width:40px;\"/><p style=\"font-weight: 700;font-size:9pt; display:inline-block; padding:5px; margin-right:50px\">" +
+                text + "</p></div>");
+            return template;
         }
+    }
     var options = {
         'templateSelection': custom_template,
         'templateResult': custom_template,
     }
     $('#id_select2_example').select2(options);
-    $('.select2-container--default .select2-selection--single').css({'height': '40px','background': '#f4f1de', 'margin-right':'0px'});
+    $('.select2-container--default .select2-selection--single').css({
+        'height': '40px',
+        'background': '#f4f1de',
+        'margin-right': '0px'
+    });
 
 </script>
 <script type="text/javascript">
-    function custom_template(obj){
-            var data = $(obj.element).data();
-            var text = $(obj.element).text();
-            if(data && data['img_src2']){
-                img_src = data['img_src2'];
-                template2 = $("<div><img src=\"" + img_src + "\" style=\"width:40px;\"/><p style=\"font-weight: 700;font-size:9pt; display:inline-block; padding:5px; margin-right:0px\">" + text + "</p></div>");
-                return template2;
-            }
+    function custom_template(obj) {
+        var data = $(obj.element).data();
+        var text = $(obj.element).text();
+        if (data && data['img_src2']) {
+            img_src = data['img_src2'];
+            template2 = $("<div><img src=\"" + img_src +
+                "\" style=\"width:40px;\"/><p style=\"font-weight: 700;font-size:9pt; display:inline-block; padding:5px; margin-right:0px\">" +
+                text + "</p></div>");
+            return template2;
         }
+    }
     var options = {
         'templateSelection': custom_template,
         'templateResult': custom_template,
     }
     $('#id_select3_example').select2(options);
-    $('.select2-container--default .select2-selection--single').css({'height': '40px','background': '#f4f1de', 'margin-left':'10px', 'border-radius':'5px'});
+    $('.select2-container--default .select2-selection--single').css({
+        'height': '40px',
+        'background': '#f4f1de',
+        'margin-left': '10px',
+        'border-radius': '5px'
+    });
 
 </script>
 <script>
     $('#ongkir').click(function () {
         const ongkir = $('input[name=ongkir-kurir]:checked').val();
         var sub_total = $('input[name=sub_total]').val();
+        const hari = $('input[name=hari]').val();
         total = parseInt(sub_total) + parseInt(ongkir);
         $('input[name=total]').val(total);
         $('input[name=total_ongkir]').val(ongkir);
+        $('input[name=total_hari]').val(hari);
         $("#total_checkout").text("Rp. " + number_format(total, 2));
         $('#checkout-button').addClass('d-block');
         $('#sub_ongkir').text("Rp. " + number_format(ongkir, 2));
@@ -294,6 +321,8 @@
                     $.each(response[0]['costs'], function (key, value) {
                         $('#ongkir').append(
                             '<li class="list-group-item" style="background: rgba(255, 255, 255, 0.267); color: aliceblue">' +
+                            '<input type ="hidden" name="hari" value="' + value.cost[0]
+                            .etd + '">' +
                             '<input  type="radio" required name="ongkir-kurir" value="' +
                             value.cost[0].value + '"> ' + response[0].code
                             .toUpperCase() + ' : <strong>' + value.service +
@@ -326,6 +355,7 @@
         }
         return s.join(dec);
     }
+
 </script>
 <script>
 
