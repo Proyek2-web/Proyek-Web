@@ -100,16 +100,6 @@
                         </thead>
                         <tbody>
                             @forelse ($orders as $o)
-                                @foreach ($carts as $c)
-                                    @foreach ($product as $p)
-                                        @if ($o->id == $c->order_id)
-                                            @if ($c->product_id == $p->id)
-                                                {{ $p->nama }}
-                                            @endif
-                                        @endif
-                                    @endforeach
-                                @endforeach
-
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $o->nama }}</td>
@@ -134,7 +124,7 @@
                                                         <div class="modal-header bg-primary">
                                                             <h5 class="modal-title text-white" id="myModalLabel1">Detail
                                                                 Data
-                                                                User</h5>
+                                                                Pesanan</h5>
                                                             <button type="button" class="close rounded-pill"
                                                                 data-bs-dismiss="modal" aria-label="Close">
                                                                 <i data-feather="x"></i>
@@ -147,6 +137,23 @@
                                                                     placeholder="Masukkan nama user" disabled
                                                                     value="{{ $o->nama }}">
                                                             </div>
+                                                            <div class="form-group">
+                                                                <label for="basicInput">Produk</label>
+                                                                @foreach ($carts as $c)
+                                                                    @foreach ($product as $p)
+                                                                        @if ($o->id == $c->order_id)
+                                                                            @if ($c->product_id == $p->id)
+                                                                                <input name="name" type="text"
+                                                                                    class="form-control"
+                                                                                    placeholder="Masukkan nama user"
+                                                                                    disabled
+                                                                                    value="{{ $p->nama }} : {{ $c->qty }} pcs">
+                                                                            @endif
+                                                                        @endif
+                                                                    @endforeach
+                                                                @endforeach
+                                                            </div>
+
                                                             <div class="form-group">
                                                                 <label for="basicInput">Nomor HP</label>
                                                                 <input type="text" class="form-control" name="harga"
@@ -161,15 +168,15 @@
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="basicInput">Alamat</label>
-                                                                <input type="text" class="form-control" name="roles"
+                                                                {{-- <input type="text" style="weight" class="form-control" name="roles"
                                                                     placeholder="Masukkan email"
-                                                                    value="{{ $o->alamat }}" disabled>
+                                                                    value="{{ $o->alamat }}asdsadasdasdasdasdasdas | Kode Pos : {{ $o->zip_code }}" disabled> --}}
+                                                                <textarea class="form-control" cols="20" rows="5" disabled>{{ $o->alamat }} | Kode Pos: {{ $o->zip_code }}</textarea>
                                                             </div>
                                                             <div class="form-group">
-                                                                <label for="basicInput">Kode Pos</label>
+                                                                <label for="basicInput">Total Biaya</label>
                                                                 <input type="text" class="form-control" name="roles"
-                                                                    placeholder="Masukkan email"
-                                                                    value="{{ $o->zip_code }}" disabled>
+                                                                    placeholder="Masukkan email" value="Total Produk: {{ $o->total_produk }} | Total Ongkir : {{ $o->total_ongkir }} = Rp.{{ $o->amount }}" disabled>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="basicInput">Nomor Pesanan</label>

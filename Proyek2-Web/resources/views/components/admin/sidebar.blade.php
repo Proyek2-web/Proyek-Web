@@ -30,13 +30,25 @@
                 </li>
                 <li class="sidebar-title ">Pesanan</li>
                 <li class="sidebar-item {{ Route::is('order.index') ? 'active' : '' }}">
+                    @php
+                        $unpaid = \App\Models\Order::all()
+                            ->where('status', '=', 'UNPAID')
+                            ->count();
+                    @endphp
                     <a href="{{ route('order.index') }}" class='sidebar-link'>
                         <i class="bi bi-wallet2"></i>
-                        <span>Belum Dibayar</span>
+                        <span class="transaksi-badge ">Belum Bayar {{ $unpaid }}</span>
                     </a>
                 </li>
                 <li class="sidebar-item {{ Route::is('order.index') ? 'active' : '' }}">
-                    <form action="{{ route('order.index') }}" method="GET" >
+                    <form action="{{ route('order.index') }}" method="GET">
+                        @php
+                            $paid = \App\Models\Order::all()
+                                
+                                ->where('status', '=', 'PAID')
+                                ->where('resi', '==', null)
+                                ->count();
+                        @endphp
                         <input type="hidden" name="paid" value="paid">
                         <button type="submit" style="background-color: transparent;
                             background-repeat: no-repeat;
@@ -45,12 +57,20 @@
                             overflow: hidden;
                             outline: none;" class='sidebar-link'>
                             <i class="bi bi-box-seam"></i>
-                            <span>Perlu Diproses</span>
+                            <span class="transaksi-badge ">Di Proses {{ $paid }}</span>
                         </button>
                     </form>
                 </li>
                 <li class="sidebar-item {{ Route::is('order.index') ? 'active' : '' }}">
-                    <form action="{{ route('order.index') }}" method="GET" >
+                    <form action="{{ route('order.index') }}" method="GET">
+                        @php
+                            $send = \App\Models\Order::all()
+                                
+                                ->where('status', '=', 'PAID')
+                                ->where('resi', '!=', null)
+                                ->where('order_notes', '=', null)
+                                ->count();
+                        @endphp
                         <input type="hidden" name="send" value="send">
                         <button type="submit" style="background-color: transparent;
                             background-repeat: no-repeat;
@@ -58,13 +78,21 @@
                             cursor: pointer;
                             overflow: hidden;
                             outline: none;" class='sidebar-link'>
-                            <i class="bi bi-truck"></i>
-                            <span>Perlu Dikirim</span>
+                             <i class="bi bi-truck"></i>
+                            <span class="transaksi-badge ">Sedang Dikirim {{ $send }}</span>
                         </button>
                     </form>
                 </li>
                 <li class="sidebar-item {{ Route::is('order.index') ? 'active' : '' }}">
-                    <form action="{{ route('order.index') }}" method="GET" >
+                    <form action="{{ route('order.index') }}" method="GET">
+                        @php
+                            $receive = \App\Models\Order::all()
+                                
+                                ->where('status', '==', 'PAID')
+                                ->where('resi', '!=', null)
+                                ->where('order_notes', '!=', null)
+                                ->count();
+                        @endphp
                         <input type="hidden" name="receive" value="receive">
                         <button type="submit" style="background-color: transparent;
                             background-repeat: no-repeat;
@@ -72,8 +100,8 @@
                             cursor: pointer;
                             overflow: hidden;
                             outline: none;" class='sidebar-link'>
-                            <i class="bi bi-check2-circle"></i>
-                            <span>Pesanan Selesai</span>
+                             <i class="bi bi-check2-circle"></i>
+                            <span class="transaksi-badge ">Pesanan Selesai {{ $receive }}</span>
                         </button>
                     </form>
                 </li>
