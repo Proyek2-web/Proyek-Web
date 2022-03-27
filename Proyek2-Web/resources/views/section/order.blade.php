@@ -1,303 +1,248 @@
 @extends('master.main')
-@section('container')
-    <div class="content-body">
-        <!-- row -->
-        <div>
-            @if (session()->has('success'))
-                <div class="alert alert-danger solid alert-dismissible fade show w-50 text-center mx-auto">
-                    <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i
-                                class="mdi mdi-close"></i></span>
-                    </button>
-                    {{ session('success') }}
-                </div>
-            @endif
-            @if (session()->has('edited'))
-                <div class="alert alert-primary solid alert-dismissible fade show w-50 text-center mx-auto">
-                    <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i
-                                class="mdi mdi-close"></i></span>
-                    </button>
-                    {{ session('edited') }}
-                </div>
-            @endif
-            @if (session()->has('Added'))
-                <div class="alert alert-primary solid alert-dismissible fade show w-50 text-center mx-auto">
-                    <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i
-                                class="mdi mdi-close"></i></span>
-                    </button>
-                    {{ session('Added') }}
-                </div>
-            @endif
-        </div>
-        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="/"><i class="bi bi-person-fill"></i> Admin </a></li>
-              <li class="breadcrumb-item active" aria-current="page">Pesanan</li>
-            </ol>
-          </nav>
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="card-header justify-content-center bg-dark">
-                    <h2 class="card-title text-uppercase text-white">Data Pesanan <i class="bi bi-bag-check"></i></h2>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-light">
-                            <thead>
-                                <tr style="color: black">
-                                    <th class="border text-center" scope="col">No</th>
-                                    <th class="border text-center" scope="col">Nama</th>
-                                    <th class="border text-center" scope="col">Nomor WA</th>
-                                    {{-- <th class="border" scope="col">Catatan</th> --}}
-                                    {{-- <th scope="col">Email</th> --}}
-                                    {{-- <th scope="col">Alamat</th> --}}
-                                    <th class="border text-center" scope="col">Produk</th>
-                                    <th class="border text-center" scope="col">Jumlah</th>
-                                    <th class="border text-center" scope="col">Total</th>
-                                    <th class="border text-center" scope="col">Status</th>
-                                    <th class="border text-center" scope="col">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($orders as $p)
-                                    <tr style="color: black">
-                                        <th class="border text-center" style="line-height: 100px">{{ $loop->iteration }}</th>
-                                        <td class="border text-center">{{ $p->nama }}</td>
-                                        <td class="border text-center">{{ $p->phone_number }}</td>
-                                        <td class="border text-center">{{ $p->product->nama }}</td>
-                                        <td class="border text-center">{{ $p->quantity }}</td>
-                                        <td class="border text-center">Rp. {{ number_format($p->amount) }}</td>
+@section('body')
+    <style>
+        table.dataTable td {
+            padding: 15px 8px;
+        }
 
-                                        <td class="border text-center">
-                                            @if ($p->status == 'PAID')
-                                                <span class="px-2 py-1  bg-success  text-white rounded-sm ">
-                                                    {{ $p->status }}
-                                                </span>
-                                            @else
-                                                <span class="px-2 py-1  bg-danger  text-white rounded-sm ">
-                                                    {{ $p->status }}
-                                                </span>
-                                            @endif
-                                        </td>
+        .fontawesome-icons .the-icon svg {
+            font-size: 24px;
+        }
 
-                                        <td class="border text-center">
-                                            <div class="aksi d-flex justify-content-center">
-                                                <a href="{{ route('nota.cetak', $p->id) }}" class="btn btn-secondary mr-2"><i
-                                                        class="fa fa-print"></i></a>
-                                                <div class="aksi">
-                                                    <a data-toggle="modal" id=""
-                                                        data-target="#modal-info{{ $p->id }}"
-                                                        class="btn btn-primary text-white mr-1"><i class="fa fa-info"></i></a>
-                                                </div>
-                                                @if ($p->status === 'PAID' && $p->resi === null)
-                                                    <a data-toggle="modal" id="update"
-                                                        data-target="#modal-edit{{ $p->id }}"
-                                                        class="btn btn-dark text-white mr-2"><i class="bi bi-truck"></i></i>
-                                                    </a>
-                                                    <div class="modal fade" id="modal-edit{{ $p->id }}">
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h4 class="modal-title" id="modal-judul">Masukkan Resi
-                                                                        Pengiriman</h4>
-                                                                    <button type="button" class="close" data-dismiss="modal"
-                                                                        aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <form action="{{ route('resi.update', $p->id) }}"
-                                                                        method="POST" enctype="multipart/form-data">
-                                                                        @csrf
-                                                                        @method('PUT')
-                                                                        <div class="form-group">
-                                                                            <label for="Resi"
-                                                                                style="color: black;font-weight: bold">Resi</label>
-                                                                            <input
-                                                                                style="width: 12.375cm;height:1cm;border:0.01;"
-                                                                                type="text"
-                                                                                class="form-control d-block mb-2"
-                                                                                name="resi" required>
-                                                                            <input type="hidden" name="nama"
-                                                                                value="{{ $p->nama }}">
-                                                                            <input type="hidden" name="phone_number"
-                                                                                value="{{ $p->phone_number }}">
-                                                                            <input type="hidden" name="custom"
-                                                                                value="{{ $p->custom }}">
-                                                                            <input type="hidden" name="email"
-                                                                                value="{{ $p->email }}">
-                                                                            <input type="hidden" name="kota"
-                                                                                value="{{ $p->kota }}">
-                                                                            <input type="hidden" name="alamat"
-                                                                                value="{{ $p->alamat }}">
-                                                                            <input type="hidden" name="product_id"
-                                                                                value="{{ $p->product_id }}">
-                                                                            <input type="hidden" name="category_id"
-                                                                                value="{{ $p->category_id }}">
-                                                                            <input type="hidden" name="merchant_ref"
-                                                                                value="{{ $p->merchant_ref }}">
-                                                                            <input type="hidden" name="amount"
-                                                                                value="{{ $p->amount }}">
-                                                                            <input type="hidden" name="status"
-                                                                                value="{{ $p->status }}">
-                                                                            <input type="hidden" name="quantity"
-                                                                                value="{{ $p->quantity }}">
-                                                                            <input type="hidden" name="delivery_id"
-                                                                                value="{{ $p->delivery_id }}">
-                                                                            
-                                                                            <input type="hidden" name="reference"
-                                                                                value="{{ $p->reference }}">
-                                                                        </div>
-                                                                </div>
-                                                                <div class="modal-footer justify-content-between">
-                                                                    <button type="button" class="btn btn-default"
-                                                                        data-dismiss="modal">Close</button>
-                                                                    <button type="submit"
-                                                                        class="btn btn-primary">Submit</button>
-                                                                </div>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                @endif
-                                                @if ($p->status === 'PAID' && $p->resi !== null )
-                                                    <a data-toggle="modal" id="update"
-                                                        data-target="#modal-updates{{ $p->id }}"
-                                                        class="btn btn-warning mr-2"><i class="fa fa-edit"></i>
-                                                    </a>
-                                                    <a href="https://api.whatsapp.com/send?phone={{ $p->phone_number }}&text=*---------------------Keramik*%20*Kinasih---------------------*%0ANama:%20{{ $p->nama }}%0APesanan:%20{{ $p->product->nama }}%20 {{ $p->quantity }}x%0AResi:%20{{ $p->resi }}%0A*-------------------------------------------------------------*%0A*BARANG*%20*DALAM*%20*PENGIRIMAN*" class="btn btn-success mr-2"><i
-                                                        class="fa fa-whatsapp"></i></a>
-                                                    <div class="modal fade" id="modal-updates{{ $p->id }}">
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h4 class="modal-title" id="modal-judul">Edit Resi
-                                                                        Pengiriman</h4>
-                                                                    <button type="button" class="close" data-dismiss="modal"
-                                                                        aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <form action="{{ route('resi.update', $p->id) }}"
-                                                                        method="POST" enctype="multipart/form-data">
-                                                                        @csrf
-                                                                        @method('PUT')
-                                                                        <div class="form-group">
-                                                                            <label for="Resi"
-                                                                                style="color: black;font-weight: bold">Resi</label>
-                                                                            <input
-                                                                                style="width: 12.375cm;height:1cm;border:0.01;"
-                                                                                type="text"
-                                                                                class="form-control d-block mb-2"
-                                                                                name="resi" required value="{{ $p->resi }}">
-                                                                            <input type="hidden" name="nama"
-                                                                                value="{{ $p->nama }}">
-                                                                            <input type="hidden" name="phone_number"
-                                                                                value="{{ $p->phone_number }}">
-                                                                            <input type="hidden" name="custom"
-                                                                                value="{{ $p->custom }}">
-                                                                            <input type="hidden" name="email"
-                                                                                value="{{ $p->email }}">
-                                                                            <input type="hidden" name="kota"
-                                                                                value="{{ $p->kota }}">
-                                                                            <input type="hidden" name="alamat"
-                                                                                value="{{ $p->alamat }}">
-                                                                            <input type="hidden" name="product_id"
-                                                                                value="{{ $p->product_id }}">
-                                                                            <input type="hidden" name="category_id"
-                                                                                value="{{ $p->category_id }}">
-                                                                            <input type="hidden" name="merchant_ref"
-                                                                                value="{{ $p->merchant_ref }}">
-                                                                            <input type="hidden" name="amount"
-                                                                                value="{{ $p->amount }}">
-                                                                            <input type="hidden" name="status"
-                                                                                value="{{ $p->status }}">
-                                                                            <input type="hidden" name="quantity"
-                                                                                value="{{ $p->quantity }}">
-                                                                            <input type="hidden" name="delivery_id"
-                                                                                value="{{ $p->delivery_id }}">
-                                                                            
-                                                                            <input type="hidden" name="reference"
-                                                                                value="{{ $p->reference }}">
-                                                                        </div>
-                                                                </div>
-                                                                <div class="modal-footer justify-content-between">
-                                                                    <button type="button" class="btn btn-default"
-                                                                        data-dismiss="modal">Close</button>
-                                                                    <button type="submit"
-                                                                        class="btn btn-primary">Submit</button>
-                                                                </div>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                @endif
-
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <div class="modal fade" id="modal-info{{ $p->id }}">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h4 class="modal-title" id="modal-judul">Detail Pesanan</h4>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="form-group">
-                                                        <label for="email" style="font-weight:bold;color:black">Kode
-                                                            Referensi</label>
-                                                        <p style="color:black">{{ $p->reference }}</p>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="email" style="font-weight:bold;color:black">Nama
-                                                            Pelanggan</label>
-                                                        <p style="color:black">{{ $p->nama }}</p>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="email"
-                                                            style="font-weight:bold;color:black">Alamat</label>
-                                                        <p style="color:black">{{ $p->alamat }}</p>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="nama" style="font-weight:bold;color:black">Nama
-                                                            Produk</label>
-                                                        <p style="color:black">{{ $p->product->nama }}</p>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="email" style="font-weight:bold;color:black">Pesanan
-                                                            Tambahan</label>
-                                                        <p style="color:black">{{ $p->custom }}</p>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="dibuat" style="font-weight:bold;color:black">Jumlah
-                                                            Beli</label><br>
-                                                        <p style="color:black">{{ $p->quantity }}</p>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="dibuat"
-                                                            style="font-weight:bold;color:black">Pengiriman</label><br>
-                                                        <p style="color:black">{{ $p->delivery->nama }}</p>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="diupdate"
-                                                            style="font-weight:bold;color:black">Total</label><br>
-                                                        <p style="color:black">{{ $p->amount }}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- /.modal-content -->
-                                        </div>
-                                        <!-- /.modal-dialog -->
-                                    </div>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+    </style>
+    <div class="page-heading">
+        <div class="page-title">
+            <div class="row">
+                <div class="col-12 col-md-6 order-md-1 order-last">
+                    <h3>Data User</h3>
+                    <p class="text-subtitle text-muted">For user to check they list</p>
+                </div>
+                <div class="col-12 col-md-6 order-md-2 order-first">
+                    <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item "><a style="color: #222237" href="/dashboard">Dashboard</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Data User</li>
+                        </ol>
+                    </nav>
                 </div>
             </div>
         </div>
-    @endsection
+
+        <!-- Basic Tables start -->
+        <section class="section">
+            <div class="card">
+                <div class="card-header">
+                    {{-- <button type="button" class="btn btn-primary ml-3 p-2" data-bs-toggle="modal"
+                    data-bs-target="#modal-tambah">
+                    Tambah data User <i class="fa fa-plus ms-2"></i>
+                </button> --}}
+                    <!--Basic Modal Tambah Produk-->
+                    {{-- <div class="modal fade text-left" id="modal-tambah" tabindex="-1" role="dialog"
+                    aria-labelledby="myModalLabel1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header bg-primary">
+                                <h5 class="modal-title text-white" id="myModalLabel1">Tambah Data User</h5>
+                                <button type="button" class="close rounded-pill" data-bs-dismiss="modal"
+                                    aria-label="Close">
+                                    <i data-feather="x"></i>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form form-vertical" action="{{ route('category.store') }}" method="POST"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="form-group">
+                                        <label for="basicInput">Nama User</label>
+                                        <input name="name" type="text" class="form-control"
+                                            placeholder="Masukkan nama User" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="basicInput">E-mail</label>
+                                        <input name="email" type="text" class="form-control"
+                                            placeholder="Masukkan email User" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="basicInput">Nama User</label>
+                                        <input name="name" type="text" class="form-control"
+                                            placeholder="Masukkan nama User" required>
+                                    </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                    <i class="bx bx-x d-block d-sm-none"></i>
+                                    <span class="d-none d-sm-block">Tutup</span>
+                                </button>
+                                <button type="submit" class="btn btn-primary ml-1">
+                                    <i class="bx bx-check d-block d-sm-none"></i>
+                                    <span class="d-none d-sm-block">Tambah</span>
+                                </button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div> --}}
+                </div>
+                <div class="card-body">
+                    <table class="table" id="table1" style="table-layout: fixed; width: 100%">
+                        <thead>
+                            <tr>
+                                <th style="width: 50px">No.</th>
+                                <th>Nama Penerima</th>
+                                <th>Nomer HP</th>
+                                <th>Alamat</th>
+                                <th>No Pesanan</th>
+                                <th>Akun</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($orders as $o)
+                                @foreach ($carts as $c)
+                                    @foreach ($product as $p)
+                                        @if ($o->id == $c->order_id)
+                                            @if ($c->product_id == $p->id)
+                                                {{ $p->nama }}
+                                            @endif
+                                        @endif
+                                    @endforeach
+                                @endforeach
+
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $o->nama }}</td>
+                                    <td>{{ $o->phone_number }}</td>
+                                    <td>{{ $o->alamat }}</td>
+                                    <td>{{ $o->merchant_ref }}</td>
+                                    <td>{{ $o->user->name }}</td>
+                                    <td>{{ $o->amount }}</td>
+                                    <td>{{ $o->status }}</td>
+                                    <td>
+                                        <div class="aksi d-flex justify-content-center">
+                                            <a data-bs-toggle="modal" id="update"
+                                                data-bs-target="#modal-info{{ $o->id }}"
+                                                class="btn btn-warning me-2"><i class="fa fa-info"></i>
+                                            </a>
+                                            <!--Basic Modal info user-->
+                                            <div class="modal fade text-left" id="modal-info{{ $o->id }}"
+                                                tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header bg-primary">
+                                                            <h5 class="modal-title text-white" id="myModalLabel1">Detail
+                                                                Data
+                                                                User</h5>
+                                                            <button type="button" class="close rounded-pill"
+                                                                data-bs-dismiss="modal" aria-label="Close">
+                                                                <i data-feather="x"></i>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="form-group">
+                                                                <label for="basicInput">Nama Penerima</label>
+                                                                <input name="name" type="text" class="form-control"
+                                                                    placeholder="Masukkan nama user" disabled
+                                                                    value="{{ $o->nama }}">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="basicInput">Nomor HP</label>
+                                                                <input type="text" class="form-control" name="harga"
+                                                                    placeholder="Masukkan email"
+                                                                    value="{{ $o->phone_number }}" disabled>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="basicInput">Catatan</label>
+                                                                <input type="text" class="form-control" name="alamat"
+                                                                    placeholder="Masukkan email"
+                                                                    value="{{ $o->custom }}" disabled>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="basicInput">Alamat</label>
+                                                                <input type="text" class="form-control" name="roles"
+                                                                    placeholder="Masukkan email"
+                                                                    value="{{ $o->alamat }}" disabled>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="basicInput">Kode Pos</label>
+                                                                <input type="text" class="form-control" name="roles"
+                                                                    placeholder="Masukkan email"
+                                                                    value="{{ $o->zip_code }}" disabled>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="basicInput">Nomor Pesanan</label>
+                                                                <input type="text" class="form-control" name="roles"
+                                                                    placeholder="Masukkan email"
+                                                                    value="{{ $o->merchant_ref }}" disabled>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <span style="font-size: 12px">Terakhir di rubah: <span
+                                                                    style="color: #222237">{{ $o->updated_at }}</span>
+                                                            </span>
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">
+                                                                <i class="bx bx-x d-block d-sm-none"></i>
+                                                                <span class="d-none d-sm-block">Tutup</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="7" class="text-center border px-4 py-2" style="">PESANAN KOSONG</td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </section>
+        <!-- Basic Tables end -->
+    </div>
+    <!-- Sweet Alert Delete -->
+    <script>
+        function deleteItem(d) {
+            var id = d.getAttribute('data-id');
+            var name = d.getAttribute('data-name');
+            Swal.fire({
+                title: 'Apakah yakin?',
+                text: "Ingin menghapus data (" + name + ")",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#222237',
+                cancelButtonColor: '#AAAAAA',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 10000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        icon: 'info',
+                        title: 'Hold on, delete in progress'
+                    })
+                    window.location = "/user/delete/" + id
+                }
+            })
+        }
+
+    </script>
+    <!-- End Sweet Alert Delete -->
+@endsection

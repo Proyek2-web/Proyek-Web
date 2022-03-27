@@ -6,6 +6,8 @@ use App\Models\Category;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Payment\TripayController;
+use App\Models\Cart;
+use App\Models\Product;
 
 class OrderController extends Controller
 {
@@ -16,10 +18,34 @@ class OrderController extends Controller
      */
     public function index()
     {   
-        
-        $orders = Order::all();
-        // dd(json_decode($orders));
-        return view('section.order',  compact('orders'));
+        $carts = Cart::all();
+        $product = Product::all();
+        $orders = Order::select("*")
+        ->where('status', '=', 'UNPAID')
+        ->orderBy('created_at','desc')
+        ->get();
+        if (request('paid')) {
+            $orders = Order::select("*")
+            ->where('status', '=', 'PAID')
+            ->where('resi', '=', null)
+            ->orderBy('created_at','desc')
+            ->get();
+        } else if (request('send')) {
+            $orders = Order::select("*")
+                ->where('status', '=', 'PAID')
+                ->where('resi', '!=', null)
+                ->where('order_notes','=',null)
+                ->orderBy('created_at','desc')
+                ->get();
+        }else if (request('receive')) {
+            $orders = Order::select("*")
+                ->where('status', '=', 'PAID')
+                ->where('resi', '!=', null)
+                ->where('order_notes','!=',null)
+                ->orderBy('created_at','desc')
+                ->get();
+        }
+        return view('section.order',compact('orders','carts','product'));
     }
 
     /**
