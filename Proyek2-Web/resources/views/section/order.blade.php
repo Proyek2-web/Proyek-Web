@@ -115,6 +115,12 @@
                                                 data-bs-target="#modal-info{{ $o->id }}"
                                                 class="btn btn-warning me-2"><i class="fa fa-info"></i>
                                             </a>
+                                            @if (!$status)
+                                                <a data-bs-toggle="modal" id="update"
+                                                    data-bs-target="#modal-edit{{ $o->id }}"
+                                                    class="btn btn-secondary me-2"><i class="fa fa-truck"></i>
+                                                </a>
+                                            @endif
                                             <!--Basic Modal info user-->
                                             <div class="modal fade text-left" id="modal-info{{ $o->id }}"
                                                 tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
@@ -171,12 +177,15 @@
                                                                 {{-- <input type="text" style="weight" class="form-control" name="roles"
                                                                     placeholder="Masukkan email"
                                                                     value="{{ $o->alamat }}asdsadasdasdasdasdasdas | Kode Pos : {{ $o->zip_code }}" disabled> --}}
-                                                                <textarea class="form-control" cols="20" rows="5" disabled>{{ $o->alamat }} | Kode Pos: {{ $o->zip_code }}</textarea>
+                                                                <textarea class="form-control" cols="20" rows="5"
+                                                                    disabled>{{ $o->alamat }} | Kode Pos: {{ $o->zip_code }}</textarea>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="basicInput">Total Biaya</label>
                                                                 <input type="text" class="form-control" name="roles"
-                                                                    placeholder="Masukkan email" value="Total Produk: {{ $o->total_produk }} | Total Ongkir : {{ $o->total_ongkir }} = Rp.{{ $o->amount }}" disabled>
+                                                                    placeholder="Masukkan email"
+                                                                    value="Total Produk: {{ $o->total_produk }} | Total Ongkir : {{ $o->total_ongkir }} = Rp.{{ $o->amount }}"
+                                                                    disabled>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="basicInput">Nomor Pesanan</label>
@@ -197,6 +206,59 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="modal fade text-left" id="modal-edit{{ $o->id }}"
+                                                tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+                                                aria-hidden="true">
+                                                <form action="{{ route('order.update', $o->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header bg-primary">
+                                                                <h5 class="modal-title text-white" id="myModalLabel1">
+                                                                    Input Resi</h5>
+                                                                <button type="button" class="close rounded-pill"
+                                                                    data-bs-dismiss="modal" aria-label="Close">
+                                                                    <i data-feather="x"></i>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="form-group">
+                                                                    <label for="basicInput">Nama Penerima</label>
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="Masukkan nama user" disabled
+                                                                        value="{{ $o->nama }}">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="basicInput">Alamat</label>
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="Masukkan nama user" disabled
+                                                                        value="{{ $o->alamat }}">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="basicInput">Masukkan Resi</label>
+                                                                    <input name="resi" required type="text" class="form-control"
+                                                                        placeholder="Masukkan Resi">
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <span style="font-size: 12px">Terakhir di rubah: <span
+                                                                        style="color: #222237">{{ $o->updated_at }}</span>
+                                                                </span>
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-bs-dismiss="modal">
+                                                                    <i class="bx bx-x d-block d-sm-none"></i>
+                                                                    <span class="d-none d-sm-block">Tutup</span>
+                                                                </button>
+                                                                <button type="submit" class="btn btn-success"
+                                                                    >
+                                                                    OK
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </td>
