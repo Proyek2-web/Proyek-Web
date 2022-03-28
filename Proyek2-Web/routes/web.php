@@ -14,7 +14,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderCustController;
 use App\Http\Controllers\Payment\CallbackController;
 use App\Http\Controllers\ReportController;
-use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\CheckoutController; 
 
 //--------------------------------------------HALAMAN AWAL-------------------------------------------------
 Route::get('/',function(){

@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Category;
+use App\Models\Image;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
+use Illuminate\Support\Facades\Storage;
+use tidy;
 
 class ProductController extends Controller
 {
@@ -42,25 +44,54 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'nama' => 'required',
-            'harga' => 'required',
-            'category_id' => 'required',
-            'berat' => 'required',
-            'featured_image' => 'image|file|max:2048|required',
-            'keterangan' => 'required',
+    //   $data = $request->validate([
+    //         'nama' => 'required',
+    //         'harga' => 'required',
+    //         'category_id' => 'required',
+    //         'berat' => 'required',
+    //         'featured_image' => 'image|file|max:2048|required',
+    //         'keterangan' => 'required',
+    //     ]);
+        
+    //     $save = new Product;
+    //     $save->featured_image = $image_name;
+    //     $save->nama = $request->nama;
+    //     $save->harga = $request->harga;
+    //     $save->berat = $request->berat;
+    //     $save->category_id = $request->category_id;
+    //     $save->keterangan = $request->keterangan;
+    //     $save->save();
+    
+    if ($request->hasFile('featured_image')) {
+        $file = $request->file('featured_image');
+            $imageName = time().'.'.$file->getClientOriginalName();
+            $file->move(public_path('cover_product'), $imageName);
+    }
+
+    $data = new Product([
+            'nama' =>  $request->nama,
+            'harga' => $request->harga,
+            'category_id' => $request->category_id,
+            'berat' => $request->berat,
+            'featured_image' => $imageName,
+            'keterangan' => $request->keterangan,
         ]);
-        if($request->file('featured_image')){
-            $image_name = $request->file('featured_image')->store('gambar-produk', 'public');
+        $data->save();
+
+        // $new = Product::create($data);
+        
+        if ($request->hasFile('images')) {
+            $files = $request->file('images');
+            foreach ($files as $file) {
+                $imageName = $data['nama'].'-image-'.time().rand(1,1000).'.'.$file->extension();
+                $file->move(public_path('image_product'), $imageName);
+                Image::create([
+                    'product_id'=> $data->id,
+                    'image' => $imageName
+                ]);
+            }
         }
-        $save = new Product;
-        $save->featured_image = $image_name;
-        $save->nama = $request->nama;
-        $save->harga = $request->harga;
-        $save->berat = $request->berat;
-        $save->category_id = $request->category_id;
-        $save->keterangan = $request->keterangan;
-        $save->save();
+        
 
         // Product::create($insert_data);
         Alert::success('Berhasil Menambahkan Produk', '');
@@ -98,29 +129,56 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'nama' => 'required',
-            'category_id' => 'required',
-            'harga' => 'required',
-            'berat' => 'required',
-            'featured_image' => 'required',
-            'keterangan' => 'required',
-        ]);
-        if($request->file('featured_image')){
-            $image_name = $request->file('featured_image')->store('gambar-produk', 'public');
+        $product = Product::findOrFail($id);
+        if (file_exists(public_path('cover_product/'.$product->featured_image))) {
+            unlink(public_path('cover_product/'.$product->featured_image));
         }
-        $save = Product::find($id);
-        $save->featured_image = $image_name;
-        $save->nama = $request->nama;
-        $save->harga = $request->harga;
-        $save->berat = $request->berat;
-        $save->category_id = $request->category_id;
-        $save->keterangan = $request->keterangan;
-        $save->save();
-        // Product::where('id', $id)
-        //     ->update($insert_data);
+        if ($request->hasFile('featured_image')) {
+            $file = $request->file('featured_image');
+                $product->featured_image = time().'.'.$file->getClientOriginalName();
+                $file->move(public_path('cover_product'), $product->featured_image);
+                $request['fetaured_image'] = $product->featured_image;
+
+        }
+
+        $product->update([
+            'nama' => $request->nama,
+            'harga' => $request->harga,
+            'berat' => $request->berat,
+            'category_id' => $request->category_id,
+            'keterangan' => $request->keterangan,
+            'featured_image' => $product->featured_image,
+        ]);
+        
+        if ($request->hasFile('images')) {
+            $files = $request->file('images');
+            foreach ($files as $file) {
+                $imageName = $product['nama'].'-image-'.time().rand(1,1000).'.'.$file->extension();
+                $file->move(public_path('image_product'), $imageName);
+                Image::create([
+                    'product_id'=> $id,
+                    'image' => $imageName
+                ]);
+            }
+        }
         Alert::success('Berhasil Memperbarui Produk', '');
         return back();
+        // $request->validate([
+        //     'nama' => 'required',
+        //     'category_id' => 'required',
+        //     'harga' => 'required',
+        //     'berat' => 'required',
+        //     'featured_image' => 'required',
+        //     'keterangan' => 'required',
+        // ]);
+        // $save = Product::find($id);
+        // $save->featured_image = $image_name;
+        // $save->nama = $request->nama;
+        // $save->harga = $request->harga;
+        // $save->berat = $request->berat;
+        // $save->category_id = $request->category_id;
+        // $save->keterangan = $request->keterangan;
+        // $save->save();
     }
 
     /**
@@ -131,8 +189,16 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        Product::find($id)->delete();
-
+        $product = Product::findOrFail($id);
+        if (file_exists(public_path('cover_product/'.$product->featured_image))) {
+            unlink(public_path('cover_product/'.$product->featured_image));
+        }
+        
+        $images = Image::where('product_id', $product->id)->get();
+        foreach($images as $i){
+                unlink(public_path('image_product/'.$i->image));
+        }
+        $product->delete();
         return redirect()->route('product.index')->with('success', 'Data berhasil dihapus!');
     }
     public function checkSlug(Request $request)
