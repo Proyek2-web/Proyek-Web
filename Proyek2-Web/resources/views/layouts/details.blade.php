@@ -19,29 +19,25 @@
                 @endif
                 <div class="row  d-flex">
                     <div class="wrap-detail col-lg-6 col-12 text-center main_view">
-                        <img src="{{ asset('/storage/' . $produk->featured_image) }}" alt="" width="500"
+                        <img src="/cover_product/{{ $produk->featured_image }}" alt="" width="500"
                             class="img-fluid " id="main" data-bs-toggle="tooltip" data-bs-placement="bottom"
                             title="Klik, untuk memperbesar tampilan gambar">
                         <div class="row mt-5">
-                            <div class="col-md-4 side_view ">
-                                <img src="{{ asset('/storage/' . $produk->featured_image) }}" onclick="change(this.src)"
+                             <div class="col-md-3 side_view mb-3">
+                                <img src="/cover_product/{{ $produk->featured_image }}" onclick="change(this.src)"
                                     alt="" width="150" class="tool img-fluid border-4"
                                     style="cursor: pointer; border-radius: 10px" data-bs-toggle="tooltip"
                                     data-bs-placement="bottom" title="Klik, untuk ganti gambar">
 
                             </div>
-                            <div class="col-md-4 side_view ">
-                                <img src="https://pixy.org/src/79/793775.jpg" onclick="change(this.src)" alt=""
-                                    width="150" class="img-fluid border-4" style="cursor: pointer;  border-radius: 10px"
-                                    data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                    title="Klik, untuk ganti gambar">
-                            </div>
-                            <div class="col-md-4 side_view ">
-                                <img src="https://static.vecteezy.com/packs/media/components/global/search-explore-nav/img/vectors/term-bg-1-666de2d941529c25aa511dc18d727160.jpg"
-                                    onclick="change(this.src)" alt="" width="150" class="img-fluid border-4"
-                                    style="cursor: pointer;  border-radius: 10px" data-bs-toggle="tooltip"
+                            @foreach ($produk->images as $i)                                
+                            <div class="col-md-3 side_view mb-3">
+                                <img src="/image_product/{{ $i->image}}" onclick="change(this.src)"
+                                    alt="" width="150" class="tool img-fluid border-4"
+                                    style="cursor: pointer; border-radius: 10px" data-bs-toggle="tooltip"
                                     data-bs-placement="bottom" title="Klik, untuk ganti gambar">
                             </div>
+                            @endforeach
                         </div>
                     </div>
 

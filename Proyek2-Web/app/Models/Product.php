@@ -20,6 +20,10 @@ class Product extends Model
     {
         return $this->hasMany(Cart::class);
     }
+    public function images()
+    {
+        return $this->hasMany(Image::class);
+    }
     public function sluggable(): array
     {
         return [

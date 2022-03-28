@@ -74,12 +74,20 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="formFileSm" class="form-label">Gambar Produk</label>
-                                        <input class="form-control form-control-sm" type="file" name="featured_image"
+                                    <div class="mb-2">
+                                        <label for="formFileSm" class="form-label">Gambar Cover Produk</label>
+                                        <input class="form-control form-control-sm" type="file" name="featured_image" id="cover"
                                             required>
+                                        </div>
+                                        <img id="preview-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKrp91TeEJpAvzANkhTLnk8nY0qxC-xwB4AxKG-uLdEYh8IAXoQtCLMg4FxrBLV_1DREE&usqp=CAU" alt="" style="width: 30%">
+                                    <div class="mb-2 mt-3">
+                                        <label for="formFileSm" class="form-label">Gambar
+                                            Produk</label>
+                                        <input id="images" class="form-control form-control-sm" type="file"
+                                            name="images[]" multiple required>
                                     </div>
-                                    <div class="form-group with-title mb-3">
+                                    <div class="images-preview-div" ></div>
+                                    <div class="form-group with-title mb-3 mt-3">
                                         <textarea class="form-control" name="keterangan" id="keterangan" rows="3"
                                             required></textarea>
                                         <label>Deskripsi Produk</label>
@@ -119,7 +127,7 @@
                         <tr>
                             <td>{{ $loop->iteration  }}</td>
                             <td>{{ $p->nama }}</td>
-                            <td><img src="{{ asset('/storage/' . $p->featured_image) }}" width="80" height="100" alt="">
+                            <td><img src="cover_product/{{ $p->featured_image }}" width="80" height="100" alt="">
                             </td>
                             <td>{{ $p->category->name }}</td>
                             <td>{{ $p->berat}}gr</td>
@@ -165,7 +173,7 @@
                                                             <label for="basicInput">Berat Produk (gr)</label>
                                                             <input type="number" class="form-control" id="berat"
                                                                 name="berat" placeholder="Masukkan berat produk"
-                                                                value="{{ $p->berat }} " required>
+                                                                value="{{ $p->berat }}" required>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="basicInput">Kategori Produk</label>
@@ -176,13 +184,25 @@
                                                                 @endforeach
                                                             </select>
                                                         </div>
-                                                        <div class="mb-3">
-                                                            <label for="formFileSm" class="form-label">Gambar
+                                                        <div class="mb-2">
+                                                            <label for="formFileSm" class="form-label">Ganti Gambar Cover
                                                                 Produk</label>
                                                             <input class="form-control form-control-sm" type="file"
-                                                                name="featured_image" required>
+                                                                name="featured_image" >
                                                         </div>
-                                                        <div class="form-group with-title mb-3">
+                                                        <img src="/cover_product/{{ $p->featured_image }}" alt="" style="width: 20%">
+                                                        <div class="mb-2 mt-3">
+                                                            <label for="formFileSm" class="form-label">Tambah Gambar
+                                                                Produk</label>
+                                                            <input class="form-control form-control-sm" type="file"
+                                                                name="images[]" multiple >
+                                                        </div>
+                                                        @foreach ($p->images as $img)
+                                                            
+                                                        <img src="/image_product/{{ $img->image }}" alt="" style="width: 20%">
+                                                        @endforeach
+                                                        
+                                                        <div class="form-group with-title mb-3 mt-3">
                                                             <textarea class="form-control" name="keterangan"
                                                                 id="keterangan" rows="3">{{ $p->keterangan }}</textarea>
                                                             <label>Deskripsi Produk</label>
@@ -215,7 +235,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="7" class="text-center border px-4 py-2" style="">PRODUK KOSONG</td>
+                            <td colspan="8" class="text-center border px-4 py-2" style="">PRODUK KOSONG</td>
                         </tr>
                         @endforelse
                     </tbody>
@@ -227,6 +247,8 @@
     </section>
     <!-- Basic Tables end -->
 </div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <!-- Sweet Alert Delete -->
 <script>
 function deleteItem(d){
@@ -263,6 +285,37 @@ function deleteItem(d){
 }
 </script>
 <!-- End Sweet Alert Delete -->
+<script >
+    $('#cover').change(function(){
+           
+    let reader = new FileReader();
+    reader.onload = (e) => { 
+      $('#preview-image').attr('src', e.target.result); 
+    }
+    reader.readAsDataURL(this.files[0]); 
+  
+   });
+  </script>
+  <script >
+    $(function() {
+    // Multiple images preview with JavaScript
+    var previewImages = function(input, imgPreviewPlaceholder) {
+    if (input.files) {
+    var filesAmount = input.files.length;
+    for (i = 0; i < filesAmount; i++) {
+    var reader = new FileReader();
+    reader.onload = function(event) {
+    $($.parseHTML('<img style="max-width: 30%; margin-right:7px;">')).attr('src', event.target.result).appendTo(imgPreviewPlaceholder);
+    }
+    reader.readAsDataURL(input.files[i]);
+    }
+    }
+    };
+    $('#images').on('change', function() {
+    previewImages(this, 'div.images-preview-div');
+    });
+    });
+    </script>
 <script>
     const name = document.querySelector('#nama_produk');
     const slug = document.querySelector('#slug');
