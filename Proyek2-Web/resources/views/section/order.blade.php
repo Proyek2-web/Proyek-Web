@@ -13,15 +13,39 @@
     <div class="page-heading">
         <div class="page-title">
             <div class="row">
+                @forelse ($orders as $or)      
+                @if ($or->status == 'UNPAID')
                 <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>Data User</h3>
+                    <h3>Data Pesanan (Belum Bayar)</h3>
+                    <p class="text-subtitle text-muted">For user to check they list</p>
+                </div>    
+                @elseif($or->status == 'PAID' && $or->resi == null)
+                <div class="col-12 col-md-6 order-md-1 order-last">
+                    <h3>Data Pesanan (Di Proses)</h3>
                     <p class="text-subtitle text-muted">For user to check they list</p>
                 </div>
+                @elseif($or->status == 'PAID' && $or->resi && $or->order_notes == null)
+                <div class="col-12 col-md-6 order-md-1 order-last">
+                    <h3>Data Pesanan (Di Kirim)</h3>
+                    <p class="text-subtitle text-muted">For user to check they list</p>
+                </div>
+                @elseif($or->status == 'PAID' && $or->resi && $or->order_notes != null)
+                <div class="col-12 col-md-6 order-md-1 order-last">
+                    <h3>Data Pesanan (Pesanan di terima)</h3>
+                    <p class="text-subtitle text-muted">For user to check they list</p>
+                </div>
+                @endif
+                @empty
+                <div class="col-12 col-md-6 order-md-1 order-last">
+                    <h3>Data Kosong</h3>
+                    <p class="text-subtitle text-muted">For user to check they list</p>
+                </div>
+                @endforelse
                 <div class="col-12 col-md-6 order-md-2 order-first">
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item "><a style="color: #222237" href="/dashboard">Dashboard</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Data User</li>
+                            <li class="breadcrumb-item active" aria-current="page">Data Pesanan</li>
                         </ol>
                     </nav>
                 </div>
@@ -32,56 +56,6 @@
         <section class="section">
             <div class="card">
                 <div class="card-header">
-                    {{-- <button type="button" class="btn btn-primary ml-3 p-2" data-bs-toggle="modal"
-                    data-bs-target="#modal-tambah">
-                    Tambah data User <i class="fa fa-plus ms-2"></i>
-                </button> --}}
-                    <!--Basic Modal Tambah Produk-->
-                    {{-- <div class="modal fade text-left" id="modal-tambah" tabindex="-1" role="dialog"
-                    aria-labelledby="myModalLabel1" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-scrollable" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header bg-primary">
-                                <h5 class="modal-title text-white" id="myModalLabel1">Tambah Data User</h5>
-                                <button type="button" class="close rounded-pill" data-bs-dismiss="modal"
-                                    aria-label="Close">
-                                    <i data-feather="x"></i>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form class="form form-vertical" action="{{ route('category.store') }}" method="POST"
-                                    enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="form-group">
-                                        <label for="basicInput">Nama User</label>
-                                        <input name="name" type="text" class="form-control"
-                                            placeholder="Masukkan nama User" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="basicInput">E-mail</label>
-                                        <input name="email" type="text" class="form-control"
-                                            placeholder="Masukkan email User" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="basicInput">Nama User</label>
-                                        <input name="name" type="text" class="form-control"
-                                            placeholder="Masukkan nama User" required>
-                                    </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                    <i class="bx bx-x d-block d-sm-none"></i>
-                                    <span class="d-none d-sm-block">Tutup</span>
-                                </button>
-                                <button type="submit" class="btn btn-primary ml-1">
-                                    <i class="bx bx-check d-block d-sm-none"></i>
-                                    <span class="d-none d-sm-block">Tambah</span>
-                                </button>
-                            </div>
-                            </form>
-                        </div>
-                    </div>
-                </div> --}}
                 </div>
                 <div class="card-body">
                     <table class="table" id="table1" style="table-layout: fixed; width: 100%">
@@ -90,8 +64,6 @@
                                 <th style="width: 50px">No.</th>
                                 <th>Tanggal Pesanan</th>
                                 <th>Nama Penerima</th>
-                                <th>Nomer HP</th>
-                                <th>Alamat</th>
                                 <th>No Pesanan</th>
                                 <th>Akun</th>
                                 <th>Total</th>
@@ -105,23 +77,23 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{!! date('d M y', strtotime($o->created_at)) !!}</td>
                                     <td>{{ $o->nama }}</td>
-                                    <td>{{ $o->phone_number }}</td>
-                                    <td>{{ $o->alamat }}</td>
                                     <td>{{ $o->merchant_ref }}</td>
                                     <td>{{ $o->user->name }}</td>
                                     <td>Rp.{{ number_format($o->amount,0) }}</td>
                                     @if ($o->status == 'UNPAID')
-                                    <td><span class="badge bg-warning">UNPAID</span></td>    
+                                    <td><span class="badge bg-danger">UNPAID</span></td>    
                                     @elseif($o->status == 'PAID' && $o->order_notes != null)
-                                    <td><span class="badge bg-success">SUCCESS</span></td>
-                                    @else
-                                    <td><span class="badge bg-secondary">PAID</span></td>
+                                    <td><span class="badge bg-success">SELESAI</span></td>
+                                    @elseif($o->status == 'PAID' && $o->resi && $o->order_notes == null)
+                                    <td><span class="badge bg-dark">Di Kirim</span></td>
+                                    @elseif($o->status == 'PAID' && $o->resi == null)
+                                    <td><span class="badge bg-warning">PAID</span></td>
                                     @endif
                                     <td>
                                         <div class="aksi d-flex justify-content-center">
                                             <a data-bs-toggle="modal" id="update"
                                                 data-bs-target="#modal-info{{ $o->id }}"
-                                                class="btn btn-warning me-2"><i class="fa fa-info"></i>
+                                                class="btn btn-primary me-2"><i class="fa fa-info"></i>
                                             </a>
                                             @if (!$status)
                                                 <a data-bs-toggle="modal" id="update"
@@ -271,9 +243,8 @@
                                                                     <i class="bx bx-x d-block d-sm-none"></i>
                                                                     <span class="d-none d-sm-block">Tutup</span>
                                                                 </button>
-                                                                <button type="submit" class="btn btn-success"
-                                                                    >
-                                                                    OK
+                                                                <button type="submit" class="btn btn-primary">
+                                                                    Kirim
                                                                 </button>
                                                             </div>
                                                         </div>
@@ -285,7 +256,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="7" class="text-center border px-4 py-2" style="">PESANAN KOSONG</td>
+                                    <td colspan="9" class="text-center border px-4 py-2" style="">PESANAN KOSONG</td>
                                 </tr>
                             @endforelse
                         </tbody>

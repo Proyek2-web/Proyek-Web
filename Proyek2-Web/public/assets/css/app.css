@@ -1080,6 +1080,26 @@
 .sidebar-wrapper .menu .submenu .submenu-item a:hover {
     margin-left: .3rem
 }
+.sidebar-wrapper .menu .submenu .submenu-item.active button {
+    color: #dbeef8;
+    margin-left: -10px;
+    font-weight: 700
+}
+
+.sidebar-wrapper .menu .submenu .submenu-item button {
+    color: #a9a6a6;
+    display: block;
+    font-size: .85rem;
+    font-weight: 600;
+    letter-spacing: .5px;
+    padding: .7rem 2rem;
+    transition: all .3s;
+    margin-left: -20px;
+}
+
+.sidebar-wrapper .menu .submenu .submenu-item button:hover {
+    margin-left: -10px
+}
 
 .sidebar-backdrop {
     background-color: rgba(0, 0, 0, .5);

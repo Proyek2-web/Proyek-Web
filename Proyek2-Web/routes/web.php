@@ -64,6 +64,10 @@ Route::middleware(['auth', 'cekroles:admin'])->group(function () {
     Route::resource('/category', CategoryController::class);
     Route::resource('/product', ProductController::class);
     Route::resource('/order', OrderController::class);
+    Route::resource('/unpaid', OrderController::class);
+    Route::resource('/paid', OrderController::class);
+    Route::resource('/send', OrderController::class);
+    Route::resource('/receive', OrderController::class);
     // Route::resource('/report', ReportController::class);
     // Route::resource('/resi', OrderCustController::class);
     // Route::get('/search', [SearchController::class, 'index']);
