@@ -33,6 +33,8 @@ class CreateOrdersTable extends Migration
             $table->integer('total_produk')->nullable();
             $table->integer('total_ongkir')->nullable();
             $table->string('order_notes')->nullable();
+            $table->string('day')->nullable();
+            $table->string('delivery')->nullable();
             $table->timestamps();
         });
     }

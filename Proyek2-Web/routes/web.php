@@ -58,16 +58,19 @@ Route::middleware(['auth', 'cekroles:admin'])->group(function () {
     Route::get('/product/delete/{id}',[ProductController::class, 'destroy']);
     Route::get('/category/delete/{id}',[CategoryController::class, 'destroy']);
     Route::get('/user/delete/{id}',[DashboardController::class, 'destroy']);
-
     Route::get('/category/checkSlug', [CategoryController::class, 'checkSlug']);
     Route::get('/product/checkSlug', [ProductController::class, 'checkSlug']);
     Route::resource('/user', DashboardController::class);
     Route::resource('/category', CategoryController::class);
     Route::resource('/product', ProductController::class);
     Route::resource('/order', OrderController::class);
-    Route::resource('/report', ReportController::class);
-    Route::resource('/resi', OrderCustController::class);
-    Route::get('/search', [SearchController::class, 'index']);
-    Route::get('/filter', [ReportController::class, 'filter']);
+    Route::resource('/unpaid', OrderController::class);
+    Route::resource('/paid', OrderController::class);
+    Route::resource('/send', OrderController::class);
+    Route::resource('/receive', OrderController::class);
+    // Route::resource('/report', ReportController::class);
+    // Route::resource('/resi', OrderCustController::class);
+    // Route::get('/search', [SearchController::class, 'index']);
+    // Route::get('/filter', [ReportController::class, 'filter']);
     Route::get('/nota/cetak/{id}', [OrderCustController::class, 'cetakNota'])->name('nota.cetak');
 });

@@ -35,8 +35,10 @@ class CheckoutController extends Controller
              'products.featured_image as featured_image','products.berat as berat', 'products.harga as harga', 'categories.name as category_name','carts.status as status')
             ->get();
             $total_berat = 0;
+            $s= 0;
             foreach ($data as $d) {
-                $total_berat += $d->berat;
+                $s= $d->qty * $d->berat;
+                $total_berat = $total_berat +  $s;
             }
         return view('layouts.form-order',compact('subtotal','provinces', 'cart_count','data','channels','total_berat'));
     }
@@ -92,6 +94,8 @@ class CheckoutController extends Controller
         $save->total_ongkir = $total_ongkir;
         $save->zip_code = $request->zip_code;
         $save->amount = $request->total;
+        $save->day = $request->total_hari;
+        $save->delivery = $request->courier;
         $save->user_id = Auth::user()->id;
         $save->merchant_ref     = $dt['data']['merchant_ref'];
         $save->reference        = $dt['data']['reference'];
@@ -136,7 +140,11 @@ class CheckoutController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $order = Order::find($request->order_id);
+        $order->order_notes = $request->received;
+        $order->save();
+        return redirect('/transaction');
+        
     }
 
     /**

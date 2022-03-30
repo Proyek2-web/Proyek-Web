@@ -35,9 +35,18 @@ class TransactionController extends Controller
                 ->where('status', '=', 'PAID')
                 ->where('user_id', '=', Auth::user()->id)
                 ->where('resi', '!=', null)
+                ->where('order_notes','=',null)
                 ->orderBy('created_at','desc')
                 ->get();
             $status = true;
+        }else if (request('receive')) {
+            $order = Order::select("*")
+                ->where('status', '=', 'PAID')
+                ->where('user_id', '=', Auth::user()->id)
+                ->where('resi', '!=', null)
+                ->where('order_notes','!=',null)
+                ->orderBy('created_at','desc')
+                ->get();
         }
 
         return view('user.transaction', compact('order', 'status'));
@@ -94,7 +103,10 @@ class TransactionController extends Controller
                 'products.harga as harga',
                 'categories.name as category_name',
                 'carts.status as status',
-                'orders.status as os'
+                'orders.status as os',
+                'orders.delivery as delivery',
+                'orders.day as hari',
+                
             )
             ->get();
         $tripay = new TripayController();

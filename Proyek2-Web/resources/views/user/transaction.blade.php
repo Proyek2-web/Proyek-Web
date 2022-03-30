@@ -7,6 +7,10 @@
         <div class="title col-lg-12 mx-auto mt-5">
             <h1>Transaksi</h1>
         </div>
+        <ol class="arrows">
+            <li><a href="/"><i class="bi bi-house-fill"></i> Home</a></li>
+            <li><a href="/transaction">Transaksi</a></li>
+        </ol>
         <div class="wrap-btn-transaksi d-flex text-center justify-content-center" style="margin-top: 60px;">
             <form action="{{ route('transaction.index') }}" method="GET" enctype="multipart/form-data">
                 @php
@@ -39,7 +43,9 @@
                 @php
                 $send = \App\Models\Order::all()
                 ->where('user_id', '=', Auth::user() == null ? '' : Auth::user()->id)
+                ->where('status', '=', 'PAID')
                 ->where('resi', '!=', null)
+                ->where('order_notes','=',null)
                 ->count();
                 @endphp
                 <button type="submit" class="btn btn-transaksi ">
@@ -48,10 +54,18 @@
                 </button>
             </form>
             <form action="{{ route('transaction.index') }}" method="GET" enctype="multipart/form-data">
-
+                @php
+                $receive = \App\Models\Order::all()
+                ->where('user_id', '=', Auth::user() == null ? '' : Auth::user()->id)
+                ->where('status', '==', 'PAID')
+                ->where('resi', '!=', null)
+                ->where('order_notes', '!=',null)
+                ->count();
+                @endphp
                 <input type="hidden" name="receive" value="receive">
                 <button type="submit" class="btn btn-transaksi ">
                     Selesai <i class="bi bi-check2-circle"></i>
+                    <span class="transaksi-badge ">{{ $receive }}</span>
                 </button>
             </form>
         </div>
