@@ -2,7 +2,7 @@
 @include('layouts.navbar')
 @section('body')
 
-<section class="detail" style="margin-bottom: 180px">
+<section class="detail" style="margin-bottom: 110px">
     <div class="detail-page ">
         <ol class="arrows" style="margin-top: 120px; margin-bottom: -30px">
             <li><a href="/"><i class="bi bi-house-fill"></i> Home</a></li>
@@ -19,23 +19,23 @@
                 @endif
                 <div class="row  d-flex">
                     <div class="wrap-detail col-lg-6 col-12 text-center main_view">
-                        <img src="/cover_product/{{ $produk->featured_image }}" alt="" width="500"
-                            class="img-fluid " id="main" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        <img src="/cover_product/{{ $produk->featured_image }}" alt="" width="500" class="img-fluid "
+                            id="main" data-bs-toggle="tooltip" data-bs-placement="bottom"
                             title="Klik, untuk memperbesar tampilan gambar">
                         <div class="row mt-5">
-                             <div class="col-md-3 side_view mb-3">
+                            <div class="col-md-3 side_view mb-3">
                                 <img src="/cover_product/{{ $produk->featured_image }}" onclick="change(this.src)"
                                     alt="" width="150" class="tool img-fluid border-4"
                                     style="cursor: pointer; border-radius: 10px" data-bs-toggle="tooltip"
                                     data-bs-placement="bottom" title="Klik, untuk ganti gambar">
 
                             </div>
-                            @foreach ($produk->images as $i)                                
+                            @foreach ($produk->images as $i)
                             <div class="col-md-3 side_view mb-3">
-                                <img src="/image_product/{{ $i->image}}" onclick="change(this.src)"
-                                    alt="" width="150" class="tool img-fluid border-4"
-                                    style="cursor: pointer; border-radius: 10px" data-bs-toggle="tooltip"
-                                    data-bs-placement="bottom" title="Klik, untuk ganti gambar">
+                                <img src="/image_product/{{ $i->image}}" onclick="change(this.src)" alt="" width="150"
+                                    class="tool img-fluid border-4" style="cursor: pointer; border-radius: 10px"
+                                    data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                    title="Klik, untuk ganti gambar">
                             </div>
                             @endforeach
                         </div>
@@ -112,10 +112,13 @@
                 <div class="text-center mt-3">
                     <h3>Photo product with 360</h3>
                 </div>
-                <div class="img360 text-center mt-3 " >
-                    <iframe
-                        src="https://momento360.com/e/u/a9dfe999753e41c4b4495bc8ada9f3e2?utm_campaign=embed&utm_source=other&heading=53.75&pitch=-42.39&field-of-view=75&size=medium"
-                        frameborder="1" width="100%" height="650px" allowfullscreen="true" style="border: 24px solid #24243a"></iframe>
+                <div class="img360 text-center mt-3 " id="jsv-holder">
+                    <iframe height="660" width="920" scrolling="no" id="jsv-image"
+                        src="https://www.360-javascriptviewer.com/embed?presentation=eyJtYWluSW1hZ2VVcmwiOiJodHRwczovL2NkbjEuMzYwLWphdmFzY3JpcHR2aWV3ZXIuY29tL2ltYWdlcy9ibHVlLXNob2Utc21hbGwvMjAxODA5MDYtMDAxLWJsYXV3LmpwZyIsImxpY2Vuc2UiOiIiLCJzcGVlZCI6OTAsImltYWdlVXJsRm9ybWF0IjoiMjAxODA5MDYtMHh4LWJsYXV3LmpwZyIsImZpcnN0SW1hZ2VOdW1iZXIiOjEsImluZXJ0aWEiOjEyLCJyZXZlcnNlIjp0cnVlLCJ6b29tIjp0cnVlLCJpbWFnZVVybHMiOltdLCJ0b3RhbEZyYW1lcyI6NzIsInN0YXJ0RnJhbWVObyI6MSwiYXV0b1JvdGF0ZSI6MSwiYXV0b1JvdGF0ZVNwZWVkIjowLCJhdXRvUm90YXRlUmV2ZXJzZSI6ZmFsc2UsInN0b3BBdEVkZ2VzIjpmYWxzZSwiYXV0b0NETlJlc2l6ZXIiOnRydWUsIm5vdGlmaWNhdGlvbkNvbmZpZyI6eyJkcmFnVG9Sb3RhdGUiOnsic2hvd1N0YXJ0VG9Sb3RhdGVEZWZhdWx0Tm90aWZpY2F0aW9uIjp0cnVlLCJtYWluQ29sb3IiOiJyZ2JhKDAsMCwwLDAuMjApIiwidGV4dENvbG9yIjoicmdiYSgyNDMsMjM3LDIzNywwLjgwKSJ9fX0="
+                        frameBorder="1" style="border: 14px solid #24243a">Browser not compatible.</iframe>
+                    {{-- <iframe
+                        src="https://cdn1.360-javascriptviewer.com/images/blue-shoe-small/20180906-001-blauw.jpg"
+                        frameborder="1" width="100%" height="650px" allowfullscreen="true" style="border: 24px solid #24243a"></iframe> --}}
                 </div>
                 <!-- The Modal -->
                 <div id="myModal" class="modal-product">
@@ -123,7 +126,7 @@
                     <img class="modal-content-product border-0" id="img01">
                     <div id="caption"></div>
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -198,6 +201,38 @@
         const change = src => {
             document.getElementById("main").src = src
         }
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/@3dweb/360javascriptviewer/lib/JavascriptViewer.min.js"></script>
+
+
+
+
+    <script type="application/javascript">
+        window.addEventListener('load', () => {
+            const jsv = new JavascriptViewer({
+                mainHolderId: 'jsv-holder',
+                mainImageId: 'jsv-image',
+                imageUrlFormat: '20180906-0xx-blauw.jpg',
+                totalFrames: 72,
+                defaultProgressBar: true,
+                speed: 90,
+                inertia: 12,
+                reverse: true,
+                zoom: true,
+                autoRotate: 1,
+                notificationConfig: {
+                    dragToRotate: {
+                        showStartToRotateDefaultNotification: true,
+                        mainColor: "rgba(0,0,0,0.20)",
+                        textColor: "rgba(243,237,237,0.80)",
+                    }
+                }
+            });
+
+            jsv.start()
+                .then(() => console.log('viewer started'))
+                .catch((e) => console.log('failed loading 360 viewer: ' + e))
+        });
     </script>
 
 </section>
