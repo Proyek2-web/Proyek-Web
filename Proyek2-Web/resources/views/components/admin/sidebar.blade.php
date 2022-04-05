@@ -28,6 +28,19 @@
                         <span>Daftar User</span>
                     </a>
                 </li>
+                <li class="sidebar-title">Produk</li>
+                <li class="sidebar-item  {{ Route::is('product.index') ? 'active' : '' }}">
+                    <a href="{{ route('product.index') }}" class='sidebar-link'>
+                        <i class="bi bi-list-ul"></i>
+                        <span>Daftar Produk</span>
+                    </a>
+                </li>
+                <li class="sidebar-item {{ Route::is('category.index') ? 'active' : '' }}">
+                    <a href="{{ route('category.index') }}" class='sidebar-link'>
+                        <i class="bi bi-bookmarks-fill"></i>
+                        <span>Kategori Produk</span>
+                    </a>
+                </li>
                 <li class="sidebar-title ">Pesanan</li>
                 <li
                     class="sidebar-item d-block has-sub {{ Route::is('order.index', 'unpaid.index', 'paid.index', 'send.index', 'receive.index') ? 'active' : '' }}">
@@ -139,19 +152,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="sidebar-title">Produk</li>
-                <li class="sidebar-item  {{ Route::is('product.index') ? 'active' : '' }}">
-                    <a href="{{ route('product.index') }}" class='sidebar-link'>
-                        <i class="bi bi-list-ul"></i>
-                        <span>Daftar Produk</span>
-                    </a>
-                </li>
-                <li class="sidebar-item {{ Route::is('category.index') ? 'active' : '' }}">
-                    <a href="{{ route('category.index') }}" class='sidebar-link'>
-                        <i class="bi bi-bookmarks-fill"></i>
-                        <span>Kategori Produk</span>
-                    </a>
-                </li>
+                <li class="sidebar-title">Total Pendapatan</li>
                 <li
                 class="sidebar-item d-block has-sub">
                 <a href="#" class='sidebar-link'>
@@ -178,7 +179,7 @@
                         </form>
                     </li>
                     <li class="submenu-item ">
-                        <form action="#" method="GET">
+                        <form action="{{ route('report.index') }}" method="GET">
                             <button type="submit" style="background-color: transparent;
                                 background-repeat: no-repeat;
                                 border: none;

@@ -18,22 +18,26 @@
                 <div class="col-12 col-md-6 order-md-1 order-last">
                     <h3>Data Pesanan (Belum Bayar)</h3>
                     <p class="text-subtitle text-muted">For user to check they list</p>
-                </div>    
+                </div>
+                @break    
                 @elseif($or->status == 'PAID' && $or->resi == null)
                 <div class="col-12 col-md-6 order-md-1 order-last">
                     <h3>Data Pesanan (Di Proses)</h3>
                     <p class="text-subtitle text-muted">For user to check they list</p>
                 </div>
+                @break 
                 @elseif($or->status == 'PAID' && $or->resi && $or->order_notes == null)
                 <div class="col-12 col-md-6 order-md-1 order-last">
                     <h3>Data Pesanan (Di Kirim)</h3>
                     <p class="text-subtitle text-muted">For user to check they list</p>
                 </div>
+                @break 
                 @elseif($or->status == 'PAID' && $or->resi && $or->order_notes != null)
                 <div class="col-12 col-md-6 order-md-1 order-last">
                     <h3>Data Pesanan (Pesanan di terima)</h3>
                     <p class="text-subtitle text-muted">For user to check they list</p>
                 </div>
+                @break 
                 @endif
                 @empty
                 <div class="col-12 col-md-6 order-md-1 order-last">

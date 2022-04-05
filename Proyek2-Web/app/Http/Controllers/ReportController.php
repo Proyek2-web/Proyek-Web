@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 
 class ReportController extends Controller
@@ -15,16 +17,16 @@ class ReportController extends Controller
      */
     public function index()
     {
-        $order = Order::where('status', 'PAID')->get();
-        $fromDates = date(request('fromDate'));
-        $toDates = request('toDate');
-        
-        if ($fromDates && $toDates) {
-            $order = Order::where('status' , 'PAID')->whereDate('created_at', '>=', $fromDates)
-                ->whereDate('created_at', '<=', $toDates)->get();
+        $carts = Cart::all();
+        $product = Product::all();
+        $orders = Order::select("*")
+                ->where('status', '=', 'PAID')
+                ->where('resi', '!=', null)
+                ->where('order_notes','!=',null)
+                ->orderBy('created_at','desc')
+                ->get();
+        return view('section.report',compact('orders','carts','product'));
                 
-        }
-        return view('section.report', compact('order'));
     }
 
     /**
