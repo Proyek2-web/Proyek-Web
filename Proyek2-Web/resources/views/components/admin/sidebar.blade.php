@@ -170,9 +170,9 @@
                         overflow: hidden;
                         outline: none;">
                                 <div class="wrap-pesanan align-items-center d-flex">
-                                    <i class="bi bi-wallet2 "></i>
+                                    <i class="bi bi-cash"></i>
                                     <span
-                                        style="margin-inline: 6px;background-color: rgb(70, 81, 95); padding: 1px 7px; border-radius: 12px; font-size: 0.7rem; color: rgb(211, 234, 250)">{{ $unpaid }}</span>
+                                        style="padding: 1px 7px; border-radius: 12px; color: rgb(211, 234, 250)"></span>
                                     <span class="transaksi-badge ">Pendapatan </span>
                                 </div>
                             </button>
@@ -187,9 +187,9 @@
                                 overflow: hidden;
                                 outline: none;">
                                 <div class="wrap-pesanan align-items-center d-flex">
-                                    <i class="bi bi-box-seam"></i>
+                                    <i class="bi bi-file-earmark-excel"></i>
                                     <span
-                                        style="margin-inline: 6px;background-color: rgb(70, 81, 95); padding: 1px 7px; border-radius: 12px; font-size: 0.7rem; color: rgb(211, 234, 250)">{{ $paid }}</span>
+                                    style="padding: 1px 7px; border-radius: 12px; color: rgb(211, 234, 250)"></span>
                                     <span class="transaksi-badge ">Cetak Laporan</span>
                                 </div>
                             </button>
