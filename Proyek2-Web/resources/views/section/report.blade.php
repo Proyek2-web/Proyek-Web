@@ -42,39 +42,39 @@
         <section class="section">
             <div class="card">
                 <div class="card-content">
-                    {{-- <form action="{{ route('report-loan.index') }}" method="GET"> --}}
+                    <form action="{{ route('report.index') }}" method="GET">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-4 mb-1">
-                                    <label for="date">From</label>
+                                    <label for="date">Dari</label>
                                     <div class="input-group input-group-sm mb-3">
                                         <input required type="date" name="from_date" id="from_date" class="form-control" placeholder="Choose a date" id="password-id-icon" value="{{ request('from_date') }}">
                                     </div>
                                 </div>
                                 <div class="col-sm-4 mb-1">
-                                    <label for="date">To</label>
+                                    <label for="date">Sampai</label>
                                     <div class="input-group input-group-sm mb-3">
                                         <input required type="date" name="to_date" id="to_date" class="form-control" placeholder="Choose a date" id="password-id-icon" value="{{ request('to_date') }}">
                                     </div>
                                 </div>
                                 <div class="col-sm-2 mb-1 d-flex">
-                                    <div class="dropdown  mt-4 me-3">
+                                    <div class="dropdown mt-4 me-3">
                                         <button type="submit" class="btn btn-primary loading-search"><i class="bi bi-search"></i></button>
                                     </div>
                                     <div class="refresh mt-4">
-                                        {{-- <a href="{{ route('report-loan.index') }}" class="btn btn-dark loading"><i class="bi bi-arrow-repeat"></i></a> --}}
+                                        <a href="{{ route('report.index') }}" class="btn btn-warning"><i class="bi bi-arrow-repeat"></i></a>
                                     </div>
                                 </div>
 
                             </div>
                             <div class="mb-2 loading-text d-none">Loading ...</div>
                         </div>
-                    {{-- </form> --}}
+                    </form>
                 </div>
                 <div class="card-header" style="margin-bottom: -20px">
                 </div>
                 <div class="ms-4 col-md-12 buttons">
-                    {{-- <form action="{{ request('from_date') && request('to_date') ? route('export-loan-parameter') : route('export-loan.index') }}" method="GET"> --}}
+                    <form action="{{ request('from_date') && request('to_date') ? route('export-order-parameter') : route('export-order.index') }}" method="GET">
                         @if (request('from_date') && request('to_date'))
                         <input type="hidden" name="fromDate" value="{{ request('from_date') }}">
                         <input type="hidden" name="toDate" value="{{ request('to_date') }}">
@@ -89,7 +89,7 @@
                             @endif
                         </span>
 
-                    {{-- </form> --}}
+                    </form>
                 </div>
                 <div class="card-header">
                 </div>
@@ -127,7 +127,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="9" class="text-center border px-4 py-2" style="">PESANAN KOSONG</td>
+                                    <td colspan="9" class="text-center border px-4 py-2" style="">TIDAK ADA PESANAN</td>
                                 </tr>
                             @endforelse
                         </tbody>
@@ -140,6 +140,7 @@
         <!-- Basic Tables end -->
     </div>
     <!-- Sweet Alert Delete -->
+    
     <script>
         function deleteItem(d) {
             var id = d.getAttribute('data-id');

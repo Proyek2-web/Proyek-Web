@@ -69,6 +69,8 @@ Route::middleware(['auth', 'cekroles:admin'])->group(function () {
     Route::resource('/send', OrderController::class);
     Route::resource('/receive', OrderController::class);
     Route::resource('/report', ReportController::class);
+    Route::get('/report-order/export_excel', [ReportController::class, 'export_excel'])->name('export-order.index');
+    Route::get('/report-parameter/export_excel_parameter', [ReportController::class, 'export_excel_parameter'])->name('export-order-parameter');
     // Route::resource('/resi', OrderCustController::class);
     // Route::get('/search', [SearchController::class, 'index']);
     // Route::get('/filter', [ReportController::class, 'filter']);
