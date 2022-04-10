@@ -283,6 +283,7 @@
     let isProcessing = false;
     $('#btn-check').click(function (e) {
         $('.ongkir').addClass('d-none');
+        $('#btn-check').addClass('d-none');
         $('#checkout-button').addClass('d-none');
         e.preventDefault();
         let token = $("meta[name='csrf-token']").attr("content");
