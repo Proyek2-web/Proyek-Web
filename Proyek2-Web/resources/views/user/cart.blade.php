@@ -25,7 +25,7 @@
                             @forelse ($data as $d)
                                 <tr>
                                     <th scope="row">{{ $loop->iteration }}</th>
-                                    <td><img src="{{ asset('/storage/' . $d->featured_image) }}" alt="Product" width="150"
+                                    <td><img src="cover_product/{{ $d->featured_image }}" alt="Product" width="150"
                                             class="img-fluid"></td>
                                     <td>{{ $d->nama }}</td>
                                     <td>Rp {{ number_format($d->harga, 2) }} / pcs </td>

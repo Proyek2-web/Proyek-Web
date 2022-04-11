@@ -23,6 +23,7 @@ Route::get('/',function(){
 Route::post('/register', [LoginController::class, 'registration']);
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
+Route::post('/callback', [CallbackController::class, 'handle']);
 
 //--------------------------------------------HALAMAN PELANGGAN--------------------------------------------
 Route::middleware(['auth', 'cekroles:user,admin'])->group(function () {
@@ -32,7 +33,6 @@ Route::middleware(['auth', 'cekroles:user,admin'])->group(function () {
     Route::resource('/cart', CartController::class);
     Route::resource('/checkout', CheckoutController::class);
     Route::resource('/transaction', TransactionController::class);
-    Route::post('/callback', [CallbackController::class, 'handle']);
 });
 
 Route::group(['namespace' => 'Pelanggan'],function () {

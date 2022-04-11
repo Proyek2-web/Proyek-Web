@@ -19,7 +19,7 @@
                             style="max-width: 445px; font-family: PT-Serif; background-color: rgba(226, 230, 230, 0.877); border-radius: 20px;">
                             <div class="row g-0 align-items-center ">
                                 <div class="col-md-4">
-                                    <img src="{{ asset('/storage/' . $d->featured_image) }}" class="img-fluid" alt="..."
+                                    <img src="cover_product/{{ $d->featured_image }}" class="img-fluid" alt="..."
                                         style="border-radius: 20px">
                                 </div>
                                 <div class="col-md-8">
