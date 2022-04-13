@@ -62,6 +62,28 @@ class Order extends Model
             ->get()->toArray();
         return $record;
     }
+    public static function getDateParameter($fromDates, $toDates)
+    {
+        if ($fromDates == $toDates) {
+            $record = DB::table('orders')
+            ->selectRaw('DISTINCT order_date')
+                ->where('status', '=', 'PAID')
+                ->where('resi', '!=', null)
+                ->where('order_notes', '!=', null)
+                ->where('order_date', $fromDates)
+                ->get()->toArray();
+        }else{
+            $record = DB::table('orders')
+            ->selectRaw('DISTINCT order_date')
+                ->where('status', '=', 'PAID')
+                ->where('resi', '!=', null)
+                ->where('order_notes', '!=', null)
+                ->where('order_date','>=', $fromDates)
+                ->where('order_date','<=', $toDates)
+                ->get()->toArray();
+        }
+        return $record;
+    }
 
     public static function getOrderPerDate($date)
     {
