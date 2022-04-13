@@ -119,10 +119,10 @@ class OrderExport implements WithHeadings, WithEvents, WithHeadingRow, WithColum
                 $event->sheet->setCellValue('F9', 'Alamat')->mergeCells("F9:F10")->getStyle('F9:F10')->applyFromArray($styleArray);
                 $event->sheet->setCellValue('G9', 'Pesanan')->mergeCells("G9:H9")->getStyle('G9:H9')->applyFromArray($styleArray, $center);
                 $event->sheet->setCellValue('G10', 'Tanggal Pemesanan')->getStyle('G10')->applyFromArray($styleArray);
-                $event->sheet->setCellValue('H10', 'Nomor Resi')->getStyle('H10')->applyFromArray($styleArray); 
+                $event->sheet->setCellValue('H10', 'Nomor Pesanan')->getStyle('H10')->applyFromArray($styleArray); 
                 $event->sheet->setCellValue('I9', 'Produk')->mergeCells("I9:J9")->getStyle('I9:J9')->applyFromArray($styleArray, $center);
                 $event->sheet->setCellValue('I10', 'Nama Produk')->getStyle('I10')->applyFromArray($styleArray);
-                $event->sheet->setCellValue('J10', 'QTY')->getStyle('J10')->applyFromArray($styleArray);
+                $event->sheet->setCellValue('J10', 'Nomor Resi')->getStyle('J10')->applyFromArray($styleArray);
                 $event->sheet->setCellValue('K9', 'Total')->mergeCells("K9:K10")->getStyle('K9:K10')->applyFromArray($styleArray);
 
                 // $event->sheet->setCellValue('E9', 'Kategori Barang Peminjaman');
@@ -140,7 +140,6 @@ class OrderExport implements WithHeadings, WithEvents, WithHeadingRow, WithColum
                 }
                 $cell = 11;
                 $i = 1;
-                $laporan = Order::getOrder();
                 $loan_date = Order::getDate();
                 // dd($loan_date);
                 foreach ($loan_date as $date) {
@@ -155,8 +154,8 @@ class OrderExport implements WithHeadings, WithEvents, WithHeadingRow, WithColum
                                 'rgb' => 'D8E4BC'
                             ],
                         ]);
-                    $event->sheet->setCellValue('C' . $cell, Carbon::parse($date->created_at)->isoFormat('DD MMMM YYYY'))->mergeCells('C' . $cell . ':K' . $cell)->getStyle('C' . $cell . ':K' . $cell)->applyFromArray($styleTitleDate);
-                    $event->sheet->setCellValue('C' . $cell, Carbon::parse($date->created_at)->isoFormat('DD MMMM YYYY'))->mergeCells('C' . $cell . ':K' . $cell)->getStyle('C' . $cell . ':K' . $cell)->getFill()->applyFromArray([
+                    $event->sheet->setCellValue('C' . $cell, Carbon::parse($date->order_date)->isoFormat('DD MMMM YYYY'))->mergeCells('C' . $cell . ':K' . $cell)->getStyle('C' . $cell . ':K' . $cell)->applyFromArray($styleTitleDate);
+                    $event->sheet->setCellValue('C' . $cell, Carbon::parse($date->order_date)->isoFormat('DD MMMM YYYY'))->mergeCells('C' . $cell . ':K' . $cell)->getStyle('C' . $cell . ':K' . $cell)->getFill()->applyFromArray([
                         'fillType' => 'solid',
                         'rotation' => 0,
                         'color' => [
@@ -165,7 +164,7 @@ class OrderExport implements WithHeadings, WithEvents, WithHeadingRow, WithColum
 
                     ]);
                     $cell++;
-                    $loans = Order::getOrderPerDate($date->created_at);
+                    $loans = Order::getOrderPerDate($date->order_date);
                     $i_data = 1;
                     foreach ($loans as $row) {
                         $cellData = $cell;
@@ -175,18 +174,18 @@ class OrderExport implements WithHeadings, WithEvents, WithHeadingRow, WithColum
                         $event->sheet->setCellValue('D' . $cellData, $row->nama);
                         $event->sheet->setCellValue('E' . $cellData, $row->phone_number)->getStyle('E' . $cellData)->applyFromArray($center);
                         $event->sheet->setCellValue('F' . $cellData, $row->alamat)->getStyle('F' . $cellData)->applyFromArray($center);
-                        $event->sheet->setCellValue('G' . $cellData, Carbon::parse($row->created_at)->isoFormat('DD MMMM YYYY'))->getStyle('G' . $cellData)->applyFromArray($center);
-                        $event->sheet->setCellValue('H' . $cellData, $row->resi)->getStyle('H' . $cellData)->applyFromArray($center);
+                        $event->sheet->setCellValue('G' . $cellData, Carbon::parse($row->order_date)->isoFormat('DD MMMM YYYY'))->getStyle('G' . $cellData)->applyFromArray($center);
+                        $event->sheet->setCellValue('H' . $cellData, $row->merchant_ref)->getStyle('H' . $cellData)->applyFromArray($center);
                         $event->sheet->setCellValue(
                             'I' . $cellData,
                             implode(',' . PHP_EOL, $loanAssets)
                         );
-                        $event->sheet->setCellValue('J' . $cellData, $row->qty)->getStyle('J' . $cellData)->applyFromArray($center);
+                        $event->sheet->setCellValue('J' . $cellData, $row->resi)->getStyle('J' . $cellData)->applyFromArray($center);
                         // $event->sheet->setCellValue('K' . $cellData, $row->amount);
 
                         // $from = \Carbon\Carbon::createFromFormat('Y-m-d', $row->loan_date);
                         // $to = Carbon::createFromFormat('Y-m-d', $row->real_return_date);                        
-                        $event->sheet->setCellValue('K' . $cellData, $row->amount)->getStyle('K' . $cellData)->applyFromArray($center);
+                        $event->sheet->setCellValue('K' . $cellData, 'Rp.'.$row->amount)->getStyle('K' . $cellData)->applyFromArray($center);
 
                         // $event->sheet->setCellValue('H' . $cellData, Carbon::parse(date($row->loan_date))->toFormattedDateString());
 

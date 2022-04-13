@@ -36,7 +36,6 @@ class Order extends Model
                 'orders.merchant_ref as merchant_ref',
                 'orders.alamat as alamat',
                 'orders.phone_number as phone_number',
-                'orders.created_at as created_at',
                 'orders.resi as resi',
                 'products.nama as nama_product',
                 'orders.delivery as delivery',
@@ -55,11 +54,11 @@ class Order extends Model
         $current_month = Carbon::now()->format('m');
         // dd($current_month);
         $record = DB::table('orders')
-        ->select('*')
+        ->selectRaw('DISTINCT order_date')
             ->where('status', '=', 'PAID')
             ->where('resi', '!=', null)
             ->where('order_notes', '!=', null)
-            ->whereMonth('created_at', $current_month)
+            ->whereMonth('order_date', $current_month)
             ->get()->toArray();
         return $record;
     }
@@ -68,18 +67,19 @@ class Order extends Model
     {
         // dd($current_month);
         $record = DB::table('orders')
-            ->leftJoin('carts', 'orders.id', '=', 'carts.order_id')
-            ->leftJoin('products', 'carts.product_id', '=', 'products.id')
+            // ->leftJoin('carts', 'orders.id', '=', 'carts.order_id')
+            // ->leftJoin('products', 'carts.product_id', '=', 'products.id')
             ->select(
                 'orders.id as id',
+                //'carts.order_id as order_id',
                 'orders.nama as nama',
                 'orders.merchant_ref as merchant_ref',
                 'orders.alamat as alamat',
                 'orders.phone_number as phone_number',
-                'orders.created_at as created_at',
+                'orders.order_date as order_date',
                 'orders.resi as resi',
-                'carts.qty as qty',
-                'products.nama as nama_product',
+                // 'carts.qty as qty',
+                //'products.nama as nama_product',
                 'orders.delivery as delivery',
                 'orders.amount as amount',
                 'orders.day as day',
@@ -89,7 +89,7 @@ class Order extends Model
             ->where('orders.status', '=', 'PAID')
             ->where('resi', '!=', null)
             ->where('order_notes', '!=', null)
-            ->where('orders.created_at', $date)
+            ->where('orders.order_date', $date)
             ->get()->toArray();
         return $record;
     }
@@ -104,7 +104,6 @@ class Order extends Model
             'orders.merchant_ref as merchant_ref',
             'orders.alamat as alamat',
             'orders.phone_number as phone_number',
-            'orders.created_at as created_at',
             'orders.resi as resi',
             'carts.qty as qty',
             'products.nama as nama_product',
@@ -117,7 +116,7 @@ class Order extends Model
         ->where('order_notes', '!=', null)
         ->where('orders.id', $id)->get()->toArray();
         foreach ($records as $record) {
-            $recordData[] = $record->nama_product;
+            $recordData[] = $record->nama_product . '(Sejumlah : '.$record->qty.' pcs)';
         }
         return $recordData;
     }

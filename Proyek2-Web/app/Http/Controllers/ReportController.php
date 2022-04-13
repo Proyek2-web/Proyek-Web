@@ -33,8 +33,8 @@ class ReportController extends Controller
         $toDates = Carbon::parse(date(request('to_date')))->format('Y-m-d');
         $found = true;
         if (request('from_date') && request('to_date')) {
-            $orders = Order::where('created_at', '>=', $fromDates)
-                ->where('created_at', '<=', $toDates)
+            $orders = Order::where('order_date', '>=', $fromDates)
+                ->where('order_date', '<=', $toDates)
                 ->where('status', '=', 'PAID')
                 ->where('resi', '!=', null)
                 ->where('order_notes','!=',null)

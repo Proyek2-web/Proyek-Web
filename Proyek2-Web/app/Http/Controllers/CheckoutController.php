@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Payment\TripayController;
 use App\Models\Order;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -61,6 +62,7 @@ class CheckoutController extends Controller
      */
     public function store(Request $request)
     {
+        $carbon = Carbon::now()->toDateString();
         $orders = new Order();
         $orders->nama = $request->nama;
         $orders->phone_number = $request->nomor_hp;
@@ -96,6 +98,7 @@ class CheckoutController extends Controller
         $save->amount = $request->total;
         $save->day = $request->total_hari;
         $save->delivery = $request->courier;
+        $save->order_date = $carbon;
         $save->user_id = Auth::user()->id;
         $save->merchant_ref     = $dt['data']['merchant_ref'];
         $save->reference        = $dt['data']['reference'];
