@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\OrderExport;
+use App\Exports\OrderParameterExport;
 use App\Models\Cart;
 use Illuminate\Http\Request;
 use App\Models\Order;
@@ -33,8 +34,8 @@ class ReportController extends Controller
         $toDates = Carbon::parse(date(request('to_date')))->format('Y-m-d');
         $found = true;
         if (request('from_date') && request('to_date')) {
-            $orders = Order::where('created_at', '>=', $fromDates)
-                ->where('created_at', '<=', $toDates)
+            $orders = Order::where('order_date', '>=', $fromDates)
+                ->where('order_date', '<=', $toDates)
                 ->where('status', '=', 'PAID')
                 ->where('resi', '!=', null)
                 ->where('order_notes','!=',null)
@@ -119,5 +120,15 @@ class ReportController extends Controller
     public function filter(Request $request)
     {
         $result = Order::where('created_at', $request->filter)->get();
+    }
+
+    public function export_excel_parameter()
+    {
+        $fromDates = Carbon::parse(date(request('fromDate')))->format('Y-m-d');
+        $toDates = Carbon::parse(date(request('toDate')))->format('Y-m-d');
+        $filename1 = Carbon::parse(request('fromDate'))->isoFormat('DD MMMM YYYY');
+        $filename2 = Carbon::parse(request('toDate'))->isoFormat('DD MMMM YYYY');
+        return Excel::download(new OrderParameterExport($fromDates,$toDates), 'Laporan Penjualan per '.$filename1.' - '.$filename2.'.xlsx');
+
     }
 }

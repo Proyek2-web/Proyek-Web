@@ -15,8 +15,15 @@ use Maatwebsite\Excel\Concerns\WithColumnWidths;
 
 // use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class OrderExport implements WithHeadings, WithEvents, WithHeadingRow, WithColumnWidths
+class OrderParameterExport implements WithHeadings, WithEvents, WithHeadingRow, WithColumnWidths
 {
+    protected $fromDates, $toDates;
+
+    function __construct($fromDates, $toDates)
+    {
+        $this->fromDates = $fromDates;
+        $this->toDates = $toDates;
+    }
     public function columnWidths(): array
     {
         return [
@@ -31,14 +38,7 @@ class OrderExport implements WithHeadings, WithEvents, WithHeadingRow, WithColum
     public function headings(): array
     {
         return [
-            // 'Nama',
-            // 'Unit',
-            // 'Disetujui Oleh',
-            // 'Nama Barang',
-            // 'Kategori Barang Peminjaman',
-            // 'Tanggal Peminjaman',
-            // 'Tanggal Pengembalian',      
-            // 'Status'
+            
         ];
     }
     /**
@@ -110,7 +110,7 @@ class OrderExport implements WithHeadings, WithEvents, WithHeadingRow, WithColum
                 $event->sheet->setCellValue('A6', 'Tanggal: ');
                 $event->sheet->setCellValue('C6', Carbon::now()->isoFormat('DD MMMM YYYY'))->getStyle('C6')->applyFromArray($styleTitleDate);
                 $event->sheet->setCellValue('H5', 'Periode: ');
-                $event->sheet->setCellValue('H6', Carbon::now()->isoFormat('MMMM YYYY'))->getStyle('H6')->applyFromArray($styleTitleDate)->getAlignment()->setWrapText(false);
+                $event->sheet->setCellValue('H6', Carbon::parse($this->fromDates)->isoFormat('DD MMMM YYYY') . ' - ' . Carbon::parse($this->toDates)->isoFormat('DD MMMM YYYY'))->getStyle('H6')->applyFromArray($styleTitleDate)->getAlignment()->setWrapText(false);
                 $event->sheet->setCellValue('B9', 'No')->mergeCells("B9:B10")->getStyle('B9:B10')->applyFromArray($styleArray);
                 $event->sheet->setCellValue('C9', 'Nama Pemesan')->mergeCells("C9:D10")->getStyle('C9:D10')->applyFromArray($styleArray);
                 $event->sheet->setCellValue('E9', 'Nomor HP')->mergeCells("E9:E10")->getStyle('E9:E10')->applyFromArray($styleArray);
@@ -239,11 +239,4 @@ class OrderExport implements WithHeadings, WithEvents, WithHeadingRow, WithColum
         //return Loan::all();
         return collect(Order::getOrder());
     }
-    // public function styles(Worksheet $sheet)
-    // {
-    //     return [
-    //         // Style the first row as bold text.
-    //         'A1:W1'    => ['font' => ['bold' => true]],
-    //     ];
-    // }
 }

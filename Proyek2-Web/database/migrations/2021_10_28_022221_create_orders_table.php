@@ -35,6 +35,7 @@ class CreateOrdersTable extends Migration
             $table->string('order_notes')->nullable();
             $table->string('day')->nullable();
             $table->string('delivery')->nullable();
+            $table->date('order_date')->nullable();
             $table->timestamps();
         });
     }
