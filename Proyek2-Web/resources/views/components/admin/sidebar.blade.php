@@ -152,8 +152,15 @@
                         </li>
                     </ul>
                 </li>
-                <li class="sidebar-title">Total Pendapatan</li>
-                <li
+                <li class="sidebar-title">Pendapatan</li>
+                
+                <li class="sidebar-item {{ Route::is('report.index') ? 'active' : '' }}">
+                    <a href="{{ route('report.index') }}" class='sidebar-link'>
+                        <i class="bi bi-journal-bookmark-fill"></i>
+                        <span>Laporan</span>
+                    </a>
+                </li>
+                {{-- <li
                 class="sidebar-item d-block has-sub">
                 <a href="#" class='sidebar-link'>
                     <i class="bi bi-collection-fill"></i>
@@ -173,13 +180,13 @@
                                     <i class="bi bi-cash"></i>
                                     <span
                                         style="padding: 1px 7px; border-radius: 12px; color: rgb(211, 234, 250)"></span>
-                                    <span class="transaksi-badge ">Pendapatan </span>
+                                    <span class="transaksi-badge ">Total Pendapatan </span>
                                 </div>
                             </button>
                         </form>
                     </li>
                     <li class="submenu-item ">
-                        <form action="{{ route('report.index') }}" method="GET">
+                       <form action="{{ route('report.index') }}" method="GET">
                             <button type="submit" style="background-color: transparent;
                                 background-repeat: no-repeat;
                                 border: none;
@@ -196,9 +203,14 @@
                         </form>
                     </li>
                 </ul>
-            </li>
+            </li> --}}
+            <hr>
+                <li class="sidebar-item text-center">
+                    <i class="bi bi-person-circle"></i>
+                                <span>{{ Auth::user()->email}}</span>
+                </li>
+                <a href="{{ url('/logout') }}" class='sidebar-link'>
                 <li class="sidebar-item">
-                        <a href="{{ url('/logout') }}" class='sidebar-link'>
                                 <i class="bi bi-box-arrow-left"></i>
                                 <span>Keluar</span>
                             </a>
