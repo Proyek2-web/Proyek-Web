@@ -93,27 +93,7 @@
                         style="background-color: #24243a; border-radius: 0px 20px 20px 0px;box-shadow: rgba(51, 51, 51, 0.4) 20px 30px 90px;">
                         {{-- <h6>Jumlah Pembayaran</h6> --}}
                         <div class="row p-4 text-light">
-                            Nama
-                            <input class='input-field ' type="text" name="nama" id="exampleFormControlInput1" required>
-                            Alamat detail
-                            <input class='input-field ' type="text" name="alamat" id="exampleFormControlInput1"
-                                required>
-                            <table class='half-input-table'>
-                                <tr>
-                                    <td>No. Handphone
-                                        <input class='input-field ' type="number" name="nomor_hp"
-                                            id="exampleFormControlInput1" required></input>
-                                    </td>
-                                    <td class="ms-2">Kode Pos
-                                        <input class='input-field ' type="number" name="zip_code"
-                                            id="exampleFormControlInput1" required></input>
-                                    </td>
-                                </tr>
-                            </table>
-                            Catatan produk
-                            <textarea name="custom" class=" input-field" id="exampleFormControlTextarea1" rows="6"
-                                required></textarea>
-                            <div class=" d-flex   justify-content-between mt-3 mb-3" style="margin-left: -6px">
+                            <div class=" d-flex   justify-content-between mt-1 mb-3" style="margin-left: -6px">
                                 <select id="id_select2_example" name="method" class=" input-field "
                                     aria-label="Default select example" required>
                                     <option value="0"
@@ -161,6 +141,27 @@
                                         kota tujuan --</option>
                                 </select>
                             </div>
+                            Nama
+                            <input class='input-field ' type="text" name="nama" id="exampleFormControlInput1" required>
+                            Alamat detail
+                            <input class='input-field ' type="text" name="alamat" id="exampleFormControlInput1"
+                                required>
+                            <table class='half-input-table'>
+                                <tr>
+                                    <td>No. Handphone
+                                        <input class='input-field ' type="number" name="nomor_hp"
+                                            id="exampleFormControlInput1" required></input>
+                                    </td>
+                                    <td class="ms-2">Kode Pos
+                                        <input class='input-field ' type="number" name="zip_code"
+                                            id="exampleFormControlInput1" required></input>
+                                    </td>
+                                </tr>
+                            </table>
+                            {{-- Catatan produk
+                            <textarea name="custom" class=" input-field" id="exampleFormControlTextarea1" rows="6"
+                                required></textarea> --}}
+                            
 
                             <div class=" text-center">
                                 <input type="hidden" class="form-control" name="weight" id="weight"
