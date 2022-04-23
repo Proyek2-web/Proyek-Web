@@ -211,7 +211,11 @@
                                                         <img src="/image_product/{{ $img->image }}" alt=""
                                                             style="width: 20%">
                                                         @endforeach
-
+                                                        <div class="mb-2 mt-3">
+                                                            <label for="formFileSm" class="form-label">Video Produk</label>
+                                                            <input class="form-control form-control-sm" type="file" name="video_product"
+                                                                id="video" required accept="video/*">
+                                                        </div>
                                                         <div class="form-group with-title mb-3 mt-3">
                                                             <textarea class="form-control" name="keterangan"
                                                                 id="keterangan" rows="3">{{ $p->keterangan }}</textarea>
