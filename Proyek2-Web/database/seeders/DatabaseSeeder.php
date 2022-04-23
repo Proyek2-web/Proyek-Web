@@ -46,7 +46,9 @@ class DatabaseSeeder extends Seeder
             'harga' => '30000',
             'berat' => '500',
             'keterangan' => 'Guci Besar',
-            'featured_image' => 'imgaaa.jpg',
+            'featured_image' => 'noimage.png',
+            'video_product' => 'not.mp4',
+            'video_product' => 'not.mp4',
         ]);
         Product::create([
             'nama' => 'Guci Bagus',
@@ -55,7 +57,8 @@ class DatabaseSeeder extends Seeder
             'harga' => '30000',
             'berat' => '400',
             'keterangan' => 'Guci Bagus',
-            'featured_image' => 'imgaaa.jpg',
+            'featured_image' => 'noimage.png',
+            'video_product' => 'not.mp4',
         ]);
         Product::create([
             'nama' => 'Aksesoris',
@@ -64,7 +67,8 @@ class DatabaseSeeder extends Seeder
             'harga' => '30000',
             'berat' => '300',
             'keterangan' => 'Aksesors',
-            'featured_image' => 'imgaaa.jpg',
+            'featured_image' => 'noimage.png',
+            'video_product' => 'not.mp4',
         ]);
         Product::create([
             'nama' => 'Aksesoris Ciamik',
@@ -73,7 +77,8 @@ class DatabaseSeeder extends Seeder
             'harga' => '30000',
             'berat' => '500',
             'keterangan' => 'Aksesors',
-            'featured_image' => 'imgaaa.jpg',
+            'featured_image' => 'noimage.png',
+            'video_product' => 'not.mp4',
         ]);
 
         Product::create([
@@ -83,7 +88,8 @@ class DatabaseSeeder extends Seeder
             'harga' => '20000',
             'berat' => '700',
             'keterangan' => 'Gelas Kecil',
-            'featured_image' => 'img.jpg',
+            'featured_image' => 'noimage.png',
+            'video_product' => 'not.mp4',
         ]);
         Product::create([
             'nama' => 'Gelas Ukir Kinasih ',
@@ -92,7 +98,8 @@ class DatabaseSeeder extends Seeder
             'berat' => '600',
             'harga' => '40000',
             'keterangan' => 'Gelas Ukir',
-            'featured_image' => 'img.jpg',
+            'featured_image' => 'noimage.png',
+            'video_product' => 'not.mp4',
         ]);
         Product::create([
             'nama' => 'Gelas Uhuy ',
@@ -101,7 +108,8 @@ class DatabaseSeeder extends Seeder
             'berat' => '600',
             'harga' => '70000',
             'keterangan' => 'Gelas Uhuy',
-            'featured_image' => 'img.jpg',
+            'featured_image' => 'noimage.png',
+            'video_product' => 'not.mp4',
         ]);
         Product::create([
             'nama' => 'Gelas Cihuy ',
@@ -110,7 +118,8 @@ class DatabaseSeeder extends Seeder
             'berat' => '600',
             'harga' => '90000',
             'keterangan' => 'Gelas Cihuy',
-            'featured_image' => 'img.jpg',
+            'featured_image' => 'noimage.png',
+            'video_product' => 'not.mp4',
         ]);
         Product::create([
             'nama' => 'Guci Ayy ',
@@ -119,7 +128,8 @@ class DatabaseSeeder extends Seeder
             'berat' => '600',
             'harga' => '90000',
             'keterangan' => 'Gelas Ukir',
-            'featured_image' => 'img.jpg',
+            'featured_image' => 'noimage.png',
+            'video_product' => 'not.mp4',
         ]);
         Category::create([
             'name' => 'Gelas',

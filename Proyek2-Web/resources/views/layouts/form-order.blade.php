@@ -84,8 +84,8 @@
                                 <input type="hidden" name="total_ongkir" value="">
                                 <input type="hidden" name="total_hari" value="">
                                 <input type="hidden" name="total">
-                                <button type="submit" id="checkout-button" class="btn btn-conf d-none text-dark"
-                                    style="background-color: #f2cc8f">Bayar <i class="bi bi-credit-card"></i></button>
+                                {{-- <button type="submit" id="checkout-button" class="btn btn-conf d-none text-dark"
+                                    style="background-color: #f2cc8f">Bayar <i class="bi bi-credit-card"></i></button> --}}
                             </div>
                         </div>
                     </div>

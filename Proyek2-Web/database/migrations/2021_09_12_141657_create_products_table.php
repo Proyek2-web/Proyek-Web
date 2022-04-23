@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
             $table->integer('harga');
             $table->text('keterangan');
             $table->string('featured_image');
+            $table->string('video_product');
             $table->timestamps();
         });
     }

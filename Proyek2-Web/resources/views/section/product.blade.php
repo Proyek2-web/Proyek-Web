@@ -76,17 +76,24 @@
                                     </div>
                                     <div class="mb-2">
                                         <label for="formFileSm" class="form-label">Gambar Cover Produk</label>
-                                        <input class="form-control form-control-sm" type="file" name="featured_image" id="cover"
-                                            required>
-                                        </div>
-                                        <img id="preview-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKrp91TeEJpAvzANkhTLnk8nY0qxC-xwB4AxKG-uLdEYh8IAXoQtCLMg4FxrBLV_1DREE&usqp=CAU" alt="" style="width: 30%">
+                                        <input class="form-control form-control-sm" type="file" name="featured_image"
+                                            id="cover" required>
+                                    </div>
+                                    <img id="preview-image"
+                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKrp91TeEJpAvzANkhTLnk8nY0qxC-xwB4AxKG-uLdEYh8IAXoQtCLMg4FxrBLV_1DREE&usqp=CAU"
+                                        alt="" style="width: 30%">
                                     <div class="mb-2 mt-3">
                                         <label for="formFileSm" class="form-label">Gambar
                                             Produk</label>
                                         <input id="images" class="form-control form-control-sm" type="file"
                                             name="images[]" multiple required>
                                     </div>
-                                    <div class="images-preview-div" ></div>
+                                    <div class="images-preview-div"></div>
+                                    <div class="mb-2 mt-3">
+                                        <label for="formFileSm" class="form-label">Video Produk</label>
+                                        <input class="form-control form-control-sm" type="file" name="video_product"
+                                            id="video" required accept="video/*">
+                                    </div>
                                     <div class="form-group with-title mb-3 mt-3">
                                         <textarea class="form-control" name="keterangan" id="keterangan" rows="3"
                                             required></textarea>
@@ -185,23 +192,26 @@
                                                             </select>
                                                         </div>
                                                         <div class="mb-2">
-                                                            <label for="formFileSm" class="form-label">Ganti Gambar Cover
+                                                            <label for="formFileSm" class="form-label">Ganti Gambar
+                                                                Cover
                                                                 Produk</label>
                                                             <input class="form-control form-control-sm" type="file"
-                                                                name="featured_image" >
+                                                                name="featured_image">
                                                         </div>
-                                                        <img src="/cover_product/{{ $p->featured_image }}" alt="" style="width: 20%">
+                                                        <img src="/cover_product/{{ $p->featured_image }}" alt=""
+                                                            style="width: 20%">
                                                         <div class="mb-2 mt-3">
                                                             <label for="formFileSm" class="form-label">Tambah Gambar
                                                                 Produk</label>
                                                             <input class="form-control form-control-sm" type="file"
-                                                                name="images[]" multiple >
+                                                                name="images[]" multiple>
                                                         </div>
                                                         @foreach ($p->images as $img)
-                                                            
-                                                        <img src="/image_product/{{ $img->image }}" alt="" style="width: 20%">
+
+                                                        <img src="/image_product/{{ $img->image }}" alt=""
+                                                            style="width: 20%">
                                                         @endforeach
-                                                        
+
                                                         <div class="form-group with-title mb-3 mt-3">
                                                             <textarea class="form-control" name="keterangan"
                                                                 id="keterangan" rows="3">{{ $p->keterangan }}</textarea>
@@ -224,11 +234,12 @@
                                         </div>
                                     </div>
                                     {{-- <form action="{{ route('product.destroy', $p->id) }}" method="POST"
-                                        enctype="multipart/form-data">
-                                        @csrf
-                                        @method('DELETE') --}}
-                                        <button onclick="deleteItem(this)" class="deleted btn btn-danger" data-id="{{$p->id}}" data-name="{{$p->nama}}"><i
-                                                class="fa fa-trash"></i></button>
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    @method('DELETE') --}}
+                                    <button onclick="deleteItem(this)" class="deleted btn btn-danger"
+                                        data-id="{{$p->id}}" data-name="{{$p->nama}}"><i
+                                            class="fa fa-trash"></i></button>
                                     </form>
                                 </div>
                             </td>
@@ -251,7 +262,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <!-- Sweet Alert Delete -->
 <script>
-function deleteItem(d){
+    function deleteItem(d) {
         var id = d.getAttribute('data-id');
         var name = d.getAttribute('data-name');
         Swal.fire({
@@ -282,40 +293,41 @@ function deleteItem(d){
                 window.location = "/product/delete/" + id
             }
         })
-}
+    }
 </script>
 <!-- End Sweet Alert Delete -->
-<script >
-    $('#cover').change(function(){
-           
-    let reader = new FileReader();
-    reader.onload = (e) => { 
-      $('#preview-image').attr('src', e.target.result); 
-    }
-    reader.readAsDataURL(this.files[0]); 
-  
-   });
-  </script>
-  <script >
-    $(function() {
-    // Multiple images preview with JavaScript
-    var previewImages = function(input, imgPreviewPlaceholder) {
-    if (input.files) {
-    var filesAmount = input.files.length;
-    for (i = 0; i < filesAmount; i++) {
-    var reader = new FileReader();
-    reader.onload = function(event) {
-    $($.parseHTML('<img style="max-width: 30%; margin-right:7px;">')).attr('src', event.target.result).appendTo(imgPreviewPlaceholder);
-    }
-    reader.readAsDataURL(input.files[i]);
-    }
-    }
-    };
-    $('#images').on('change', function() {
-    previewImages(this, 'div.images-preview-div');
+<script>
+    $('#cover').change(function () {
+
+        let reader = new FileReader();
+        reader.onload = (e) => {
+            $('#preview-image').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(this.files[0]);
+
     });
+</script>
+<script>
+    $(function () {
+        // Multiple images preview with JavaScript
+        var previewImages = function (input, imgPreviewPlaceholder) {
+            if (input.files) {
+                var filesAmount = input.files.length;
+                for (i = 0; i < filesAmount; i++) {
+                    var reader = new FileReader();
+                    reader.onload = function (event) {
+                        $($.parseHTML('<img style="max-width: 30%; margin-right:7px;">')).attr('src',
+                            event.target.result).appendTo(imgPreviewPlaceholder);
+                    }
+                    reader.readAsDataURL(input.files[i]);
+                }
+            }
+        };
+        $('#images').on('change', function () {
+            previewImages(this, 'div.images-preview-div');
+        });
     });
-    </script>
+</script>
 <script>
     const name = document.querySelector('#nama_produk');
     const slug = document.querySelector('#slug');

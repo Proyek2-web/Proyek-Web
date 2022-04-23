@@ -67,6 +67,11 @@ class ProductController extends Controller
             $imageName = time().'.'.$file->getClientOriginalName();
             $file->move(public_path('cover_product'), $imageName);
     }
+    if ($request->hasFile('video_product')){
+        $fileVideo = $request->file('video_product');
+        $videoName = $fileVideo->getClientOriginalName();
+        $fileVideo->move(public_path('video_product'), $videoName);  
+   }
 
     $data = new Product([
             'nama' =>  $request->nama,
@@ -74,6 +79,7 @@ class ProductController extends Controller
             'category_id' => $request->category_id,
             'berat' => $request->berat,
             'featured_image' => $imageName,
+            'video_product' => $videoName,
             'keterangan' => $request->keterangan,
         ]);
         $data->save();
@@ -193,11 +199,15 @@ class ProductController extends Controller
         if (file_exists(public_path('cover_product/'.$product->featured_image))) {
             unlink(public_path('cover_product/'.$product->featured_image));
         }
-        
         $images = Image::where('product_id', $product->id)->get();
         foreach($images as $i){
                 unlink(public_path('image_product/'.$i->image));
         }
+
+        if (file_exists(public_path('video_product/'.$product->video_product))) {
+            unlink(public_path('video_product/'.$product->video_product));
+        }
+        
         $product->delete();
         return redirect()->route('product.index')->with('success', 'Data berhasil dihapus!');
     }
