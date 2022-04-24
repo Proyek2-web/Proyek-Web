@@ -124,6 +124,16 @@
     @forelse ($produk as $p)
         <div class="col-md-4">
             <div class="wsk-cp-product" style="font-family: PT Serif">
+                <div class="wcf-cp-text">
+                    @if($p->stok==null)
+                        <p style="color:orangered;font-weight: bold">Pre-Order</p>
+                    @elseif ($p->stok == 0)
+                    <p style="color:red;font-weight: bold">Habis</p>
+                    @else
+                    <p style="color:green;font-weight: bold">Ready</p>
+                    @endif
+                    
+                </div>
                 <div class="wsk-cp-img"><img src="cover_product/{{ $p->featured_image }}"
                         alt="Product" class="img-responsive" /></div>
                 <div class="wsk-cp-text">

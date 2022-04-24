@@ -62,6 +62,11 @@
                                             placeholder="Masukkan harga produk" required>
                                     </div>
                                     <div class="form-group">
+                                        <label for="basicInput">Stok Produk (Jika Produk Tersedia)</label>
+                                        <input type="number" class="form-control" name="stok"
+                                            placeholder="Masukkan stok produk">
+                                    </div>
+                                    <div class="form-group">
                                         <label for="basicInput">Berat Produk (gr)</label>
                                         <input type="number" class="form-control" id="berat" name="berat"
                                             placeholder="Masukkan berat produk" required>
@@ -120,10 +125,11 @@
                     <thead>
                         <tr>
                             <th style="width: 50px">No.</th>
-                            <th>Name</th>
+                            <th>Nama</th>
                             <th>Gambar</th>
                             <th>Kategori</th>
                             <th>Berat</th>
+                            <th>Stok</th>
                             <th>Harga</th>
                             <th>Deskripsi</th>
                             <th></th>
@@ -138,6 +144,7 @@
                             </td>
                             <td>{{ $p->category->name }}</td>
                             <td>{{ $p->berat}}gr</td>
+                            <td>{{ $p->stok==null?'Pre-Order':$p->stok }}</td>
                             <td>Rp. {{ number_format($p->harga, 0, ',', '.') }}</td>
                             <td style=" overflow: hidden; white-space: nowrap;text-overflow: ellipsis;">
                                 {{ $p->keterangan }}</td>
@@ -177,6 +184,11 @@
                                                                 value="{{ $p->harga }}" required>
                                                         </div>
                                                         <div class="form-group">
+                                                            <label for="basicInput">Stok Produk (Jika Produk Tersedia)</label>
+                                                            <input type="number" class="form-control" name="stok"
+                                                                placeholder="Masukkan stok produk">
+                                                        </div>
+                                                        <div class="form-group">
                                                             <label for="basicInput">Berat Produk (gr)</label>
                                                             <input type="number" class="form-control" id="berat"
                                                                 name="berat" placeholder="Masukkan berat produk"
@@ -207,7 +219,6 @@
                                                                 name="images[]" multiple>
                                                         </div>
                                                         @foreach ($p->images as $img)
-
                                                         <img src="/image_product/{{ $img->image }}" alt=""
                                                             style="width: 20%">
                                                         @endforeach

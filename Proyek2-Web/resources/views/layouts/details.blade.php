@@ -53,11 +53,13 @@
                             {{-- <p>{{ $produk->keterangan }}</p> --}}
                             <p><i class="bi bi-bookmarks-fill"></i> Kategori : {{ $produk->category->name }}</p>
                             <p><i class="bi bi-speedometer"></i> Berat : {{ $produk->berat }} gram</p>
+                            <p ><i class="bi bi-bag-fill"></i> Stok : <p class="d-block" id=stok>  {{ $produk->stok }}</p> buah</p>
                             <div class="garis-detail mb-4"></div>
                             <div class="d-flex justify-content-between mb-3">
                                 <h3>Rp.{{ number_format($produk->harga, 0, ',', '.') }}</h3>
                                 <div class="quantity buttons_added mb-4">
                                     <input type="hidden" id='regeh' value="{{ $produk->harga }}">
+                                    <input type="hidden" id="stok2" value="{{ $produk->stok }}">
                                     <input type="button" value="-" class="minus"><input required id="quan"
                                         type="number" onchange="calc()" step="1" min="1" max="" name="quantity" value="1"
                                         title="Qty" class="input-text qty text" size="4"><input type="button" value="+"
@@ -78,30 +80,6 @@
                                         Back</a>
                                     <a class="btn btn-buy" data-bs-toggle="modal" data-bs-target="#login">Tambah ke
                                         keranjang <i class="bi bi-cart-plus"></i></a>
-                                    {{-- modal --}}
-                                    {{-- <div id="login-cart" class="modal fade">
-                                <div class="main">
-                                    <input type="checkbox" id="chk" aria-hidden="true">
-                                    <div class="signup">
-                                        <form>
-                                            <label for="chk" aria-hidden="true">Sign up</label>
-                                            <input type="text" name="txt" placeholder="User name" required="">
-                                            <input type="email" name="email" placeholder="Email" required="">
-                                            <input type="password" name="pswd" placeholder="Password" required="">
-                                            <button>Sign up</button>
-                                        </form>
-                                    </div>
-                                    <div class="login">
-                                        <form>
-                                            <label for="chk" aria-hidden="true">Login</label>
-                                            <input type="email" name="email" placeholder="Email" required="">
-                                            <input type="password" name="pswd" placeholder="Password" required="">
-                                            <button>Login</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div> --}}
-
                                 </div>
                             @endif
                             <div class="form-group mt-5 p-4 text-center"
@@ -201,8 +179,17 @@
             function calc() {
                 let price = $('#regeh').val();
                 let qty = $('#quan').val();
+                let stok = $('#stok2').val();
                 let result = parseInt(price) * parseInt(qty);
+                let result2 = parseInt(stok) - parseInt(qty);
                 $("#output").text("Rp. " + number_format(result, 2));
+                if(result2<0){
+                    result2 = 0;
+                    $("#stok").text( result2);
+                }else{
+                    $("#stok").text( result2);
+                }
+                
             }
         </script>
         <script type="text/javascript">
@@ -211,10 +198,6 @@
             }
         </script>
         <script defer src="https://cdn.jsdelivr.net/npm/@3dweb/360javascriptviewer/lib/JavascriptViewer.min.js"></script>
-
-
-
-
         <script type="application/javascript">
             window.addEventListener('load', () => {
                 const jsv = new JavascriptViewer({
