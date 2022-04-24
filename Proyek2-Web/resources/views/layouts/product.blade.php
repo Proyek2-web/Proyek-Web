@@ -100,74 +100,74 @@
                         <button type="submit" class="btn btn-murah ">
                             Harga Termurah <i class="bi bi-sort-up"></ </button>
                     </form>
-                @break
-            @endif
-        @endforeach
-    @else
-        <form action="/produk/termahal" method="GET" enctype="multipart/form-data">
-            <input type="hidden" name="status" value="mahal">
-            <button type="submit" class="btn btn-mahal">
-                Harga Termahal <i class="bi bi-sort-up"></i>
-            </button>
-        </form>
-        <form action="/produk/termurah" method="GET" enctype="multipart/form-data">
-            <input type="hidden" name="status" value="murah">
-            <button type="submit" class="btn btn-murah ">
-                Harga Termurah <i class="bi bi-sort-up"></i>
-            </button>
-        </form>
-    @endif
-</div>
-
-<div class="line"></div>
-<div class="row">
-    @forelse ($produk as $p)
-        <div class="col-md-4">
-            <div class="wsk-cp-product" style="font-family: PT Serif">
-                <div class="wcf-cp-text">
-                    @if($p->stok==null)
-                        <p style="color:orangered;font-weight: bold">Pre-Order</p>
-                    @elseif ($p->stok == 0)
-                    <p style="color:red;font-weight: bold">Habis</p>
-                    @else
-                    <p style="color:green;font-weight: bold">Ready</p>
+                    @break
                     @endif
-                    
+                    @endforeach
+                @else
+                    <form action="/produk/termahal" method="GET" enctype="multipart/form-data">
+                        <input type="hidden" name="status" value="mahal">
+                        <button type="submit" class="btn btn-mahal">
+                            Harga Termahal <i class="bi bi-sort-up"></i>
+                        </button>
+                    </form>
+                    <form action="/produk/termurah" method="GET" enctype="multipart/form-data">
+                        <input type="hidden" name="status" value="murah">
+                        <button type="submit" class="btn btn-murah ">
+                            Harga Termurah <i class="bi bi-sort-up"></i>
+                        </button>
+                    </form>
+                    @endif
                 </div>
-                <div class="wsk-cp-img"><img src="cover_product/{{ $p->featured_image }}"
-                        alt="Product" class="img-responsive" /></div>
-                <div class="wsk-cp-text">
-                    <div class="category-product">
-                        <span>{{ $p->category->name }}</span>
-                    </div>
-                    <div class="title-product">
-                        <h3>{{ $p->nama }}</h3>
-                    </div>
-                    <div class="description-prod">
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo
-                            necessitatibus, excepturi odit, sapiente minus voluptates totam eaque quas nemo
-                            repudiandae unde accusantium ea asperiores magni! Unde ad laboriosam,
-                            consequuntur molestiae, hic excepturi nesciunt delectus maxime quidem
-                            consequatur id ullam, ipsum dolorem possimus odit dolorum earum rerum itaque?
-                            Eaque, numquam soluta.</p>
-                        {{-- <p>{{ $p->keterangan }}</p> --}}
-                    </div>
-                    <div class="product-footer">
-                        <div class="wcf-left"><span class="price"> Rp.
-                                {{ number_format($p->harga, 0, ',', '.') }}</span></div>
-                        <div class="wcf-right"><a href="/details/{{ $p->slug }}"
-                                class="buy-btn"><i class="bi bi-bag-fill"></i></a></div>
-                    </div>
+
+                <div class="line"></div>
+                <div class="row">
+                    @forelse ($produk as $p)
+                        <div class="col-md-4">
+                            <div class="wsk-cp-product" style="font-family: PT Serif">
+                                <div class="wcf-cp-text">
+                                    @if ($p->stok == null)
+                                        <p style="color:orangered;font-weight: bold">Pre-Order</p>
+                                    @elseif ($p->stok == 0)
+                                        <p style="color:red;font-weight: bold">Habis</p>
+                                    @else
+                                        <p style="color:green;font-weight: bold">Ready</p>
+                                    @endif
+
+                                </div>
+                                <div class="wsk-cp-img"><img src="cover_product/{{ $p->featured_image }}" alt="Product"
+                                        class="img-responsive" /></div>
+                                <div class="wsk-cp-text">
+                                    <div class="category-product">
+                                        <span>{{ $p->category->name }}</span>
+                                    </div>
+                                    <div class="title-product">
+                                        <h3>{{ $p->nama }}</h3>
+                                    </div>
+                                    <div class="description-prod">
+                                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo
+                                            necessitatibus, excepturi odit, sapiente minus voluptates totam eaque quas nemo
+                                            repudiandae unde accusantium ea asperiores magni! Unde ad laboriosam,
+                                            consequuntur molestiae, hic excepturi nesciunt delectus maxime quidem
+                                            consequatur id ullam, ipsum dolorem possimus odit dolorum earum rerum itaque?
+                                            Eaque, numquam soluta.</p>
+                                        {{-- <p>{{ $p->keterangan }}</p> --}}
+                                    </div>
+                                    <div class="product-footer">
+                                        <div class="wcf-left"><span class="price"> Rp.
+                                                {{ number_format($p->harga, 0, ',', '.') }}</span></div>
+                                            <div class="wcf-right"><a href="/details/{{ $p->slug }}"
+                                                    class="buy-btn"><i class="bi bi-bag-fill"></i></a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @empty
+                        <div class="col-12 text-center mt-5 mb-5">
+                            <h1 style="color: rgb(226, 226, 226)">PRODUK KOSONG</h1>
+                        </div>
+                    @endforelse
                 </div>
             </div>
         </div>
-    @empty
-        <div class="col-12 text-center mt-5 mb-5">
-            <h1 style="color: rgb(226, 226, 226)">PRODUK KOSONG</h1>
-        </div>
-    @endforelse
-</div>
-</div>
-</div>
-</section>
+    </section>
 @endsection

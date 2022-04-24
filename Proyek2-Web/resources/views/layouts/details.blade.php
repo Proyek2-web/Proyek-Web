@@ -18,8 +18,8 @@
                     @endif
                     <div class="row  d-flex">
                         <div class="wrap-detail col-lg-6 col-12 text-center main_view">
-                            <img src="/cover_product/{{ $produk->featured_image }}" alt="" width="500"
-                                class="img-fluid " id="main" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                            <img src="/cover_product/{{ $produk->featured_image }}" alt="" width="500" class="img-fluid "
+                                id="main" data-bs-toggle="tooltip" data-bs-placement="bottom"
                                 title="Klik, untuk memperbesar tampilan gambar">
                             <div class="row mt-5">
                                 <div class="col-md-3 side_view mb-3">
@@ -37,13 +37,19 @@
                                             data-bs-placement="bottom" title="Klik, untuk ganti gambar">
                                     </div>
                                 @endforeach
-                                <video width="350" height="240"  controls src="/video_product/{{ $produk->video_product }}">
+                                <video width="350" height="240" controls
+                                    src="/video_product/{{ $produk->video_product }}">
                                     Your browser does not support the video tag.
-                                  </video>
+                                </video>
                             </div>
                         </div>
 
                         <div class="desc col-lg-6 " style="margin-top: 100px; padding: 50px; background-color: #24243a">
+                            @if ($produk->stok != null && $produk->stok != 0)
+                                <p style="color:green;font-weight: bold">Ready</p>
+                            @elseif($produk->stok == null && $produk->stok == 0)
+                                <p style="color:orange;font-weight: bold">Pre-Order</p>
+                            @endif
                             <h2>{{ $produk->nama }}</h2>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque debitis ea suscipit, quibusdam
                                 tempora consequuntur error, laudantium voluptatem sapiente asperiores magni ipsam explicabo,
@@ -53,17 +59,19 @@
                             {{-- <p>{{ $produk->keterangan }}</p> --}}
                             <p><i class="bi bi-bookmarks-fill"></i> Kategori : {{ $produk->category->name }}</p>
                             <p><i class="bi bi-speedometer"></i> Berat : {{ $produk->berat }} gram</p>
-                            <p ><i class="bi bi-bag-fill"></i> Stok : <p class="d-block" id=stok>  {{ $produk->stok }}</p> buah</p>
+                            @if ($produk->stok != null && $produk->stok != 0)
+                                <p><i class="bi bi-bag-fill"></i> Stok :
+                                <p class="d-block" id=stok>{{ $produk->stok }}</p> buah</p>
+                            @endif
                             <div class="garis-detail mb-4"></div>
                             <div class="d-flex justify-content-between mb-3">
                                 <h3>Rp.{{ number_format($produk->harga, 0, ',', '.') }}</h3>
                                 <div class="quantity buttons_added mb-4">
                                     <input type="hidden" id='regeh' value="{{ $produk->harga }}">
                                     <input type="hidden" id="stok2" value="{{ $produk->stok }}">
-                                    <input type="button" value="-" class="minus"><input required id="quan"
-                                        type="number" onchange="calc()" step="1" min="1" max="" name="quantity" value="1"
-                                        title="Qty" class="input-text qty text" size="4"><input type="button" value="+"
-                                        class="plus">
+                                    <input type="button" value="-" class="minus"><input required id="quan" type="number"
+                                        onchange="calc()" step="1" min="1" max="{{ $produk->stok != null ? $produk->stok: 255 }}" name="quantity" value="1" title="Qty"
+                                        class="input-text qty text" size="4"><input type="button" value="+" class="plus">
 
                                 </div>
                             </div>
@@ -71,8 +79,13 @@
                                 <div class="d-flex">
                                     <a href="/produk" class="btn btn-back"><i class="bi bi-arrow-left-circle-fill"></i>
                                         Kembali</a>
-                                    <button type="submit" class="btn btn-buy">Tambahkan Ke Keranjang <i
-                                            class="bi bi-cart-plus"></i></button>
+                                    @if ($produk->stok == 0)
+                                        <button type="submit" class="btn btn-buy">Tambahkan Ke Keranjang <i
+                                                class="bi bi-cart-plus"></i></button>
+                                    @else
+                                        <button type="submit" class="btn btn-buy">Tambahkan Ke Keranjang <i
+                                                class="bi bi-cart-plus"></i></button>
+                                    @endif
                                 </div>
                             @else
                                 <div class="d-flex">
@@ -123,6 +136,7 @@
             var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
                 return new bootstrap.Tooltip(tooltipTriggerEl)
             });
+
         </script>
         <script>
             // Get the modal
@@ -145,6 +159,7 @@
             span.onclick = function() {
                 modal.style.display = "none";
             }
+
         </script>
 
         <script>
@@ -183,19 +198,21 @@
                 let result = parseInt(price) * parseInt(qty);
                 let result2 = parseInt(stok) - parseInt(qty);
                 $("#output").text("Rp. " + number_format(result, 2));
-                if(result2<0){
+                if (result2 < 0) {
                     result2 = 0;
-                    $("#stok").text( result2);
-                }else{
-                    $("#stok").text( result2);
+                    $("#stok").text(result2);
+                } else {
+                    $("#stok").text(result2);
                 }
-                
+
             }
+
         </script>
         <script type="text/javascript">
             const change = src => {
                 document.getElementById("main").src = src
             }
+
         </script>
         <script defer src="https://cdn.jsdelivr.net/npm/@3dweb/360javascriptviewer/lib/JavascriptViewer.min.js"></script>
         <script type="application/javascript">
@@ -224,6 +241,7 @@
                     .then(() => console.log('viewer started'))
                     .catch((e) => console.log('failed loading 360 viewer: ' + e))
             });
+
         </script>
 
     </section>
