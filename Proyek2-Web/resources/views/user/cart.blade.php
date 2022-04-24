@@ -59,10 +59,7 @@
                                                         <div class="modal-header bg-primary">
                                                             <h5 class="modal-title text-white" id="myModalLabel1">Tambahkan
                                                                 Catatan Produk</h5>
-                                                            <button type="button" class="close rounded-pill"
-                                                                data-bs-dismiss="modal" aria-label="Close">
-                                                                <i data-feather="x"></i>
-                                                            </button>
+                                                            
                                                         </div>
                                                         <div class="modal-body">
                                                             <form action="{{ route('cart.update', $d->id) }}"

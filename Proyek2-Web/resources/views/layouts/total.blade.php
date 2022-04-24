@@ -229,6 +229,9 @@
                                             style="border-radius: 5px; padding-inline: 15px; padding-block: 5px; background-color: #25253529">Sub
                                             Total
                                             : {{ number_format($d->harga * $d->qty, 2) }}</small></p>
+                                    <p class="card-text text-dark"><small
+                                            style="border-radius: 5px; padding-inline: 15px; padding-block: 5px; background-color: #1212b329">Catatan
+                                            : {{ $d->catatan !=null?$d->catatan:'-' }}</small></p>
                                 </div>
                             </div>
                         </div>

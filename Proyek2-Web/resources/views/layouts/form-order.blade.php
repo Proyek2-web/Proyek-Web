@@ -84,8 +84,8 @@
                                 <input type="hidden" name="total_ongkir" value="">
                                 <input type="hidden" name="total_hari" value="">
                                 <input type="hidden" name="total">
-                                {{-- <button type="submit" id="checkout-button" class="btn btn-conf d-none text-dark"
-                                    style="background-color: #f2cc8f">Bayar <i class="bi bi-credit-card"></i></button> --}}
+                                <button type="submit" id="checkout-button" class="btn btn-conf d-none text-dark"
+                                    style="background-color: #f2cc8f">Bayar <i class="bi bi-credit-card"></i></button>
                             </div>
                         </div>
                     </div>
@@ -146,15 +146,20 @@
                             Alamat detail
                             <input class='input-field ' type="text" name="alamat" id="exampleFormControlInput1"
                                 required>
+                            Catatan Produk
+                            @foreach($data as $d)
+                            <input class='input-field ' type="text" placeholder="{{ $d->nama }} : {{ $d->catatan != null ? $d->catatan : '-' }}" disabled id="exampleFormControlInput1"
+                                required>
+                            @endforeach
                             <table class='half-input-table'>
                                 <tr>
                                     <td>No. Handphone
                                         <input class='input-field ' type="number" name="nomor_hp"
-                                            id="exampleFormControlInput1" required></input>
+                                            id="exampleFormControlInput1" required>
                                     </td>
                                     <td class="ms-2">Kode Pos
                                         <input class='input-field ' type="number" name="zip_code"
-                                            id="exampleFormControlInput1" required></input>
+                                            id="exampleFormControlInput1" required>
                                     </td>
                                 </tr>
                             </table>

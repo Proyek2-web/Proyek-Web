@@ -32,7 +32,7 @@ class CheckoutController extends Controller
             ->join('categories', 'products.category_id', '=', 'categories.id')
             ->where('carts.user_id', '=', $user_id == null ? '' : $user_id)
             ->where('carts.status', '=', 'pending')
-            ->select('carts.id as id', 'carts.qty as qty', 'products.id as product_id', 'products.nama as nama',
+            ->select('carts.id as id','carts.catatan as catatan', 'carts.qty as qty', 'products.id as product_id', 'products.nama as nama',
              'products.featured_image as featured_image','products.berat as berat', 'products.harga as harga', 'categories.name as category_name','carts.status as status')
             ->get();
             $total_berat = 0;

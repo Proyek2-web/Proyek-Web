@@ -93,6 +93,7 @@ class TransactionController extends Controller
             ->where('carts.order_id', '=', $id)
             ->select(
                 'carts.id as id',
+                'carts.catatan as catatan',
                 'carts.qty as qty',
                 'products.id as product_id',
                 'products.nama as nama',

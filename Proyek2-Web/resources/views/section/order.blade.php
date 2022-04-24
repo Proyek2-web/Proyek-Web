@@ -141,7 +141,7 @@
                                                                                     class="form-control"
                                                                                     placeholder="Masukkan nama user"
                                                                                     disabled
-                                                                                    value="{{ $p->nama }} : {{ $c->qty }} pcs">
+                                                                                    value="{{ $p->nama }} : {{ $c->qty }} pcs | Catatan: {{ $c->catatan !=null?$c->catatan:'-' }}">
                                                                             @endif
                                                                         @endif
                                                                     @endforeach
