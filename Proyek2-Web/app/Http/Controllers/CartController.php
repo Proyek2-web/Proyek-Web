@@ -27,6 +27,7 @@ class CartController extends Controller
                 'carts.id as id',
                 'carts.qty as qty',
                 'carts.stok as stok',
+                'carts.catatan as catatan',
                 'products.id as product_id',
                 'products.nama as nama',
                 'products.featured_image as featured_image',
@@ -108,7 +109,11 @@ class CartController extends Controller
      */
     public function update(Request $request, Cart $cart)
     {
-        //
+        $cart = Cart::find($cart->id);
+        $cart->catatan = $request->catatan;
+        $cart->save();
+        Alert::success('Catatan Ditambahkan');
+        return back();
     }
 
     /**

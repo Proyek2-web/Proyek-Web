@@ -37,12 +37,62 @@
                                             @csrf
                                             @method('DELETE')
                                             @if ($d->stok != null)
-                                            <input type="hidden" name="stok" value="{{ $d->stok }}">
-                                            <input type="hidden" name="quan" value="{{ $d->qty }}">
-                                            <input type="hidden" name="product_id" value="{{ $d->product_id }}">
+                                                <input type="hidden" name="stok" value="{{ $d->stok }}">
+                                                <input type="hidden" name="quan" value="{{ $d->qty }}">
+                                                <input type="hidden" name="product_id" value="{{ $d->product_id }}">
                                             @endif
                                             <button class="btn btn-danger"><i class="bi bi-x-lg"></i></button>
                                         </form>
+                                    </td>
+                                    <td>
+                                        <div class="justify-content-center">
+                                            <a data-bs-toggle="modal" id="update"
+                                                data-bs-target="#modal-edit{{ $d->id }}"
+                                                class="btn btn-warning me-2"><i class="fa fa-edit"></i>
+                                            </a>
+                                            <!--Basic Modal update Produk-->
+                                            <div class="modal fade text-left" id="modal-edit{{ $d->id }}"
+                                                tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header bg-primary">
+                                                            <h5 class="modal-title text-white" id="myModalLabel1">Tambahkan
+                                                                Catatan Produk</h5>
+                                                            <button type="button" class="close rounded-pill"
+                                                                data-bs-dismiss="modal" aria-label="Close">
+                                                                <i data-feather="x"></i>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form action="{{ route('cart.update', $d->id) }}"
+                                                                method="POST" enctype="multipart/form-data">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <div class="form-group">
+                                                                    <textarea class="form-control" name="catatan" required
+                                                                id="keterangan" rows="6">{{ $d->catatan != null ? $d->catatan : '-' }}</textarea>
+                                                                </div>
+                                                                <input type="hidden" name="catatans" value="{{ old('catatan') }}">
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">
+                                                                <i class="bx bx-x d-block d-sm-none"></i>
+                                                                <span class="d-none d-sm-block">Tutup</span>
+                                                            </button>
+                                                            <button type="submit" class="btn btn-primary ml-1">
+                                                                <i class="bx bx-check d-block d-sm-none"></i>
+                                                                <span class="d-none d-sm-block">Selesai</span>
+                                                            </button>
+                                                        </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                             @empty
