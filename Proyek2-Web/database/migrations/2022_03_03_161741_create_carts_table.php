@@ -20,6 +20,7 @@ class CreateCartsTable extends Migration
             $table->foreignId('order_id')->nullable();
             $table->foreignId('product_id');
             $table->string('status')->nullable();
+            $table->integer('stok')->nullable();
             $table->string('catatan')->nullable();
             $table->integer('qty');
             // $table->foreign('user_id')->references('id')->on('users')->onDelete('CASCADE')->onUpdate('CASCADE');

@@ -36,6 +36,11 @@
                                             enctype="multipart/form-data">
                                             @csrf
                                             @method('DELETE')
+                                            @if ($d->stok != null)
+                                            <input type="hidden" name="stok" value="{{ $d->stok }}">
+                                            <input type="hidden" name="quan" value="{{ $d->qty }}">
+                                            <input type="hidden" name="product_id" value="{{ $d->product_id }}">
+                                            @endif
                                             <button class="btn btn-danger"><i class="bi bi-x-lg"></i></button>
                                         </form>
                                     </td>

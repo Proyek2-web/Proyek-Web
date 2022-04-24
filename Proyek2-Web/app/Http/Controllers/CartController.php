@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
@@ -25,6 +26,7 @@ class CartController extends Controller
             ->select(
                 'carts.id as id',
                 'carts.qty as qty',
+                'carts.stok as stok',
                 'products.id as product_id',
                 'products.nama as nama',
                 'products.featured_image as featured_image',
@@ -59,6 +61,13 @@ class CartController extends Controller
     public function store(Request $request)
     {
         $cart = new Cart();
+        if($request->stok){
+            $produk = Product::find($request->product_id);
+            $produk->stok = $request->stok - $request->quantity;
+            $stok = $produk->stok;
+            $cart->stok = $stok;
+            $produk->save();
+        }
         $cart->user_id = $request->user_id;
         $cart->product_id = $request->product_id;
         $cart->status = $request->status;
@@ -108,9 +117,13 @@ class CartController extends Controller
      * @param  \App\Models\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cart $cart)
-    {
-
+    public function destroy(Cart $cart, Request $request)
+    {  
+        if($request->stok){
+            $produk = Product::find($request->product_id);
+            $produk->stok = $produk->stok + $request->quan;
+            $produk->save();
+        }
         Cart::destroy($cart->id);
         $cart_count = Cart::all()
             ->where('user_id', '=', Auth::user() == null ? '' : Auth::user()->id)

@@ -62,6 +62,7 @@
                             @if ($produk->stok != null && $produk->stok != 0)
                                 <p><i class="bi bi-bag-fill"></i> Stok :
                                 <p class="d-block" id=stok>{{ $produk->stok }}</p> buah</p>
+                                <input type="hidden" name="stok" value="{{ $produk->stok }}">
                             @endif
                             <div class="garis-detail mb-4"></div>
                             <div class="d-flex justify-content-between mb-3">
