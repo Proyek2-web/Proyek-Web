@@ -1358,11 +1358,11 @@ a.buy-btn:focus {
     margin-right: auto;
 }
 
-  
+
 
 
 /* login */
-.modal-content {
+#login .modal-content {
     width: 370px;
     height: 590px;
     background-color: #7e6f4d;
@@ -1411,7 +1411,7 @@ input.input {
     /* width: 100%; */
     background: rgb(218, 217, 217);
     border-radius: 50% / 5%;
-    transform: translateY(-1px);
+    transform: translateY(-9px);
     transition: .8s ease-in-out;
     padding-bottom: 520px;
 }

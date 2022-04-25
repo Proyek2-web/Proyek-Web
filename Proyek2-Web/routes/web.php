@@ -49,6 +49,9 @@ Route::group(['namespace' => 'Pelanggan'],function () {
     Route::get('about', function () {
         return view('layouts.about');
     });
+    Route::get('alamat', function () {
+        return view('layouts.address');
+    });
 });
 //--------------------------------------------HALAMAN ADMIN--------------------------------------------
 Route::middleware(['auth', 'cekroles:admin'])->group(function () {

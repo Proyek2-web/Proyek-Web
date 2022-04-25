@@ -94,13 +94,12 @@
                             </button>
                             <ul class="dropdown-menu bg-secondary" style="font-family: PT Serif"
                                 aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item text-light" href="#"><i
+                                <li><a class="dropdown-item text-light" href="/alamat"><i
                                             class="bi bi-person-circle me-3"></i>
-                                        Profile</a></li>
+                                        Alamat</a></li>
                                 @php
                                     $order_count = \App\Models\Order::all()
                                         ->where('user_id', '=', Auth::user() == null ? '' : Auth::user()->id)
-                                        ->where('status', '=', 'UNPAID')
                                         ->count();
                                 @endphp
                                 <li class="mb-2"><a class="dropdown-item text-light"
