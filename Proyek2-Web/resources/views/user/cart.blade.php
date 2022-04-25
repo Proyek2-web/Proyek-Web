@@ -43,23 +43,23 @@
                                             @endif
                                             <button class="btn btn-danger"><i class="bi bi-x-lg"></i></button>
                                         </form>
+                                        <a data-bs-toggle="modal" id="update"
+                                                data-bs-target="#modal-edit{{ $d->id }}"
+                                                class="btn btn-warning "><i class="fa fa-edit"></i>
+                                            </a>
                                     </td>
                                     <td>
-                                        <div class="justify-content-center">
-                                            <a data-bs-toggle="modal" id="update"
-                                                data-bs-target="#modal-edit{{ $d->id }}"
-                                                class="btn btn-warning me-2"><i class="fa fa-edit"></i>
-                                            </a>
+                                        <div class="justify-content-center"
                                             <!--Basic Modal update Produk-->
                                             <div class="modal fade text-left" id="modal-edit{{ $d->id }}"
                                                 tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
                                                 aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-scrollable" role="document">
                                                     <div class="modal-content">
-                                                        <div class="modal-header bg-primary">
+                                                        <div class="modal-header bg-biasa">
                                                             <h5 class="modal-title text-white" id="myModalLabel1">Tambahkan
                                                                 Catatan Produk</h5>
-                                                            
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
                                                             <form action="{{ route('cart.update', $d->id) }}"
@@ -73,12 +73,7 @@
                                                                 <input type="hidden" name="catatans" value="{{ old('catatan') }}">
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary"
-                                                                data-bs-dismiss="modal">
-                                                                <i class="bx bx-x d-block d-sm-none"></i>
-                                                                <span class="d-none d-sm-block">Tutup</span>
-                                                            </button>
-                                                            <button type="submit" class="btn btn-primary ml-1">
+                                                            <button type="submit" class="btn btn-login ml-1">
                                                                 <i class="bx bx-check d-block d-sm-none"></i>
                                                                 <span class="d-none d-sm-block">Selesai</span>
                                                             </button>

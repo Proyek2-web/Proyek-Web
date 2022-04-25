@@ -126,14 +126,15 @@
                             <div class="wsk-cp-product" style="font-family: PT Serif">
                                 <div class="wcf-cp-text">
                                     @if ($p->stok == null)
-                                        <p style="color:orangered;font-weight: bold">Pre-Order</p>
+                                    <div class="ribbon"><span>Pre-Order</span></div>
                                     @elseif ($p->stok == 0)
-                                        <p style="color:red;font-weight: bold">Habis</p>
+                                    <div class="ribbon"><span>Habis</span></div>
                                     @else
-                                        <p style="color:green;font-weight: bold">Ready</p>
+                                    <div class="ribbon"><span>Tersedia</span></div>
                                     @endif
 
                                 </div>
+                                
                                 <div class="wsk-cp-img"><img src="cover_product/{{ $p->featured_image }}" alt="Product"
                                         class="img-responsive" /></div>
                                 <div class="wsk-cp-text">
@@ -151,6 +152,7 @@
                                             consequatur id ullam, ipsum dolorem possimus odit dolorum earum rerum itaque?
                                             Eaque, numquam soluta.</p>
                                         {{-- <p>{{ $p->keterangan }}</p> --}}
+                                        
                                     </div>
                                     <div class="product-footer">
                                         <div class="wcf-left"><span class="price"> Rp.

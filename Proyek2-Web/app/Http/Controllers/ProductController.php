@@ -69,7 +69,7 @@ class ProductController extends Controller
     }
     if ($request->hasFile('video_product')){
         $fileVideo = $request->file('video_product');
-        $videoName = $fileVideo->getClientOriginalName();
+        $videoName = time().'.'.$fileVideo->getClientOriginalName();
         $fileVideo->move(public_path('video_product'), $videoName);  
    }
 
