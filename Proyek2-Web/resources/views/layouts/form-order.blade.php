@@ -144,8 +144,13 @@
                             Nama
                             <input class='input-field ' type="text" name="nama" id="exampleFormControlInput1" required>
                             Alamat detail
-                            <input class='input-field ' type="text" name="alamat" id="exampleFormControlInput1"
-                                required>
+                            <select class="input-field form-select" name="alamat" required>
+                                @foreach ($address as $a)
+                                <option  style="background: #3d405b; color: aliceblue" value="{{ $a->id }}">{{ $a->alamat }}</option>
+                                @endforeach
+                            </select>
+                            {{-- <input class='input-field ' type="text" name="alamat" id="exampleFormControlInput1"
+                                required> --}}
                             Catatan Produk
                             @foreach($data as $d)
                             <input class='input-field ' type="text" placeholder="{{ $d->nama }} : {{ $d->catatan != null ? $d->catatan : '-' }}" disabled id="exampleFormControlInput1"

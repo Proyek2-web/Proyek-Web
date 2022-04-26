@@ -7,6 +7,7 @@ use App\Models\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Payment\TripayController;
+use App\Models\Address;
 use App\Models\Order;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -25,6 +26,7 @@ class CheckoutController extends Controller
         $channels = $tripay->getPaymentChannels();
         $subtotal = $request->sub_total;
         $user_id = $request->user_id;
+        $address = Address::all()->where('user_id','=',$user_id);
         $provinces = Province::pluck('name', 'province_id');
         $cart_count = Cart::all()->where('user_id', '=', $user_id == null ? '' : $user_id)->where('status', '=', "pending")->count();
         $data = DB::table('carts')
@@ -41,7 +43,7 @@ class CheckoutController extends Controller
                 $s= $d->qty * $d->berat;
                 $total_berat = $total_berat +  $s;
             }
-        return view('layouts.form-order',compact('subtotal','provinces', 'cart_count','data','channels','total_berat'));
+        return view('layouts.form-order',compact('subtotal','address','provinces', 'cart_count','data','channels','total_berat'));
     }
 
     /**
@@ -62,6 +64,12 @@ class CheckoutController extends Controller
      */
     public function store(Request $request)
     {
+        $address = Address::all();
+        foreach($address as $a){
+            if($a->id == $request->alamat){
+                $alamat= $a->alamat;
+            }
+        }
         $carbon = Carbon::now()->toDateString();
         $orders = new Order();
         $orders->nama = $request->nama;
@@ -70,7 +78,7 @@ class CheckoutController extends Controller
         $orders->province_id = $request->province_destination;
         $orders->city_id = $request->city_destination;
         $orders->email = Auth::user()->email;
-        $orders->alamat = $request->alamat;
+        $orders->alamat = $alamat;
         $orders->zip_code = $request->zip_code;
         $orders->amount = $request->total;
         $orders->user_id = Auth::user()->id;
@@ -91,7 +99,7 @@ class CheckoutController extends Controller
         $save->province_id = $request->province_destination;
         $save->city_id = $request->city_destination;
         $save->email = Auth::user()->email;
-        $save->alamat = $request->alamat;
+        $save->alamat = $alamat;
         $save->total_produk = $sub_total;
         $save->total_ongkir = $total_ongkir;
         $save->zip_code = $request->zip_code;

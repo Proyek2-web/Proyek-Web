@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckOngkirController;
@@ -33,6 +34,10 @@ Route::middleware(['auth', 'cekroles:user,admin'])->group(function () {
     Route::resource('/cart', CartController::class);
     Route::resource('/checkout', CheckoutController::class);
     Route::resource('/transaction', TransactionController::class);
+    Route::resource('/alamat', AddressController::class);
+    // Route::get('alamat', function () {
+    //     return view('layouts.address');
+    // });
 });
 
 Route::group(['namespace' => 'Pelanggan'],function () {
@@ -49,9 +54,7 @@ Route::group(['namespace' => 'Pelanggan'],function () {
     Route::get('about', function () {
         return view('layouts.about');
     });
-    Route::get('alamat', function () {
-        return view('layouts.address');
-    });
+    
 });
 //--------------------------------------------HALAMAN ADMIN--------------------------------------------
 Route::middleware(['auth', 'cekroles:admin'])->group(function () {
