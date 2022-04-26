@@ -162,13 +162,18 @@
                         </div>
                     @enderror
                     <input placeholder="No.Handphone" type="number" class="input input-lg" name="no_hp" value="">
-                    <input placeholder="Alamat" type="text" class="input input-lg" name="alamat" value="">
-                    <input placeholder="Password" type="password" class="input input-lg" id="id_password" name="psw"
+                    {{-- <input placeholder="Alamat" type="text" class="input input-lg" name="alamat" value=""> --}}
+                    <input placeholder="Password" type="password" class="input input-lg" id="id_password" name="password"
                     pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                     title="Minimal 8 karakter Dan Minimal 1 huruf kapital" required>
                     <div class="show-pw d-flex align-items-center" style="margin-top: -27px">
                         <input type="checkbox" onclick="show()" style="margin-left: 42px; font-size: 0.1rem"> <p class="mt-3 ms-1 text-light" style="font-size: 0.7rem; font-family: Arial, Helvetica, sans-serif">Tampilkan password</p>
                     </div>
+                    
+                    <input placeholder="Konfirmasi Password" class="@error('password_confirmation') is-invalid @enderror input input-lg" id="password" style="margin-top: -1px" type="password" name="password_confirmation" required>
+                    @error('password_confirmation')
+                    <span class="text-light bg-danger" style="font-size: 10px; margin: auto; display: table">{{ $message }}</span>
+                    @enderror
                     <input type="hidden" name="roles" value="user">
                     <button type="submit" class="btn-modal">Daftar <i class="bi bi-person-plus-fill"></i></button>
                 </form>

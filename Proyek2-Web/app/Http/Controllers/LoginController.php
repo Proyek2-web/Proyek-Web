@@ -20,7 +20,7 @@ class LoginController extends Controller
     {
         $credentials = $request->validate([
             'email' => 'required|email:dns',
-            'password' => 'required|min:7|max:255',
+            'password' => 'required|min:8'
         ]); 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
@@ -40,14 +40,21 @@ class LoginController extends Controller
     // Proses untuk registrasi
     public function registration(Request $request)
     {
+        $request->validate([
+            'password' => 'required|min:8|confirmed',
+            'password_confirmation' => 'required|min:8|same:password',
+        ]); 
         $save = new User();
         $save->name = $request->name;
         $save->email = $request->email;
-        $save->password = Hash::make($request->psw);
+        $save->password = Hash::make($request->password);
+        $save->password_confirmation = Hash::make($request->password_confirmation);
         $save->no_hp = $request->no_hp;
-        $save->alamat = $request->alamat;
+        // $save->alamat = $request->alamat;
         $save->roles = $request->roles;
         $save->save();
+        
+
         Alert::success('Sukses Mendaftar', '');
         return redirect('/');
     }

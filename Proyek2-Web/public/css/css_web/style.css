@@ -1158,6 +1158,12 @@ a.buy-btn:focus {
     font-family: Inter;
     font-size: 0.9rem;
 }
+.stok p:nth-child(1), .stok p:nth-child(2){
+    color: rgb(128, 127, 126);
+    /* font-weight: bold; */
+    font-family: Inter;
+    font-size: 0.9rem;
+}
 
 .garis-detail {
     width: 560px;

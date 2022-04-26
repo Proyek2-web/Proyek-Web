@@ -60,8 +60,10 @@
                             <p><i class="bi bi-bookmarks-fill"></i> Kategori : {{ $produk->category->name }}</p>
                             <p><i class="bi bi-speedometer"></i> Berat : {{ $produk->berat }} gram</p>
                             @if ($produk->stok != null && $produk->stok != 0)
+                            <div class="d-flex stok">
                                 <p><i class="bi bi-bag-fill"></i> Stok :
-                                <p class="d-block" id=stok>{{ $produk->stok }}</p> buah</p>
+                                <p class="d-block ms-2" id=stok>{{ $produk->stok }}</p> buah</p>
+                            </div>
                                 <input type="hidden" name="stok" value="{{ $produk->stok }}">
                             @endif
                             <div class="garis-detail mb-4"></div>
