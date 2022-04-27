@@ -140,6 +140,9 @@ class ProductController extends Controller
         if (file_exists(public_path('cover_product/'.$product->featured_image))) {
             unlink(public_path('cover_product/'.$product->featured_image));
         }
+        if (file_exists(public_path('video_product/'.$product->video_product))) {
+            unlink(public_path('video_product/'.$product->video_product));
+        }
         if ($request->hasFile('featured_image')) {
             $file = $request->file('featured_image');
                 $product->featured_image = time().'.'.$file->getClientOriginalName();
@@ -147,6 +150,12 @@ class ProductController extends Controller
                 $request['fetaured_image'] = $product->featured_image;
 
         }
+        if ($request->hasFile('video_product')){
+            $fileVideo = $request->file('video_product');
+            $product->video_product = time().'.'.$fileVideo->getClientOriginalName();
+            $fileVideo->move(public_path('video_product'), $product->video_product);
+            $request['video_product'] = $product->video_product;  
+       }
 
         $product->update([
             'nama' => $request->nama,
@@ -156,6 +165,7 @@ class ProductController extends Controller
             'category_id' => $request->category_id,
             'keterangan' => $request->keterangan,
             'featured_image' => $product->featured_image,
+            'video_product' => $product->video_product,
         ]);
         
         if ($request->hasFile('images')) {
