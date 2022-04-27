@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration
             $table->integer('berat')->nullable();
             $table->integer('harga');
             $table->integer('stok')->nullable();
+            $table->string('status')->nullable();
             $table->text('keterangan');
             $table->string('featured_image');
             $table->string('video_product');

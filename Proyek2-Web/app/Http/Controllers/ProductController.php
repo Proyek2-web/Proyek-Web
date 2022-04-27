@@ -78,6 +78,7 @@ class ProductController extends Controller
             'harga' => $request->harga,
             'category_id' => $request->category_id,
             'berat' => $request->berat,
+            'status'=>'aktif',
             'stok'=> $request->stok, 
             'featured_image' => $imageName,
             'video_product' => $videoName,
@@ -98,11 +99,10 @@ class ProductController extends Controller
                 ]);
             }
         }
-        
-
+    
         // Product::create($insert_data);
         Alert::success('Berhasil Menambahkan Produk', '');
-        return redirect('/product');
+        return back();
     }
 
     /**
@@ -211,11 +211,45 @@ class ProductController extends Controller
         }
         
         $product->delete();
-        return redirect()->route('product.index')->with('success', 'Data berhasil dihapus!');
+        return back();
     }
     public function checkSlug(Request $request)
     {
         $slug = SlugService::createSlug(Product::class, 'slug', $request->nama);
         return response()->json(['slug' => $slug]);
+    }
+    public function active()
+    {
+        $category = Category::all();
+        return view('section.product', [
+            'products' => Product::all()->where('status','=','aktif'),
+            'categories' => $category
+        ]);
+    }
+    public function deactive()
+    {
+        $category = Category::all();
+        return view('section.product', [
+            'products' => Product::all()->where('status','=','nonaktif'),
+            'categories' => $category
+        ]);
+    }
+    public function deactivated(Request $request,$id)
+    {
+        $product = Product::find($id);
+        $product->status = 'nonaktif';
+        $product->save();
+        Alert::success('Produk NonAktif', '');
+        return redirect('/deactive');
+        
+    }
+    public function activated(Request $request,$id)
+    {
+        $product = Product::find($id);
+        $product->status = 'aktif';
+        $product->save();
+        Alert::success('Produk Aktif', '');
+        return redirect('/active');
+        
     }
 }

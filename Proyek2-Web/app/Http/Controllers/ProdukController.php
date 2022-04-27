@@ -9,28 +9,32 @@ class ProdukController extends Controller
 {
     public function all()
     {
-        if(request('status')){
+        if (request('status')) {
             if (request('status') == 1) {
                 $status = false;
                 $produk = Product::select("*")
+                    ->where('status', 'aktif')
                     ->orderBy("harga", "asc")
                     ->get();
                 return view('layouts.product', compact('produk', 'status'));
-            } else if(request('status') == 2){
+            } else if (request('status') == 2) {
                 $status = false;
                 $produk = Product::select("*")
+                    ->where('status', 'aktif')
                     ->orderBy("harga", "desc")
                     ->get();
                 return view('layouts.product', compact('produk', 'status'));
-            }  
-        }else if (request('search')) {
+            }
+        } else if (request('search')) {
             $status = false;
-            $produk = Product::where('nama', 'LIKE', '%' . request('search') . '%')->get();
+            $produk = Product::where('nama', 'LIKE', '%' . request('search') . '%')
+                ->where('status', 'aktif')
+                ->get();
             return view('layouts.product', compact('produk', 'status'));
         }
         $status = false;
         return view('layouts.product', [
-            'produk' => Product::all(),
+            'produk' => Product::all()->where('status', 'aktif'),
             'status' => $status
         ]);
     }
@@ -45,19 +49,23 @@ class ProdukController extends Controller
             $status = true;
             $produk = Product::select("*")
                 ->where('category_id', '=', 1)
+                ->where('status', 'aktif')
                 ->orderBy("harga", "asc")
                 ->get();
             return view('layouts.product', compact('produk', 'status'));
-        } else if(request('status') == 2){
+        } else if (request('status') == 2) {
             $status = true;
             $produk = Product::select("*")
                 ->where('category_id', '=', 1)
+                ->where('status', 'aktif')
                 ->orderBy("harga", "desc")
                 ->get();
             return view('layouts.product', compact('produk', 'status'));
         }
         $status = true;
-        $produk = Product::where('category_id', 1)->get();
+        $produk = Product::where('category_id', 1)
+            ->where('status', 'aktif')
+            ->get();
         return view('layouts.product', compact('produk', 'status'));
     }
     public function vas()
@@ -66,19 +74,23 @@ class ProdukController extends Controller
             $status = true;
             $produk = Product::select("*")
                 ->where('category_id', '=', 4)
+                ->where('status', 'aktif')
                 ->orderBy("harga", "asc")
                 ->get();
             return view('layouts.product', compact('produk', 'status'));
-        } else if(request('status') == 2){
+        } else if (request('status') == 2) {
             $status = true;
             $produk = Product::select("*")
                 ->where('category_id', '=', 4)
+                ->where('status', 'aktif')
                 ->orderBy("harga", "desc")
                 ->get();
             return view('layouts.product', compact('produk', 'status'));
         }
         $status = true;
-        $produk = Product::where('category_id', 4)->get();
+        $produk = Product::where('category_id', 4)
+            ->where('status', 'aktif')
+            ->get();
         return view('layouts.product', compact('produk', 'status'));
     }
     public function guci()
@@ -87,19 +99,23 @@ class ProdukController extends Controller
             $status = true;
             $produk = Product::select("*")
                 ->where('category_id', '=', 2)
+                ->where('status', 'aktif')
                 ->orderBy("harga", "asc")
                 ->get();
             return view('layouts.product', compact('produk', 'status'));
-        } else if(request('status') == 2){
+        } else if (request('status') == 2) {
             $status = true;
             $produk = Product::select("*")
                 ->where('category_id', '=', 2)
+                ->where('status', 'aktif')
                 ->orderBy("harga", "desc")
                 ->get();
             return view('layouts.product', compact('produk', 'status'));
         }
         $status = true;
-        $produk = Product::where('category_id', 2)->get();
+        $produk = Product::where('category_id', 2)
+            ->where('status', 'aktif')
+            ->get();
         return view('layouts.product', compact('produk', 'status'));
     }
     public function aksesoris()
@@ -108,22 +124,26 @@ class ProdukController extends Controller
             $status = true;
             $produk = Product::select("*")
                 ->where('category_id', '=', 3)
+                ->where('status', 'aktif')
                 ->orderBy("harga", "asc")
                 ->get();
             return view('layouts.product', compact('produk', 'status'));
-        } else if(request('status') == 2){
+        } else if (request('status') == 2) {
             $status = true;
             $produk = Product::select("*")
                 ->where('category_id', '=', 3)
+                ->where('status', 'aktif')
                 ->orderBy("harga", "desc")
                 ->get();
             return view('layouts.product', compact('produk', 'status'));
         }
         $status = true;
-        $produk = Product::where('category_id', 3)->get();
+        $produk = Product::where('category_id', 3)
+            ->where('status', 'aktif')
+            ->get();
         return view('layouts.product', compact('produk', 'status'));
     }
-    
+
     public function murah()
     {
         if (request('status')) {
