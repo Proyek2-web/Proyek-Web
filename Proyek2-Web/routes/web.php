@@ -66,6 +66,10 @@ Route::middleware(['auth', 'cekroles:admin'])->group(function () {
     Route::get('/user/delete/{id}',[DashboardController::class, 'destroy']);
     Route::get('/category/checkSlug', [CategoryController::class, 'checkSlug']);
     Route::get('/product/checkSlug', [ProductController::class, 'checkSlug']);
+    Route::get('/active', [ProductController::class, 'active']);
+    Route::put('/activated/{id}', [ProductController::class, 'activated']);
+    Route::put('/deactivated/{id}', [ProductController::class, 'deactivated']);
+    Route::get('/deactive', [ProductController::class, 'deactive']);
     Route::resource('/user', DashboardController::class);
     Route::resource('/category', CategoryController::class);
     Route::resource('/product', ProductController::class);

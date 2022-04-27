@@ -30,10 +30,46 @@
                 </li>
                 <li class="sidebar-title">Produk</li>
                 <li class="sidebar-item  {{ Route::is('product.index') ? 'active' : '' }}">
-                    <a href="{{ route('product.index') }}" class='sidebar-link'>
+                    <li
+                    class="sidebar-item d-block has-sub ">
+                    <a href="#" class='sidebar-link'>
                         <i class="bi bi-list-ul"></i>
                         <span>Daftar Produk</span>
                     </a>
+                    <ul
+                        class="submenu ">
+                        <li class="submenu-item ">
+                            <form action="/active" method="GET">
+                                <button type="submit" style="background-color: transparent;
+                            background-repeat: no-repeat;
+                            border: none;
+                            cursor: pointer;
+                            overflow: hidden;
+                            outline: none;">
+                                    <div class="wrap-pesanan align-items-center d-flex">
+                                        <i class="bi bi-wallet2 "></i>
+                                        <span class="transaksi-badge "> Produk Aktif</span>
+                                    </div>
+                                </button>
+                            </form>
+                        </li>
+                        <li class="submenu-item ">
+                            <form action="/deactive" method="GET">
+                                <button type="submit" style="background-color: transparent;
+                            background-repeat: no-repeat;
+                            border: none;
+                            cursor: pointer;
+                            overflow: hidden;
+                            outline: none;">
+                                    <div class="wrap-pesanan align-items-center d-flex">
+                                        <i class="bi bi-wallet2 "></i>
+                                        <span class="transaksi-badge "> Produk Tidak Aktif</span>
+                                    </div>
+                                </button>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
                 </li>
                 <li class="sidebar-item {{ Route::is('category.index') ? 'active' : '' }}">
                     <a href="{{ route('category.index') }}" class='sidebar-link'>

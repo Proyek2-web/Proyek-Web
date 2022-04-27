@@ -41,6 +41,7 @@ class DatabaseSeeder extends Seeder
 
         Product::create([
             'nama' => 'Guci ',
+            'status' => 'aktif',
             'category_id' => '2',
             'slug' => 'guci-kinasih',
             'harga' => '30000',
@@ -52,6 +53,7 @@ class DatabaseSeeder extends Seeder
         ]);
         Product::create([
             'nama' => 'Guci Bagus',
+            'status' => 'aktif',
             'category_id' => '2',
             'slug' => 'guci-bagus',
             'harga' => '30000',
@@ -63,6 +65,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'nama' => 'Aksesoris',
             'category_id' => '3',
+            'status' => 'aktif',
             'slug' => 'aksesoris',
             'harga' => '30000',
             'berat' => '300',
@@ -73,6 +76,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'nama' => 'Aksesoris Ciamik',
             'category_id' => '3',
+            'status' => 'aktif',
             'slug' => 'aksesoris-bagus',
             'harga' => '30000',
             'berat' => '500',
@@ -84,6 +88,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'nama' => 'Gelas Hias Kinasih ',
             'category_id' => '1',
+            'status' => 'aktif',
             'slug' => 'gelas-hias-kinasih',
             'harga' => '20000',
             'berat' => '700',
@@ -94,6 +99,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'nama' => 'Gelas Ukir Kinasih ',
             'category_id' => '1',
+            'status' => 'aktif',
             'slug' => 'gelas-ukir-kinasih',
             'berat' => '600',
             'harga' => '40000',
@@ -104,6 +110,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'nama' => 'Gelas Uhuy ',
             'category_id' => '1',
+            'status' => 'aktif',
             'slug' => 'gelas-uhuy-kinasih',
             'berat' => '600',
             'harga' => '70000',
@@ -114,6 +121,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'nama' => 'Gelas Cihuy ',
             'category_id' => '1',
+            'status' => 'aktif',
             'slug' => 'gelas-cihuy-kinasih',
             'berat' => '600',
             'harga' => '90000',
@@ -124,6 +132,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'nama' => 'Guci Ayy ',
             'category_id' => '2',
+            'status' => 'nonaktif',
             'slug' => 'gucu-ukir-kinasih',
             'berat' => '600',
             'harga' => '90000',
