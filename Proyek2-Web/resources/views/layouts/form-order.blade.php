@@ -111,7 +111,7 @@
                                 </select>
                                 <select id="id_select3_example" class=" kurir input-field " name="courier">
                                     <option value="0"
-                                        data-img_src2="{{ url('https://i1.wp.com/www.jlscargo.com/wp-content/uploads/2021/04/Icon-Jasa-Pembelian.png')}}">
+                                        data-img_src2="{{ url('https://d338t8kmirgyke.cloudfront.net/icons/icon_pngs/000/000/163/original/delivery.png')}}">
                                         -- pilih metode pengiriman --</option>
                                     <option style="background: #31527a; color: aliceblue"
                                         data-img_src2="{{ url('https://seeklogo.com/images/T/Tiki_JNE-logo-09BD368D04-seeklogo.com.png')}}"
@@ -125,30 +125,31 @@
                                 </select>
 
                             </div>
-                            <div class='line'></div>
-                            <div class=" d-flex justify-content-between mt-2">
+                            <div class=" d-flex justify-content-between mt-2 mb-">
                                 {{-- <label for="Provinsi" class="mb-2">Pilih Provinsi</label> --}}
-                                <select class="input-field   provinsi-tujuan me-3 " name="province_destination">
+                                <select class="input-field   provinsi-tujuan me-3 mb-4" name="province_destination">
                                     <option value="0">-- pilih provinsi tujuan --</option>
                                     @foreach ($provinces as $province => $value)
                                     <option style="background: #3d405b; color: aliceblue" value="{{ $province }}">
                                         {{ $value }}</option>
-                                    @endforeach
-                                </select>
-                                {{-- <label for="Provinsi" class="mb-2 mt-4">Pilih Kota</label> --}}
-                                <select class="input-field  kota-tujuan " name="city_destination">
-                                    <option style="background: #4488dd; color: rgb(225, 226, 226)" value=" ">-- pilih
-                                        kota tujuan --</option>
-                                </select>
-                            </div>
+                                        @endforeach
+                                    </select>
+                                    {{-- <label for="Provinsi" class="mb-2 mt-4">Pilih Kota</label> --}}
+                                    <select class="input-field  kota-tujuan mb-4" name="city_destination">
+                                        <option style="background: #4488dd; color: rgb(225, 226, 226)" value=" ">-- pilih
+                                            kota tujuan --</option>
+                                        </select>
+                                    </div>
+                                    Pilih Alamat detail
+                                    <select class="input-field mb-1" name="alamat" required>
+                                        @foreach ($address as $a)
+                                        <option  style="background: #3d405b; color: aliceblue" value="{{ $a->id }}">{{ $a->alamat }}</option>
+                                        @endforeach
+                                    </select>
+                                    <a href="/alamat" class="mb-3" style="font-size: 14px">Tambah alamat</a>
+                                    <div class='line'></div>
                             Nama
                             <input class='input-field ' type="text" name="nama" id="exampleFormControlInput1" required>
-                            Alamat detail
-                            <select class="input-field form-select" name="alamat" required>
-                                @foreach ($address as $a)
-                                <option  style="background: #3d405b; color: aliceblue" value="{{ $a->id }}">{{ $a->alamat }}</option>
-                                @endforeach
-                            </select>
                             {{-- <input class='input-field ' type="text" name="alamat" id="exampleFormControlInput1"
                                 required> --}}
                             Catatan Produk

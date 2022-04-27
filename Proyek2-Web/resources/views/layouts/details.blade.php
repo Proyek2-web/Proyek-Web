@@ -46,9 +46,9 @@
 
                         <div class="desc col-lg-6 " style="margin-top: 100px; padding: 50px; background-color: #24243a">
                             @if ($produk->stok != null && $produk->stok != 0)
-                                <p style="color:green;font-weight: bold">Ready</p>
+                                <span class="bg-success text-light pe-3 ps-3 pt-1 pb-1" style="font-weight: bold; border-radius: 10px">Ready</span>
                             @elseif($produk->stok == null && $produk->stok == 0)
-                                <p style="color:orange;font-weight: bold">Pre-Order</p>
+                                <span class="bg-warning text-light pe-3 ps-3 pt-1 pb-1" style="font-weight: bold; border-radius: 10px">Pre-Order</span>
                             @endif
                             <h2>{{ $produk->nama }}</h2>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque debitis ea suscipit, quibusdam

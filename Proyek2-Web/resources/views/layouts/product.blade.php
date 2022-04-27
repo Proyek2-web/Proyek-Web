@@ -125,12 +125,12 @@
                         <div class="col-md-4">
                             <div class="wsk-cp-product" style="font-family: PT Serif">
                                 <div class="wcf-cp-text">
-                                    @if ($p->stok == null)
+                                    @if ($p->stok === null)
                                     <div class="ribbon"><span>Pre-Order</span></div>
                                     @elseif ($p->stok == 0)
-                                    <div class="ribbon"><span>Habis</span></div>
+                                    <div class="ribbon2"><span>Habis</span></div>
                                     @else
-                                    <div class="ribbon"><span>Tersedia</span></div>
+                                    <div class="ribbon3"><span>Tersedia</span></div>
                                     @endif
 
                                 </div>

@@ -738,7 +738,7 @@ footer p {
     transition: all 0.6s;
 
 }
-
+/* r1 */
 .wsk-cp-product .ribbon{
     width: 150px;
     height: 150px;
@@ -775,6 +775,94 @@ footer p {
   background: #383737;
   padding: 10px 0;
   color: #cbcbcf;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  z-index: 10;
+  text-transform: uppercase;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.12);
+}
+/* r2 */
+.wsk-cp-product .ribbon2{
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    overflow: hidden;
+}
+
+.wsk-cp-product .ribbon2::before,
+.wsk-cp-product .ribbon2::after{
+    position: absolute;
+    content: "";
+    z-index: -1;
+    display: block;
+    border: 7px solid #383737;
+    border-top-color: transparent;
+    border-left-color: transparent;
+}
+.wsk-cp-product .ribbon2::before{
+  top: 0px;
+  right: 15px;
+}
+.wsk-cp-product .ribbon2::after{
+  bottom: 15px;
+  left: 0px;
+}
+.wsk-cp-product .ribbon2 span{
+  position: absolute;
+  top: 30px;
+  right: 0;
+  transform: rotate(-45deg);
+  width: 200px;
+  background: #935454;
+  padding: 10px 0;
+  color: #d5d5d5;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  z-index: 10;
+  text-transform: uppercase;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.12);
+}
+/* r3 */
+.wsk-cp-product .ribbon3{
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    overflow: hidden;
+}
+
+.wsk-cp-product .ribbon3::before,
+.wsk-cp-product .ribbon3::after{
+    position: absolute;
+    content: "";
+    z-index: -1;
+    display: block;
+    border: 7px solid #383737;
+    border-top-color: transparent;
+    border-left-color: transparent;
+}
+.wsk-cp-product .ribbon3::before{
+  top: 0px;
+  right: 15px;
+}
+.wsk-cp-product .ribbon3::after{
+  bottom: 15px;
+  left: 0px;
+}
+.wsk-cp-product .ribbon3 span{
+  position: absolute;
+  top: 30px;
+  right: 0;
+  transform: rotate(-45deg);
+  width: 200px;
+  background: #2d7f70;
+  padding: 10px 0;
+  color: #d5d5d5;
   text-align: center;
   font-weight: bold;
   font-size: 16px;

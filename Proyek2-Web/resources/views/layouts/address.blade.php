@@ -38,14 +38,20 @@
                 </div>
             </div>
             <div class="row">
+                @forelse ($alamat as $a)
                 <div class="col-md-3 mb-3">
-                    <div class="card" style="width: 18rem; background-color: rgb(214, 214, 213) ">
-                        <a href="#" class="mt-2 me-2"><i class="bi bi-x-circle text-black" style="float: right"></i></a>
-                        <p class="card-text text-dark p-4">Some quick example text to build on the card title and make up
-                            the bulk of the
-                            card's content.</p>
+                    <div class="card" style="width: 18rem; background-color: rgb(235, 235, 235) ">
+                            <form action="{{ route('alamat.destroy', $a->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" style="float: right"><i class="bi bi-x-circle text-black" ></i></button>
+                            </form>
+                        <p class="card-text text-dark ps-4 pe-4 pb-4  text-center">{{ $a->alamat }}</p>
                     </div>
                 </div>
+                @empty
+                    <h1 class="text-center">Alamat Kosong</h1>
+                @endforelse
             </div>
         </div>
     </section>

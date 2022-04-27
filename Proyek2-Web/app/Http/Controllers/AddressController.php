@@ -15,7 +15,11 @@ class AddressController extends Controller
      */
     public function index()
     {
-        return view('layouts.address');
+        
+        return view('layouts.address', [
+            'alamat' => Address::all()->where('user_id', '=', auth()->user()->id)
+        ]);
+    
     }
 
     /**
@@ -87,6 +91,8 @@ class AddressController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Address::find($id)->delete();
+        return redirect()->back()->with('success', 'Alamat Berhasil Dihapus');
+        
     }
 }
