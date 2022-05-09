@@ -29,17 +29,20 @@
                     </a>
                 </li>
                 <li class="sidebar-title">Produk</li>
-                <li class="sidebar-item  {{ Route::is('product.index') ? 'active' : '' }}">
-                    <li
-                    class="sidebar-item d-block has-sub ">
+                <li class="sidebar-item d-block has-sub {{ request()->is('active', 'deactive') ? 'active' : '' }}">
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-list-ul"></i>
                         <span>Daftar Produk</span>
                     </a>
-                    <ul
-                        class="submenu ">
-                        <li class="submenu-item ">
+                    <ul class="submenu {{ request()->is('active', 'deactive') ? 'active' : '' }}">
+                        <li class="submenu-item  {{ request()->is('active') ? 'active' : '' }}">
                             <form action="/active" method="GET">
+                                @php
+                                $ak = \App\Models\Product::all()
+
+                                ->where('status', '=', 'aktif')
+                                ->count();
+                                @endphp
                                 <button type="submit" style="background-color: transparent;
                             background-repeat: no-repeat;
                             border: none;
@@ -47,14 +50,22 @@
                             overflow: hidden;
                             outline: none;">
                                     <div class="wrap-pesanan align-items-center d-flex">
-                                        <i class="bi bi-wallet2 "></i>
-                                        <span class="transaksi-badge "> Produk Aktif</span>
+                                        <i class="bi bi-calendar2-check "></i>
+                                        <span
+                                            style="margin-inline: 6px;background-color: rgb(70, 81, 95); padding: 1px 7px; border-radius: 12px; font-size: 0.7rem; color: rgb(211, 234, 250)">{{ $ak }}</span>
+                                        <span class="transaksi-badge ">Aktif</span>
                                     </div>
                                 </button>
                             </form>
                         </li>
-                        <li class="submenu-item ">
+                        <li class="submenu-item {{ request()->is('deactive') ? 'active' : '' }}">
                             <form action="/deactive" method="GET">
+                                @php
+                                $non = \App\Models\Product::all()
+
+                                ->where('status', '=', 'nonaktif')
+                                ->count();
+                                @endphp
                                 <button type="submit" style="background-color: transparent;
                             background-repeat: no-repeat;
                             border: none;
@@ -62,8 +73,10 @@
                             overflow: hidden;
                             outline: none;">
                                     <div class="wrap-pesanan align-items-center d-flex">
-                                        <i class="bi bi-wallet2 "></i>
-                                        <span class="transaksi-badge "> Produk Tidak Aktif</span>
+                                        <i class="bi bi-calendar2-x "></i>
+                                        <span
+                                            style="margin-inline: 6px;background-color: rgb(70, 81, 95); padding: 1px 7px; border-radius: 12px; font-size: 0.7rem; color: rgb(211, 234, 250)">{{ $non }}</span>
+                                        <span class="transaksi-badge "> Tidak Aktif</span>
                                     </div>
                                 </button>
                             </form>
@@ -89,9 +102,9 @@
                         <li class="submenu-item {{ Route::is('unpaid.index') ? 'active' : '' }}">
                             <form action="{{ route('unpaid.index') }}" method="GET">
                                 @php
-                                    $unpaid = \App\Models\Order::all()
-                                        ->where('status', '=', 'UNPAID')
-                                        ->count();
+                                $unpaid = \App\Models\Order::all()
+                                ->where('status', '=', 'UNPAID')
+                                ->count();
                                 @endphp
                                 <button type="submit" style="background-color: transparent;
                             background-repeat: no-repeat;
@@ -111,11 +124,11 @@
                         <li class="submenu-item {{ Route::is('paid.index') ? 'active' : '' }}">
                             <form action="{{ route('paid.index') }}" method="GET">
                                 @php
-                                    $paid = \App\Models\Order::all()
-                                    
-                                        ->where('status', '=', 'PAID')
-                                        ->where('resi', '==', null)
-                                        ->count();
+                                $paid = \App\Models\Order::all()
+
+                                ->where('status', '=', 'PAID')
+                                ->where('resi', '==', null)
+                                ->count();
                                 @endphp
                                 <input type="hidden" name="paid" value="paid">
                                 <button type="submit" style="background-color: transparent;
@@ -136,12 +149,12 @@
                         <li class="submenu-item {{ Route::is('send.index') ? 'active' : '' }}">
                             <form action="{{ route('send.index') }}" method="GET">
                                 @php
-                                    $send = \App\Models\Order::all()
-                                    
-                                        ->where('status', '=', 'PAID')
-                                        ->where('resi', '!=', null)
-                                        ->where('order_notes', '=', null)
-                                        ->count();
+                                $send = \App\Models\Order::all()
+
+                                ->where('status', '=', 'PAID')
+                                ->where('resi', '!=', null)
+                                ->where('order_notes', '=', null)
+                                ->count();
                                 @endphp
                                 <input type="hidden" name="send" value="send">
                                 <button type="submit" style="background-color: transparent;
@@ -162,12 +175,12 @@
                         <li class="submenu-item {{ Route::is('receive.index') ? 'active' : '' }}">
                             <form action="{{ route('receive.index') }}" method="GET">
                                 @php
-                                    $receive = \App\Models\Order::all()
-                                    
-                                        ->where('status', '==', 'PAID')
-                                        ->where('resi', '!=', null)
-                                        ->where('order_notes', '!=', null)
-                                        ->count();
+                                $receive = \App\Models\Order::all()
+
+                                ->where('status', '==', 'PAID')
+                                ->where('resi', '!=', null)
+                                ->where('order_notes', '!=', null)
+                                ->count();
                                 @endphp
                                 <input type="hidden" name="receive" value="receive">
                                 <button type="submit" style="background-color: transparent;
@@ -189,7 +202,7 @@
                     </ul>
                 </li>
                 <li class="sidebar-title">Pendapatan</li>
-                
+
                 <li class="sidebar-item {{ Route::is('report.index') ? 'active' : '' }}">
                     <a href="{{ route('report.index') }}" class='sidebar-link'>
                         <i class="bi bi-journal-bookmark-fill"></i>
@@ -223,34 +236,33 @@
                     </li>
                     <li class="submenu-item ">
                        <form action="{{ route('report.index') }}" method="GET">
-                            <button type="submit" style="background-color: transparent;
+                <button type="submit" style="background-color: transparent;
                                 background-repeat: no-repeat;
                                 border: none;
                                 cursor: pointer;
                                 overflow: hidden;
                                 outline: none;">
-                                <div class="wrap-pesanan align-items-center d-flex">
-                                    <i class="bi bi-file-earmark-excel"></i>
-                                    <span
-                                    style="padding: 1px 7px; border-radius: 12px; color: rgb(211, 234, 250)"></span>
-                                    <span class="transaksi-badge ">Cetak Laporan</span>
-                                </div>
-                            </button>
-                        </form>
-                    </li>
-                </ul>
+                    <div class="wrap-pesanan align-items-center d-flex">
+                        <i class="bi bi-file-earmark-excel"></i>
+                        <span style="padding: 1px 7px; border-radius: 12px; color: rgb(211, 234, 250)"></span>
+                        <span class="transaksi-badge ">Cetak Laporan</span>
+                    </div>
+                </button>
+                </form>
+                </li>
+            </ul>
             </li> --}}
             <hr>
-                <li class="sidebar-item text-center">
-                    <i class="bi bi-person-circle"></i>
-                                <span>{{ Auth::user()->email}}</span>
-                </li>
-                <a href="{{ url('/logout') }}" class='sidebar-link'>
+            <li class="sidebar-item text-center">
+                <i class="bi bi-person-circle"></i>
+                <span>{{ Auth::user()->email}}</span>
+            </li>
+            <a href="{{ url('/logout') }}" class='sidebar-link'>
                 <li class="sidebar-item">
-                                <i class="bi bi-box-arrow-left"></i>
-                                <span>Keluar</span>
-                            </a>
-                </li>
+                    <i class="bi bi-box-arrow-left"></i>
+                    <span>Keluar</span>
+            </a>
+            </li>
             </ul>
         </div>
         <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>

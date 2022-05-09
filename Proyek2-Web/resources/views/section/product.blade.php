@@ -14,7 +14,15 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>Data Produk</h3>
+                    @foreach ($products as $p)
+                    @if ($p->status == 'aktif')
+                    <h3>Data Produk Aktif</h3>
+                    @break
+                    @else
+                    <h3>Data Produk Tidak Aktif</h3>
+                    @break
+                    @endif
+                    @endforeach
                     <p class="text-subtitle text-muted">For user to check they list</p>
                 </div>
                 <div class="col-12 col-md-6 order-md-2 order-first">
@@ -258,16 +266,16 @@
                                                 </div>
                                             </div>
 
-                                            <button onclick="deleteItem(this)" class="deleted btn btn-danger"
+                                            {{-- <button onclick="deleteItem(this)" class="deleted btn btn-danger me-2"
                                                 data-id="{{ $p->id }}" data-name="{{ $p->nama }}"><i
-                                                    class="fa fa-trash"></i></button>
+                                                    class="fa fa-trash"></i></button> --}}
                                             </form>
                                             @if ($p->status == 'aktif')
                                                 <form action="/deactivated/{{ $p->id }}" method="POST">
                                                     @csrf
                                                     @method('PUT')
                                                     <button class="deleted btn btn-secondary" data-id="{{ $p->id }}"
-                                                        data-name="{{ $p->nama }}"><i class="fa fa-list"></i></button>
+                                                        data-name="{{ $p->nama }}"><i class="fa fa-eye-slash"></i></button>
                                                 </form>
                                             @else
                                                 <form action="/activated/{{ $p->id }}" method="POST">
@@ -275,7 +283,7 @@
                                                     @method('PUT')
                                                     <button class="deleted btn btn-success" data-id="{{ $p->id }}"
                                                         data-name="{{ $p->nama }}"><i
-                                                            class="fa fa-check"></i></button>
+                                                            class="fa fa-eye"></i></button>
                                                 </form>
                                             @endif
 
