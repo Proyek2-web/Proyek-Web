@@ -14,8 +14,7 @@
         <div class="page-title">
             <div class="row">
                 @forelse ($orders as $or)      
-                @if ($or->status == 'UNPAID')
-                @continue
+                @if ($or->status == 'UNPAID' && $or->resi == null)
                 <div class="col-12 col-md-6 order-md-1 order-last">
                     <h3>Data Pesanan (Belum Bayar)</h3>
                     <p class="text-subtitle text-muted">For user to check they list</p>
