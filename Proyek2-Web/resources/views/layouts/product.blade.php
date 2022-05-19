@@ -155,6 +155,7 @@
                                         
                                     </div>
                                     <div class="product-footer">
+                                        Harga Asli Rp. {{ number_format(($p->harga/0.6), 0, ',', '.') }}
                                         <div class="wcf-left"><span class="price"> Rp.
                                                 {{ number_format($p->harga, 0, ',', '.') }}</span></div>
                                             <div class="wcf-right"><a href="/details/{{ $p->slug }}"

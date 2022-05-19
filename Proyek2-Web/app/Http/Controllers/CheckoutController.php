@@ -26,7 +26,7 @@ class CheckoutController extends Controller
         $channels = $tripay->getPaymentChannels();
         $subtotal = $request->sub_total;
         $user_id = $request->user_id;
-        $address = Address::all()->where('user_id','=',$user_id);
+        $address = Address::all()->where('user_id','=',$user_id)->where('status','=','1');
         $provinces = Province::pluck('name', 'province_id');
         $cart_count = Cart::all()->where('user_id', '=', $user_id == null ? '' : $user_id)->where('status', '=', "pending")->count();
         $data = DB::table('carts')
@@ -64,21 +64,16 @@ class CheckoutController extends Controller
      */
     public function store(Request $request)
     {
-        $address = Address::all();
-        foreach($address as $a){
-            if($a->id == $request->alamat){
-                $alamat= $a->alamat;
-            }
-        }
+        
         $carbon = Carbon::now()->toDateString();
         $orders = new Order();
-        $orders->nama = $request->nama;
-        $orders->phone_number = $request->nomor_hp;
+        $orders->nama = $request->namaa;
+        $orders->phone_number = $request->phone;
         $orders->custom = $request->custom;
-        $orders->province_id = $request->province_destination;
-        $orders->city_id = $request->city_destination;
+        $orders->province_id = $request->provinsi;
+        $orders->city_id = $request->cit;
         $orders->email = Auth::user()->email;
-        $orders->alamat = $alamat;
+        $orders->alamat = $request->alamat;
         $orders->zip_code = $request->zip_code;
         $orders->amount = $request->total;
         $orders->user_id = Auth::user()->id;
@@ -93,13 +88,13 @@ class CheckoutController extends Controller
         $json = json_encode($transaction);
         $dt= json_decode($json,true);
         $save = Order::find($orders->id);
-        $save->nama = $request->nama;
-        $save->phone_number = $request->nomor_hp;
+        $save->nama = $request->namaa;
+        $save->phone_number = $request->phone;
         $save->custom = $request->custom;
-        $save->province_id = $request->province_destination;
-        $save->city_id = $request->city_destination;
+        $save->province_id = $request->provinsi;
+        $save->city_id = $request->cit;
         $save->email = Auth::user()->email;
-        $save->alamat = $alamat;
+        $save->alamat = $request->alamat;
         $save->total_produk = $sub_total;
         $save->total_ongkir = $total_ongkir;
         $save->zip_code = $request->zip_code;

@@ -26,6 +26,25 @@
                             <div class="modal-body">
                                 <div class="form">
                                     <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                                    <input type="text" name="label" id="" placeholder="Label">
+                                    <input type="text" name="name" id="" placeholder="Nama">
+                                    <input type="text" name="no_hp" id="" placeholder="Nomor Telepon">
+                                    <div class="form-group">
+                                        <label class="font-weight-bold">PROVINSI</label>
+                                        <select class="form-control provinsi-tujuan" name="province_destination">
+                                            <option value="0">-- pilih provinsi tujuan --</option>
+                                            @foreach ($provinces as $province => $value)
+                                                <option value="{{ $province  }}">{{ $value }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="font-weight-bold">KOTA / KABUPATEN</label>
+                                        <select class="form-control kota-tujuan" name="city_destination">
+                                            <option value="">-- pilih kota tujuan --</option>
+                                        </select>
+                                    </div>
+                                    <input type="text" name="zip" id="" placeholder="Kode Pos">
                                     <textarea name="alamat" class="form-control" placeholder="Tulis detail alamat"
                                         id="floatingTextarea"></textarea>
                                 </div>
@@ -46,6 +65,11 @@
                                 @method('DELETE')
                                 <button type="submit" style="float: right"><i class="bi bi-x-circle text-black" ></i></button>
                             </form>
+                            <form action="{{ route('alamat.update', $a->id) }}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <button type="submit">set jadi alamat utama</button>
+                            </form>
                         <p class="card-text text-dark ps-4 pe-4 pb-4  text-center">{{ $a->alamat }}</p>
                     </div>
                 </div>
@@ -55,5 +79,26 @@
             </div>
         </div>
     </section>
+    <script>
+          $('select[name="province_destination"]').on('change', function () {
+            let provindeId = $(this).val();
+            if (provindeId) {
+                jQuery.ajax({
+                    url: '/cities/'+provindeId,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (response) {
+                        $('select[name="city_destination"]').empty();
+                        $('select[name="city_destination"]').append('<option value="">-- pilih kota tujuan --</option>');
+                        $.each(response, function (key, value) {
+                            $('select[name="city_destination"]').append('<option value="' + key + '">' + value + '</option>');
+                        });
+                    },
+                });
+            } else {
+                $('select[name="city_destination"]').append('<option value="">-- pilih kota tujuan --</option>');
+            }
+        });
+    </script>
 
 @endsection

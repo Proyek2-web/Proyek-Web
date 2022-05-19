@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Address;
+use App\Models\Province;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -15,9 +16,10 @@ class AddressController extends Controller
      */
     public function index()
     {
-        
+        $provinces = Province::pluck('name', 'province_id');
         return view('layouts.address', [
-            'alamat' => Address::all()->where('user_id', '=', auth()->user()->id)
+            'alamat' => Address::all()->where('user_id', '=', auth()->user()->id),
+            'provinces' => $provinces
         ]);
     
     }
@@ -42,6 +44,11 @@ class AddressController extends Controller
     {
         $address = new Address();
         $address->user_id = $request->user_id;
+        $address->province_id = $request->province_destination;
+        $address->label = $request->label;
+        $address->city_id = $request->city_destination;
+        $address->no_telepon = $request->no_hp;
+        $address->zip_code = $request->zip;
         $address->alamat = $request->alamat;
         $address->save();
         Alert::success('Alamat Berhasil Ditambahkan', '');
@@ -80,7 +87,19 @@ class AddressController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $alamat = Address::all()->where('status','=','1');
+        if($alamat){
+           foreach($alamat as $a){
+               $add = Address::find($a->id);
+               $add->status = 0;
+               $add->save();
+           }
+        }
+        $address = Address::find($id);
+        $address->status = 1;
+        $address->save(); 
+        Alert::success('Di Atur Sebagai Alamat Utama', '');
+        return back();
     }
 
     /**

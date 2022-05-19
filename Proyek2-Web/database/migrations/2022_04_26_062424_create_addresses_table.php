@@ -16,7 +16,13 @@ class CreateAddressesTable extends Migration
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
+            $table->foreignId('city_id')->nullable();
+            $table->foreignId('province_id')->nullable();
+            $table->string('zip_code')->nullable();
             $table->string('alamat');
+            $table->string('label')->nullable();
+            $table->integer('status')->nullable();
+            $table->string('no_telepon')->nullable();
             $table->timestamps();
         });
     }
