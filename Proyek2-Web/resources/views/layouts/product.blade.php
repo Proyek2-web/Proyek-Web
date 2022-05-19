@@ -128,7 +128,7 @@
                                     @if ($p->stok === null)
                                     <div class="ribbon"><span>Pre-Order</span></div>
                                     @elseif ($p->stok == 0)
-                                    <div class="ribbon2"><span>Habis</span></div>
+                                    <div class="ribbon"><span>Pre-Order</span></div>
                                     @else
                                     <div class="ribbon3"><span>Tersedia</span></div>
                                     @endif

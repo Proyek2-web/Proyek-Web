@@ -139,6 +139,7 @@
                                     <input type="hidden" name="cit" value="{{ $a->city_id }}">
                                     <input type="hidden" name="phone" value="{{ $a->no_telepon }}">
                                     <input type="hidden" name="zip_code" value="{{ $a->zip_code }}">
+                                    <input type="hidden" name="addresses" value="{{ $a->alamat }} ">
                                 @endforeach
                                 <a href="/alamat" class="mb-3" style="font-size: 14px">Tambah / Ganti alamat</a>
                                 <div class='line'></div>

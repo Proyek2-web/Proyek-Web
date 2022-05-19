@@ -94,7 +94,7 @@ class CheckoutController extends Controller
         $save->province_id = $request->provinsi;
         $save->city_id = $request->cit;
         $save->email = Auth::user()->email;
-        $save->alamat = $request->alamat;
+        $save->alamat = $request->addresses;
         $save->total_produk = $sub_total;
         $save->total_ongkir = $total_ongkir;
         $save->zip_code = $request->zip_code;
