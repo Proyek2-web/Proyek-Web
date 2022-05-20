@@ -1248,26 +1248,7 @@ a.buy-btn:focus {
 }
 
 
-.detailing p:nth-child(1) {
-    color: rgb(128, 127, 126);
-    /* font-weight: bold; */
-    font-family: Inter;
-    font-size: 0.9rem;
-}
-.detail .desc p:nth-child(5) {
-    color: rgb(128, 127, 126);
-    /* font-weight: bold; */
-    font-family: Inter;
-    font-size: 0.9rem;
-}
-.detail .desc p:nth-child(4) {
-    color: rgb(128, 127, 126);
-    /* font-weight: bold; */
-    font-family: Inter;
-    font-size: 0.9rem;
-}
-
-.detail .desc p:nth-child(5) {
+.detailing1 p, .detailing2 p {
     color: rgb(128, 127, 126);
     /* font-weight: bold; */
     font-family: Inter;
