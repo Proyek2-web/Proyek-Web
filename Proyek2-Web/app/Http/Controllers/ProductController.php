@@ -72,7 +72,10 @@ class ProductController extends Controller
         $videoName = time().'.'.$fileVideo->getClientOriginalName();
         $fileVideo->move(public_path('video_product'), $videoName);  
    }
-
+   $status_produk = 'Pre-Order';
+   if($request->stok){
+       $status_produk = 'Tersedia';
+   }
     $data = new Product([
             'nama' =>  $request->nama,
             'harga' => $request->harga-$request->diskon,
@@ -83,6 +86,7 @@ class ProductController extends Controller
             'tinggi' => $request->tinggi,
             'diskon' => $request->diskon,
             'status'=>'aktif',
+            'status_produk' => $status_produk,
             'stok'=> $request->stok, 
             'featured_image' => $imageName,
             'video_product' => $videoName,

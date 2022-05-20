@@ -17,6 +17,7 @@
                                 <th scope="col">Nama</th>
                                 <th scope="col">Harga</th>
                                 <th scope="col">Jumlah</th>
+                                <th scope="col">Status Produk</th>
                                 <th scope="col">Total</th>
                                 <th scope="col"></th>
                             </tr>
@@ -30,6 +31,7 @@
                                     <td>{{ $d->nama }}</td>
                                     <td>Rp {{ number_format($d->harga, 2) }} / pcs </td>
                                     <td>{{ $d->qty }}x</td>
+                                    <td>{{ $d->status_produk }}x</td>
                                     <td>Rp {{ number_format($d->harga * $d->qty, 2) }}</td>
                                     <td>
                                         <form action="{{ route('cart.destroy', $d->id) }}" method="POST"
@@ -49,7 +51,7 @@
                                             </a>
                                     </td>
                                     <td>
-                                        <div class="justify-content-center"
+                                        <div class="justify-content-center">
                                             <!--Basic Modal update Produk-->
                                             <div class="modal fade text-left" id="modal-edit{{ $d->id }}"
                                                 tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"

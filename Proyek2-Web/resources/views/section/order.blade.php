@@ -140,7 +140,7 @@
                                                                                     class="form-control"
                                                                                     placeholder="Masukkan nama user"
                                                                                     disabled
-                                                                                    value="{{ $p->nama }} : {{ $c->qty }} pcs | Catatan: {{ $c->catatan !=null?$c->catatan:'-' }}">
+                                                                                    value="{{ $p->nama }} : {{ $c->qty }} pcs | Catatan: {{ $c->catatan !=null?$c->catatan:'-' }} | Status Produk: {{ $c->status_produk }}">
                                                                             @endif
                                                                         @endif
                                                                     @endforeach
@@ -153,6 +153,7 @@
                                                                     placeholder="Masukkan email"
                                                                     value="{{ $o->phone_number }}" disabled>
                                                             </div>
+
                                                             <div class="form-group">
                                                                 <label for="basicInput">Catatan</label>
                                                                 <input type="text" class="form-control" name="alamat"

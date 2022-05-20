@@ -14,6 +14,7 @@
                     @if (Auth::check())
                         <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                         <input type="hidden" name="product_id" value="{{ $produk->id }}">
+                        <input type="hidden" name="status_produk" value="{{ $produk->status_produk }}">
                         <input type="hidden" name="status" value="pending">
                     @endif
                     <div class="row  d-flex">

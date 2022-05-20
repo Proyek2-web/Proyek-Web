@@ -173,7 +173,7 @@
                             </td>
                             <td>{{ $p->category->name }}</td>
                             <td>{{ $p->berat }}gr</td>
-                            <td>{{ $p->stok == null ? 'Pre-Order' : $p->stok }}</td>
+                            <td>{{ $p->status_produk }}</td>
                             <td>Rp. {{ number_format($p->harga, 0, ',', '.') }}</td>
                             <td style=" overflow: hidden; white-space: nowrap;text-overflow: ellipsis;">
                                 {{ $p->keterangan }}</td>
