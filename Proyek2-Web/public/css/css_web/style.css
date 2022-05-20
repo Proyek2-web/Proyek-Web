@@ -1016,6 +1016,10 @@ footer p {
     float: left;
 
 }
+.product-footer .wcf-left2 {
+    float: left;
+
+}
 
 .product-footer .wcf-right {
     float: right;
@@ -1027,6 +1031,17 @@ footer p {
     background: #fac36a;
     padding: 6px 12px;
     border-radius: 6px;
+}
+.price2 {
+    font-size: 14px;
+    font-weight: bold;
+    background: #545352ba;
+    padding: 6px 12px;
+    border-radius: 9px;
+    margin-left: 10px;
+    font-style: italic;
+    color: white;
+    text-decoration: line-through 2px #ed1c1c;
 }
 
 a.buy-btn {
@@ -1233,6 +1248,18 @@ a.buy-btn:focus {
 }
 
 
+.detailing p:nth-child(1) {
+    color: rgb(128, 127, 126);
+    /* font-weight: bold; */
+    font-family: Inter;
+    font-size: 0.9rem;
+}
+.detail .desc p:nth-child(5) {
+    color: rgb(128, 127, 126);
+    /* font-weight: bold; */
+    font-family: Inter;
+    font-size: 0.9rem;
+}
 .detail .desc p:nth-child(4) {
     color: rgb(128, 127, 126);
     /* font-weight: bold; */

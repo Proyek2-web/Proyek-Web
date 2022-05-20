@@ -75,9 +75,13 @@ class ProductController extends Controller
 
     $data = new Product([
             'nama' =>  $request->nama,
-            'harga' => $request->harga,
+            'harga' => $request->harga-$request->diskon,
             'category_id' => $request->category_id,
             'berat' => $request->berat,
+            'panjang' => $request->panjang,
+            'lebar' => $request->lebar,
+            'tinggi' => $request->tinggi,
+            'diskon' => $request->diskon,
             'status'=>'aktif',
             'stok'=> $request->stok, 
             'featured_image' => $imageName,
@@ -159,8 +163,12 @@ class ProductController extends Controller
 
         $product->update([
             'nama' => $request->nama,
-            'harga' => $request->harga,
+            'harga' => $request->harga-$request->diskon,
             'berat' => $request->berat,
+            'panjang' => $request->panjang,
+            'lebar' => $request->lebar,
+            'tinggi' => $request->tinggi,
+            'diskon' => $request->diskon,
             'stok' => $request->stok,
             'category_id' => $request->category_id,
             'keterangan' => $request->keterangan,
