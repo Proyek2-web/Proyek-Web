@@ -30,7 +30,7 @@ class CartController extends Controller
                 'carts.catatan as catatan',
                 'products.id as product_id',
                 'products.nama as nama',
-                'products.status_produk as status_produk',
+                'carts.status_produk as status_produk',
                 'products.featured_image as featured_image',
                 'products.harga as harga',
                 'categories.name as category_name'

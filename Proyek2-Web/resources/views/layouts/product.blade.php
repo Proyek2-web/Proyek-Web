@@ -152,9 +152,11 @@
                             <div class="product-footer">
                                 <div class="wcf-left"><span class="price"> Rp.
                                         {{ number_format($p->harga, 0, ',', '.') }}</span></div>
+                                @if($p->diskon != null )
                                 <div class="wcf-left2"><span class="price2"> Rp.
-                                        {{ number_format(($p->harga+$p->diskon), 0, ',', '.') }}
-                                    </span></div>
+                                    {{ number_format(($p->harga+$p->diskon), 0, ',', '.') }}
+                                </span></div>
+                                @endif
                                 <div class="wcf-right"><a href="/details/{{ $p->slug }}" class="buy-btn"><i
                                             class="bi bi-bag-fill"></i></a></div>
                             </div>

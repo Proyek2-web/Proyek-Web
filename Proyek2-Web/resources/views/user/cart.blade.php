@@ -31,7 +31,7 @@
                                     <td>{{ $d->nama }}</td>
                                     <td>Rp {{ number_format($d->harga, 2) }} / pcs </td>
                                     <td>{{ $d->qty }}x</td>
-                                    <td>{{ $d->status_produk }}x</td>
+                                    <td>{{ $d->status_produk }}</td>
                                     <td>Rp {{ number_format($d->harga * $d->qty, 2) }}</td>
                                     <td>
                                         <form action="{{ route('cart.destroy', $d->id) }}" method="POST"

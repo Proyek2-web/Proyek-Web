@@ -104,6 +104,7 @@ class TransactionController extends Controller
                 'products.harga as harga',
                 'categories.name as category_name',
                 'carts.status as status',
+                'carts.status_produk',
                 'orders.status as os',
                 'orders.delivery as delivery',
                 'orders.day as hari',
