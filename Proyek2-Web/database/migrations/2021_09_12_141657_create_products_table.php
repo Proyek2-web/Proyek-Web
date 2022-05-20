@@ -19,6 +19,10 @@ class CreateProductsTable extends Migration
             $table->foreignId('category_id');
             $table->string('slug');
             $table->integer('berat')->nullable();
+            $table->integer('panjang')->nullable();
+            $table->integer('lebar')->nullable();
+            $table->integer('tinggi')->nullable();
+            $table->integer('diskon')->nullable();
             $table->integer('harga');
             $table->integer('stok')->nullable();
             $table->string('status')->nullable();
