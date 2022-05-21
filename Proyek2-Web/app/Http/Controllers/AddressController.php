@@ -41,7 +41,7 @@ class AddressController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
         $address = new Address();
         $address->user_id = $request->user_id;
         $address->province_id = $request->province_destination;
