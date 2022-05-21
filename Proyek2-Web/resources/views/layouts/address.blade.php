@@ -70,13 +70,13 @@
                 @forelse ($alamat as $a)
                     <div class="col-md-3 mb-3">
                         <div class="card" style="width: 18rem;">
-                            <div class="card-header">
+                            <div class="card-header d-flex justify-content-between">
                                 {{ $a->label }}
-                                <form action="{{ route('alamat.update', $a->id) }}" method="POST">
+                                <form action="{{ route('alamat.destroy', $a->id) }}" method="POST">
                                     @csrf
-                                    @method('PUT')
-                                    <button class="btn btn-primary" type="submit">Jadikan alamat utama</button>
-                                </form>
+                                    @method('DELETE')
+                                    <button type="submit" style="float: right"><i class="bi bi-x-circle text-black"></i></button>
+                                    </form>
                             </div>
                             @php
                                 $tabel = DB::table('cities')
@@ -95,11 +95,17 @@
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">{{ $a->nama_penerima }}</li>
                                 <li class="list-group-item">{{ $a->no_telepon }}</li>
-                                <li class="list-group-item">{{ $prop }}</li>
-                                <li class="list-group-item">{{ $kota }}</li>
-                                <li class="list-group-item">{{ $a->zip_code }}</li>
+                                <li class="list-group-item">{{ $kota }}, {{ $prop }} {{ $a->zip_code }}</li>
                                 <li class="list-group-item">{{ $a->alamat }}</li>
-                                <li class="list-group-item">A third item</li>
+                                @if ($a->status )
+                                <li class="list-group-item text-light text-center bg-dark">Alamat Dipakai Saat ini</li>
+                                @else
+                                <li class="list-group-item text-center"><form action="{{ route('alamat.update', $a->id) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <button class="btn btn-success" type="submit">Jadikan alamat utama</button>
+                                </form></li>
+                                @endif
                             </ul>
                         </div>
                         {{-- <div class="card" style="width: 18rem; background-color: rgb(235, 235, 235) ">
