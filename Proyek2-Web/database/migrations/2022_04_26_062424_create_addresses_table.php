@@ -19,6 +19,7 @@ class CreateAddressesTable extends Migration
             $table->foreignId('city_id')->nullable();
             $table->foreignId('province_id')->nullable();
             $table->string('zip_code')->nullable();
+            $table->string('nama_penerima')->nullable();
             $table->string('alamat');
             $table->string('label')->nullable();
             $table->integer('status')->nullable();
