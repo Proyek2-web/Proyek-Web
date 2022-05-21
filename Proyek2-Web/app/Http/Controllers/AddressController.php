@@ -44,6 +44,7 @@ class AddressController extends Controller
     {   
         $address = new Address();
         $address->user_id = $request->user_id;
+        $address->nama_penerima = $request->name;
         $address->province_id = $request->province_destination;
         $address->label = $request->label;
         $address->city_id = $request->city_destination;

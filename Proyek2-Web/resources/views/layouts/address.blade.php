@@ -93,7 +93,7 @@
                                 }
                             @endphp
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item">{{ $a->user->name }}</li>
+                                <li class="list-group-item">{{ $a->nama_penerima }}</li>
                                 <li class="list-group-item">{{ $a->no_telepon }}</li>
                                 <li class="list-group-item">{{ $prop }}</li>
                                 <li class="list-group-item">{{ $kota }}</li>
