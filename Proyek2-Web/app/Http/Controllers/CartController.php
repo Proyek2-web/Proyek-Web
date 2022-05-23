@@ -51,7 +51,7 @@ class CartController extends Controller
      */
     public function create()
     {
-        //
+        // 
     }
 
     /**
@@ -63,14 +63,22 @@ class CartController extends Controller
     public function store(Request $request)
     {
         $cart = new Cart();
-        if($request->stok){
-            $produk = Product::find($request->product_id);
-            $produk->stok = $request->stok - $request->quantity;
-            $stok = $produk->stok;
-            $cart->stok = $stok;
-            $produk->save();
-        }
         $cart->status_produk = $request->status_produk;
+        if ($request->status_produk) {
+            if($request->stok){
+                $produk = Product::find($request->product_id);
+                $produk->stok = $request->stok - $request->quantity;
+                $stok = $produk->stok;
+                $cart->stok = $stok;
+                if ($stok == 0 || $stok === null) {
+                    $produk->status_produk = 'Pre-Order';
+                }
+                $produk->save();
+            }else{
+                $cart->status_produk = 'Pre-Order';
+            }
+        }
+            
         $cart->user_id = $request->user_id;
         $cart->product_id = $request->product_id;
         $cart->status = $request->status;

@@ -208,7 +208,8 @@
                                                                 required value="{{ $p->nama }}">
                                                         </div>
                                                         <div class="form-group">
-                                                            <label for="basicInput">Harga Produk (Potongan harga Rp. {{ number_format($p->diskon, 0, ',', '.') }})</label>
+                                                            <label for="basicInput">Harga Produk (Potongan harga Rp.
+                                                                {{ number_format($p->diskon, 0, ',', '.') }})</label>
                                                             <input type="number" class="form-control" name="harga"
                                                                 id="harga" placeholder="Masukkan harga produk"
                                                                 value="{{ $p->harga }}" required>
@@ -224,7 +225,8 @@
                                                             <label for="basicInput">Stok Produk (Jika Produk
                                                                 Tersedia)</label>
                                                             <input type="number" class="form-control" name="stok"
-                                                                placeholder="Masukkan stok produk" value="{{ $p->stok }}">
+                                                                placeholder="Masukkan stok produk"
+                                                                value="{{ $p->stok }}">
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="basicInput">Berat Produk (gr)</label>
@@ -315,19 +317,51 @@
                                         class="fa fa-trash"></i></button> --}}
                                     </form>
                                     @if ($p->status == 'aktif')
-                                    <form action="/deactivated/{{ $p->id }}" method="POST">
-                                        @csrf
-                                        @method('PUT')
-                                        <button class="deleted btn btn-secondary" data-id="{{ $p->id }}"
-                                            data-name="{{ $p->nama }}"><i class="fa fa-eye-slash"></i></button>
-                                    </form>
+                                    <div class="dropdown">
+                                        <button class="btn btn-primary  me-1" type="button" id="dropdownMenuButtonIcon"
+                                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="bi bi-error-circle me-50"></i> <i class="fa fa-ellipsis-v"></i>
+                                        </button>
+                                        <div class="dropdown-menu bg-secondary"
+                                            aria-labelledby="dropdownMenuButtonIcon">
+                                            <button onclick="deleteItem(this)" class="deleted dropdown-item "
+                                                data-id="{{ $p->id }}" data-name="{{ $p->nama }}"><i
+                                                    class="fa fa-trash"></i> Hapus </button>
+                                            <form action="/deactivated/{{ $p->id }}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <button class="deleted dropdown-item" data-id="{{ $p->id }}"
+                                                    data-name="{{ $p->nama }}"><i class="fa fa-power-off                                                    "></i>
+                                                    Nonaktifkan Produk</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    {{-- <form action="/deactivated/{{ $p->id }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <button class="deleted btn btn-secondary" data-id="{{ $p->id }}"
+                                        data-name="{{ $p->nama }}"><i class="fa fa-eye-slash"></i></button>
+                                    </form> --}}
                                     @else
-                                    <form action="/activated/{{ $p->id }}" method="POST">
-                                        @csrf
-                                        @method('PUT')
-                                        <button class="deleted btn btn-success" data-id="{{ $p->id }}"
-                                            data-name="{{ $p->nama }}"><i class="fa fa-eye"></i></button>
-                                    </form>
+                                    <div class="dropdown">
+                                        <button class="btn btn-primary  me-1" type="button" id="dropdownMenuButtonIcon"
+                                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="bi bi-error-circle me-50"></i> <i class="fa fa-ellipsis-v"></i>
+                                        </button>
+                                        <div class="dropdown-menu bg-secondary"
+                                            aria-labelledby="dropdownMenuButtonIcon">
+                                            <button onclick="deleteItem(this)" class="deleted dropdown-item "
+                                                data-id="{{ $p->id }}" data-name="{{ $p->nama }}"><i
+                                                    class="fa fa-trash"></i> Hapus </button>
+                                                    <form action="/activated/{{ $p->id }}" method="POST">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <button class="deleted dropdown-item" data-id="{{ $p->id }}"
+                                                            data-name="{{ $p->nama }}"><i class="fa fa-undo"></i> Aktifkan Produk</button>
+                                                    </form>
+                                        </div>
+                                    </div>
+                                    
                                     @endif
 
 

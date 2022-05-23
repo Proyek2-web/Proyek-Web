@@ -252,17 +252,6 @@
                 </li>
             </ul>
             </li> --}}
-            <hr>
-            <li class="sidebar-item text-center">
-                <i class="bi bi-person-circle"></i>
-                <span>{{ Auth::user()->email}}</span>
-            </li>
-            <a href="{{ url('/logout') }}" class='sidebar-link'>
-                <li class="sidebar-item">
-                    <i class="bi bi-box-arrow-left"></i>
-                    <span>Keluar</span>
-            </a>
-            </li>
             </ul>
         </div>
         <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
