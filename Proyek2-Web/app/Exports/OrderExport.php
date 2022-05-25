@@ -25,7 +25,7 @@ class OrderExport implements WithHeadings, WithEvents, WithHeadingRow, WithColum
             'C' => 5,
             'E' => 30,
             'F' => 40,
-            'K' => 8,
+            'K' => 35,
         ];
     }
     public function headings(): array
@@ -68,6 +68,16 @@ class OrderExport implements WithHeadings, WithEvents, WithHeadingRow, WithColum
                 'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
             ],
         ];
+        $total_style = [
+            'alignment' => [
+                'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+                'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
+            ],
+            'font' => [
+                'bold' => true,
+                'size' => 12
+            ],
+        ];
         $styleTitle = [
             'font' => [
                 'bold' => true,
@@ -98,7 +108,7 @@ class OrderExport implements WithHeadings, WithEvents, WithHeadingRow, WithColum
 
         ];
         return [
-            AfterSheet::class    => function (AfterSheet $event) use ($styleArray, $styleTitle, $styleTitleDate, $styleContent, $center) {
+            AfterSheet::class    => function (AfterSheet $event) use ($styleArray, $styleTitle, $styleTitleDate, $styleContent, $center,$total_style) {
                 $event->sheet->getDelegate()->getRowDimension('10')->setRowHeight(27);
                 $event->sheet->getStyle('A1:A4')->applyFromArray($styleTitle);
                 $event->sheet->getStyle('F')->getAlignment()->setWrapText(true);
@@ -139,6 +149,7 @@ class OrderExport implements WithHeadings, WithEvents, WithHeadingRow, WithColum
                 $cell = 11;
                 $i = 1;
                 $loan_date = Order::getDate();
+                $total = 0;
                 // dd($loan_date);
                 foreach ($loan_date as $date) {
                     // dd($date->loan_date);
@@ -186,7 +197,7 @@ class OrderExport implements WithHeadings, WithEvents, WithHeadingRow, WithColum
                         $event->sheet->setCellValue('K' . $cellData, 'Rp.'.$row->amount)->getStyle('K' . $cellData)->applyFromArray($center);
 
                         // $event->sheet->setCellValue('H' . $cellData, Carbon::parse(date($row->loan_date))->toFormattedDateString());
-
+                        $total+=$row->amount;
                         $endRow = $cellData;
                         $cellData++;
                         $cell = $cellData;
@@ -194,9 +205,12 @@ class OrderExport implements WithHeadings, WithEvents, WithHeadingRow, WithColum
                     }
                     $i++;
                 }
+                $row_total = $endRow + 1;
+                $event->sheet->setCellValue('J' . $row_total, 'Total')->getStyle('L' . $row_total)->applyFromArray($total_style);
+                $event->sheet->setCellValue('K' . $row_total, 'Rp.'.$total)->getStyle('K' . $row_total)->applyFromArray($total_style);
                 // content outside border
                 //left
-                $event->sheet->getStyle('B11:B' . $endRow)->applyFromArray([
+                $event->sheet->getStyle('B11:B' . $row_total)->applyFromArray([
                     'font' => [
                         'bold' => true,
                     ],
@@ -213,7 +227,7 @@ class OrderExport implements WithHeadings, WithEvents, WithHeadingRow, WithColum
                     ],
                 ]);
                 //right
-                $event->sheet->getStyle('I11:K' . $endRow)->applyFromArray([
+                $event->sheet->getStyle('I11:K' . $row_total)->applyFromArray([
                     'borders' => [
                         'right' => [
                             'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK,
@@ -221,7 +235,7 @@ class OrderExport implements WithHeadings, WithEvents, WithHeadingRow, WithColum
                     ],
                 ]);
                 //bottom
-                $event->sheet->getStyle('B' . $endRow . ':K' . $endRow)->applyFromArray([
+                $event->sheet->getStyle('B' . $row_total . ':K' . $endRow)->applyFromArray([
                     'borders' => [
                         'bottom' => [
                             'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK,
