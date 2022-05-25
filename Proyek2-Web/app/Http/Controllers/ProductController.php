@@ -20,8 +20,9 @@ class ProductController extends Controller
     public function index()
     {
         $category = Category::all();
+        $products = Product::all();
         return view('section.product', [
-            'products' => Product::all(),
+            'product' => $products,
             'categories' => $category
         ]);
     }
@@ -244,7 +245,7 @@ class ProductController extends Controller
     {
         $category = Category::all();
         return view('section.product', [
-            'products' => Product::all()->where('status','=','aktif'),
+            'products' => Product::orderBy('updated_at', 'desc')->where('status','=','aktif')->get(),
             'categories' => $category
         ]);
     }
@@ -252,7 +253,7 @@ class ProductController extends Controller
     {
         $category = Category::all();
         return view('section.product', [
-            'products' => Product::all()->where('status','=','nonaktif'),
+            'products' => Product::orderBy('updated_at', 'desc')->where('status','=','nonaktif')->get(),
             'categories' => $category
         ]);
     }
