@@ -24,6 +24,10 @@ class Product extends Model
     {
         return $this->hasMany(Image::class);
     }
+    public function image360()
+    {
+        return $this->hasMany(Image360::class);
+    }
     public function sluggable(): array
     {
         return [

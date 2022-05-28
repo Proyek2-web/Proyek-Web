@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Image;
+use App\Models\Image360;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -45,23 +46,6 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-    //   $data = $request->validate([
-    //         'nama' => 'required',
-    //         'harga' => 'required',
-    //         'category_id' => 'required',
-    //         'berat' => 'required',
-    //         'featured_image' => 'image|file|max:2048|required',
-    //         'keterangan' => 'required',
-    //     ]);
-        
-    //     $save = new Product;
-    //     $save->featured_image = $image_name;
-    //     $save->nama = $request->nama;
-    //     $save->harga = $request->harga;
-    //     $save->berat = $request->berat;
-    //     $save->category_id = $request->category_id;
-    //     $save->keterangan = $request->keterangan;
-    //     $save->save();
     
     if ($request->hasFile('featured_image')) {
         $file = $request->file('featured_image');
@@ -105,6 +89,17 @@ class ProductController extends Controller
                 Image::create([
                     'product_id'=> $data->id,
                     'image' => $imageName
+                ]);
+            }
+        }
+        if ($request->hasFile('image360')) {
+            $files = $request->file('image360');
+            foreach ($files as $file) {
+                $image360Name = $data['nama'].'-image360-'.time().rand(1,1000).'.'.$file->extension();
+                $file->move(public_path('image_360'), $image360Name);
+                Image360::create([
+                    'product_id'=> $data->id,
+                    'image360' => $image360Name
                 ]);
             }
         }
@@ -192,6 +187,17 @@ class ProductController extends Controller
                 ]);
             }
         }
+        if ($request->hasFile('image360')) {
+            $files = $request->file('image360');
+            foreach ($files as $file) {
+                $image360Name = $data['nama'].'-image360-'.time().rand(1,1000).'.'.$file->extension();
+                $file->move(public_path('image_360'), $image360Name);
+                Image360::create([
+                    'product_id'=> $data->id,
+                    'image360' => $image360Name
+                ]);
+            }
+        }
         Alert::success('Berhasil Memperbarui Produk', '');
         return back();
         // $request->validate([
@@ -227,6 +233,10 @@ class ProductController extends Controller
         $images = Image::where('product_id', $product->id)->get();
         foreach($images as $i){
                 unlink(public_path('image_product/'.$i->image));
+        }
+        $image360 = Image360::where('product_id', $product->id)->get();
+        foreach($image360 as $i){
+                unlink(public_path('image_360/'.$i->image360));
         }
 
         if (file_exists(public_path('video_product/'.$product->video_product))) {

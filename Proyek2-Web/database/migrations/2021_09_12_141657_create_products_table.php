@@ -29,7 +29,7 @@ class CreateProductsTable extends Migration
             $table->string('status_produk')->nullable();
             $table->text('keterangan');
             $table->string('featured_image');
-            $table->string('video_product');
+            $table->string('video_product')->nullable();
             $table->timestamps();
         });
     }

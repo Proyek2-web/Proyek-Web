@@ -61,12 +61,12 @@
                                     enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group">
-                                        <label for="basicInput">Nama Produk</label>
+                                        <label for="basicInput">Nama Produk<span class="text-danger">*</span></label>
                                         <input name="nama" type="text" class="form-control" id="nama_produk"
                                             placeholder="Masukkan nama produk" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="basicInput">Harga Produk</label>
+                                        <label for="basicInput">Harga Produk<span class="text-danger">*</span></label>
                                         <input type="number" class="form-control" name="harga" id="harga"
                                             placeholder="Masukkan harga produk" required>
                                     </div>
@@ -81,27 +81,27 @@
                                             placeholder="Masukkan stok produk">
                                     </div>
                                     <div class="form-group">
-                                        <label for="basicInput">Berat Produk (gr)</label>
+                                        <label for="basicInput">Berat Produk (gr)<span class="text-danger">*</span></label>
                                         <input type="number" class="form-control" id="berat" name="berat"
                                             placeholder="Masukkan berat produk" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="basicInput">Panjang (cm)</label>
+                                        <label for="basicInput">Panjang (cm)<span class="text-danger">*</span></label>
                                         <input type="number" class="form-control" id="panjang" name="panjang"
                                             placeholder="Masukkan panjang produk" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="basicInput">Lebar (cm)</label>
+                                        <label for="basicInput">Lebar (cm)<span class="text-danger">*</span></label>
                                         <input type="number" class="form-control" id="lebar" name="lebar"
                                             placeholder="Masukkan lebar produk" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="basicInput">Tinggi (cm)</label>
+                                        <label for="basicInput">Tinggi (cm)<span class="text-danger">*</span></label>
                                         <input type="number" class="form-control" id="tinggi" name="tinggi"
                                             placeholder="Masukkan tinggi produk" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="basicInput">Kategori Produk</label>
+                                        <label for="basicInput">Kategori Produk<span class="text-danger">*</span></label>
                                         <select class="choices form-select" name="category_id" required>
                                             @foreach ($categories as $c)
                                             <option value="{{ $c->id }}">{{ $c->name }}</option>
@@ -109,7 +109,7 @@
                                         </select>
                                     </div>
                                     <div class="mb-2">
-                                        <label for="formFileSm" class="form-label">Gambar Cover Produk</label>
+                                        <label for="formFileSm" class="form-label">Gambar Cover Produk <span class="text-danger">*</span></label>
                                         <input class="form-control form-control-sm" type="file" name="featured_image"
                                             id="cover" required>
                                     </div>
@@ -118,20 +118,26 @@
                                         alt="" style="width: 30%">
                                     <div class="mb-2 mt-3">
                                         <label for="formFileSm" class="form-label">Gambar
-                                            Produk</label>
+                                            Produk<span class="text-danger">*</span></label>
                                         <input id="images" class="form-control form-control-sm" type="file"
                                             name="images[]" multiple required>
                                     </div>
                                     <div class="images-preview-div"></div>
                                     <div class="mb-2 mt-3">
+                                        <label for="formFileSm" class="form-label">Gambar 360
+                                            Produk</label>
+                                        <input id="image360" class="form-control form-control-sm" type="file"
+                                            name="image360[]" multiple>
+                                    </div>
+                                    <div class="mb-2 mt-3">
                                         <label for="formFileSm" class="form-label">Video Produk</label>
                                         <input class="form-control form-control-sm" type="file" name="video_product"
-                                            id="video" required accept="video/*">
+                                            id="video" accept="video/*" required>
                                     </div>
                                     <div class="form-group with-title mb-3 mt-3">
                                         <textarea class="form-control" name="keterangan" id="keterangan" rows="3"
                                             required></textarea>
-                                        <label>Deskripsi Produk</label>
+                                        <label>Deskripsi Produk<span class="text-danger">*</span></label>
                                     </div>
                             </div>
                             <div class="modal-footer">
@@ -284,11 +290,22 @@
                                                             style="width: 20%">
                                                         @endforeach
                                                         <div class="mb-2 mt-3">
+                                                            <label for="formFileSm" class="form-label">Tambah
+                                                                Gambar
+                                                                360</label>
+                                                            <input class="form-control form-control-sm" type="file"
+                                                                name="image360[]" multiple>
+                                                        </div>
+                                                        @foreach ($p->image360 as $i)
+                                                        <img src="/image_360/{{ $i->image360 }}" alt=""
+                                                            style="width: 20%">
+                                                        @endforeach
+                                                        <div class="mb-2 mt-3">
                                                             <label for="formFileSm" class="form-label">Video
                                                                 Produk</label>
                                                             <input class="form-control form-control-sm" type="file"
-                                                                name="video_product" id="video" required
-                                                                accept="video/*">
+                                                                name="video_product" id="video"
+                                                                accept="video/*" required>
                                                         </div>
                                                         <div class="form-group with-title mb-3 mt-3">
                                                             <textarea class="form-control" name="keterangan"
