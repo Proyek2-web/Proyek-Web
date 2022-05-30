@@ -74,9 +74,20 @@ class AddressController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request,$id)
     {
-        //
+        $address = Address::findOrFail($id);
+        $address->update([
+            'nama' => $request->name,
+            'province_id' => $request->province_destination,
+            'label' => $request->label,
+            'city_id' => $request->city_destination,
+            'no_telepon' => $request->no_hp,
+            'zip_code' => $request->zip,
+            'alamat' => $request->alamat
+        ]);
+        Alert::success('Alamat berhasil di edit', '');
+        return back();
     }
 
     /**
