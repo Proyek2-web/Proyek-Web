@@ -101,19 +101,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Profile Visit</h4>
-                        </div>
-                        <div class="card-body">
-                            <div id="chart-profile-visit"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 col-xl-4">
+                <div class="col-12 col-xl-4p">
                     <div class="card">
                         <div class="card-header">
                             <h4>Order Proses Terbaru</h4>
@@ -155,7 +143,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-xl-8">
+                <div class="col-6 ">
                     <div class="card">
                         <div class="card-header">
                             <h4>Order Selesai Terbaru</h4>
@@ -164,8 +152,8 @@
                             <div class="table-responsive">
                                 <table class="table table-hover table-lg">
                                     <thead>
-                                        @forelse ($recent_order as $o)
                                         <tr>
+                                            @forelse ($recent_order as $o)
                                             <th>Nama</th>
                                             <th>Nomor Merchant</th>
                                             <th>Pembayaran</th>
@@ -184,6 +172,48 @@
                                             </td>
                                             <td class="col-auto">
                                                 <p class=" mb-0">Rp.{{ number_format( $o->amount) }}</p>
+                                            </td>
+                                        </tr>
+                                        @empty
+                                        <tr>
+                                            <h5 class="text-muted text-center">KOSONG</h5>
+                                        </tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 ">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Order Masuk Terbaru</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-lg">
+                                    <thead>
+                                        <tr>
+                                            @forelse ($recent_order_in as $r)
+                                            <th>Nama</th>
+                                            <th>Nomor Merchant</th>
+                                            <th>Pembayaran</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="col-3">
+                                                <div class="d-flex align-items-center">
+                                                    {{ $loop->iteration }}
+                                                    <p class="font-bold ms-3 mb-0">{{ $r->nama }}</p>
+                                                </div>
+                                            </td>
+                                            <td class="col-auto">
+                                                <p class=" mb-0">{{ $r->merchant_ref }}</p>
+                                            </td>
+                                            <td class="col-auto">
+                                                <p class=" mb-0">Rp.{{ number_format( $r->amount) }}</p>
                                             </td>
                                         </tr>
                                         @empty
@@ -239,46 +269,6 @@
                         </div>
                     </div>
                     @endforeach
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    <h4>Order Masuk Terbaru</h4>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-hover table-lg">
-                            <thead>
-                                <tr>
-                                    <th>Nama</th>
-                                    <th>Nomor Merchant</th>
-                                    <th>Pembayaran</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($recent_order_in as $r)
-                                <tr>
-                                    <td class="col-3">
-                                        <div class="d-flex align-items-center">
-                                            {{ $loop->iteration }}
-                                            <p class="font-bold ms-3 mb-0">{{ $r->nama }}</p>
-                                        </div>
-                                    </td>
-                                    <td class="col-auto">
-                                        <p class=" mb-0">{{ $r->merchant_ref }}</p>
-                                    </td>
-                                    <td class="col-auto">
-                                        <p class=" mb-0">Rp.{{ number_format( $r->amount) }}</p>
-                                    </td>
-                                </tr>
-                                @empty
-                                <tr>
-                                    <h5 class="text-muted text-center">KOSONG</h5>
-                                </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
             </div>
         </div>

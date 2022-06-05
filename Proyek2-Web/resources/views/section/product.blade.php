@@ -34,16 +34,49 @@
                 </nav>
             </div>
         </div>
+        <div class="warp-btn d-flex align-items-center mb-4">
+        <form action="/active" method="GET">
+            @php
+            $ak = \App\Models\Product::all()
+            ->where('status', '=', 'aktif')
+            ->count();
+            @endphp
+            <button type="submit" class="btn btn-outline-secondary {{ request()->is('active') ? 'active' : '' }}" style=" margin-right: 20px; padding: 10px 15px; border-radius: 20px;">
+                <div class="wrap-pesanan align-items-center d-flex ">
+                    <span
+                        style="margin-inline: 6px;background-color: rgb(70, 81, 95); padding: 1px 7px; border-radius: 12px; font-size: 0.7rem; color: rgb(211, 234, 250)">{{ $ak }}</span>
+                    <span class="transaksi-badge ">Produk Aktif</span>
+                </div>
+            </button>
+        </form>
+        <form action="/deactive" method="GET">
+            @php
+            $non = \App\Models\Product::all()
+
+            ->where('status', '=', 'nonaktif')
+            ->count();
+            @endphp
+            <button type="submit" class="btn btn-outline-secondary {{ request()->is('deactive') ? 'active' : '' }}" style="padding: 10px 15px; border-radius: 20px;">
+                <div class="wrap-pesanan align-items-center d-flex ">
+                    <span
+                        style="margin-inline: 6px;background-color: rgb(70, 81, 95); padding: 1px 7px; border-radius: 12px; font-size: 0.7rem; color: rgb(211, 234, 250)">{{ $non }}</span>
+                    <span class="transaksi-badge "> Produk Tidak Aktif</span>
+                </div>
+            </button>
+        </form>
+    </div>
     </div>
 
     <!-- Basic Tables start -->
     <section class="section">
         <div class="card">
             <div class="card-header">
-                <button type="button" class="btn btn-primary ml-3 p-2" data-bs-toggle="modal"
-                    data-bs-target="#modal-tambah">
-                    Tambah data produk <i class="fa fa-plus ms-2"></i>
-                </button>
+                
+                    <button type="button" class="btn btn-primary ml-3 p-2" data-bs-toggle="modal"
+                        data-bs-target="#modal-tambah">
+                        Tambah data produk <i class="fa fa-plus ms-2"></i>
+                    </button>
+                    
                 <!--Basic Modal Tambah Produk-->
                 <div class="modal fade text-left" id="modal-tambah" tabindex="-1" role="dialog"
                     aria-labelledby="myModalLabel1" aria-hidden="true">

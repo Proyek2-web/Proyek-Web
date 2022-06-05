@@ -56,6 +56,80 @@
                 </nav>
             </div>
         </div>
+        <div class="warp-btn d-flex align-items-center mb-4">
+            <form action="{{ route('unpaid.index') }}" method="GET">
+                @php
+                $unpaid = \App\Models\Order::all()
+                ->where('status', '=', 'UNPAID')
+                ->count();
+                @endphp
+                <button type="submit" class="btn btn-outline-secondary {{ Route::is('unpaid.index') ? 'active' : '' }}" style="margin-right: 20px; padding: 10px 15px; border-radius: 20px;">
+                    <div class="wrap-pesanan align-items-center d-flex">
+                        <i class="bi bi-wallet2 "></i>
+                        <span
+                            style="margin-inline: 6px;background-color: rgb(70, 81, 95); padding: 1px 7px; border-radius: 12px; font-size: 0.7rem; color: rgb(211, 234, 250)">{{ $unpaid }}</span>
+                        <span class="transaksi-badge ">Belum Bayar </span>
+                    </div>
+                </button>
+            </form>
+            <form action="{{ route('paid.index') }}" method="GET">
+                @php
+                $paid = \App\Models\Order::all()
+
+                ->where('status', '=', 'PAID')
+                ->where('resi', '==', null)
+                ->count();
+                @endphp
+                <input type="hidden" name="paid" value="paid">
+                <button type="submit" class="btn btn-outline-secondary {{ Route::is('paid.index') ? 'active' : '' }}" style="margin-right: 20px; padding: 10px 15px; border-radius: 20px;">
+                    <div class="wrap-pesanan align-items-center d-flex">
+                        <i class="bi bi-box-seam"></i>
+                        <span
+                            style="margin-inline: 6px;background-color: rgb(70, 81, 95); padding: 1px 7px; border-radius: 12px; font-size: 0.7rem; color: rgb(211, 234, 250)">{{ $paid }}</span>
+                        <span class="transaksi-badge ">Di Proses</span>
+                    </div>
+                </button>
+            </form>
+            <form action="{{ route('send.index') }}" method="GET">
+                @php
+                $send = \App\Models\Order::all()
+
+                ->where('status', '=', 'PAID')
+                ->where('resi', '!=', null)
+                ->where('order_notes', '=', null)
+                ->count();
+                @endphp
+                <input type="hidden" name="send" value="send">
+                <button type="submit" class="btn btn-outline-secondary {{ Route::is('send.index') ? 'active' : '' }}" style="margin-right: 20px; padding: 10px 15px; border-radius: 20px;">
+                    <div class="wrap-pesanan align-items-center d-flex">
+                        <i class="bi bi-truck"></i>
+                        <span
+                            style="margin-inline: 6px;background-color: rgb(70, 81, 95); padding: 1px 7px; border-radius: 12px; font-size: 0.7rem; color: rgb(211, 234, 250)">{{ $send }}</span>
+                        <span class="transaksi-badge ">Pengiriman</span>
+                    </div>
+                </button>
+            </form>
+            <form action="{{ route('receive.index') }}" method="GET">
+                @php
+                $receive = \App\Models\Order::all()
+
+                ->where('status', '==', 'PAID')
+                ->where('resi', '!=', null)
+                ->where('order_notes', '!=', null)
+                ->count();
+                @endphp
+                <input type="hidden" name="receive" value="receive">
+                <button type="submit" class="btn btn-outline-secondary {{ Route::is('receive.index') ? 'active' : '' }}" style="margin-right: 20px; padding: 10px 15px; border-radius: 20px;" >
+                    <div class="wrap-pesanan align-items-center d-flex">
+                        <i class="bi bi-check2-circle"></i>
+                        <span
+                            style="margin-inline: 6px;background-color: rgb(70, 81, 95); padding: 1px 7px; border-radius: 12px; font-size: 0.7rem; color: rgb(211, 234, 250)">{{ $receive }}</span>
+                        <span class="transaksi-badge "> Selesai </span>
+                    </div>
+
+                </button>
+            </form>
+        </div>
     </div>
 
     <!-- Basic Tables start -->

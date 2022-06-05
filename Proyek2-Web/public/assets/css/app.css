@@ -215,6 +215,10 @@
 .btn.icon {
     padding: .4rem .6rem
 }
+.btn.active{
+    background-color: #2b2b5991;
+    color: white;
+    }
 
 .btn.icon svg {
     height: 16px;
@@ -237,6 +241,12 @@
 .btn.btn-outline-white:hover {
     background-color: #fff;
     color: #333
+}
+.btn.btn-outline-secondary:hover {
+    background-color: rgb(205, 203, 203);
+    color: #333;
+    transition: all 0.4s;
+    
 }
 
 .btn.btn-light-primary {
