@@ -19,9 +19,11 @@
                 @endif
                 <div class="row  d-flex">
                     <div class="wrap-detail col-lg-6 col-12 text-center main_view">
+                        
                         <img src="/cover_product/{{ $produk->featured_image }}" alt="" width="500" class="img-fluid "
                             id="main" data-bs-toggle="tooltip" data-bs-placement="bottom"
                             title="Klik, untuk memperbesar tampilan gambar">
+                            
                         <div class="row mt-5">
                             <div class="col-md-3 side_view mb-3">
                                 <img src="/cover_product/{{ $produk->featured_image }}" onclick="change(this.src)"
@@ -38,9 +40,19 @@
                                     title="Klik, untuk ganti gambar">
                             </div>
                             @endforeach
-                            <video width="350" height="240" controls src="/video_product/{{ $produk->video_product }}">
-                                Your browser does not support the video tag.
-                            </video>
+                            <div class="garis-detail mb-4"></div>
+                            <div class="img36" style="width: 450px; margin: 0 auto;">
+                                <div class="rotation">
+                                    @foreach ($produk->image360 as $u)
+                                    <img src="/image_360/{{ $u->image360 }}" alt="" width="50" class="img-fluid">
+                                    @endforeach
+                                </div>
+                            </div>
+                            <div class="text-center ">
+                                <img src="https://cdn.iconscout.com/icon/free/png-256/360-degree-camera-1514118-1285713.png" width="60" class="border-0" style="box-shadow: none" alt="">
+                              
+                           </div>
+                           
                         </div>
                     </div>
 
@@ -118,21 +130,14 @@
                                     Rp. - </h3>
                             </div>
                         </div>
+                        <video width="560" height="240" class="mt-5" controls src="/video_product/{{ $produk->video_product }}">
+                            Your browser does not support the video tag.
+                        </video>
                     </div>
                 </div>
             </form>
             <div class="row mt-5">
-                <div class="text-center mt-3">
-                     <img src="https://cdn.iconscout.com/icon/free/png-256/360-degree-camera-1514118-1285713.png" width="80" class="border-0" style="box-shadow: none" alt="">
-                   
-                </div>
-                    <div class="img36" style="width: 450px; margin: 0 auto;">
-                        <div class="rotation">
-                            @foreach ($produk->image360 as $u)
-                            <img src="/image_360/{{ $u->image360 }}" alt="" width="50" class="img-fluid">
-                            @endforeach
-                        </div>
-                    </div>
+                
 
                 <!-- The Modal -->
                 <div id="myModal" class="modal-product">

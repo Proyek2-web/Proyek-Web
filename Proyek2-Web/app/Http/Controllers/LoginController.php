@@ -25,7 +25,6 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             if (auth()->user()->roles === 'admin') {
-                Alert::info('Login Sukses', '');
                 return redirect()->intended('dashboard');
             } else {
                 Alert::info('Login Sukses', 'Selamat Datang' );

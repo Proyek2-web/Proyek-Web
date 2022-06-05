@@ -44,7 +44,7 @@
                 <div class="card-content">
                     <form action="{{ route('report.index') }}" method="GET">
                         <div class="card-body">
-                            <div class="row">
+                            <div class="row d-flex align-items-center">
                                 <div class="col-sm-4 mb-1">
                                     <label for="date">Dari</label>
                                     <div class="input-group input-group-sm mb-3">
@@ -58,14 +58,13 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-2 mb-1 d-flex">
-                                    <div class="dropdown mt-4 me-3">
-                                        <button type="submit" class="btn btn-primary loading-search"><i class="bi bi-search"></i></button>
+                                    <div class="dropdown  me-2">
+                                        <button type="submit" class="btn btn-primary loading-search"><i class="fa fa-search"></i></button>
                                     </div>
-                                    <div class="refresh mt-4">
-                                        <a href="{{ route('report.index') }}" class="btn btn-warning"><i class="bi bi-arrow-repeat"></i></a>
+                                    <div class="refresh ">
+                                        <a href="{{ route('report.index') }}" class="btn btn-warning"><i class="fa fa-sync-alt"></i></a>
                                     </div>
                                 </div>
-
                             </div>
                             <div class="mb-2 loading-text d-none">Loading ...</div>
                         </div>
