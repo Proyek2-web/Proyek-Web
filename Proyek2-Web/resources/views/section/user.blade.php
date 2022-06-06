@@ -157,8 +157,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                        <button onclick="deleteItem(this)" class="deleted btn btn-danger" data-id="{{$u->id}}" data-name="{{$u->name}}"><i
-                                                class="fa fa-trash"></i></button>
                                     </form>
                                 </div>
                             </td>

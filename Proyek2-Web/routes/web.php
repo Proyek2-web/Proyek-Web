@@ -14,9 +14,10 @@ use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderCustController;
+use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\Payment\CallbackController;
 use App\Http\Controllers\ReportController;
-use App\Http\Controllers\CheckoutController; 
+use App\Http\Controllers\CheckoutController;
 
 //--------------------------------------------HALAMAN AWAL-------------------------------------------------
 Route::get('/',function(){
@@ -36,6 +37,7 @@ Route::middleware(['auth', 'cekroles:user,admin'])->group(function () {
     Route::resource('/checkout', CheckoutController::class);
     Route::resource('/transaction', TransactionController::class);
     Route::resource('/alamat', AddressController::class);
+    Route::resource('/halaman_profil', ProfilController::class);
     // Route::get('alamat', function () {
     //     return view('layouts.address');
     // });
@@ -55,7 +57,7 @@ Route::group(['namespace' => 'Pelanggan'],function () {
     Route::get('about', function () {
         return view('layouts.about');
     });
-    
+
 });
 //--------------------------------------------HALAMAN ADMIN--------------------------------------------
 Route::middleware(['auth', 'cekroles:admin'])->group(function () {

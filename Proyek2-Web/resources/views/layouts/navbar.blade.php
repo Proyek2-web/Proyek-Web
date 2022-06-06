@@ -90,13 +90,25 @@
                         <div class="dropdown user">
                             <button class="btn btn-login dropdown-toggle" type="button" id="dropdownMenuButton1"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                @if(auth()->user()->gambar != "")
+                                <img src="/profil/{{ auth()->user()->gambar }}" alt=""
+                                                            style="width: 20;height: 40;">{{ auth()->user()->name }}
+                                @else
                                 <i class="bi bi-person-circle"></i> {{ auth()->user()->name }}
+                                @endif
+
+
                             </button>
                             <ul class="dropdown-menu bg-secondary" style="font-family: PT Serif"
                                 aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item text-light" href="/halaman_profil"><i
+                                    class="bi bi-person-circle me-3"></i>
+                                Profil</a>
+                                 </li>
                                 <li><a class="dropdown-item text-light" href="/alamat"><i
                                             class="bi bi-person-circle me-3"></i>
-                                        Alamat</a></li>
+                                        Alamat</a>
+                                </li>
                                 @php
                                     $order_count = \App\Models\Order::all()
                                         ->where('user_id', '=', Auth::user() == null ? '' : Auth::user()->id)
@@ -169,7 +181,7 @@
                     <div class="show-pw d-flex align-items-center" style="margin-top: -27px">
                         <input type="checkbox" onclick="show()" style="margin-left: 42px; font-size: 0.1rem"> <p class="mt-3 ms-1 text-light" style="font-size: 0.7rem; font-family: Arial, Helvetica, sans-serif">Tampilkan password</p>
                     </div>
-                    
+
                     <input placeholder="Konfirmasi Password" class="@error('password_confirmation') is-invalid @enderror input input-lg" id="password" style="margin-top: -1px" type="password" name="password_confirmation" required>
                     @error('password_confirmation')
                     <span class="text-light bg-danger" style="font-size: 10px; margin: auto; display: table">{{ $message }}</span>
@@ -273,7 +285,7 @@
     // show / hide PW
 //   const togglePassword = document.querySelector('#togglePassword');
 //   const password = document.querySelector('#id_password');
- 
+
 //   togglePassword.addEventListener('click', function (e) {
 //     // toggle the type attribute
 //     const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
