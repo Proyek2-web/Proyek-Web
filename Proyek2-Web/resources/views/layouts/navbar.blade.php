@@ -92,7 +92,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 @if(auth()->user()->gambar != "")
                                 <img src="/profil/{{ auth()->user()->gambar }}" alt=""
-                                                            style="width: 20;height: 40;">{{ auth()->user()->name }}
+                                                            style="width: 20;height: 20; border-radius: 50%"> {{ auth()->user()->name }}
                                 @else
                                 <i class="bi bi-person-circle"></i> {{ auth()->user()->name }}
                                 @endif
@@ -105,8 +105,8 @@
                                     class="bi bi-person-circle me-3"></i>
                                 Profil</a>
                                  </li>
-                                <li><a class="dropdown-item text-light" href="/alamat"><i
-                                            class="bi bi-person-circle me-3"></i>
+                                <li><a class="dropdown-item text-light" href="/alamat">
+                                    <i class="bi bi-house me-3"></i>
                                         Alamat</a>
                                 </li>
                                 @php
