@@ -54,7 +54,7 @@ class Order extends Model
         $current_month = Carbon::now()->format('m');
         // dd($current_month);
         $record = DB::table('orders')
-        ->selectRaw('DISTINCT order_date')
+            ->selectRaw('DISTINCT order_date')
             ->where('status', '=', 'PAID')
             ->where('resi', '!=', null)
             ->where('order_notes', '!=', null)
@@ -66,20 +66,20 @@ class Order extends Model
     {
         if ($fromDates == $toDates) {
             $record = DB::table('orders')
-            ->selectRaw('DISTINCT order_date')
+                ->selectRaw('DISTINCT order_date')
                 ->where('status', '=', 'PAID')
                 ->where('resi', '!=', null)
                 ->where('order_notes', '!=', null)
                 ->where('order_date', $fromDates)
                 ->get()->toArray();
-        }else{
+        } else {
             $record = DB::table('orders')
-            ->selectRaw('DISTINCT order_date')
+                ->selectRaw('DISTINCT order_date')
                 ->where('status', '=', 'PAID')
                 ->where('resi', '!=', null)
                 ->where('order_notes', '!=', null)
-                ->where('order_date','>=', $fromDates)
-                ->where('order_date','<=', $toDates)
+                ->where('order_date', '>=', $fromDates)
+                ->where('order_date', '<=', $toDates)
                 ->get()->toArray();
         }
         return $record;
@@ -118,27 +118,27 @@ class Order extends Model
     public static function getOrderProduct($id)
     {
         $records = DB::table('orders')
-        ->join('carts', 'orders.id', '=', 'carts.order_id')
-        ->join('products', 'carts.product_id', '=', 'products.id')
-        ->select(
-            'orders.id as id',
-            'orders.nama as nama',
-            'orders.merchant_ref as merchant_ref',
-            'orders.alamat as alamat',
-            'orders.phone_number as phone_number',
-            'orders.resi as resi',
-            'carts.qty as qty',
-            'products.nama as nama_product',
-            'orders.delivery as delivery',
-            'orders.amount as amount',
-            'orders.day as day'
-        )
-        ->where('orders.status', '=', 'PAID')
-        ->where('resi', '!=', null)
-        ->where('order_notes', '!=', null)
-        ->where('orders.id', $id)->get()->toArray();
+            ->join('carts', 'orders.id', '=', 'carts.order_id')
+            ->join('products', 'carts.product_id', '=', 'products.id')
+            ->select(
+                'orders.id as id',
+                'orders.nama as nama',
+                'orders.merchant_ref as merchant_ref',
+                'orders.alamat as alamat',
+                'orders.phone_number as phone_number',
+                'orders.resi as resi',
+                'carts.qty as qty',
+                'products.nama as nama_product',
+                'orders.delivery as delivery',
+                'orders.amount as amount',
+                'orders.day as day'
+            )
+            ->where('orders.status', '=', 'PAID')
+            ->where('resi', '!=', null)
+            ->where('order_notes', '!=', null)
+            ->where('orders.id', $id)->get()->toArray();
         foreach ($records as $record) {
-            $recordData[] = $record->nama_product . '(Sejumlah : '.$record->qty.' pcs)';
+            $recordData[] = $record->nama_product . '(Sejumlah : ' . $record->qty . ' pcs)';
         }
         return $recordData;
     }

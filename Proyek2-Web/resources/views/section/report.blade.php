@@ -78,8 +78,13 @@
                         <input type="hidden" name="fromDate" value="{{ request('from_date') }}">
                         <input type="hidden" name="toDate" value="{{ request('to_date') }}">
                         @endif
+                        @if ($data == true)
                         <button type="submit" class="btn btn-success rounded-3 pl-3 pr-3">Cetak Laporan .xlsx
                             <i class="fa fa-print ml-2"></i></button>
+                        @else
+                        <button type="button" onclick="alert('Data Pesanan Masih Kosong!!')" class="btn btn-success rounded-3 pl-3 pr-3">Cetak Laporan .xlsx
+                            <i class="fa fa-print ml-2"></i></button>
+                        @endif
                         <span>Periode:
                             @if (request('from_date') && request('to_date'))
                             {{ \Carbon\Carbon::parse(request('from_date'))->isoFormat('DD MMMM YYYY') }} - {{ \Carbon\Carbon::parse(request('to_date'))->isoFormat('DD MMMM YYYY') }}
@@ -89,7 +94,8 @@
                         </span>
 
                     </form>
-                </div>
+                </div>   
+                
                 <div class="card-header">
                 </div>
                 <div class="card-body">

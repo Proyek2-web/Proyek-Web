@@ -21,15 +21,20 @@ class ReportController extends Controller
      */
     public function index()
     {
+        $current_month = Carbon::now()->format('m');
         $carts = Cart::all();
         $product = Product::all();
         $orders = Order::select("*")
-                ->where('status', '=', 'PAID')
-                ->where('resi', '!=', null)
-                ->where('order_notes','!=',null)
-                ->orderBy('created_at','desc')
-                ->get();
-        $carbon = Carbon::now()->toDateString();
+            ->where('status', '=', 'PAID')
+            ->where('resi', '!=', null)
+            ->where('order_notes', '!=', null)
+            ->whereMonth('order_date', $current_month)
+            ->orderBy('created_at', 'desc')
+            ->get();
+        $data = false;
+        if ($orders->count()) {
+            $data = true;
+        }
         $fromDates = Carbon::parse(date(request('from_date')))->format('Y-m-d');
         $toDates = Carbon::parse(date(request('to_date')))->format('Y-m-d');
         $found = true;
@@ -38,12 +43,15 @@ class ReportController extends Controller
                 ->where('order_date', '<=', $toDates)
                 ->where('status', '=', 'PAID')
                 ->where('resi', '!=', null)
-                ->where('order_notes','!=',null)
-                ->orderBy('created_at','desc')
+                ->where('order_notes', '!=', null)
+                ->orderBy('created_at', 'desc')
                 ->get();
+            $data = false;
+            if ($orders->count()) {
+                $data = true;
+            }
         }
-        return view('section.report',compact('orders','carts','product'));
-                
+        return view('section.report', compact('orders', 'carts', 'product','data'));
     }
 
     /**
@@ -114,7 +122,7 @@ class ReportController extends Controller
     public function export_excel()
     {
         $filename = Carbon::now()->isoFormat('MMMM YYYY');
-        return Excel::download(new OrderExport, 'Laporan Penjualan '.$filename.'.xlsx');
+        return Excel::download(new OrderExport, 'Laporan Penjualan ' . $filename . '.xlsx');
     }
 
     public function filter(Request $request)
@@ -128,7 +136,6 @@ class ReportController extends Controller
         $toDates = Carbon::parse(date(request('toDate')))->format('Y-m-d');
         $filename1 = Carbon::parse(request('fromDate'))->isoFormat('DD MMMM YYYY');
         $filename2 = Carbon::parse(request('toDate'))->isoFormat('DD MMMM YYYY');
-        return Excel::download(new OrderParameterExport($fromDates,$toDates), 'Laporan Penjualan per '.$filename1.' - '.$filename2.'.xlsx');
-
+        return Excel::download(new OrderParameterExport($fromDates, $toDates), 'Laporan Penjualan per ' . $filename1 . ' - ' . $filename2 . '.xlsx');
     }
 }

@@ -148,8 +148,9 @@ class OrderParameterExport implements WithHeadings, WithEvents, WithHeadingRow, 
                 }
                 $cell = 11;
                 $i = 1;
-                $loan_date = Order::getDate();
+                $loan_date = Order::getDateParameter($this->fromDates, $this->toDates);
                 $total = 0;
+                $endRow = 0;
                 // dd($loan_date);
                 foreach ($loan_date as $date) {
                     // dd($date->loan_date);

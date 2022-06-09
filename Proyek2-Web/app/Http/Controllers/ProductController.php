@@ -190,10 +190,10 @@ class ProductController extends Controller
         if ($request->hasFile('image360')) {
             $files = $request->file('image360');
             foreach ($files as $file) {
-                $image360Name = $data['nama'].'-image360-'.time().rand(1,1000).'.'.$file->extension();
+                $image360Name = $product['nama'].'-image360-'.time().rand(1,1000).'.'.$file->extension();
                 $file->move(public_path('image_360'), $image360Name);
                 Image360::create([
-                    'product_id'=> $data->id,
+                    'product_id'=> $product->id,
                     'image360' => $image360Name
                 ]);
             }
@@ -227,24 +227,31 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $product = Product::findOrFail($id);
-        if (file_exists(public_path('cover_product/'.$product->featured_image))) {
-            unlink(public_path('cover_product/'.$product->featured_image));
-        }
-        $images = Image::where('product_id', $product->id)->get();
-        foreach($images as $i){
-                unlink(public_path('image_product/'.$i->image));
-        }
-        $image360 = Image360::where('product_id', $product->id)->get();
-        foreach($image360 as $i){
-                unlink(public_path('image_360/'.$i->image360));
-        }
-
-        if (file_exists(public_path('video_product/'.$product->video_product))) {
-            unlink(public_path('video_product/'.$product->video_product));
+        if($product->status == 'aktif'){
+            Alert::error('Gagal Menghapus', 'Silahkan nonaktifkan produk');
+            return back();
+        }else{
+            if (file_exists(public_path('cover_product/'.$product->featured_image))) {
+                unlink(public_path('cover_product/'.$product->featured_image));
+            }
+            $images = Image::where('product_id', $product->id)->get();
+            foreach($images as $i){
+                    unlink(public_path('image_product/'.$i->image));
+            }
+            $image360 = Image360::where('product_id', $product->id)->get();
+            foreach($image360 as $i){
+                    unlink(public_path('image_360/'.$i->image360));
+            }
+    
+            if (file_exists(public_path('video_product/'.$product->video_product))) {
+                unlink(public_path('video_product/'.$product->video_product));
+            }
+            
+            $product->delete();
+            Alert::success('Berhasil Dihapus', '');
+            return back();
         }
         
-        $product->delete();
-        return back();
     }
     public function checkSlug(Request $request)
     {
