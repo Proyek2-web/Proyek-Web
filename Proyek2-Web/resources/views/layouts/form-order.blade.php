@@ -99,12 +99,12 @@
                             <div class=" d-flex   justify-content-between mt-1 mb-3" style="margin-left: -6px">
                                 <select id="id_select2_example" name="method" class=" input-field "
                                     aria-label="Default select example" required>
-                                    <option value="0"
+                                    <option
                                         data-img_src="{{ url('https://static.thenounproject.com/png/3187853-200.png') }}">
                                         -- pilih metode pembayaran --</option>
                                     @foreach ($channels as $channel)
                                     @if ($channel->active)
-                                    <option class="align-items-center"
+                                    <option id="pembayaran" class="align-items-center"
                                         data-img_src="{{ asset('storage/payment/' . $channel->code) . '.png' }}"
                                         style="background: #c04242; color: rgb(240, 242, 243)"
                                         value="{{ $channel->code }}">
@@ -113,16 +113,16 @@
                                     @endforeach
                                 </select>
                                 <select id="id_select3_example" class=" kurir input-field " name="courier">
-                                    <option value="0"
+                                    <option
                                         data-img_src2="{{ url('https://d338t8kmirgyke.cloudfront.net/icons/icon_pngs/000/000/163/original/delivery.png') }}">
                                         -- pilih metode pengiriman --</option>
-                                    <option style="background: #31527a; color: aliceblue"
+                                    <option id="pengiriman1" style="background: #31527a; color: aliceblue"
                                         data-img_src2="{{ url('https://seeklogo.com/images/T/Tiki_JNE-logo-09BD368D04-seeklogo.com.png') }}"
                                         value="jne">JNE</option>
-                                    <option style="background: #31527a; color: aliceblue"
+                                    <option id="pengiriman2" style="background: #31527a; color: aliceblue"
                                         data-img_src2="{{ url('https://cdn.kibrispdr.org/data/icon-pos-indonesia-10.png') }}"
                                         value="pos">POS</option>
-                                    <option style="background: #31527a; color: aliceblue"
+                                    <option id="pengiriman3" style="background: #31527a; color: aliceblue"
                                         data-img_src2="{{ url('https://cdn.kibrispdr.org/data/icon-jne-png-47.png') }}"
                                         value="tiki">TIKI</option>
                                 </select>
@@ -192,9 +192,12 @@
                                         </div>
                                     </div>
                                 </div>
+                                <p id="loading" class="d-none">Mohon Tunggu.......</p>
+                                <p id="lo" class="d-none">Silahkan Lengkapi Alamat/Pembayaran/Pengiriman</p>
                                 <button id="btn-check" class="btn btn-conf mt-5"
                                     style="background-color: #81b29a">Konfirmasi <i
                                         class="bi bi-check-circle-fill"></i></button>
+
                             </div>
                         </div>
                     </div>
@@ -267,10 +270,13 @@
         $('#checkout-button').addClass('d-block');
         $('#sub_ongkir').text("Rp. " + number_format(ongkir, 2));
     });
+
     let isProcessing = false;
     $('#btn-check').click(function (e) {
         $('.ongkir').addClass('d-none');
         $('#btn-check').addClass('d-none');
+        $('#lo').addClass('d-none');
+        $('#loading').removeClass('d-none');
         $('#checkout-button').addClass('d-none');
         e.preventDefault();
         let token = $("meta[name='csrf-token']").attr("content");
@@ -286,8 +292,9 @@
         if (isProcessing) {
             return;
         }
-        isProcessing = true;
-        jQuery.ajax({
+        if(city_destination !== undefined && courier != "-- pilih metode pengiriman --"){
+            isProcessing = true;
+            jQuery.ajax({
             url: "/ongkir",
             data: {
                 _token: token,
@@ -306,6 +313,8 @@
                 if (response) {
                     $('#ongkir').empty();
                     $('.ongkir').removeClass('d-none');
+                    $('#btn-check').removeClass('d-none');
+                    $('#loading').addClass('d-none');
                     $('#checkout-button').removeClass('d-none');
                     $.each(response[0]['costs'], function (key, value) {
                         $('#ongkir').append(
@@ -321,6 +330,13 @@
                 }
             }
         });
+        }else{
+        $('#loading').addClass('d-none');
+        $('#lo').removeClass('d-none');
+        $('#lo').addClass('d-block');
+        $('#btn-check').removeClass('d-none');
+        let isProcessing = false;
+        }
     });
 
     function number_format(number, decimals, dec_point, thousands_sep) {
