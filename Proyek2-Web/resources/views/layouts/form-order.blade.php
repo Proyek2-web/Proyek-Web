@@ -192,8 +192,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <p id="loading" class="d-none">Mohon Tunggu.......</p>
-                                <p id="lo" class="d-none">Silahkan Lengkapi Alamat/Pembayaran/Pengiriman</p>
+                                <div id="loading" class="lds-roller d-none"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+                                <span id="lo" style="border-radius: 30px" class="d-none bg-danger p-2"><i class="bi bi-exclamation-circle"></i> Silahkan Lengkapi Alamat/Pembayaran/Pengiriman</span>
                                 <button id="btn-check" class="btn btn-conf mt-5"
                                     style="background-color: #81b29a">Konfirmasi <i
                                         class="bi bi-check-circle-fill"></i></button>
