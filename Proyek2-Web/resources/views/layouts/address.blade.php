@@ -21,42 +21,42 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <form action="{{ route('alamat.store') }}" method="POST"
-                        enctype="application/x-www-form-urlencoded">
+                        enctype="application/x-www-form-urlencoded " >
                         @csrf
                         <div class="modal-body">
                             <div class="form">
                                 <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                                 <div class="mb-2">
                                     <input type="text" class="form-control" id="label" name="label"
-                                        placeholder="Label Alamat">
+                                        placeholder="Label Alamat" required>
                                 </div>
                                 <div class="mb-2">
                                     <input type="text" class="form-control" name="name" id=""
-                                        placeholder="Nama penerima">
+                                        placeholder="Nama penerima" required>
                                 </div>
                                 <div class="mb-2">
                                     <input type="number" class="form-control" name="no_hp" id=""
-                                        placeholder="Nomor Telepon (Whatsapp)">
+                                        placeholder="Nomor Telepon (Whatsapp)" required>
                                 </div>
                                 <div class="form-group mb-2">
-                                    <select class="form-control provinsi-tujuan" name="province_destination">
+                                    <select class="form-control provinsi-tujuan" name="province_destination" required>
                                         <option value="0">-- pilih provinsi tujuan --</option>
                                         @foreach ($provinces as $province => $value)
 
-                                        <option value="{{ $province }}">{{ $value }}</option>
+                                        <option value="{{ $province }}" >{{ $value }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group mb-2">
-                                    <select class="form-control kota-tujuan" name="city_destination">
+                                    <select class="form-control kota-tujuan" name="city_destination" required>
                                         <option value="">-- pilih kota tujuan --</option>
                                     </select>
                                 </div>
                                 <div class="mb-2">
-                                    <input type="number" class="form-control" name="zip" id="" placeholder="Kode Pos">
+                                    <input type="number" class="form-control" name="zip" id="" placeholder="Kode Pos" required>
                                 </div>
                                 <textarea name="alamat" class="form-control" placeholder="Tulis detail alamat"
-                                    id="floatingTextarea"></textarea>
+                                    id="floatingTextarea" required></textarea>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -80,11 +80,6 @@
                             <button type="submit" style="float: right; "><i
                                     class="bi bi-trash-fill"></i></button>
                         </form>
-                        {{-- <form action="{{ route('alamat.edit', $a->id) }}" method="POST">
-                        @csrf
-                        @method('PUT')
-                        <button type="submit" style="float: right"><i class="bi bi-pencil-square"></i></button>
-                        </form> --}}
                     </div>
                     <!-- Modal EDIT-->
                     <div class="modal fade" id="modal-editAlamat" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -117,7 +112,7 @@
                                             </div>
                                             <div class="form-group mb-2">
                                                 <select class="form-control provinsi-tujuan"
-                                                    name="province_destination">
+                                                    name="province_destination" required>
                                                     @php
                                                     $tabel = DB::table('cities')
                                                     ->join('provinces', 'cities.province_id', '=', 'provinces.province_id')
@@ -130,7 +125,7 @@
                                                     $prop = $c->nama_provinsi;
                                                     }
                                                     @endphp
-                                                    <option value="0">{{ $kota }}</option>
+                                                    <option value="{{ $kota }}">{{ $kota }}</option>
                                                     @foreach ($provinces as $province => $value)
 
                                                     <option value="{{ $province }}">{{ $value }}</option>
@@ -138,7 +133,7 @@
                                                 </select>
                                             </div>
                                             <div class="form-group mb-2">
-                                                <select class="form-control kota-tujuan" name="city_destination">
+                                                <select class="form-control kota-tujuan" name="city_destination" required>
                                             <option value="0">{{ $prop }}</option>
                                                 </select>
                                             </div>
@@ -151,7 +146,7 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="submit" class="btn btn-login">Simpan</button>
+                                        <button type="submit"  class="btn btn-login">Simpan</button>
                                     </div>
                                 </form>
                             </div>
@@ -196,6 +191,7 @@
     </div>
     </div>
 </section>
+
 <script>
     $('select[name="province_destination"]').on('change', function () {
         let provindeId = $(this).val();

@@ -90,7 +90,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form class="form form-vertical" action="{{ route('product.store') }}" method="POST"
+                                <form class="form form-vertical" action="{{ route('product.store') }}" method="POST" id="formIdp"
                                     enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group">
@@ -178,7 +178,7 @@
                                     <i class="bx bx-x d-block d-sm-none"></i>
                                     <span class="d-none d-sm-block">Tutup</span>
                                 </button>
-                                <button type="submit" class="btn btn-primary ml-1">
+                                <button type="submit" class="btn btn-primary ml-1" id="btnIdp">
                                     <i class="bx bx-check d-block d-sm-none"></i>
                                     <span class="d-none d-sm-block">Tambah</span>
                                 </button>
@@ -470,6 +470,18 @@
     }
 </script>
 <!-- End Sweet Alert Delete -->
+<script>
+    $(document).ready(function () {
+        $('#btnIdp').on('click',function()
+      {
+        $(this).val('Please wait ...')
+          .attr('disabled',true);
+        $('#formIdp').submit();
+      });
+    
+    });
+        </script>
+
 <script>
     $('#cover').change(function () {
 

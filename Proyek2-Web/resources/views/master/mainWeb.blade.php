@@ -45,6 +45,14 @@
           prevScrollpos = currentScrollPos;
         }
         </script>
+     <script>
+      $('form').submit(function(){
+          $("button", this)
+            .html("<div class=\"loader\"></div>")
+            .attr('disabled', 'disabled');
+          return true;
+      }); 
+      </script>
         
 </body>
 

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Mazer Admin Dashboard</title>
+    <title>Dashboard - Kinasih Admin Dashboard</title>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -18,6 +18,20 @@
     <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
     <link rel="stylesheet" href="assets/vendors/jquery-datatables/jquery.dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="assets/vendors/sweetalert2/sweetalert2.min.css">
+    <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendors/apexcharts/apexcharts.js"></script>
+    <script src="assets/js/pages/dashboard.js"></script>
+    <script src="assets/js/mazer.js"></script>
+    <script src="assets/vendors/jquery/jquery.min.js"></script>
+    <script src="assets/vendors/jquery-datatables/jquery.dataTables.min.js"></script>
+    <script src="assets/vendors/jquery-datatables/custom.jquery.dataTables.bootstrap5.min.js"></script>
+    <script src="assets/vendors/fontawesome/all.min.js"></script>
+        <!-- Include Choices JavaScript -->
+        <script src="assets/vendors/choices.js/choices.min.js"></script>
+        <script src="assets/js/pages/form-element-select.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 
 <body style="background-color: rgba(243, 243, 243, 0.59)">
@@ -46,24 +60,19 @@
     </div>
 
 
-    <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendors/apexcharts/apexcharts.js"></script>
-    <script src="assets/js/pages/dashboard.js"></script>
-    <script src="assets/js/mazer.js"></script>
-    <script src="assets/vendors/jquery/jquery.min.js"></script>
-    <script src="assets/vendors/jquery-datatables/jquery.dataTables.min.js"></script>
-    <script src="assets/vendors/jquery-datatables/custom.jquery.dataTables.bootstrap5.min.js"></script>
-    <script src="assets/vendors/fontawesome/all.min.js"></script>
+    <script>
+        $('form').submit(function(){
+            $("button", this)
+              .html("Please Wait...")
+              .attr('disabled', 'disabled');
+            return true;
+        }); 
+        </script>
     <script>
         // Jquery Datatable
         let jquery_datatable = $("#table1").DataTable()
     </script>
-    <!-- Include Choices JavaScript -->
-    <script src="assets/vendors/choices.js/choices.min.js"></script>
-    <script src="assets/js/pages/form-element-select.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 </body>
 
 </html>

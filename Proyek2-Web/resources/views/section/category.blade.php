@@ -48,8 +48,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form class="form form-vertical" action="{{ route('category.store') }}" method="POST"
-                                    enctype="multipart/form-data">
+                                <form action="{{ route('category.store') }}" method="POST" id="formId">
                                     @csrf
                                     <div class="form-group">
                                         <label for="basicInput">Nama Kategori</label>
@@ -62,10 +61,7 @@
                                     <i class="bx bx-x d-block d-sm-none"></i>
                                     <span class="d-none d-sm-block">Tutup</span>
                                 </button>
-                                <button type="submit" class="btn btn-primary ml-1">
-                                    <i class="bx bx-check d-block d-sm-none"></i>
-                                    <span class="d-none d-sm-block">Tambah</span>
-                                </button>
+                                <button id="btnId" type="submit" class="btn btn-primary ">Tambah</button>
                             </div>
                             </form>
                         </div>
@@ -108,6 +104,17 @@
     </section>
     <!-- Basic Tables end -->
 </div>
+<script>
+$(document).ready(function () {
+    $('#btnId').on('click',function()
+  {
+    $(this).val('Please wait ...')
+      .attr('disabled',true);
+    $('#formId').submit();
+  });
+
+});
+    </script>
 <!-- Sweet Alert Delete -->
 <script>
     function deleteItem(d){
@@ -143,5 +150,6 @@
             })
     }
     </script>
+        
     <!-- End Sweet Alert Delete -->
 @endsection

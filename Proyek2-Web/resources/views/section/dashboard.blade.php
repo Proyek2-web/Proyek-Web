@@ -110,7 +110,6 @@
                             <div class="table-responsive">
                                 <table class="table table-hover table-lg">
                                     <thead>
-                                        @forelse ($recent_order_proses as $p)
                                         <tr>
                                             <th>Nama</th>
                                             <th>Nomor Merchant</th>
@@ -118,6 +117,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @forelse ($recent_order_proses as $p)
                                         <tr>
                                             <td class="col-3">
                                                 <div class="d-flex align-items-center">
@@ -153,13 +153,13 @@
                                 <table class="table table-hover table-lg">
                                     <thead>
                                         <tr>
-                                            @forelse ($recent_order as $o)
                                             <th>Nama</th>
                                             <th>Nomor Merchant</th>
                                             <th>Pembayaran</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @forelse ($recent_order as $o)
                                         <tr>
                                             <td class="col-3">
                                                 <div class="d-flex align-items-center">
@@ -195,13 +195,13 @@
                                 <table class="table table-hover table-lg">
                                     <thead>
                                         <tr>
-                                            @forelse ($recent_order_in as $r)
                                             <th>Nama</th>
                                             <th>Nomor Merchant</th>
                                             <th>Pembayaran</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @forelse ($recent_order_in as $r)
                                         <tr>
                                             <td class="col-3">
                                                 <div class="d-flex align-items-center">
